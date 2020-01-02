@@ -99,5 +99,5 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
     type: git
-    repo: https://cdongtao.github.io
+    repo: http://cdongtao.github.io
     branch: master
