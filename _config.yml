@@ -87,3 +87,11 @@ search:
   field: post
   format: html
   limit: 10000
+  
+# or anohter number
+server:
+  port: 5000 
+  log: false
+  ip: localhost
+  compress: false
+  header: true
