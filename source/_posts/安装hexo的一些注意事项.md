@@ -26,7 +26,7 @@ categories : Hexo安装
 2. RSS标签需要安装： `cnpm install hexo-generator-feed --save`
 3. [日历功能教程](https://www.jianshu.com/p/b9665a8e8282)：需要安装为：`cnpm install hexo-generator-calendar --save`
 4. 主题内容设置：[Hexo+Next个人博客主题优化](https://www.jianshu.com/p/efbeddc5eb19)
-5. search功能安装：`cnpm install hexo-generator-searchdb --save`
+5. 设置好配置文件后,search功能安装：`cnpm install hexo-generator-searchdb --save`
 
 
 
