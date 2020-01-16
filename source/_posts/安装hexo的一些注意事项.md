@@ -23,7 +23,7 @@ categories : Hexo安装
 # 设置主题theme修改_config.yml
 0. [next主题doc教程](http://theme-next.iissnan.com/theme-settings.html#author-sites)
 1. 对theme目录下的tag/categories/archives标签进行释放
-2. RSS标签需要安装： `cnpm install hexo-generator-feed --save`
+2. [设置RSS标签教程](https://www.jianshu.com/p/a79422ab2013)需要安装： `cnpm install hexo-generator-feed --save`
 3. [日历功能教程](https://www.jianshu.com/p/b9665a8e8282)：需要安装为：`cnpm install hexo-generator-calendar --save`
 4. 主题内容设置：[Hexo+Next个人博客主题优化](https://www.jianshu.com/p/efbeddc5eb19)
 5. 设置好配置文件后,search功能安装：`cnpm install hexo-generator-searchdb --save`
