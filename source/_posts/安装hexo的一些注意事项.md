@@ -33,7 +33,7 @@ categories : Hexo安装
 * 可以在theme文件夹里面修改_config.yml这个文件来获得想要的效果
 
 # [设置主题theme doc教程](http://theme-next.iissnan.com/theme-settings.html#author-sites)
-*  对theme目录下_config.yml的tag/categories/archives标签进行释放
+*  [对theme目录下_config.yml的tag/categories/archives标签进行释放](https://www.jianshu.com/p/3a05351a37dc)
 *  [设置RSS标签教程](https://www.jianshu.com/p/a79422ab2013)需要安装： 
 	`cnpm install hexo-generator-feed --save`
 *  [日历功能教程](https://www.jianshu.com/p/b9665a8e8282)：需要安装为：
