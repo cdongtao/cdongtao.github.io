@@ -36,7 +36,9 @@ categories: Hexo安装
 *  [对theme目录下_config.yml的tag/categories/archives标签进行释放](https://www.jianshu.com/p/3a05351a37dc)
 *  [设置RSS标签教程](https://www.jianshu.com/p/a79422ab2013)需要安装： 
 	`cnpm install hexo-generator-feed --save`
-*  [日历功能教程](https://www.jianshu.com/p/b9665a8e8282)：需要安装为：
+*  [日历功能教程](https://www.jianshu.com/p/b9665a8e8282)：
+	[教程](https://www.jianshu.com/p/5f19fc242c36):
+	需要安装为：
 	`cnpm install hexo-generator-calendar --save`
 *  主题内容设置：[Hexo+Next个人博客主题优化](https://www.jianshu.com/p/efbeddc5eb19)
 *  设置好配置文件后,search功能安装：
