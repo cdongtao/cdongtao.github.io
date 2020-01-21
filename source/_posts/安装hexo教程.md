@@ -1,5 +1,5 @@
 ---
-title: 安装hexo的一些注意事项
+title: 安装hexo教程
 date: 2020-01-16 22:09:05
 tags: Hexo安装
 categories: Hexo安装
