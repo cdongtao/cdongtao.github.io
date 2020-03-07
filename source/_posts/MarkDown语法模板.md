@@ -1,18 +1,60 @@
 ---
 title: MarkDown语法模板
-tags: MarkDown语法
-categories: MarkDown语法
+tags: [MarkDown语法]
+categories: [插件工具]
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+# 1.标题
+## 这是二级标题
+### 这是三级标题
+#### 这是四级标题
+##### 这是五级标题
+###### 这是六级标题
 
-## 一级标题
-### 二级标题
+## 2.可复制区域
 >可以复制区域/置灰区域
 >可以指定是bash/sql
+
 ```bash
 $ hexo new "My New Post"
 ```
+## 3.字体
+**这是加粗的文字**
+*这是倾斜的文字*`
+***这是斜体加粗的文字***
+~~这是加删除线的文字~~
 
-### 关联链接
+## 4.列表
+###无序列表用 
+>- + * 任何一种都可以
+- 列表内容1
++ 列表内容2
+* 列表内容3
+
+###有序列表
+数字加点跟着空格
+1. 列表内容1
+2. 列表内容2
+3. 列表内容3
+
+## 5.关联链接
 More info: [Writing](https://hexo.io/docs/writing.html)
+
+
+## 6.表格
+姓名|技能|排行
+--|:--:|--:
+刘备|哭|大哥
+关羽|打|二哥
+张飞|骂|三弟
+
+
+## 7.分割线
+三个或者三个以上的 - 或者 * 都可以
+---
+----
+***
+*****
+
+
+
 

@@ -1,8 +1,7 @@
 ---
 title: 安装Hexo教程
-date: 2020-01-16 22:09:05
-tags: Hexo安装
-categories: Hexo安装
+tags: [Hexo安装]
+categories: [插件工具]
 ---
 
 # 安装步骤：
