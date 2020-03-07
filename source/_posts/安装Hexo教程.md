@@ -19,6 +19,7 @@ categories: Hexo安装
 	生成静态文件:hexo generate or hexo g
 	启动本地服务器:hexo server or hexo s
 	部署站点，在本地生成.deploy_git文件夹，并将编译后的文件上传至 GitHub:hexo deploy or hexo d
+	删除:rm -rf .deploy_git(.deploy_git部署报错,删除文件夹重新生成)
 ```
 
 
@@ -34,7 +35,7 @@ categories: Hexo安装
 	hexo-generator-archive
 ```
 
-5. 安装
+6. 安装
    `cnpm install`
 
 # 添加 theme 文件:
