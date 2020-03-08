@@ -1,6 +1,6 @@
 ---
 title: 安装Hexo教程
-tags: [Hexo安装]
+tags: [Hexo]
 categories: [插件工具]
 ---
 

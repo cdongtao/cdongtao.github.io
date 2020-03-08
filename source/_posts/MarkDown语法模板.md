@@ -1,6 +1,6 @@
 ---
 title: MarkDown语法模板
-tags: [MarkDown语法]
+tags: [MarkDown]
 categories: [插件工具]
 ---
 # 1.标题
@@ -41,11 +41,11 @@ More info: [Writing](https://hexo.io/docs/writing.html)
 
 
 ## 6.表格
-姓名|技能|排行
---|:--:|--:
-刘备|哭|大哥
-关羽|打|二哥
-张飞|骂|三弟
+| 姓名 | 技能  | 排行 |
+| ---- | :---: | ---: |
+| 刘备 |  哭   | 大哥 |
+| 关羽 |  打   | 二哥 |
+| 张飞 |  骂   | 三弟 |
 
 
 ## 7.分割线

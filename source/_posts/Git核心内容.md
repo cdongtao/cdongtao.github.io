@@ -1,6 +1,6 @@
 ---
 title: Git核心内容
-tags: [Git命令]
+tags: [Git]
 categories: [插件工具]
 ---
 ## Git 掌握命令要求
