@@ -156,5 +156,3 @@ $ git stash
 $ git stash pop
 ```
 
-
-
