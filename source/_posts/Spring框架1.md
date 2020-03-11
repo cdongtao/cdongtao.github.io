@@ -1,13 +1,13 @@
 ---
-title: Spring 框架
+title: Spring 框架1
 tags: [Spring]
 categories: [架构]
 ---
 
-Spring 核心两大特点：控制反转(IOC),依赖注入,与切面编程(AOP)
-Spring 提供了AOP技术,事务管理服务(注入控制事务传播),消息服务；
-Spring支持使用集成Hibernate,JPA,Struts等框架；
-面向切面编程(AOP:Aspect Oriented Programming):可以使用权限拦截，运行监控，日志等；
+Spring 核心几大特点：控制反转(IOC),依赖注入(Dependency Injection),与切面编程(AsOP),Spring Framework还提供了AOP技术,事务管理服务(注入控制事务传播),消息服务；Spring支持使用集成Hibernate,JPA,Struts等框架；
+## Spring Framework 架构图
+
+![Spring_Framework3.x架构图](/img/Spring_Framework3.x架构图.png "Spring_Framework3.x架构图")
 
 ## 控制反转(IOC:Inversion Of Control)
 
@@ -36,14 +36,20 @@ public class PersonServiceBean{
   }
 }
 ```
-### 依赖注入(Dependency Injection)
+## 依赖注入(Dependency Injection)
 
-DI定义:运行期，由外部容器动态的将依赖对象注入到组件中
-因此：将创建bean的过程交给spring创建的过程就是IOC,一个类在使用到相关bean对象的时候自动注入相关bean；(就是spring new好了对象，注入就是拿来使用)
+DI定义:运行期，由外部容器动态的将依赖对象注入到组件中(从xml的spring容器拿到bean 注入到代码里)
+因此：将创建bean的过程交给spring创建的过程就是IOC,一个类在使用到相关bean对象的时候自动注入相关bean；
 
+>注入过程就是如何赋值过程,如spring new好了的personDao对象A，在PersonServiceBean中需要将A赋值给personDao
+
+## 切面编程(AOP:Aspect Oriented Programming)
+面向切面编程可以使用权限拦截，运行监控，日志等
+>切面编程就如一个全局函数一样
 ----
 
-## Spring配置模板
+## Spring XML文件配置使用
+#### Spring配置模板
 ![Spring配置模板](/img/Spring配置模板.png "Spring配置模板")
 ![Spring配置Bean不能联想](/img/Spring配置Bean不能联想.png "Spring配置Bean不能联想")
 
@@ -90,9 +96,10 @@ public class OrderFactory {
 ### 模仿Spring注册：代码手动解析xml,实例化xml的bean
 ![解析xml注册bean](/img/解析xml注册bean.png "解析xml注册bean")
 
-## 配置Spring管理的bean的作用域(Scope)
+## 配置bean的作用域(Scope)
 
-类似定义变量时候,设置变量为局部变量还是全局变量
+>定义Bean可以使用的范围,类似定义变量时候,设置变量为局部变量还是全局变量,强调创建bean后的结果作用域
+
 #### 1.singleton （单例）
 ```
 <bean id="ServiceImpl" class="cn.csdn.service.ServiceImpl" scope="singleton">
@@ -139,7 +146,9 @@ AbstractApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");
 ctx.close();//正常关闭spring容器。
 ```
 
-## Spring Bean生命周期(实例化过程)
+## Spring Bean生命周期
+>创建Bean的过程,即实例化过程，强调创建过程
+
 ![Bean实例化过程](/img/Bean实例化过程.png "Bean实例化过程")
 
 ### Bean实例生命周期的执行过程如下：
