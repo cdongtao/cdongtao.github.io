@@ -1,6 +1,6 @@
 ---
 title: Spring 框架2
-tags: [Spring]
+tags: [spring,注入仿写]]
 categories: [架构]
 ---
 
@@ -18,8 +18,10 @@ categories: [架构]
 ```
 在xml配置文件中，通过在bean节点下配置，如
 <bean id="orderService" class="cn.itcast.service.OrderServiceBean">
-<constructor-arg index=“0” type=“java.lang.String” value=“xxx”/>//构造器注入
-<property name=“name” value=“zhao/>//属性setter方法注入
+    //构造器注入
+    <constructor-arg index=“0” type=“java.lang.String” value=“xxx”/>
+    //属性setter方法注入
+    <property name=“name” value=“zhao/>
 </bean>
 ```
 2. 中在java代码使用@Autowired或@Resource注解方式进行装配。但我们需要在xml配置文件中配置以下信息：
@@ -61,17 +63,30 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 
 ## 注入的原理
+```
+<bean id="orderDao" class="cn.itcast.service.OrderDao"/>
+
+<bean id="orderService" class="cn.itcast.service.OrderServiceBean">
+  //用来给Bean内部一个对象的属性设置初始值,setter方法注入
+  <property name="orderDao" ref="orderDao"></property>
+  //构造器注入
+  <constructor-arg index=“0” type=“java.lang.String” value=“xxx”/>
+  //初始化Bean对象包含的属性值,setter方法注入
+  <property name=“name” value=“zhao/>
+</bean>
+```
 
 ```
 private List<BeanDefinition> beanDefines = new ArrayList<BeanDefinition>();
 private Map<String, Object> sigletons = new HashMap<String, Object>();
-
+//定义一个Bean对象
 public class BeanDefinition {
 	private String id;
 	private String className;
+  //bean里面的属性
 	private List<PropertyDefinition> propertys = new ArrayList<PropertyDefinition>();
 }
-
+//定义一个Bean包含的属性对象
 public class PropertyDefinition {
 	private String name;
 	private String ref;
@@ -104,7 +119,8 @@ private void readXML(String filename) {
 	         String propertyName = property.attributeValue("name");
 	         String propertyref = property.attributeValue("ref");
 	         String propertyValue = property.attributeValue("value");
-	         PropertyDefinition propertyDefinition = new PropertyDefinition(propertyName, propertyref, propertyValue);
+	         PropertyDefinition propertyDefinition = 
+                    new PropertyDefinition(propertyName, propertyref, propertyValue);
 	            beanDefine.getPropertys().add(propertyDefinition);
 	       }
 
@@ -115,27 +131,57 @@ private void readXML(String filename) {
 	}
 }
 ```
-###  为bean对象的属性注入值
+
+
+### bean的实例化
+```
+private void instanceBeans() {
+for(BeanDefinition beanDefinition : beanDefines){
+  try {
+    if(beanDefinition.getClassName()!=null && !"".equals(beanDefinition.getClassName().trim()))
+      //new 的对象里面的属性为空，还没注入需要注入属性值
+      sigletons.put(beanDefinition.getId(), Class.forName(beanDefinition.getClassName()).newInstance());
+  } catch (Exception e) {
+    e.printStackTrace();
+  }
+}
+
+}
+
+```
+
+
+###  为bean初始化对象属性注入值
 ```
 private void injectObject() {
+  //遍历已经实例化的bean对象容器
   for(BeanDefinition beanDefinition : beanDefines){
     Object bean = sigletons.get(beanDefinition.getId());
     if(bean!=null){
       try {
-        PropertyDescriptor[] ps = Introspector.getBeanInfo(bean.getClass()).getPropertyDescriptors();
+        //获取当前实例化对象里属性描述
+        PropertyDescriptor[] ps = 
+               Introspector.getBeanInfo(bean.getClass()).getPropertyDescriptors();
+        //遍历当前Bean对象里面包含的属性
         for(PropertyDefinition propertyDefinition : beanDefinition.getPropertys()){
+          //遍历当前Bean对象里的属性描述
           for(PropertyDescriptor properdesc : ps){
             if(propertyDefinition.getName().equals(properdesc.getName())){
-              Method setter = properdesc.getWriteMethod();//获取属性的setter方法 ,private
+              //获取属性的setter方法 ,private
+              Method setter = properdesc.getWriteMethod();
               if(setter!=null){
                 Object value = null;
-                if(propertyDefinition.getRef()!=null && !"".equals(propertyDefinition.getRef().trim())){
+                if(propertyDefinition.getRef()!=null 
+                        && !"".equals(propertyDefinition.getRef().trim())){
+                  //bean 的ref 属性注入(内部包含其他javaBean的注入：orderDao)
                   value = sigletons.get(propertyDefinition.getRef());
                 }else{
+                  //bean的value属性注入(java基本类型)
                   value = ConvertUtils.convert(propertyDefinition.getValue(), properdesc.getPropertyType());
                 }
                 setter.setAccessible(true);
-                setter.invoke(bean, value);//把引用对象注入到属性
+                //把引用对象注入到属性
+                setter.invoke(bean, value);
               }
               break;
             }
@@ -154,7 +200,8 @@ private void annotationInject() {
     Object bean = sigletons.get(beanName);
     if(bean!=null){
       try {
-        PropertyDescriptor[] ps = Introspector.getBeanInfo(bean.getClass()).getPropertyDescriptors();
+        PropertyDescriptor[] ps = 
+                  Introspector.getBeanInfo(bean.getClass()).getPropertyDescriptors();
         for(PropertyDescriptor properdesc : ps){
           Method setter = properdesc.getWriteMethod();//获取属性的setter方法
           if(setter!=null && setter.isAnnotationPresent(ItcastResource.class)){
@@ -205,21 +252,4 @@ private void annotationInject() {
     }
   }
 }
-```
-
-
-### bean的实例化
-```
-private void instanceBeans() {
-for(BeanDefinition beanDefinition : beanDefines){
-  try {
-    if(beanDefinition.getClassName()!=null && !"".equals(beanDefinition.getClassName().trim()))
-      sigletons.put(beanDefinition.getId(), Class.forName(beanDefinition.getClassName()).newInstance());
-  } catch (Exception e) {
-    e.printStackTrace();
-  }
-}
-
-}
-
 ```
