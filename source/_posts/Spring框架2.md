@@ -1,6 +1,6 @@
 ---
 title: Spring 框架2
-tags: [spring,注入仿写]]
+tags: [spring注入原理]
 categories: [架构]
 ---
 
@@ -24,7 +24,7 @@ categories: [架构]
     <property name=“name” value=“zhao/>
 </bean>
 ```
-2. 中在java代码使用@Autowired或@Resource注解方式进行装配。但我们需要在xml配置文件中配置以下信息：
+2.中在java代码使用@Autowired或@Resource注解方式进行装配。但我们需要在xml配置文件中配置以下信息：
 ```
 <beans xmlns="http://www.springframework.org/schema/beans"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -69,12 +69,21 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 <bean id="orderService" class="cn.itcast.service.OrderServiceBean">
   //用来给Bean内部一个对象的属性设置初始值,setter方法注入
   <property name="orderDao" ref="orderDao"></property>
-  //构造器注入
-  <constructor-arg index=“0” type=“java.lang.String” value=“xxx”/>
+
   //初始化Bean对象包含的属性值,setter方法注入
   <property name=“name” value=“zhao/>
+
+  //构造器注入 index=0,type对应第一个参数和类型
+  <constructor-arg index=“0” type=“java.lang.String” value=“xxx”/>
+  //index=1,type对应第二个参数和类型
+  <constructor-arg index=“1” type=“java.lang.String” value=“xxx”/>
 </bean>
+
+集合类型的配置：List,map,set,properties类型属性都可以配置在xml的bean里
+
 ```
+
+
 
 ```
 private List<BeanDefinition> beanDefines = new ArrayList<BeanDefinition>();
@@ -176,7 +185,7 @@ private void injectObject() {
                   //bean 的ref 属性注入(内部包含其他javaBean的注入：orderDao)
                   value = sigletons.get(propertyDefinition.getRef());
                 }else{
-                  //bean的value属性注入(java基本类型)
+                  //bean的value属性注入(java基本类型):将字符串专成对应的类型值
                   value = ConvertUtils.convert(propertyDefinition.getValue(), properdesc.getPropertyType());
                 }
                 setter.setAccessible(true);
@@ -193,27 +202,38 @@ private void injectObject() {
   }
 }
 ```
+
 ### 通过注解实现注入依赖对象
 ```
 private void annotationInject() {
+  //遍历spring容器里所有bean对象
   for(String beanName : sigletons.keySet()){
     Object bean = sigletons.get(beanName);
     if(bean!=null){
       try {
+        //获取某个bean对象的所有属性
         PropertyDescriptor[] ps = 
                   Introspector.getBeanInfo(bean.getClass()).getPropertyDescriptors();
+        //遍历每个setter属性,将注解的值注入
         for(PropertyDescriptor properdesc : ps){
-          Method setter = properdesc.getWriteMethod();//获取属性的setter方法
+          //获取方法属性的setter方法注解
+          Method setter = properdesc.getWriteMethod();
           if(setter!=null && setter.isAnnotationPresent(ItcastResource.class)){
+
             ItcastResource resource = setter.getAnnotation(ItcastResource.class);
             Object value = null;
+            //方法属性注解里有name对应属性,存在有值就注入
             if(resource.name()!=null && !"".equals(resource.name())){
               value = sigletons.get(resource.name());
             }else{
+              //处理@resource/autowired注解
+              //在方法属性注解上,没name属性的以set字段名字(开头字母小写)来bean容器取对象注入
               value = sigletons.get(properdesc.getName());
               if(value==null){
+              //如果按照名称没找到对应对象,则注解会按照方法属性入参类型来容器取对象注入
                 for(String key : sigletons.keySet()){
-                  if(properdesc.getPropertyType().isAssignableFrom(sigletons.get(key).getClass())){
+                  if(properdesc.getPropertyType()
+                  .isAssignableFrom(sigletons.get(key).getClass())){
                     value = sigletons.get(key);
                     break;
                   }
@@ -224,16 +244,22 @@ private void annotationInject() {
             setter.invoke(bean, value);//把引用对象注入到属性
           }
         }
+
+        //对字段注解处理：取得对象所有的声明字段
         Field[] fields = bean.getClass().getDeclaredFields();
         for(Field field : fields){
+          //遍历每一个字段是否存在对应注解
           if(field.isAnnotationPresent(ItcastResource.class)){
             ItcastResource resource = field.getAnnotation(ItcastResource.class);
             Object value = null;
+            //字段上对应的注解存在name属性,取name属性值去容器里拿对象注入
             if(resource.name()!=null && !"".equals(resource.name())){
               value = sigletons.get(resource.name());
             }else{
+            //字段上没有name属性,直接取字段名在容器中取对象
               value = sigletons.get(field.getName());
               if(value==null){
+                //字段名没有直接取字段对应类型在容器中取对象
                 for(String key : sigletons.keySet()){
                   if(field.getType().isAssignableFrom(sigletons.get(key).getClass())){
                     value = sigletons.get(key);
