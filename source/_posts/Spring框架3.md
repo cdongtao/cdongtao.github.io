@@ -139,6 +139,79 @@ public class MyProxyByGclib implements MethodInterceptor {
 
 
 
+## 实现AOP方式(xml配置 || 注解方式)
+### AOP 核心概念
+1. 切面（Aspect）
+　　对哪些方法进行拦截，拦截后怎么处理，这些关注点称之为横切关注点。切面就是在一个怎么样的环境中工作。类是对物体特征的抽象，切面就是对横切关注点的抽象。比如数据库的事务直接贯穿了整个代码层面，这就是一个切面，它能够在被代理对象的方法之前、之后，产生异常或者正常返回后切入你的代码，甚至代替原来被代理对象的方法，在动态代理中可以把它理解成一个拦截器。
+
+2. 通知（Adice）
+　　•通知是切面开启后，切面的方法。它根据在代理对象真实方法调用前、后的顺序和逻辑区分，它和约定游戏的例子里的拦截器的方法十分接近。
+　　•前置通知（before）：在动态代理反射原有对象方法或者执行环绕通知前执行的通知功能。
+　　•后置通知（after）：在动态代理反射原有对象方法或者执行环绕通知后执行的通知功能。无论是否抛出异常，它都会被执行。
+　　•返回通知（afterReturning）：在动态代理反射原有对象方法或者执行环绕通知后执行的通知功能。   
+　　•异常通知（afterThrowing）：在动态代理反射原有对象方法或者执行环绕通知产生异常后执行的通知功能。
+　　•环绕通知（aroundThrowing）：在动态代理中，它可以取代当前被拦截对象的方法，通过参数或反射调用被拦截对象的方法。
+
+3. 引入（Introduction）
+　　在不修改代码的前提下，引入可以在运行期为类动态地添加一些方法或字段
+
+4. 切入点（Pointcut）
+　　在动态代理中，被切面拦截的方法就是一个切点，切面将可以将其切点和被拦截的方法按照一定的逻辑织入到约定流程当中。
+
+5. 连接点（join point）
+　　连接点是一个判断条件，由它可以指定哪些是切点。对于指定的切点，Spring会生成代理对象去使用对应的切面对其拦截，否则就不会拦截它。被拦截到的点，因为Spring只支持方法类型的连接点，所以在Spring中连接点指的就是被拦截到的方法，实际上连接点还可以是字段或者构造器
+
+6. 织入（Weaving）
+　　织入是一个生成代理对象的过程。实际代理的方法分为静态代理和动态代理。静态代理是在编译class文件时生成的代码逻辑，但是在Spring中并不使用这样的方式，所以我们就不展开讨论了。一种是通过ClassLoader也就是在类加载的时候生成的代码逻辑，但是它在应用程序代码运行前就生成对应的逻辑。还有一种是运行期，动态生成代码的方式，这是Spring AOP所采用的方式，Spring是以JDK和CGLIB动态代理来生成代理对象的
+
+
+### 1.Spring xml配置文件
+
+下面给出一个Spring AOP的.xml文件模板，名字叫做aop.xml，之后的内容都在aop.xml上进行扩展：
+
+使用Spring AOP，只用Spring提供给开发者的jar包是不够的，请额外上网下载两个jar包：
+1、aopalliance.jar
+2、aspectjweaver.jar
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+        
+        <bean id="helloWorldImpl1" class="com.xrq.aop.HelloWorldImpl1" />
+        <bean id="helloWorldImpl2" class="com.xrq.aop.HelloWorldImpl2" />
+        <bean id="timeHandler" class="com.xrq.aop.TimeHandler" />
+        <bean id="logHandler" class="com.xrq.aop.LogHandler" />
+        
+        // 要想让logHandler在timeHandler前使用有两个办法：
+        //（1）aspect里面有一个order属性，order属性的数字就是横切关注点的顺序
+        //（2）把logHandler定义在timeHandler前面，Spring默认以aspect的定义顺序作为织入顺序
+        <aop:config>
+            <aop:aspect id="time" ref="timeHandler" order="1">
+                <aop:pointcut id="addTime" expression="execution(* com.xrq.aop.HelloWorld.print*(..))" />
+                <aop:before method="printTime" pointcut-ref="addTime" />
+                <aop:after method="printTime" pointcut-ref="addTime" />
+            </aop:aspect>
+            <aop:aspect id="log" ref="logHandler" order="2">
+                <aop:pointcut id="printLog" expression="execution(* com.xrq.aop.HelloWorld.do*(..))" />
+                <aop:before method="LogBefore" pointcut-ref="printLog" />
+                <aop:after method="LogAfter" pointcut-ref="printLog" />
+            </aop:aspect>
+        </aop:config>
+</beans>
+
+
+强制使用CGLIB生成代理
+前面说过Spring使用动态代理或是CGLIB生成代理是有规则的，高版本的Spring会自动选择是使用动态代理还是CGLIB生成代理内容，当然我们也可以强制使用CGLIB生成代理，那就是<aop:config>里面有一个"proxy-target-class"属性，这个属性值如果被设置为true，那么基于类的代理将起作用，如果proxy-target-class被设置为false或者这个属性被省略，那么基于接口的代理将起作用
+```
+
+
 
 
 
