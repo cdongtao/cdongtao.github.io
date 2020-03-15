@@ -9,6 +9,11 @@ OOP允许开发者定义纵向的关系,在OOP设计中，它导致了大量代�
 
 使用"横切"技术，AOP把软件系统分为两个部分：核心关注点和横切关注点。业务处理的主要流程是核心关注点，与之关系不大的部分是横切关注点。横切关注点的一个特点是，他们经常发生在核心关注点的多处，而各处基本相似，比如权限认证、日志、事物。AOP的作用在于分离系统中的各种关注点，将核心关注点和横切关注点分离开来。
 
+>SpringAOP、事物原理、日志打印、权限控制、远程调用、安全代理 可以隐蔽真实角色
+Spring声明式事务管理器类：
+Jdbc技术：DataSourceTransactionManager
+Hibernate技术：HibernateTransactionManager
+
 ## 提出问题及解决思路
 现在提出这样一个需求：
 
@@ -115,15 +120,23 @@ public class MyProxyByGclib implements MethodInterceptor {
         return en.create();
     }
 
-    @Override
-    public Object intercept(Object proxy, Method method, Object[] objects, MethodProxy arg3) throws Throwable {
+    @Override // @Around--->从另一种角度看：整个方法可看作环绕通知,代理生产最新整个方法
+    public Object intercept(Object proxy, Method method, Object[] objects, MethodProxy arg3){
         System.out.println("Begin Transaction");
-        //执行目标对象的方法
-        Object returnValue = method.invoke(target, objects);
+            // @Before----> 前置通知(所谓通知，就是我们拦截到业务方法之后所要干的事情)
+        try {
+            //执行目标对象的方法
+            Object returnValue = method.invoke(target, objects);
+            //@AfterReturning ----> 后置通知
+            } catch (RuntimeException e) {
+            //@AfterThrowing ----> 异常通知
+            } finally {
+            // @After ----> 最终通知
+            }
         System.out.println("End Transaction");
         return returnValue;
     }
-    
+
     public static void main(String[] args) {
         //目标对象
         MyServiceImpl myService = new MyServiceImpl();
@@ -155,7 +168,7 @@ public class MyProxyByGclib implements MethodInterceptor {
 　　•异常通知（afterThrowing）：在动态代理反射原有对象方法或者执行环绕通知产生异常后执行的通知功能。
 　　•环绕通知（aroundThrowing）：在动态代理中，它可以取代当前被拦截对象的方法，通过参数或反射调用被拦截对象的方法。
 
->afterReturning处理>after处理:afterReturning 在处理在after处理前
+>afterReturning处理< after处理:afterReturning 在处理在after处理后
 
 3. 引入（Introduction）
 　　在不修改代码的前提下，引入可以在运行期为类动态地添加一些方法或字段.
@@ -216,10 +229,271 @@ public class MyProxyByGclib implements MethodInterceptor {
 前面说过Spring使用动态代理或是CGLIB生成代理是有规则的，高版本的Spring会自动选择是使用动态代理还是CGLIB生成代理内容，当然我们也可以强制使用CGLIB生成代理，那就是<aop:config>里面有一个"proxy-target-class"属性，这个属性值如果被设置为true，那么基于类的代理将起作用，如果proxy-target-class被设置为false或者这个属性被省略，那么基于接口的代理将起作用
 ```
 
+### 实现AOP的注解方式
+
+```
+开启事物注解权限：传统spring xml配置开启注解模式
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+```
+五个注解: 
+@Aspect 指定一个类为切面类
+@Pointcut(“execution(* com.itmayiedu.service.UserService.add(…))”) 指定切入点表达式
+@Before(“pointCut_()”) 前置通知: 目标方法之前执行
+@After(“pointCut_()”) 后置通知：目标方法之后执行（始终执行）
+@AfterReturning(“pointCut_()”) 返回后通知： 执行方法结束前执行(异常不执行)
+@AfterThrowing(“pointCut_()”) 异常通知: 出现异常时候执行
+@Around(“pointCut_()”) 环绕通知： 环绕目标方法执行
 
 
+```
+@Aspect
+public class MyInterceptor {
+    @Pointcut("execution (* cn.itcast.service.impl.PersonServiceImpl.*(..))")
+    private void anyMethod() {} // 声明一个切入点，anyMethod为切入点名称
 
+    // 声明该方法是一个前置通知：在目标方法开始之前执行 
+   1. @Before("anyMethod()")
+    public void doAccessCheck() {
+        System.out.println("前置通知");
+    }
 
+   2. @AfterReturning("anyMethod()")
+    public void doAfterReturning() {
+        System.out.println("后置通知");
+    }
 
+   3. @After("anyMethod()")
+    public void doAfter() {
+        System.out.println("最终通知");
+    }
 
+   4. @AfterThrowing("anyMethod()")
+    public void doAfterThrowing() {
+        System.out.println("异常通知");
+    }
+
+   5. @Around("anyMethod()")
+    public Object doBasicProfiling(ProceedingJoinPoint pjp) throws Throwable {
+        System.out.println("进入方法");
+        Object result = pjp.proceed();
+        System.out.println("退出方法");
+        return result;
+    }
+}
+
+```
+
+#### 注解执行顺序
+```
+@Override // @Around--->从另一种角度看：整个方法可看作环绕通知,代理生产最新整个方法
+public Object intercept(Object proxy, Method method, Object[] objects, MethodProxy arg3){
+        //@Around进入方法
+        // @Before----> 前置通知(所谓通知，就是我们拦截到业务方法之后所要干的事情)
+    try {
+        //执行目标对象的方法
+        Object returnValue = method.invoke(target, objects);
+        //@AfterReturning ----> 后置通知
+        } catch (RuntimeException e) {
+        //@AfterThrowing ----> 异常通知
+        } finally {
+        // @After ----> 最终通知
+        }
+    System.out.println("End Transaction");
+    return returnValue;
+        //@Around退出方法 
+}
+```
+>@Around进入方法-->@Before-->目标函数-->@AfterReturning(or @AfterThrowing)-->@After-->@Around退出方法 
+
+不同切面间的执行顺序:多个切面嵌套
+如果知道上面的执行顺序，不同 Aspect 切面的执行顺序很好理解。
+首先根据 @Order 注解，或者 xml 中的顺序，先进入到顺序靠前的切面。
+然后我们只需要把上面执行顺序中执行目标函数位置替换为第二个切面的执行顺序，同理，第三个切面的执行位置，就是把第二个切面的执行顺序里面执行目标函数替换即可，以此类推。
+
+需要注意的是异常的抛出，我们的环绕通知是有能力捕获目标函数异常并且不抛出的，如果捕获并且不抛出，会触发后置返回通知而不会触发后置异常通知，同时也会影响其他切面的执行。所以我们捕获处理后，还要抛出去。
+
+#### 切入点表达式
+一、切入点指示符
+　　切入点指示符用来指示切入点表达式目的，在Spring AOP中目前只有执行方法这一个连接点，Spring AOP支持的AspectJ切入点指示符如下：
+
+execution：用于匹配方法执行的连接点；
+within：用于匹配指定的类及其子类中的所有方法。
+this：匹配可以向上转型为this指定的类型的代理对象中的所有方法。
+target：匹配可以向上转型为target指定的类型的目标对象中的所有方法。
+args：用于匹配运行时传入的参数列表的类型为指定的参数列表类型的方法；
+@within：用于匹配持有指定注解的类的所有方法；
+@target：用于匹配的持有指定注解目标对象的所有方法；
+@args：用于匹配运行时 传入的参数列表的类型持有 注解列表对应的注解 的方法；
+@annotation：用于匹配持有指定注解的方法；
+　　AspectJ切入点支持的切入点指示符还有： call、get、set、preinitialization、staticinitialization、initialization、handler、adviceexecution、withincode、cflow、cflowbelow、if、@this、@withincode；但Spring AOP目前不支持这些指示符，使用这些指示符将抛出IllegalArgumentException异常。
+
+二、类型匹配语法
+(1) *：匹配任何数量字符；
+
+(2) ..：匹配任何数量字符的重复，如在类型模式中匹配任何数量子包；而在方法参数模式中匹配任何数量参数
+
+(3) +：匹配指定类型的子类型；仅能作为后缀放在类型模式后边。
+
+AspectJ使用 且（&&）、或（||）、非（！）来组合切入点表达式。
+在Schema风格下，由于在XML中使用“&&”需要使用转义字符“&amp;&amp;”来代替之，所以很不方便，因此Spring ASP 提供了and、or、not来代替&&、||、！。
+
+三、切入点指示符详解
+1. execution
+
+execution(<修饰符模式>?<返回类型模式><方法名模式>(<参数模式>)<异常模式>?)  除了返回类型模式、方法名模式和参数模式外，其它项都是可选的。
+
+参数模式如下：
+
+() 匹配一个不接受任何参数的方法
+(..) 匹配一个接受任意数量参数的方法
+(*) 匹配了一个接受一个任何类型的参数的方法
+(*,String) 匹配了一个接受两个参数的方法，其中第一个参数是任意类型，第二个参数必须是String类型
+
+举例：
+
+匹配所有目标类的public方法
+execution(public * *(..))
+
+匹配所有以To为后缀的方法
+execution(* *To(..))
+
+匹配Waiter接口中的所有方法
+execution(* com.aop.learn.service.Writer.*(..))
+
+匹配Waiter接口中及其实现类的方法
+execution(* com.aop.learn.service.Writer+.*(..))
+
+匹配 com.aop.learn.service 包下所有类的所有方法
+execution(* com.aop.learn.service.*(..))
+
+匹配 com.aop.learn.service 包,子孙包下所有类的所有方法
+execution(* com.aop.learn.service..*(..))
+匹配 包名前缀为com的任何包下类名后缀为ive的方法,方法必须以Smart为前缀
+execution(* com..*.*ive.Smart*(..))
+
+匹配 save(String name,int age) 函数
+execution(* save(String,int))
+
+匹配 save(String name,*) 函数 第二个参数为任意类型
+execution(* save(String,*))
+
+匹配 save(String name,..) 函数 除第一个参数固定外,接受后面有任意个入参且入参类型不限
+execution(* save(String,..))
+
+匹配 save(String+) 函数  String+ 表示入参类型是String的子类
+execution(* save(String+))
+2. with 
+
+within是用来指定类型的，指定类型中的所有方法将被拦截。
+
+举例：
+
+表示匹配包aop_part以及子包的所有方法
+within(aop_part..*) 
+
+匹配UserServiceImpl类对应对象的所有方法外部调用，而且这个对象只能是UserServiceImpl类型，不能是其子类型。
+within(com.elim.spring.aop.service.UserServiceImpl)
+由于execution可以匹配包、类、方法，而within只能匹配包、类，因此execution完全可以代替within的功能。
+
+3. this 
+
+Spring Aop是基于代理的，this就表示代理对象。this类型的Pointcut表达式的语法是this(type)，当生成的代理对象可以转换为type指定的类型时则表示匹配。基于JDK接口的代理和基于CGLIB的代理生成的代理对象是不一样的。
+
+举例：
+
+表示匹配了GodService接口的代理对象的所有连接点
+this(aop_part.service.GodService)        
+4. target 
+
+Spring Aop是基于代理的，target则表示被代理的目标对象。当被代理的目标对象可以被转换为指定的类型时则表示匹配。
+
+举例：
+
+表示匹配实现了GodService接口的目标对象的所有连接点
+target(aop_part.service.GodService)      
+5. args 
+
+args用来匹配方法参数的。
+
+“args()”匹配任何不带参数的方法。
+“args(java.lang.String)”匹配任何只带一个参数，而且这个参数的类型是String的方法。
+“args(..)”带任意参数的方法。
+“args(java.lang.String,..)”匹配带任意个参数，但是第一个参数的类型是String的方法。
+“args(..,java.lang.String)”匹配带任意个参数，但是最后一个参数的类型是String的方法。
+6. @target
+
+匹配当被代理的目标对象对应的类型及其父类型上拥有指定的注解时。
+
+举例：
+
+匹配被代理的目标对象对应的类型上拥有MyAnnotation注解时
+@target(com.elim.spring.support.MyAnnotation)
+7. @args
+
+匹配被调用的方法上含有参数，且对应的参数类型上拥有指定的注解的情况。
+
+“@args(com.elim.spring.support.MyAnnotation)”匹配方法参数类型上拥有MyAnnotation注解的方法调用。如我们有一个方法add(MyParam param)接收一个MyParam类型的参数，而MyParam这个类是拥有注解MyAnnotation的，则它可以被Pointcut表达式“@args(com.elim.spring.support.MyAnnotation)”匹配上。
+
+8. @within
+
+用于匹配被代理的目标对象对应的类型或其父类型拥有指定的注解的情况，但只有在调用拥有指定注解的类上的方法时才匹配。
+
+“@within(com.elim.spring.support.MyAnnotation)”匹配被调用的方法声明的类上拥有MyAnnotation注解的情况。比如有一个ClassA上使用了注解MyAnnotation标注，并且定义了一个方法a()，那么在调用ClassA.a()方法时将匹配该Pointcut；如果有一个ClassB上没有MyAnnotation注解，但是它继承自ClassA，同时它上面定义了一个方法b()，那么在调用ClassB().b()方法时不会匹配该Pointcut，但是在调用ClassB().a()时将匹配该方法调用，因为a()是定义在父类型ClassA上的，且ClassA上使用了MyAnnotation注解。但是如果子类ClassB覆写了父类ClassA的a()方法，则调用ClassB.a()方法时也不匹配该Pointcut。
+
+9. @annotation
+
+用于匹配方法上拥有指定注解的情况。
+
+举例：
+
+匹配所有的方法上拥有MyAnnotation注解的方法外部调用。
+@annotation(com.elim.spring.support.MyAnnotation)
+10. bean 
+
+用于匹配当调用的是指定的Spring的某个bean的方法时。
+
+“bean(abc)”匹配Spring Bean容器中id或name为abc的bean的方法调用。
+“bean(user*)”匹配所有id或name为以user开头的bean的方法调用。
+四、常见切入点表达式
+任意公共方法的执行： 
+execution(public * *(..)) 
+
+任何一个以“set”开始的方法的执行： 
+execution(* set*(..)) 
+
+AccountService 接口的任意方法的执行： 
+execution(* com.xyz.service.AccountService.*(..)) 
+
+定义在service包里的任意方法的执行： 
+execution(* com.xyz.service.*.*(..)) 
+
+定义在service包或者子包里的任意方法的执行： 
+execution(* com.xyz.service..*.*(..)) 
+
+在service包里的任意连接点（在Spring AOP中只是方法执行） ： 
+within(com.xyz.service.*) 
+
+在service包或者子包里的任意连接点（在Spring AOP中只是方法执行） ： 
+within(com.xyz.service..*) 
+
+实现了 AccountService 接口的代理对象的任意连接点（在Spring AOP中只是方法执行） ： 
+this(com.xyz.service.AccountService) 
+
+实现了 AccountService 接口的目标对象的任意连接点（在Spring AOP中只是方法执行） ： 
+target(com.xyz.service.AccountService) 
+
+任何一个只接受一个参数，且在运行时传入的参数实现了 Serializable 接口的连接点 （在Spring AOP中只是方法执行） 
+args(java.io.Serializable) 
+
+有一个 @Transactional 注解的目标对象中的任意连接点（在Spring AOP中只是方法执行） 
+@target(org.springframework.transaction.annotation.Transactional) 
+
+任何一个目标对象声明的类型有一个 @Transactional 注解的连接点（在Spring AOP中只是方法执行） 
+@within(org.springframework.transaction.annotation.Transactional) 
+
+任何一个执行的方法有一个 @Transactional annotation的连接点（在Spring AOP中只是方法执行） 
+@annotation(org.springframework.transaction.annotation.Transactional) 
+
+任何一个接受一个参数，并且传入的参数在运行时的类型实现了 @Classified annotation的连接点（在Spring AOP中只是方法执行） 
+@args(com.xyz.security.Classified)
 
