@@ -1,6 +1,6 @@
 ---
 title: Spring 框架1
-tags: [Spring容器]
+tags: [Spring-容器]
 categories: [架构]
 ---
 

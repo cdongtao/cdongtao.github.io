@@ -1,6 +1,6 @@
 ---
 title: Spring 框架2
-tags: [spring注入原理]
+tags: [spring-注入原理]
 categories: [架构]
 ---
 
@@ -279,3 +279,21 @@ private void annotationInject() {
   }
 }
 ```
+
+```
+<bean id="car" class="com.baiding.model.Car" init-method="init" destroy-method="destory">
+
+@Bean 注解默认创建单实例的bean,
+1.对于单实例的bean来说：
+@Bean(initMethod = "init")
+当对象创建完成，并完成赋值操作之后，开始调用初始化方法 init()
+初始化之后执行： @PostConstruct  > init-method
+@Bean(destroyMethod = "destory")
+当容器关闭的时候，执行销毁方法 destory()
+销毁之前执行：@preDestroy > destoryMethod
+
+2.对于多实例的bean来说:(只需将bean的@Scope设置为prototype)
+每次获取bean时都会创建一个实例，容器不会管理这个bean,也就是说容器关闭的时候不会调用多实例bean的销毁方法。
+```
+
+
