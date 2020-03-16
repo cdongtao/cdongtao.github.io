@@ -330,23 +330,67 @@ args：用于匹配运行时传入的参数列表的类型为指定的参数列�
 ##### 类型匹配语法
 ```
 (1) *：匹配任何数量字符；
-
 (2) ..：匹配任何数量字符的重复，如在类型模式中匹配任何数量子包；而在方法参数模式中匹配任何数量参数
-
 (3) +：匹配指定类型的子类型；仅能作为后缀放在类型模式后边。
 AspectJ使用 且（&&）、或（||）、非（！）来组合切入点表达式。
 ```
 >在Schema风格下，由于在XML中使用“&&”需要使用转义字符“&amp;&amp;”来代替之，所以很不>方便，因此Spring ASP 提供了and、or、not来代替&&、||、！。
 
+#### 常见切入点表达式
+```
+任意公共方法的执行： 
+execution(public * *(..)) 
+
+任何一个以“set”开始的方法的执行： 
+execution(* set*(..)) 
+
+AccountService 接口的任意方法的执行： 
+execution(* com.xyz.service.AccountService.*(..)) 
+
+定义在service包里的任意方法的执行： 
+execution(* com.xyz.service.*.*(..)) 
+
+定义在service包或者子包里的任意方法的执行： 
+execution(* com.xyz.service..*.*(..)) 
+
+在service包里的任意连接点（在Spring AOP中只是方法执行） ： 
+within(com.xyz.service.*) 
+
+在service包或者子包里的任意连接点（在Spring AOP中只是方法执行） ： 
+within(com.xyz.service..*) 
+
+实现了 AccountService 接口的代理对象的任意连接点（在Spring AOP中只是方法执行） ： 
+this(com.xyz.service.AccountService) 
+
+实现了 AccountService 接口的目标对象的任意连接点（在Spring AOP中只是方法执行） ： 
+target(com.xyz.service.AccountService) 
+
+任何一个只接受一个参数，且在运行时传入的参数实现了 Serializable 接口的连接点 （在Spring AOP中只是方法执行） 
+args(java.io.Serializable) 
+
+有一个 @Transactional 注解的目标对象中的任意连接点（在Spring AOP中只是方法执行） 
+@target(org.springframework.transaction.annotation.Transactional) 
+
+任何一个目标对象声明的类型有一个 @Transactional 注解的连接点（在Spring AOP中只是方法执行） 
+@within(org.springframework.transaction.annotation.Transactional) 
+
+任何一个执行的方法有一个 @Transactional annotation的连接点（在Spring AOP中只是方法执行） 
+@annotation(org.springframework.transaction.annotation.Transactional) 
+
+任何一个接受一个参数，并且传入的参数在运行时的类型实现了 @Classified annotation的连接点（在Spring AOP中只是方法执行） 
+@args(com.xyz.security.Classified)
+```
+
 #### 切入点指示符详解
 ##### execution
-execution(<修饰符模式>?<返回类型模式><方法名模式>(<参数模式>)<异常模式>?)  除了返回类型模式、方法名模式和参数模式外，其它项都是可选的。
-```
+execution(<修饰符模式>?<返回类型模式><方法名模式>(<参数模式>)<异常模式>?)  
+除了返回类型模式、方法名模式和参数模式外，其它项都是可选的。
 参数模式如下：
-() 匹配一个不接受任何参数的方法
-(..) 匹配一个接受任意数量参数的方法
-(*) 匹配了一个接受一个任何类型的参数的方法
-(*,String) 匹配了一个接受两个参数的方法，其中第一个参数是任意类型，第二个参数必须是String类型
+```
+():匹配一个不接受任何参数的方法
+(..):匹配一个接受任意数量参数的方法
+(*):匹配了一个接受一个任何类型的参数的方法
+(*,String):匹配了一个接受两个参数的方法，其中第一个参数是任意类型，第二个参数必须是String类型
 ```
 举例：
 ```
@@ -396,15 +440,16 @@ within(com.elim.spring.aop.service.UserServiceImpl)
 由于execution可以匹配包、类、方法，而within只能匹配包、类，因此execution完全可以代替within的功能。
 ```
 
-##### this 
+##### this
 Spring Aop是基于代理的，this就表示代理对象。this类型的Pointcut表达式的语法是this(type)，当生成的代理对象可以转换为type指定的类型时则表示匹配。基于JDK接口的代理和基于CGLIB的代理生成的代理对象是不一样的。
 
 举例：
 ```
 表示匹配了GodService接口的代理对象的所有连接点
 this(aop_part.service.GodService)   
-```     
-##### target 
+```
+
+##### target
 Spring Aop是基于代理的，target则表示被代理的目标对象。当被代理的目标对象可以被转换为指定的类型时则表示匹配。
 
 举例：
@@ -413,7 +458,7 @@ Spring Aop是基于代理的，target则表示被代理的目标对象。当被�
 target(aop_part.service.GodService)     
 ```
 
-##### args 
+##### args
 args用来匹配方法参数的。
 ```
 “args()”匹配任何不带参数的方法。
@@ -449,54 +494,10 @@ args用来匹配方法参数的。
 @annotation(com.elim.spring.support.MyAnnotation)
 ```
 
-##### bean 
+##### bean
 用于匹配当调用的是指定的Spring的某个bean的方法时。
 ```
 “bean(abc)”匹配Spring Bean容器中id或name为abc的bean的方法调用。
 “bean(user*)”匹配所有id或name为以user开头的bean的方法调用。
 ```
 
-#### 常见切入点表达式
-```
-任意公共方法的执行： 
-execution(public * *(..)) 
-
-任何一个以“set”开始的方法的执行： 
-execution(* set*(..)) 
-
-AccountService 接口的任意方法的执行： 
-execution(* com.xyz.service.AccountService.*(..)) 
-
-定义在service包里的任意方法的执行： 
-execution(* com.xyz.service.*.*(..)) 
-
-定义在service包或者子包里的任意方法的执行： 
-execution(* com.xyz.service..*.*(..)) 
-
-在service包里的任意连接点（在Spring AOP中只是方法执行） ： 
-within(com.xyz.service.*) 
-
-在service包或者子包里的任意连接点（在Spring AOP中只是方法执行） ： 
-within(com.xyz.service..*) 
-
-实现了 AccountService 接口的代理对象的任意连接点（在Spring AOP中只是方法执行） ： 
-this(com.xyz.service.AccountService) 
-
-实现了 AccountService 接口的目标对象的任意连接点（在Spring AOP中只是方法执行） ： 
-target(com.xyz.service.AccountService) 
-
-任何一个只接受一个参数，且在运行时传入的参数实现了 Serializable 接口的连接点 （在Spring AOP中只是方法执行） 
-args(java.io.Serializable) 
-
-有一个 @Transactional 注解的目标对象中的任意连接点（在Spring AOP中只是方法执行） 
-@target(org.springframework.transaction.annotation.Transactional) 
-
-任何一个目标对象声明的类型有一个 @Transactional 注解的连接点（在Spring AOP中只是方法执行） 
-@within(org.springframework.transaction.annotation.Transactional) 
-
-任何一个执行的方法有一个 @Transactional annotation的连接点（在Spring AOP中只是方法执行） 
-@annotation(org.springframework.transaction.annotation.Transactional) 
-
-任何一个接受一个参数，并且传入的参数在运行时的类型实现了 @Classified annotation的连接点（在Spring AOP中只是方法执行） 
-@args(com.xyz.security.Classified)
-```
