@@ -411,6 +411,7 @@ execution(* com.aop.learn.service.*(..))
 
 匹配 com.aop.learn.service 包,子孙包下所有类的所有方法
 execution(* com.aop.learn.service..*(..))
+
 匹配 包名前缀为com的任何包下类名后缀为ive的方法,方法必须以Smart为前缀
 execution(* com..*.*ive.Smart*(..))
 
@@ -437,16 +438,16 @@ within(aop_part..*)
 
 匹配UserServiceImpl类对应对象的所有方法外部调用，而且这个对象只能是UserServiceImpl类型，不能是其子类型。
 within(com.elim.spring.aop.service.UserServiceImpl)
-由于execution可以匹配包、类、方法，而within只能匹配包、类，因此execution完全可以代替within的功能。
 ```
+>由于execution可以匹配包、类、方法，而within只能匹配包、类，因此execution完全可以代替within的功能。
 
 ##### this
 Spring Aop是基于代理的，this就表示代理对象。this类型的Pointcut表达式的语法是this(type)，当生成的代理对象可以转换为type指定的类型时则表示匹配。基于JDK接口的代理和基于CGLIB的代理生成的代理对象是不一样的。
 
 举例：
 ```
-表示匹配了GodService接口的代理对象的所有连接点
-this(aop_part.service.GodService)   
+表示匹配了当前给出具体代理对象,即实现了IGodInterface接口的具体代理对象的所有连接点()
+this(aop_part.service.IGodInterface)//连接IGodInterface接口实现了的某一个具体对象
 ```
 
 ##### target
@@ -454,8 +455,8 @@ Spring Aop是基于代理的，target则表示被代理的目标对象。当被�
 
 举例：
 ```
-表示匹配实现了GodService接口的目标对象的所有连接点
-target(aop_part.service.GodService)     
+表示匹配实现了IGodInterface接口的目标对象的所有连接点
+target(aop_part.service.IGodInterface)//连接只要IGodInterface接口实现了的具体对象  
 ```
 
 ##### args
@@ -494,7 +495,7 @@ args用来匹配方法参数的。
 @annotation(com.elim.spring.support.MyAnnotation)
 ```
 
-##### bean
+##### @bean
 用于匹配当调用的是指定的Spring的某个bean的方法时。
 ```
 “bean(abc)”匹配Spring Bean容器中id或name为abc的bean的方法调用。
