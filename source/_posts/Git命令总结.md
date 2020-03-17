@@ -114,6 +114,17 @@ git add .的作用相反：git restore文件名字
 ----进行清除工作区的改变（git chechout 文件名的作用是一样的）
 ```
 
+## Git reset命令
+git reset hashId 重置改变分支"游标"指向,适用版本回退
+git reset --hard hashId 回退到一个版本，清空暂存区，将已提交的内容版本恢复到本地,本地内容被恢复覆盖
+git reset --soft hashId 回退到一个版本，不清空暂存区，将已提交的内容版本复制到本地,不影响本地内容
+git reset --mixed hashId 回退到一个版本，不清空暂存区，将已提交的内容版和本地已提交内容全部恢复到暂存区,不影响本地内容
+
+## Git remote命令
+git remote -v 显示远程库详细信息
+git remote remove branchName 删除远程库
+
+
 ## Git的撤销和回滚命令
 ### A.工作区
 ```
@@ -161,7 +172,7 @@ git revert [版本号]
 回滚多个commit，但只做一次提交
 git revert  [版本号]
 git commit -m "revert commit1 commit2 commit3"
-
-
 ```
+
+
 
