@@ -1,7 +1,7 @@
 ---
 title: Spring 框架2
 tags: [spring-注入原理]
-categories: [架构]
+categories: [FrameWork]
 ---
 
 ## 依赖注入(Dependency Injection)

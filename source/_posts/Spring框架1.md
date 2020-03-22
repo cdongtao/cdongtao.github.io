@@ -1,7 +1,7 @@
 ---
 title: Spring 框架1
 tags: [Spring-容器]
-categories: [架构]
+categories: [FrameWork]
 ---
 
 Spring 核心几大特点：控制反转(IOC),依赖注入(Dependency Injection),与切面编程(AsOP),Spring Framework还提供了AOP技术,事务管理服务(注入控制事务传播),消息服务；Spring支持使用集成Hibernate,JPA,Struts等框架；

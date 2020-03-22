@@ -110,7 +110,6 @@ public void when_thenThrow() throws IOException{
   }
 ```
 
-
 #### 4.Mock返回默认模拟对象
 >RETURNS_DEEP_STUBS 是创建mock对象时的备选参数之一
 >以下方法deepstubsTest和deepstubsTest2是等价的

@@ -1,7 +1,7 @@
 ---
 title: Spring 框架3
 tags: [spring-AOP原理]
-categories: [架构]
+categories: [FrameWork]
 ---
 
 ## AOP(Aspect Oriented Programming)

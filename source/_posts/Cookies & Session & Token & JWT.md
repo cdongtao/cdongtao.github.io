@@ -1,7 +1,7 @@
 ---
 title: Cookies & Session & Token & JWT
-tags: [基础]
-categories: [前端]
+tags: [base]
+categories: [FrontEnd]
 ---
 
 ## Cookies && Session

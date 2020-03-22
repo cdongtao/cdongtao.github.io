@@ -1,7 +1,7 @@
 ---
 title: Spring 框架0
 tags: [spring-反射机制]
-categories: [架构]
+categories: [FrameWork]
 ---
 ## 解释型语言和编译型语言
 
