@@ -447,10 +447,6 @@ public class ServiceWithMockBeanTest {
 >@MockBean 只能 mock 本地的代码——或者说是自己写的代码，对于储存在库中而且又是以 Bean 的形式装配到代码中的类无能为力。
 >@SpyBean 解决了 SpringBoot 的单元测试中 @MockBean 不能 mock 库中自动装配的 Bean 的局限（目前还没需求，有需要的自己查阅资料）。
 
-
-
-
-
 #### 指定测试类使用运行器：MockitoJUnitRunner
 ```
 @RunWith(MockitoJUnitRunner.class)

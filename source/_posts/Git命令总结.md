@@ -173,6 +173,3 @@ git revert [版本号]
 git revert  [版本号]
 git commit -m "revert commit1 commit2 commit3"
 ```
-
-
-

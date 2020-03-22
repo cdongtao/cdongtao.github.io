@@ -113,3 +113,4 @@ var signature = HMACSHA256(encodedString, 'secret');
 
 1.发送JWT要用https，原因前面说了，JWT本身不保证数据安全
 2.JWT的payload中设置expire时间，为什么要这样做其实跟cookie为什么要设置过期时间一样，都是为了安全。
+

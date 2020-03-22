@@ -1,7 +1,7 @@
 ---
 title: IDEA Windows版本快捷键
 tags: [IDEA]
-categories: [Plugin Tool]
+categories: [PluginTool]
 ---
 
 # 十大Intellij IDEA快捷键

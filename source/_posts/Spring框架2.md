@@ -295,5 +295,3 @@ private void annotationInject() {
 2.对于多实例的bean来说:(只需将bean的@Scope设置为prototype)
 每次获取bean时都会创建一个实例，容器不会管理这个bean,也就是说容器关闭的时候不会调用多实例bean的销毁方法。
 ```
-
-

@@ -1,7 +1,7 @@
 ---
 title: MarkDown语法模板
 tags: [MarkDown]
-categories: [Plugin Tool]
+categories: [PluginTool]
 ---
 # 1.标题
 ## 这是二级标题

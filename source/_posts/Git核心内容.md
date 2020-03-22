@@ -1,7 +1,7 @@
 ---
 title: Git核心内容
 tags: [Git]
-categories: [Plugin Tool]
+categories: [PluginTool]
 ---
 ## Git 掌握命令要求
 日常工作需要掌握add,commit,status,fetch,push,rebase等，若要熟练掌握，还必须掌握rebase和merge的区别，fetch和pull的区别等，除此之外>，还有cherry-pick，submodule，stash等功能
