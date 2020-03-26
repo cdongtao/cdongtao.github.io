@@ -57,3 +57,13 @@ categories: [PluginTool]
 - 主题内容设置：[Hexo+Next 个人博客主题优化](https://www.jianshu.com/p/efbeddc5eb19)
 - 设置好配置文件后,search 功能安装：
   `cnpm install hexo-generator-searchdb --save`
+
+## 添加Pdf
+```
+1.npm install --save hexo-pdf
+2.文件链接
+外部链接：
+{% pdf http://7xov2f.com1.z0.glb.clouddn.com/bash_freshman.pdf %}
+本地连接：
+{% pdf /目录/pdf名字.pdf %}
+```

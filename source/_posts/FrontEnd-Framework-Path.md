@@ -4,10 +4,10 @@ tags: [FrontEnd Path]
 categories: [MyPlan]
 ---
 
-## [前端学习体系2](http://xiaomage.ke.qq.com/#category=15733794887010602&tab=1)
-[小码哥](/file/Front-End-Path.pdf)
+## 前端学习体系1
 
-
+  [小码哥前端学习架构路线](/file/Front-End-Path.pdf)
+  [小码哥前端学习体系](http://xiaomage.ke.qq.com/#category=15733794887010602&tab=1)
 
 ## [前端学习体系2](http://www.wolfcode.cn/article/index/id/1592)
 
