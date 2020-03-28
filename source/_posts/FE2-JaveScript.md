@@ -1,7 +1,7 @@
 ---
 title: JaveScript
 tags: [JaveScript]
-categories: [FrondEnd]
+categories: [FrontEnd]
 ---
 
 
