@@ -52,7 +52,10 @@ document.write() 可用于直接向 HTML 输出流写内容。简单的说就是
     3.prompt 对话框::var context = prompt(str1, str2);返回值：点击确定按钮，文本框中的内容将作为函数返回值点击取消按钮，将返回null;str1要显示在消息对话框中的文本，不可修改;str2文本框中的内容，可以修改
 
 ### 新建窗口
-注意：新建的浏览器窗口/新建Tab窗口,运行结果考虑浏览器兼容问题
+注意：
+1.新建的浏览器窗口/新建Tab窗口,运行结果考虑浏览器兼容问题
+2.window窗口里放对象相当于此窗口的全局变量
+
 
     window.open([URL], [窗口名称], [参数字符串])
     例子:window.open('http://www.imooc.com','_blank','width=300,height=200,menubar=no,toolbar=no, status=no,scrollbars=yes');
