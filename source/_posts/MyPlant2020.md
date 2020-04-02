@@ -27,7 +27,8 @@ Js --> html/css -->es6 -->react文档和小码跟学-->实践案例
 7.微信小程序:
 8.交易监控系统
 
-
+[小码哥pyton博客课件]https://book.apeland.cn/details/12/
+[小码哥JS博客课件]https://book.apeland.cn/details/357/
 JS：
 慕课网：入门，中阶，高阶       
 [腾讯小马哥(Web前端0到架构师①HTML+CSS+JS基础)](https://ke.qq.com/course/471081?taid=4252910976708649)

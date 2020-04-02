@@ -49,6 +49,8 @@ Object类型(对象)：Function,Array,Date,RegExp...
     2.函数式对象声明:function obj(){x=1,y=2};默认带有prototype指向原型链（类似继承的父类）的对象属性
 
 #### (new/原型链)创建对象
+function foo(){}定义一个函数对象foo,其内部默认包含一个prototype(原型链)属性,foo.prototype为一个对象(原型链指向的对象)
+
 ![原型链](/img/原型链.png "原型链")
 
     1.当赋值时，会直接给当前对象添加属性；//A.原型链上没有对应属性set或get方法存在,否则当前属性不会添加到当前对象；B.原型链指向对应属性不可操作，需要用定义对象属性标签的方法来给这个对象添加属性(见下面A/B两图)
@@ -63,12 +65,11 @@ A.原型链上没有对应属性set或get方法存在,也需要给当前对象�
 B.原型链指向对应属性不可操作,也需要给当前对象添加一样属性
 ![原型链属性不可操作](/img/原型链属性不可操作.png "原型链属性不可操作")
 
-
-
 #### Object.create创建对象
 ![create方式创建对象](/img/create方式创建对象.png "create方式创建对象")
 
-    注:obj的原型链是指向使用create时的对象{x:1}(Create就是为obj定义指向的原型链对象):为null对象时，null对象没有向上原型链
+    注:obj的原型链是指向使用create时的对象{x:1}(Create就是为obj定义指向的原型链对象):obj可以使用Object上的toString方法
+    为null对象时，obj指向null对象且没有向上原型链使用不了toString方法,因此可以使用此法区分？？？？？？？？？？？？？？？？？？
 
 #### 控制对象属性的标签
 ![属性标签](/img/属性标签.png "属性标签")
@@ -329,6 +330,7 @@ arr.shift(); //数组前面追加,数组长度-1
 
     函数声明被前置：与调用位置无关
     function add(a,b){}
+
 ### 函数表达式
 
     1.//函数赋值给变量：匿名函数(与调用位置有关)
@@ -342,10 +344,21 @@ arr.shift(); //数组前面追加,数组长度-1
    
 ###  函数构造器
 
+    函数构造器:New Function()或Fucntion(),可以访问全局不能访问与自己同域的局部变量
     //(存在作用域问题,少用)
-    new Function ('a','b','return a+b;');
-    add(1,2);
-    //可以立即执行new Function ('a','b','return a+b;')();
+    1.new Function ('a','b','return a+b;');
+    //可以立即执行：使用函数构造器构造后,使用括号立即执行
+    2.new Function ('a','b','return a+b;')();等价于add(1,2);
+
+### 函数属性 && arguments
+
+    内置调用函数属性的函数
+    function a(){c,d,z};
+    函数名：a.name;//a
+    函数参数个数:a.length;//3
+    内置的arguments数组对象:(只有调用时传了值的才是arguments的长度)
+    arguments[0]//c,arguments[1]//d;
+    如果z不传值arguments[2]为undfined
 
 ### this       
 1.全局的this为window(浏览器)
@@ -353,11 +366,13 @@ arr.shift(); //数组前面追加,数组长度-1
     this.a=33;//(window.a === this.a) 
     
 2.一般函数返回this对象为window对象(浏览器)
-
+    
+    //为将函数绑定给对象，则单独调用函数,函数中this指向为window
     function f(){return this;}//(f() === window)
     
-3.方法里指向对象的this
+3.方法(包括get/set)里指向对象的this
 
+    //在对象内部定义的函数,函数体内this指向当前调用对象
     var o={prop:37,
         f:function(){
             return this.prop;//指向当前调用对象o的prop属性
@@ -365,19 +380,50 @@ arr.shift(); //数组前面追加,数组长度-1
 
     var o={prop:37};
     function fun(){
-        //如果单独调用fun()函数,this返回的是window对象
+    //该函数自定义没绑定对象;如果单独调用fun()函数,this返回的是window对象
         return this.prop;}
     //将fun()函数绑定给o对象
     o.f=fun;//此时调用o.f()则this返回o对象
 
 4.对象原型链上的this
-
+    
+    //那个对象调用原型链，原型链this就指向那个对象
     var o={f:function(){return this.a+this.b}}
     var p= Object.create(o);//p原型链指向o对象
     p.a = 1;p.b = 4;
-    
+    p.f();//原型链上this指向当前o对象;
 
-call/apply/bind
+5.构造器this
+
+
+
+6.call/apply/bind
+
+    function add(c,d){
+        return this.a+this.d;
+    }
+    var obj={a:1,b:3};
+
+    //call(对象,参数(匹配调用函数的个数)...));apply(对象,[参数(可选)...]):
+    //函数主动引用对象属性：this指向当前传入的对象;
+    //理解为obj对象里临时添加add方法后,add.call调用唤醒(add.apply申请调用)临时对象里的add方法
+    add.call(obj,5,7);//1+3+5+7=16
+    add.apply(obj,[10,20]);//1+3+10+20=34
+    好处:打印一些无法指定的对象
+    function bar(){
+        //通过Object.prototype打印this所指对象
+        console.log(Object.prototype.toString.call(this));
+    }
+    bar.call(1)//"[object Number]"
+
+    //bind可以将某方法与传入对象绑定,返回构成新的对象
+    //将函数内所有this锁定为bind传入的对象上,无法改变
+    var g=add.bind(obj);
+    var o = {a:9;b:9;add:add();g:g()}
+    console.log(o.add(),o.g());//9+9,1+3
+    bind与call/apply区别：
+    bind绑定对象后,返回构成新的对象,重复使用新对象;
+    而call/apply只能临时使用
 
 ### 闭包现象
 
