@@ -34,11 +34,12 @@ Object类型(对象)：Function,Array,Date,RegExp...
 
 
 ### 5种检测类型
-1.typeof :适合基本类型判断 注：typeof null === "object"  
-2.instanceof : 适合判断对象 [1,2] instanceof Array//不同iframe与window判断失效
-3.Object.prototype.toString :遇到null与undefined失效(IE678返回object)
-4.constructor :
-5.duck type :取对象的特征：如数组类型取length或者push这些函数方法
+
+    1.typeof :适合基本类型判断 注：typeof null === "object"  
+    2.instanceof : 适合判断对象 [1,2] instanceof Array//不同iframe与window判断失效
+    3.Object.prototype.toString :遇到null与undefined失效(IE678返回object)
+    4.constructor :
+    5.duck type :取对象的特征：如数组类型取length或者push这些函数方法
 
 
 ## 对象
@@ -55,6 +56,7 @@ function foo(){}定义一个函数对象foo,其内部默认包含一个prototype
 
     1.当赋值时，会直接给当前对象添加属性；//A.原型链上没有对应属性set或get方法存在,否则当前属性不会添加到当前对象；B.原型链指向对应属性不可操作，需要用定义对象属性标签的方法来给这个对象添加属性(见下面A/B两图)
     2.delete可以删除当前对象的属性,而不会删原型链上的属性
+    //obj.z是指向原型链得,如果obj定义返回this.z,那this向上查找指向原型链对象
     3.读取属性值时,如果当前对象没有该属性就向上(原型链)查找；
     4.遍历方法in：包括当前对象以及原型链 或Object.keys(对象)遍历对象所有可枚举属性
     5.obj.hasOwnProperty('w'):只判断当前对象中是否存在'w'属性
@@ -166,7 +168,7 @@ B.原型链指向对应属性不可操作,也需要给当前对象添加一样�
 
 6.对象创建表达式：
     
-    创建对象构造器:new Func(1,2);
+    对象构造器创建:new Func(1,2);
     new Object();
 
 ### 运算符
@@ -211,8 +213,6 @@ B.原型链指向对应属性不可操作,也需要给当前对象添加一样�
         }
     }
     var va = obj.func;//返回obj对象本身(this)
-
-
 
 ## 语句
 1.块级没有作用域
@@ -325,40 +325,51 @@ arr.shift(); //数组前面追加,数组长度-1
         [].constructor === Array; // true
 
 ## 函数及其作用域
-函数既是对象也是函数
+函数既是对象也是函数,称为函数对象
+    函数性质:可以必定一次后,被执行和多次调用;
+    对象性质:Js中得函数为函数对象;
 ### 函数声明：
 
-    函数声明被前置：与调用位置无关
+    函数声明被前置：与调用位置无关(var 声明后作用一样)
+    //关键字 函数名(形参){函数体逻辑}
     function add(a,b){}
+    调用方式:
+        1.定义函数后直接调用:methodName();
+        2.对象内部得函数,通过对象调用:obj.methodName();
+        3.构造器调用:new methodName();  
+        4.call/apply/bind:
+            method.call(obj,...);
+            method.apply(boj,[argus]);
+            method.bind(obj);
+        
+### 函数声明与表达式区别
 
-### 函数表达式
-
-    1.//函数赋值给变量：匿名函数(与调用位置有关)
-    var add = function (a,b){}
-    2.//少用:匿名式函数表达式(与调用位置有关)且存在兼容性问题
-    var add = function foo(a,b){}
-    3.//作为对象返回
-    return function(){};
-    4.//立即执行,(fun)()后面括号里可以传参执行或者不传
+    1.//少用命名函数表达式(与调用位置有关)且会存在兼容性问题
+    //含有函数名
+    var add = function foo(a,b){};
+    调用方式为:add(a,b);
+    alert(add === foo)//(IE9+都不能通过函数名调用,函数对象域外访问不到)
+    2.//函数表达式(无函数名定义后赋值给变量):与调用位置有关,理解为一个表达式子:
+    var add = function (a,b){};
+    注:1与2调用方式为:函数变量名加括号(本质是函数得一个代替名字,括号为了传入参数,这样就跟一般函数调用一样)
+        add看为函数变量名,有参调用:add(a,b);无参调用:add();//有些视频解释理解为上括号代表立即执行
+    3.//立即执行,(funName)(a,b)后面括号代表形参(传参或者不传)
+        (funName):括号包裹函数声明类似一个临时函数名;
+        (a,b)代表传入参数,(funName)(a,b)这样就跟一般函数调用一样)
     (function add(a,b){return a+b;})(1,2);//返回3
+    4.//作为对象返回
+    return function(){};
    
-###  函数构造器
+### 函数构造器
 
     函数构造器:New Function()或Fucntion(),可以访问全局不能访问与自己同域的局部变量
-    //(存在作用域问题,少用)
+    //(存在作用域问题,少用)形参与函数体都是在括号内
     1.new Function ('a','b','return a+b;');
-    //可以立即执行：使用函数构造器构造后,使用括号立即执行
+    //可以立即执行：使用函数构造器构造后,使用括号立即执行;
+        new Function ()：代表生产一个函数对象临时变量名；
+        new Function ()()后面括号是形参；new Function ()()这样就跟一般函数调用一样
     2.new Function ('a','b','return a+b;')();等价于add(1,2);
-
-### 函数属性 && arguments
-
-    内置调用函数属性的函数
-    function a(){c,d,z};
-    函数名：a.name;//a
-    函数参数个数:a.length;//3
-    内置的arguments数组对象:(只有调用时传了值的才是arguments的长度)
-    arguments[0]//c,arguments[1]//d;
-    如果z不传值arguments[2]为undfined
+    注:跟上面立即执行差别在：上面括号内是函数声明,这个是函数对象；
 
 ### this       
 1.全局的this为window(浏览器)
@@ -395,7 +406,22 @@ arr.shift(); //数组前面追加,数组长度-1
 
 5.构造器this
 
+    //注：见【(new/原型链)创建对象】关于对象内部属性如何指向原型链
+    //(优先查找本对象属性,如果不存在才会指向原型链)
+    function MyClass(){
+        this.a = 37;
+    }
+    //当声明函数构造器没有返回值或返回基本类型;查找对象属性时该对象没有得属性会(this)指向Myclass.protype对象查找
+    var o = new MyClass();//o对象没有得属性,this指向原型链对象MyClass.protoType里查找
+    console.log(o.a); 
 
+    function C2(){
+         this.a = 37;
+         return {a:38};
+    }
+    //当声明函数构造器返回对象,this指向返回对象;
+    o = new C2();
+    console.log(o.a); //38
 
 6.call/apply/bind
 
@@ -421,17 +447,75 @@ arr.shift(); //数组前面追加,数组长度-1
     var g=add.bind(obj);
     var o = {a:9;b:9;add:add();g:g()}
     console.log(o.add(),o.g());//9+9,1+3
+    
+    call/apply方法传入null/undefined对象
+    add.apply(null);//this全局对象window
+    add.apply(undefined);//this全局对象window
+    
     bind与call/apply区别：
     bind绑定对象后,返回构成新的对象,重复使用新对象;
     而call/apply只能临时使用
 
+### 函数属性 && arguments
+
+    1.内置调用函数属性的函数
+    function a(){c,d,z};
+    函数名：a.name;//a
+    函数参数个数:a.length;//3
+    内置的arguments数组对象:(只有调用时传了值的才是arguments的长度)
+    arguments[0]//c,arguments[1]//d;
+    如果z不传值arguments[2]为undfined
+
+    2.bind后this指向例子：
+    this.x =9;//设置全局对象
+    var module ={
+        x:81,
+        getX:function(){return this.x;}
+    }
+    module.getX();//81
+    将函数对象module.getX 赋值给我变量getX(保存了对象引用)
+    //变量getXX指向了module.getX函数对象,所以this指向了全局对象window
+    var getXX=module.getX;
+    getXX();//9
+
+    //getXX函数对象变量绑定给module,getXX里得this 指向module
+    var boundGet= getXX.bind(module);
+    boundGex();//81 
+
+    3.bind 函数颗粒化功能
+    function add(a,b,c){
+        reutrn a+b+c;
+    }
+    //为了线将某一固定绑定到默认参数上如a=100；这样后面调用只要传入bc就可以
+    var func = add.bind(null,100);//this指向全局window,a=100;
+    fun(1,2);//103
+
+    4.bind后再new
+    function foo(){
+        this.b=100;
+        return this.a;
+    }
+
+    var func = foo.bind({a:1});
+
+    new func();//1
+    //new忽略已经bind得对象,this不指向bind对象,而是指向foo.prototype
+    //this.b为指向原型链的对象添加的属性,new时如果不是返回对象而是属性的化,只能返回this对象;因此这里返回this(指向原型链的对象{b:100})
+    new func();//返回对象{b:100}
+
 ### 闭包现象
 
+    function outer(){
+        var localVal =30;
+        return function(){
+            return localVal;
+        }
+    }
+    //局部变量localVal依然还能被访问
+    var func =outer();
+    func()//30
+    应用：AJAX请求,回调函数可以使用外层变量;对象的get方法开发访问对象内部属性
+    缺点:循环引用可能导致内存泄漏/空间不足/性能消耗
 
-### 作用域
-
-全局/函数/eval
-
-作用域链
 
 
