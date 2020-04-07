@@ -34,7 +34,7 @@ categories: [FrontEnd]
 
     // 建议：在默认情况下用const,而只有在你知道变量值需要被修改的情况使用let
 
-### 字符串模板
+## 字符串模板
 
      // 模板字符串：使用tab键上面的反引号``,插入变量时使用${变量名}
     const oBox = document.querySelector('.box');
@@ -51,7 +51,7 @@ categories: [FrontEnd]
 
     oBox.innerHTML = htmlStr;
 
-### 函数
+## 函数
     
     1.带参数默认值的函数
     function add(a, b = 20) {
@@ -198,6 +198,7 @@ categories: [FrontEnd]
     let [a,[b],c] = [1,[2],3];
 
 ## 扩展的对象的功能
+
     es6直接写入变量和函数，作为对象的属性和方法
     1.属性名跟属性值一样
     const name ='q';
@@ -232,3 +233,174 @@ categories: [FrontEnd]
     // 返回合并之后的新对象
     let newObj = Object.assign({}, { a: 1 }, { b: 2 });
     console.log(newObj);
+
+
+## 数据类型Symbol
+
+    最大的用途：用来定义对象的私有变量
+    //原始数据类型Symbol ,由它创建出来的变量值是独一无二,也就是指向地址是不一样
+    const name = Symbol('name');
+    const name2 = Symbol('name');
+    console.log(name === name2);
+
+    let s1 = Symbol("s1");
+    let obj = {
+        [s1]: "小马哥",
+    };
+    obj[s1] = '小马哥';
+    // 如果用Symbol定义的对象中的变量，取值时一定要用[变量名]
+    console.log(obj[s1]);
+
+    for(let key in obj){
+        //symbol定义对象属性是无法被遍历到,类似私有化被锁
+        console.log(key); 
+
+    }
+    //这样定义的属性无法读取到
+    console.log(Object.keys(obj));
+
+    获取Symbol定义对象属性方法
+    1.获取Symbol声明的属性名（作为对象的key）
+    let s = Object.getOwnPropertySymbols(obj);
+    console.log(s[0]);
+
+    //反射对象获取
+    2.let m = Reflect.ownKeys(obj);
+    console.log(m);
+
+
+## 集合set
+
+    set：(去重)表示无重复值的有序列表
+    let set = new Set();
+    //查看set的原型_proto_自带的方法
+    console.log(set);
+    // 添加元素
+    set.add(2);
+    // 删除元素
+    set.delete(2);
+
+    // 校验某个值是否在set中
+    console.log(set.has("4"));
+    console.log(set.size);
+
+    let set2 = new Set([1, 2, 3, 3, 3, 4]);
+    // 扩展运算符将set转换成数组
+    let arr = [...set2];
+    console.log(arr);
+    
+    注意：
+    1.set中对象的引用无法被释放
+    let set3 = new Set(),obj = {};
+    set3.add(obj);
+    // 释放当前的资源
+    obj = null;
+    console.log(set3);//集合还有对象
+
+    //解决引用对象被释放
+    let set4 = new WeakSet(),
+    obj = {};
+    set4.add(obj);
+    // 释放当前的资源
+    obj = null;
+    console.log(set4);//集合里对象被释放
+
+    WeakSet 与 set 的不同点
+    1.不能传入非对象类型的参数
+    2.不可迭代
+    3.没有forEach()
+    4.没有size属性
+
+##  集合Map  
+Map类型是键值对的有序列表，键和值是任意类型
+
+    let map = new Map();
+    map.set('name','张三');
+    map.set('age',20);
+    console.log(map.get('name'));
+    console.log(map);
+    map.has('name');//true
+    map.delete('name');
+    map.clear();
+    console.log(map);
+    //key 与 value类型不控制
+    map.set(['a',[1,2,3]],'hello');
+    console.log(map);
+    //直接初始化
+    let m = new Map([["a", 1],["c", 2],]);
+    console.log(m);
+
+## 数组
+### from()方法
+    
+    1.将伪数组转换成真正的数组
+    function add() {
+        // console.log(arguments);
+        // es5转换
+        // let arr = [].slice.call(arguments);
+        // console.log(arr);
+        // es6写法
+        let arr = Array.from(arguments);
+        console.log(arr);
+    }
+    add(1, 2, 3);
+
+    1.from转换
+    let lis = document.querySelectorAll('li')
+    console.log(Array.from(lis));
+
+    2.扩展运算符 将伪数组转换成真正的数组
+    console.log([...lis]);
+
+    3.from() 还可以接受第二个参数，用来对每个元素进行处理
+    let liContents = Array.from(lis, ele => ele.textContent);
+    // console.log(liContents);
+
+### of()方法
+    
+    1.将任意的数据类型，转换成数组
+    console.log(Array.of(3, 11, 20, [1, 2, 3], {
+        id: 1
+    }));
+    
+    2.copywithin() 数组内部将制定位置的元素复制到其它的位置，返回当前数组
+    // 从3位置往后的所有数值，替换从0位置往后的三个数值
+    console.log([1, 2, 3, 8, 9, 10].copyWithin(0, 3));//[8,9,10,8,9,10]
+
+    3.find()
+    // find()找出第一个符合条件的数组的值
+    let num = [1, 2, -10, -20, 9, 2].find(n => n < 0);//回调方法
+    console.log(num);//-10
+
+    4.findIndex()找出第一个符合条件的数组成员的索引(下标)
+    let numIndex = [1, 2, -10, -20, 9, 2].findIndex(n => n < 0)
+    console.log(numIndex);//2
+
+    5.entries() keys() values()   
+    //返回一个遍历器(Iterator),可以使用for...of循环进行遍历
+    console.log(['a','b'].keys());
+
+    // keys() 对数组下标遍历
+    for (let index of ['a', 'b'].keys()) {
+        console.log(index);
+    }
+
+    // values() 对值遍历
+    for (let ele of ['a', 'b'].values()) {
+        console.log(ele);
+    }
+
+    // entries() 对数组下标与值对遍历
+    for(let [index,ele] of ['a','b'].entries()){
+        console.log(index,ele); 
+    }
+    let letter = ['a','b','c'];
+    let it = letter.entries();
+    console.log(it.next().value);
+
+    6.includes() 返回一个布尔值，表示某个数组是否包含给定的值
+    console.log([1,2,3].includes(2));
+    console.log([1,2,3].includes('4'));
+
+    7.indexof()
+    console.log([1,2,3].indexOf('2'));
