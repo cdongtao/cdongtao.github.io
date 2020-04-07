@@ -403,4 +403,4 @@ Map类型是键值对的有序列表，键和值是任意类型
     console.log([1,2,3].includes('4'));
 
     ES5之前:indexof()是否包含给定的值
-    console.log([1,2,3].indexOf('2'));
+    console.log([1,2,3].indexOf('2'));//存在返回大于1，否则返回-1
