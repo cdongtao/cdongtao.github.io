@@ -3,7 +3,6 @@ title: JaveScript基础语法
 tags: [JaveScript]
 categories: [FrontEnd]
 ---
-
 ## 数据类型
 ### 6种数据类型
 Object类型(对象)：Function,Array,Date,RegExp...
@@ -11,7 +10,6 @@ Object类型(对象)：Function,Array,Date,RegExp...
 
 ### 隐式转换
 如果存在隐式转换,转换时可能存在临时变量
-
 
 #### + 与 -
 +：字符串+数字-->返回字符串
@@ -27,11 +25,8 @@ Object类型(对象)：Function,Array,Date,RegExp...
     [1,2] == [1,2]
 
 使用 ===:两边类型不发生隐式转换，直接比较两边类型以及内容
-
-   特殊：NaN 与 NaN自身比较都不相等
-
+特殊：NaN 与 NaN自身比较都不相等
 判断对象是否相等：JS是使用引用判断,两个空对象比较也不是相同的对象 
-
 
 ### 5种检测类型
 
@@ -40,7 +35,6 @@ Object类型(对象)：Function,Array,Date,RegExp...
     3.Object.prototype.toString :遇到null与undefined失效(IE678返回object)
     4.constructor :
     5.duck type :取对象的特征：如数组类型取length或者push这些函数方法
-
 
 ## 对象
 对象中包含一系列属性,这些属性是无序的。每个属性都有一个字符串key和对应的value。
@@ -247,7 +241,6 @@ B.原型链指向对应属性不可操作,也需要给当前对象添加一样�
     3.for in 受原型链影响,向上访问对象的原型链
 
 ## 数组
-
 ### 数组基本操作
 1.定义数组:动态的，无需指定大小
 
@@ -517,5 +510,5 @@ arr.shift(); //数组前面追加,数组长度-1
     应用：AJAX请求,回调函数可以使用外层变量;对象的get方法开发访问对象内部属性
     缺点:循环引用可能导致内存泄漏/空间不足/性能消耗
 
-
+## 对象(OOP)
 
