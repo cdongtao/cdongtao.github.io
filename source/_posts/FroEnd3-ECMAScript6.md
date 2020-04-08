@@ -331,37 +331,38 @@ Map类型是键值对的有序列表，键和值是任意类型
     console.log(m);
 
 ## 数组
-### from()方法
+### Array.from()方法
     
-    1.将伪数组转换成真正的数组
+    1.arguments转为数组：将伪数组转换成真正的数组
     function add() {
         // console.log(arguments);
-        // es5转换
+
+        // es5转换:
         // let arr = [].slice.call(arguments);
         // console.log(arr);
-        // es6写法
+
+        // es6写法：arguments转为数组
         let arr = Array.from(arguments);
         console.log(arr);
     }
     add(1, 2, 3);
 
-    1.from转换
+    2.from转换：list转为数组
     let lis = document.querySelectorAll('li')
+    //lis为list
     console.log(Array.from(lis));
 
-    2.扩展运算符 将伪数组转换成真正的数组
+    3.扩展运算符:list转为数组
     console.log([...lis]);
 
-    3.from() 还可以接受第二个参数，用来对每个元素进行处理
+    4.from() 还可以接受第二个参数，用来对每个元素进行处理
     let liContents = Array.from(lis, ele => ele.textContent);
     // console.log(liContents);
 
-### of()方法
+### Array.of()方法
     
     1.将任意的数据类型，转换成数组
-    console.log(Array.of(3, 11, 20, [1, 2, 3], {
-        id: 1
-    }));
+    console.log(Array.of(3, 11, 20, [1, 2, 3], {id: 1}));
     
     2.copywithin() 数组内部将制定位置的元素复制到其它的位置，返回当前数组
     // 从3位置往后的所有数值，替换从0位置往后的三个数值
@@ -404,3 +405,45 @@ Map类型是键值对的有序列表，键和值是任意类型
 
     ES5之前:indexof()是否包含给定的值
     console.log([1,2,3].indexOf('2'));//存在返回大于1，否则返回-1
+
+### Iterator遍历器
+
+    两个核心：
+    1.迭代器是一个接口，能快捷的访问数据，通过Symbol.iterator来创建迭代器 通过迭代器的next()获取迭代之后的结果
+    2.迭代器是用于遍历数据结构的指针(数据库的游标)
+
+    使用迭代器:由数组对象获取迭代器
+    const items = ["one", "two", "three"];
+    1.由数组创建新的迭代器:控制台看数组对象proto原型里有Symbol.iterator函数对象
+    const ite = items[Symbol.iterator]();//items[Symbol.iterator]返回函数,加括号立即执行
+    //ite.next()返回{value: "one", done: false} done如果为false表示遍历继续 如果为true表示遍历完成
+    console.log(ite.next()); 
+
+### Generator函数
+作用功能:
+
+    generator函数 可以通过yield关键字，将函数挂起，为了改变执行流提供了可能，同时为了做异步编程提供了方案
+    
+它普通函数的两点区别
+
+    1.function后面 函数名之前有个*
+    2.只能在函数内部使用yield表达式，让函数挂起
+
+    function* func() {
+        console.log('one');
+        yield 2;
+        console.log('two');
+        yield 3;
+        console.log('end');   
+    }
+
+    // func()返回一个遍历器对象 可以调用next()
+    let fn = func();//没进入函数体
+    // console.log(o)
+    console.log(fn.next());//执行yield 2;返回{value: "2", done: false}
+    console.log(fn.next());//执行yield 3;返回{value: "3", done: false}
+    console.log(fn.next());//{value: "undefined", done: false}
+
+    总结：generator函数是分段执行的，yield语句是暂停执行  而next()恢复执行
+
+    
