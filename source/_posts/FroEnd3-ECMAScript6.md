@@ -563,6 +563,7 @@ Map类型是键值对的有序列表，键和值是任意类型
 
 ###  Promise对象
 Promise对象(类似封装了AJAX)相当于一个容器，对象保存着异步操作的事件请求返回的结果,然后通过对象方法处理相应结果
+Promise有axios封装的库
 
 #### Promise对象特点：
     1.对象的状态不受外界影响,处理异步操作三个状态：
@@ -749,11 +750,98 @@ Promise对象(类似封装了AJAX)相当于一个容器，对象保存着异步�
         let arr = await res.HeWeather6;
         return arr[0].now;
     }
-    
+
     getNowWeather("https://xxxx" ).then((now) => {
         console.log(now);
     });
 
+## Class类及继承
+### class类定义
+#### ES5之前定义类
+    构造函数与函数区别函数名的大小写区别：大写为构造函数，小写为函数
+    
+    function Person(name,age) {
+        this.name = name;
+        this.age = age;
+    }
+    //原型上添加方法
+    Person.prototype.sayName = function() {
+        return this.name;
+    }
+    let p1 = new Person('小马哥',28);
+    console.log(p1);
 
+#### ES6定义类
 
+    class Person {
+        // 实例化的时候会立即被调用
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
 
+        //直接定义方法
+    }
+
+    //添加方法:通过Object.assign()方法一次性向类中添加多个方法
+    Object.assign(Person.prototype, {
+        sayName() {
+            return this.name
+        },
+        sayAge() {
+            return this.age
+        }
+    })
+
+    let p1 = new Person('小马哥', 28);
+    console.log(p1);
+
+###  类的继承
+
+    // 使用关键字 extends
+    class Animal{
+        constructor(name,age) {
+            this.name = name;
+            this.age = age;
+        }
+        sayName(){
+            return this.name;
+        }
+        sayAge(){
+            return this.age;
+        }
+    }
+
+    class Dog extends Animal{
+        constructor(name,age,color) {
+            super(name,age);//等价于 Animal.call(this,name,age);
+            this.color = color;
+        }
+        // 子类自己的方法
+        sayColor(){
+            return `${this.name}是${this.age}岁了,它的颜色是${this.color}`
+        }
+        // 重写父类的方法
+        sayName(){
+            return this.name + super.sayAge() + this.color;
+        }
+        
+    }
+
+    let d1 = new Dog('小黄',28,'red');
+    console.log(d1.sayColor());
+    console.log(d1.sayName());  
+
+### 模块化
+export规定对外接口：defult 只能出现一次默认导出
+import时：
+    加大括号解构:{导出类没带defult对象,且名字一样;可以用 A as B 改变名字}
+    defualt的对象：名字可以任意改变
+
+    // ES6 module 
+    import Person,{name,age,sayName} from './modules/index.js';
+    (少用:导出所有)//import * as f from './modules/index.js'
+
+    const p = new Person();
+    // console.log(f.default);
+    // console.log(name,age,sayName());
