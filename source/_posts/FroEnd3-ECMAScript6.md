@@ -1,5 +1,5 @@
-    ---
-title: ES6
+---
+title: ES6(ECMAScript6)
 tags: [ECMAScript6]
 categories: [FrontEnd]
 ---
@@ -53,18 +53,18 @@ categories: [FrontEnd]
 
 ## 函数
     
-    1.带参数默认值的函数
+### 1.带参数默认值的函数
     function add(a, b = 20) {
         return a + b;
     }
     console.log(add(30));
 
-    2.默认的表达式也可以是一个函数
+### 2.默认的表达式也可以是一个函数
     function add(a, b = getVal(5)) {
         return a + b;
     }
 
-    3.剩余参数：由三个点...和一个紧跟着的具名参数指定 ...keys
+### 3.剩余参数：由三个点...和一个紧跟着的具名参数指定 ...keys
     function pick(obj, ...keys) {
     // ...keys 解决了arguments 的问题
     let result = Object.create(null);
@@ -73,7 +73,7 @@ categories: [FrontEnd]
     }
     return result;
 
-    4.扩展运算符...
+### 4.扩展运算符...
     剩余运算符：主要用于形参上,把多个独立的合并到一个数组中
     扩展运算法：针对数组,将数组分割，并将各个项作为分离的参数传给函数
 
@@ -84,7 +84,7 @@ categories: [FrontEnd]
     es6 扩展运算法更方便
     console.log(Math.max(...arr));
 
-    5.的箭头函数
+### 5.的箭头函数
     使用=>来定义  
     function(){}等于与 (参数)=>{函数体}：括号代表函数形参,箭头代表return,大括号代表函数体；
 
@@ -100,7 +100,7 @@ categories: [FrontEnd]
         return a + b;
     }
     
-    6.返回是对象
+### 6.返回是对象
     let getObj = id => {
         return {
             id: id,
@@ -110,9 +110,8 @@ categories: [FrontEnd]
     //去掉return得加上小括号,如果是基本类型返回可以去掉括号
     let getObj = id => ({id:id,name:"小马哥"});
 
-    7.this问题
-    // ES6 没有this绑定
-    // ES5 中this指向：取决于调用该函数的上下文对象
+### 7.this问题
+ES5 中this指向：取决于调用该函数的上下文对象;ES6 没有this绑定
 
     let PageHandle = {
         id: 123,
@@ -135,7 +134,7 @@ categories: [FrontEnd]
     }
     PageHandle.init();
 
-    //箭头函数解决this问题
+#### 箭头函数解决this问题
     let PageHandle = {
         id: 123,
         //对象内部定义函数不要使用箭头函数,如果使用箭头函数,那函数内的作用域失效,this向上查找为定义Pagehandle得对象window
@@ -154,7 +153,7 @@ categories: [FrontEnd]
     }
     PageHandle.init();
 
-    使用箭头函数的注意事项
+#### 使用箭头函数的注意事项
     //没有作用域链，this指向了window，arguments不是window属性
     1:使用箭头函数 函数内部没有arguments.
     2.箭头函数不能使用new关键字来实例化对象
@@ -176,18 +175,18 @@ categories: [FrontEnd]
     let type = node.type;
     let name = node.name;
 
-    A.对象完全解构:将对象属性与变量名一致
+### A.对象完全解构:将对象属性与变量名一致
     let {type,name,age} = node;
     console.log(type,name);
 
-    B.不完全解构:只解构出对象里一部分属性
+### B.不完全解构:只解构出对象里一部分属性
     let {type,age} = node;
     
-    C.剩余运算符:将对象剩下的属性存入对象res中
+### C.剩余运算符:将对象剩下的属性存入对象res中
     let {name,...res} = node;
     console.log(res);//是一个对象
 
-    D.默认值解构
+### D.默认值解构
     let {a,b = 30} = {a:20};
 
     2.对数组解构
@@ -650,7 +649,7 @@ Promise有axios封装的库
     })
 
 #### Promise对象race()方法的使用
-    race(请求函数(返回promise对象),超时的处理函数(返回promise对象)):某个异步请求设置超时时间，并且在超时后执行相应的操作
+race(请求函数(返回promise对象),超时的处理函数(返回promise对象)):某个异步请求设置超时时间，并且在超时后执行相应的操作
 
     // 1 请求图片资源
     function requestImg(imgSrc) {
@@ -687,10 +686,9 @@ Promise有axios封装的库
     server.listen(3000).then(()=>{处理}).catch(console.log(err)).finally(server.stop());
 
 ### async函数
-
-    作用：使得异步操作更加方便,async它会返回一个Promise对象,然后调用then()方法,catch()方法,finally()
-    async是Generator的一个语法糖(比Generator更容易操作)
-    注：await只能在async函数内部使用
+作用：使得异步操作更加方便,async它会返回一个Promise对象,然后调用then()方法,catch()方法,finally()
+async是Generator的一个语法糖(比Generator更容易操作)
+注：await只能在async函数内部使用
 
 #### 使用
 
@@ -833,13 +831,13 @@ Promise有axios封装的库
     console.log(d1.sayName());  
 
 ### 模块化
-export规定对外接口：defult 只能出现一次默认导出
-import时：
-    加大括号解构:{导出类没带defult对象,且名字一样;可以用 A as B 改变名字}
-    defualt的对象：名字可以任意改变
+    export规定对外接口：defult 只能出现一次默认导出
+    import时加大括号解构:
+        {导出类没带defult对象,且名字一样;可以用 A as B 改变名字}
+        defualt的对象：名字可以任意改变
 
     // ES6 module 
-    import Person,{name,age,sayName} from './modules/index.js';
+    import Person,{name,age,sayName as say} from './modules/index.js';
     (少用:导出所有)//import * as f from './modules/index.js'
 
     const p = new Person();
