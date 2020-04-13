@@ -330,6 +330,13 @@ Map类型是键值对的有序列表，键和值是任意类型
     console.log(m);
 
 ## 数组
+### map()方法
+遍历数组后,返回新数组
+
+   const arr = ['a','b'];
+   arr.map((value,index)=> {})
+
+
 ### Array.from()方法
     
     1.arguments转为数组：将伪数组转换成真正的数组
@@ -358,36 +365,34 @@ Map类型是键值对的有序列表，键和值是任意类型
     let liContents = Array.from(lis, ele => ele.textContent);
     // console.log(liContents);
 
-### of 遍历数组方法与Array.of()方法
+### 数组方法与Array.of()方法
+
+#### map()方法
     
-    1.将任意的数据类型，转换成数组
+    map((数组的值,数组下标)=>{return 处理})//返回新数组
+    const arr = var arr = [1,2,3];
+    const tt = arr.map((item,index) => {
+        return item*2;
+    });
+
+    tt = [2,4,6];
+    
+
+#### 将任意的数据类型，转换成数组
     console.log(Array.of(3, 11, 20, [1, 2, 3], {id: 1}));
-    
-    2.copywithin() 数组内部将制定位置的元素复制到其它的位置，返回当前数组
-    // 从3位置往后的所有数值，替换从0位置往后的三个数值
-    console.log([1, 2, 3, 8, 9, 10].copyWithin(0, 3));//[8,9,10,8,9,10]
 
-    3.find()
-    // find()找出第一个符合条件的数组的值
-    let num = [1, 2, -10, -20, 9, 2].find(n => n < 0);//回调方法
-    console.log(num);//-10
-
-    4.findIndex()找出第一个符合条件的数组成员的索引(下标)
-    let numIndex = [1, 2, -10, -20, 9, 2].findIndex(n => n < 0)
-    console.log(numIndex);//2
-
-    5.entries() keys() values()   
+#### 遍历.keys()下标/.values()值/entries()   
     //返回一个遍历器(Iterator),可以使用for...of循环进行遍历
     console.log(['a','b'].keys());
 
     // keys() 对数组下标遍历
     for (let index of ['a', 'b'].keys()) {
-        console.log(index);
+        console.log(index);//0,1
     }
 
     // values() 对值遍历
     for (let ele of ['a', 'b'].values()) {
-        console.log(ele);
+        console.log(ele);//a,b
     }
 
     // entries() 对数组下标与值对遍历
@@ -398,12 +403,25 @@ Map类型是键值对的有序列表，键和值是任意类型
     let it = letter.entries();
     console.log(it.next().value);
 
-    6.includes() 返回一个布尔值，表示某个数组是否包含给定的值
+#### includes() 返回一个布尔值，表示某个数组是否包含给定的值
     console.log([1,2,3].includes(2));
     console.log([1,2,3].includes('4'));
 
     ES5之前:indexof()是否包含给定的值
     console.log([1,2,3].indexOf('2'));//存在返回大于1，否则返回-1
+
+#### findIndex()找出第一个符合条件的数组成员的索引(下标)
+    let numIndex = [1, 2, -10, -20, 9, 2].findIndex(n => n < 0)
+    console.log(numIndex);//2
+
+#### find()
+    // find()找出第一个符合条件的数组的值
+    let num = [1, 2, -10, -20, 9, 2].find(n => n < 0);//回调方法
+    console.log(num);//-10
+
+#### copywithin() 数组内部将制定位置的元素复制到其它的位置，返回当前数组
+    // 从3位置往后的所有数值，替换从0位置往后的三个数值
+    console.log([1, 2, 3, 8, 9, 10].copyWithin(0, 3));//[8,9,10,8,9,10]
 
 ### Iterator遍历器
 
