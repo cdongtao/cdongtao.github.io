@@ -30,7 +30,7 @@ categories: [FrontEnd]
     以前都是在html里(xml一种)插入这样标签<javescript>操作<javescript>才能写js代码
     现在是在javescript里不用标签加入html标签,相当js文件里定义了新的一种对象jsx能与js写一起
 
-注：
+    注：
     1.jsx对象里插入js代码需要使用{js操作后返回jsx对象}；类似html中插入别的格式代码需要用标签声明//jsx中不确定地方都需要{}表达，jsx类似一个html是确定格式
     2.const ele = (<h2>hello</h2>);这样表达jsx对象需要用(jsx)包起来,括号不是强制但是能说明是一个模块属于同一个东西
 
