@@ -170,10 +170,95 @@ react 核心思想就是组件化开发(声明标签),其实就是写js,其实�
 
 
 ## 组件的状态生命周期
-[react控件生命周期](https://www.jianshu.com/p/b331d0e4b398)
+react生命周期包括三个阶段：初始化阶段,运行中阶段,销毁阶段,不懂生命周期触发不同的钩子函数
+
 ![生命周期](/img/生命周期.png "生命周期")
-![生命周期3](/img/生命周期2.png "生命周期3")
 ![生命周期2](/img/生命周期2.png "生命周期2")
+![生命周期运转结果](/img/生命周期运转结果.png "生命周期运转结果")
+                
+        export default class LifeCircle extends Component {
+
+        static defaultProps = {
+            //0.加载默认属性
+            firt: console.log('0.加载默认属性'),
+            name: '小马哥',
+            age: 18
+        }
+
+        constructor(props) {
+            super(props);
+            console.log('1.初始化 加载默认的状态');
+            this.state = {
+            count: 0
+            }
+        }
+
+        componentWillMount() {
+            console.log('2.父组件(WillMount)将要被挂载');
+        }
+
+        componentDidMount() {
+            //当前方法中发起AJXS请求，获取数据,数据驱动视图
+            console.log('4.父组件(DidMount)挂载完成');
+        }
+
+        render() {
+            console.log('组件(render)了');
+            return (
+            <div>
+                <h2>当前的值：{this.state.count}</h2>
+                <Button onClick={this.handleClick} > 按钮</Button>
+                <SubCount count={this.state.count}></SubCount>
+            </div>
+            )
+        }
+
+        handleClick = () => {
+            this.setState((prevstate, preveprops) => ({
+            age: console.log('触发点击监听事件开始:更新状态'),
+            count: prevstate.count + 1
+            }), () => {
+            console.log('点击监听事件完成时状态：' + (this.state.count));
+            })
+        }
+
+        shouldComponentUpdate(nextProps, nextState) {
+            //重要:性能优化点
+            console.log('5.状态变化后根据奇偶性判断,组件是否要更新render');
+            if (nextState.count % 2 === 0) {
+            return true;
+            } else {
+            return false;
+            }
+        }
+
+        componentWillUpdate() {
+            console.log('7.组件将要更新render')
+        }
+
+        componentDidUpdate() {
+            console.log('8.组件已经更新render完成')
+        }
+
+        componentWillUnmount() {
+            //卸载定时器
+            console.log('10.卸载');
+        }
+        }
+
+
+        class SubCount extends Component {
+            componentWillReceiveProps(newProps) {
+                console.log('由于父组件状态变化通知子组件将要接受属性', newProps);
+            }
+
+            render() {
+                return (
+                <div>{this.props.count}</div>
+                )
+            }
+        }
+
 
 ### 受控组件
 受控组件:受状态控制的组件
