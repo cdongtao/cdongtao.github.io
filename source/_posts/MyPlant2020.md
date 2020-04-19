@@ -4,14 +4,17 @@ tags: [Target]
 categories: [MyPlan]
 ---
 
-深圳买房政策
-湛江买房政策
+1.跨域
+2.图像highchart
+3.vue/react
 
-宽粉/鹌鹑蛋/油豆腐皮/牛肉卷/冻豆腐/
-我就喜欢吃那种没营养的长长的东西 比如粉丝粉带粉条米线河粉凉皮土豆粉方便面等等之
-wisky+
-火龙果+芒果+牛奶？
-我备好菠萝，菠萝蜜，芒果，龙眼 荔枝了
+
+1.swagger
+2.guava 实体类转换
+3.ibatis--mysql +打印mysql
+4.log日志
+5.logstah/elastic search
+
 
 Js --> html/css -->es6 -->react文档和小码跟学-->实践案例
 
@@ -48,5 +51,9 @@ JS：
 项目：
 [小码哥JavaEE课程CRM项目（SSM实战项目）](https://www.bilibili.com/video/av74465104?from=search&seid=8951484575311906500)
 
-
+宽粉/鹌鹑蛋/油豆腐皮/牛肉卷/冻豆腐/
+我就喜欢吃那种没营养的长长的东西 比如粉丝粉带粉条米线河粉凉皮土豆粉方便面等等之
+wisky+
+火龙果+芒果+牛奶？
+我备好菠萝，菠萝蜜，芒果，龙眼 荔枝了
 
