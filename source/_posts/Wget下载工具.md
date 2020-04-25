@@ -1,7 +1,7 @@
 ---
 title: Wget 批量下载
 tags: [Wget]
-categories: [Plugin Tool]
+categories: [PluginTool]
 ---
 ## 安装
 wget上是一个命令行下载工具,下载一个windows下可用的版本：[Windows binaries of GNU Wget](https://eternallybored.org/misc/wget/);

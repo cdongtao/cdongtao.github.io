@@ -35,6 +35,7 @@ categories: [FrontEnd]
     // 建议：在默认情况下用const,而只有在你知道变量值需要被修改的情况使用let
 
 ## 字符串模板
+模板字符串（template string）是增强版的字符串，用反引号（`）标识。它可以当作普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量。
 
      // 模板字符串：使用tab键上面的反引号``,插入变量时使用${变量名}
     const oBox = document.querySelector('.box');
@@ -53,38 +54,38 @@ categories: [FrontEnd]
 
 ## 函数
     
-### 1.带参数默认值的函数
+### 带参数默认值的函数
     function add(a, b = 20) {
         return a + b;
     }
     console.log(add(30));
 
-### 2.默认的表达式也可以是一个函数
+### 默认的表达式也可以是一个函数
     function add(a, b = getVal(5)) {
         return a + b;
     }
 
-### 3.剩余参数：由三个点...和一个紧跟着的具名参数指定 ...keys
+### 剩余参数：由三个点...和一个紧跟着的具名参数指定 ...keys(类似数组)
     function pick(obj, ...keys) {
-    // ...keys 解决了arguments 的问题
+    // ...keys 解决了arguments 可以接受多个参数的问题
     let result = Object.create(null);
     for (let i = 0; i < keys.length; i++) {
         result[keys[i]] = obj[keys[i]];
     }
     return result;
 
-### 4.扩展运算符...
-    剩余运算符：主要用于形参上,把多个独立的合并到一个数组中
+### 扩展运算符...
+    剩余运算符：主要用于形参上,把多个独立的值合并到一个数组中
     扩展运算法：针对数组,将数组分割，并将各个项作为分离的参数传给函数
 
     // 处理数组中的最大值，使用apply
     const arr = [10, 20, 50, 30, 90, 100, 40];
     console.log(Math.max.apply(null,arr));
 
-    es6 扩展运算法更方便
+    es6 扩展运算法更方便//将数组分割求最大值
     console.log(Math.max(...arr));
 
-### 5.的箭头函数
+### 的箭头函数
     使用=>来定义  
     function(){}等于与 (参数)=>{函数体}：括号代表函数形参,箭头代表return,大括号代表函数体；
 
@@ -100,7 +101,7 @@ categories: [FrontEnd]
         return a + b;
     }
     
-### 6.返回是对象
+### 返回是对象
     let getObj = id => {
         return {
             id: id,
@@ -110,7 +111,7 @@ categories: [FrontEnd]
     //去掉return得加上小括号,如果是基本类型返回可以去掉括号
     let getObj = id => ({id:id,name:"小马哥"});
 
-### 7.this问题
+### this问题
 ES5 中this指向：取决于调用该函数的上下文对象;ES6 没有this绑定
 
     let PageHandle = {
@@ -161,6 +162,49 @@ ES5 中this指向：取决于调用该函数的上下文对象;ES6 没有this绑
     // function函数 也是一个对象，但是箭头函数不是一个对象，它其实就是一个语法糖
     let p = new Person();
 
+
+### 链判断运算符
+如果读取对象内部的某个属性，往往需要判断一下该对象是否存在。
+
+    比如，要读取message.body.user.firstName，安全的写法是写成下面这样
+    const firstName = (message && message.body && message.body.user && message.body.user.firstName) 
+                        || 'default';
+    或者使用三元运算符?:，判断一个对象是否存在。
+    const fooValue = fooInput ? fooInput.value : undefined
+    
+#### 链判断运算符有三种用法
+
+    obj?.prop // 对象属性
+    obj?.[expr] // 同上
+    func?.(...args) // 函数或对象方法的调用
+
+    a?.b  // 等同于  a == null ? undefined : a.b
+
+    a?.[x] // 等同于 a == null ? undefined : a[x]
+
+    a?.b()  // 等同于 a == null ? undefined : a.b()
+
+    a?.()  // 等同于  a == null ? undefined : a()
+
+### Null 判断运算符
+#### Null 判断运算符 ||
+读取对象属性的时候，如果某个属性的值是null或undefined，有时候需要为它们指定默认值。常见做法是通过||运算符指定默认值。但是属性的值如果为空字符串或false或0，默认值也会生效
+
+    const headerText = response.settings.headerText || 'Hello, world!';
+    const animationDuration = response.settings.animationDuration || 300;
+    const showSplashScreen = response.settings.showSplashScreen || true;
+    上面的三行代码都通过||运算符指定默认值，但是这样写是错的。
+
+#### Null 判断运算符??
+它的行为类似||，但是只有运算符左侧的值为null或undefined时，才会返回右侧的值。
+
+    const headerText = response.settings.headerText ?? 'Hello, world!';
+    const animationDuration = response.settings.animationDuration ?? 300;
+    const showSplashScreen = response.settings.showSplashScreen ?? true;
+    默认值只有在属性值为null或undefined时，才会生效
+
+??有一个运算优先级问题，它与&&和||的优先级孰高孰低。现在的规则是，如果多个逻辑运算符一起使用，必须用括号表明优先级，否则会报错。
+
 ## 解构赋值
 
     解构赋值是对赋值运算符的一种扩展,它针对数组和对象来进行操作
@@ -175,18 +219,18 @@ ES5 中this指向：取决于调用该函数的上下文对象;ES6 没有this绑
     let type = node.type;
     let name = node.name;
 
-### A.对象完全解构:将对象属性与变量名一致
+### 对象完全解构:将对象属性与变量名一致
     let {type,name,age} = node;
     console.log(type,name);
 
-### B.不完全解构:只解构出对象里一部分属性
+### 不完全解构:只解构出对象里一部分属性
     let {type,age} = node;
     
-### C.剩余运算符:将对象剩下的属性存入对象res中
+### 剩余运算符:将对象剩下的属性存入对象res中
     let {name,...res} = node;
     console.log(res);//是一个对象
 
-### D.默认值解构
+### 默认值解构
     let {a,b = 30} = {a:20};
 
     2.对数组解构
@@ -196,10 +240,10 @@ ES5 中this指向：取决于调用该函数的上下文对象;ES6 没有this绑
     // 可嵌套:解构是对应嵌套数据结构
     let [a,[b],c] = [1,[2],3];
 
-## 扩展的对象的功能
-
-    es6直接写入变量和函数，作为对象的属性和方法
-    1.属性名跟属性值一样
+## 对象的扩展功能
+es6直接写入变量和函数，作为对象的属性和方法
+    
+### 属性名跟属性值一样
     const name ='q';
     const age = '12';
     const person = {
@@ -210,29 +254,73 @@ ES5 中this指向：取决于调用该函数的上下文对象;ES6 没有this绑
          }
     }
 
-    2.返回对象的属性名跟变量名一样
+### 返回对象的属性名跟变量名一样
     function fn(x,y) {
        return {x,y};
      }
 
-    3.对象定义
+### 对象定义
     onst obj = {};
     obj.isShow = true;
     const name = 'a';
     obj[name+'bc'] = 123;
     console.log(obj);//abc =123
 
-    4.对象的方法
-    比较两个值是否严格相等,解决NaN===NaN出错
+### 比较对象的是否一样方法：Object.is
+    比较两个值是否严格相等,解决出错NaN===NaN// false，+0 === -0 //true
     特殊例子：console.log(NaN === NaN);//false
     console.log(Object.is(NaN, NaN));//true
     
-    5.对象的合并
-    // Object.assign(target,obj1,obj2....)
+### 对象的合并(给对象添加新属性)
+
+    Object.assign(target,obj1,obj2....)
     // 返回合并之后的新对象
     let newObj = Object.assign({}, { a: 1 }, { b: 2 });
     console.log(newObj);
 
+#### 注意
+
+    浅拷贝：Object.assign方法实行的是浅拷贝，而不是深拷贝。也就是说，如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用。 
+    
+    同名属性的替换：对于这种嵌套的对象，一旦遇到同名属性，Object.assign的处理方法是替换，而不是添加。
+    
+    数组的处理：Object.assign可以用来处理数组，但是会把数组视为对象
+    Object.assign([1, 2, 3], [4, 5])   // [4, 5, 3]
+    上面代码中，Object.assign把数组视为属性名为 0、1、2 的对象，因此源数组的 0 号属性4覆盖了目标数组的 0 号属性1
+
+    取值函数的处理：Object.assign只能进行值的复制，如果要复制的值是一个取值函数，那么将求值后再复制。
+    const source = {
+    get foo() { return 1 }
+    };
+    const target = {};
+
+    Object.assign(target, source)// { foo: 1 }
+    上面代码中，source对象的foo属性是一个取值函数，Object.assign不会复制这个取值函数，只会拿到值以后，将这个值复制过去。
+### Object.keys(),Object.values(),Object.entries(),Object.fromEntries()
+
+    const obj = { foo: 'bar', baz: 42 };
+    Object.values(obj)
+    // ["bar", 42]
+
+    const obj = { foo: 'bar', baz: 42 };
+    Object.values(obj)
+    // ["bar", 42]
+
+    const obj = { foo: 'bar', baz: 42 };
+    Object.entries(obj)
+    // [ ["foo", "bar"], ["baz", 42] ]
+    Object.entries方法的另一个用处是，将对象转为真正的Map结构。
+    const obj = { foo: 'bar', baz: 42 };
+    const map = new Map(Object.entries(obj));
+    map // Map { foo: "bar", baz: 42 }
+
+    Object.fromEntries()方法是Object.entries()的逆操作，用于将一个键值对数组转为对象。
+    Object.fromEntries([
+        ['foo', 'bar'],
+        ['baz', 42]
+    ])
+    // { foo: "bar", baz: 42 }
+### 
 
 ## 数据类型Symbol
 
@@ -328,6 +416,29 @@ Map类型是键值对的有序列表，键和值是任意类型
     //直接初始化
     let m = new Map([["a", 1],["c", 2],]);
     console.log(m);
+
+### 遍历 Map 结构
+任何部署了 Iterator 接口的对象，都可以用for...of循环遍历。Map 结构原生支持 Iterator 接口，配合变量的解构赋值，获取键名和键值就非常方便。
+
+#### 遍历获取键值对key/value
+    const map = new Map();
+    map.set('first', 'hello');
+    map.set('second', 'world');
+
+    for (let [key, value] of map) {
+    console.log(key + " is " + value);
+    }
+
+#### 遍历获取键名key
+    for (let [key] of map) {
+    // ...
+    }
+
+#### 获取键值value
+    for (let [,value] of map) {
+    // ...
+    }
+
 
 ## 数组
 ### map()方法
@@ -861,3 +972,7 @@ async是Generator的一个语法糖(比Generator更容易操作)
     const p = new Person();
     // console.log(f.default);
     // console.log(name,age,sayName());
+
+    输入模块的指定方法
+    加载模块时，往往需要指定输入哪些方法。解构赋值使得输入语句非常清晰。
+    const { SourceMapConsumer, SourceNode } = require("source-map");

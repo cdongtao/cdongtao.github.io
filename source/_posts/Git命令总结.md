@@ -1,7 +1,7 @@
 ---
 title: Git命令总结
 tags: [Git]
-categories: [Plugin Tool]
+categories: [PluginTool]
 ---
 ## Git 升级最新版本命令
 ```
