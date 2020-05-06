@@ -320,33 +320,37 @@ es6直接写入变量和函数，作为对象的属性和方法
         ['baz', 42]
     ])
     // { foo: "bar", baz: 42 }
-### 
 
 ## 数据类型Symbol
+ES6 引入了一种新的原始数据类型Symbol，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，前六种是：undefined、null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）
 
+### 定义
     最大的用途：用来定义对象的私有变量
     //原始数据类型Symbol ,由它创建出来的变量值是独一无二,也就是指向地址是不一样
     const name = Symbol('name');
     const name2 = Symbol('name');
     console.log(name === name2);
 
+### 用法
+#### 如果用Symbol定义的对象中的变量，取值时一定要用[变量名]
+
     let s1 = Symbol("s1");
     let obj = {
         [s1]: "小马哥",
     };
     obj[s1] = '小马哥';
-    // 如果用Symbol定义的对象中的变量，取值时一定要用[变量名]
     console.log(obj[s1]);
 
-    for(let key in obj){
-        //symbol定义对象属性是无法被遍历到,类似私有化被锁
-        console.log(key); 
+#### symbol定义对象属性是无法被遍历到,类似私有化被锁
 
+    for(let key in obj){
+        console.log(key); 
     }
     //这样定义的属性无法读取到
     console.log(Object.keys(obj));
 
-    获取Symbol定义对象属性方法
+#### 获取Symbol定义对象属性方法
+
     1.获取Symbol声明的属性名（作为对象的key）
     let s = Object.getOwnPropertySymbols(obj);
     console.log(s[0]);
@@ -355,10 +359,58 @@ es6直接写入变量和函数，作为对象的属性和方法
     2.let m = Reflect.ownKeys(obj);
     console.log(m);
 
+#### 实例：消除魔术字符串
+魔术字符串指的是，在代码之中多次出现、与代码形成强耦合的某一个具体的字符串或者数值。风格良好的代码，应该尽量消除魔术字符串，改由含义清晰的变量代替。    
 
+    const shapeType = {
+    triangle: 'Triangle'
+    };
+
+    function getArea(shape, options) {
+    let area = 0;
+    switch (shape) {
+        case shapeType.triangle:
+        area = .5 * options.width * options.height;
+        break;
+    }
+    return area;
+    }
+
+    getArea(shapeType.triangle, { width: 100, height: 100 });
+    如果仔细分析，可以发现shapeType.triangle等于哪个值并不重要，只要确保不会跟其他shapeType属性的值冲突即可。因此，这里就很适合改用 Symbol 值。
+
+    const shapeType = {
+    triangle: Symbol()
+    };
+
+#### Symbol.for()/Symbol.keyFor() 
+Symbol.for()它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol 值。如果有，就返回这个 Symbol 值，否则就新建一个以该字符串为名称的 Symbol 值，并将其注册到全局。
+
+    let s1 = Symbol.for('foo');
+    let s2 = Symbol.for('foo');
+
+    s1 === s2 // true
+
+Symbol.keyFor()方法返回一个已登记的 Symbol 类型值的key。
+
+    let s1 = Symbol.for("foo");
+    Symbol.keyFor(s1) // "foo"
+
+    let s2 = Symbol("foo");
+    Symbol.keyFor(s2) // undefined s2没有使用Symbol.for()为 Symbol 值登记的名字
+    
 ## 集合set
+Set 结构不会添加重复的值,Set 实例添加了两次NaN，但是只会加入一个。这表明，在 Set 内部，两个NaN是相等的。
+另外，两个对象总是不相等的
 
-    set：(去重)表示无重复值的有序列表
+### set：(去重)表示无重复值的有序列表
+
+    // 去除数组的重复成员
+    [...new Set(array)]
+    //去除字符串里面的重复字符
+    [...new Set('ababbc')].join('') //"abc"
+### 基本操作
+
     let set = new Set();
     //查看set的原型_proto_自带的方法
     console.log(set);
@@ -366,17 +418,23 @@ es6直接写入变量和函数，作为对象的属性和方法
     set.add(2);
     // 删除元素
     set.delete(2);
-
     // 校验某个值是否在set中
     console.log(set.has("4"));
     console.log(set.size);
+
+### set转为数组
 
     let set2 = new Set([1, 2, 3, 3, 3, 4]);
     // 扩展运算符将set转换成数组
     let arr = [...set2];
     console.log(arr);
+
+    Array.from方法可以将 Set 结构转为数组。
+    const items = new Set([1, 2, 3, 4, 5]);
+    const array = Array.from(items);
     
-    注意：
+### 注意：set使用引用产生问题
+
     1.set中对象的引用无法被释放
     let set3 = new Set(),obj = {};
     set3.add(obj);
@@ -438,6 +496,60 @@ Map类型是键值对的有序列表，键和值是任意类型
     for (let [,value] of map) {
     // ...
     }
+
+### 与其他数据结构的互相转换
+#### Map 转为数组
+
+    const myMap = new Map()
+    myMap.set(true, 7)
+    myMap.set({foo: 3}, ['abc']);
+    [...myMap]
+    // [ [ true, 7 ], [ { foo: 3 }, [ 'abc' ] ] ]
+
+#### 数组转为Map
+
+    new Map([ [true, 7],[{foo: 3}, ['abc']]])
+    Map {true => 7,Object {foo: 3} => ['abc']}
+
+#### Map 转为对象
+
+    function strMapToObj(strMap) {
+    let obj = Object.create(null);
+    for (let [k,v] of strMap) {
+        obj[k] = v;
+    }
+    return obj;
+    }
+
+    const myMap = new Map()
+    myMap.set('yes', true)
+    myMap.set('no', false);
+    strMapToObj(myMap)
+    // { yes: true, no: false }
+
+#### 对象转为 Map
+    
+    let obj = {"a":1, "b":2};
+    let map = new Map(Object.entries(obj));//先转为数组
+
+#### Map 转为 JSON
+
+    function strMapToJson(strMap) {
+    return JSON.stringify(strMapToObj(strMap));
+    }
+
+    let myMap = new Map().set('yes', true).set('no', false);
+    strMapToJson(myMap)
+    // '{"yes":true,"no":false}'
+
+#### JSON 转为 Map
+
+    function jsonToStrMap(jsonStr) {
+    return objToStrMap(JSON.parse(jsonStr));
+    }
+
+    jsonToStrMap('{"yes": true, "no": false}')
+    // Map {'yes' => true, 'no' => false}
 
 
 ## 数组
