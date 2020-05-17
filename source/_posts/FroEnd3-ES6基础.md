@@ -5,6 +5,7 @@ categories: [FrontEnd]
 ---
 
 ##  let && const关键字
+const定义变量必须赋初始值，let不需要赋初始值
 ### let关键字作用
 
     1.let声明变量，没有变量提升
@@ -53,14 +54,44 @@ categories: [FrontEnd]
     oBox.innerHTML = htmlStr;
 
 ## 函数
+### 不同组件参数传递
+
+     function calculateWinner(squaress) {
+        //
+     }
+
+     handleClick = (num) => {
+        //
+     }
+     
+     //calculate={()=>calcuWinner} 返回传函数对象(地址)
+     <Board calculate={()=>calcuWinner} squares={history.squares} onClick={num=>this.handleClick(num)} />
+     
+     //calculate={() => this.props.calculate(this.props.squares)} 返回一个函数对象(地址)
+     <Square calculate={() => this.props.calculate(this.props.squares)} squares={this.props.squares}onClick={() => this.props.onClick(i)}/>
+     
+     //this.props.calculate()或this.props.onClick代表立即执行 this.props.calculate(this.props.squares)();
+     <button className="square" onClick={this.props.onClick} />
+
+    function a(){
+        const c =1;
+        return fucntion (k){
+            return k+c;
+        }
+    }
     
-### 带参数默认值的函数
+    const A = a();//返回function 地址
+    A(8)//立即执行后结果9
+
+
+### 函数参数形式
+#### 带参数存在默认值
     function add(a, b = 20) {
         return a + b;
     }
     console.log(add(30));
 
-### 默认的表达式也可以是一个函数
+#### 参数默认值可以是一个函数
     function add(a, b = getVal(5)) {
         return a + b;
     }
@@ -85,7 +116,7 @@ categories: [FrontEnd]
     es6 扩展运算法更方便//将数组分割求最大值
     console.log(Math.max(...arr));
 
-### 的箭头函数
+### 箭头函数
     使用=>来定义  
     function(){}等于与 (参数)=>{函数体}：括号代表函数形参,箭头代表return,大括号代表函数体；
 
