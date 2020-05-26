@@ -273,6 +273,7 @@ ES5 中this指向：取决于调用该函数的上下文对象;ES6 没有this绑
 
 ## 对象的扩展功能
 es6直接写入变量和函数，作为对象的属性和方法
+Object.keys(),Object.values(),Object.entries(),Object.fromEntries()
     
 ### 属性名跟属性值一样
     const name ='q';
@@ -429,7 +430,52 @@ Symbol.keyFor()方法返回一个已登记的 Symbol 类型值的key。
 
     let s2 = Symbol("foo");
     Symbol.keyFor(s2) // undefined s2没有使用Symbol.for()为 Symbol 值登记的名字
-    
+
+## 数组
+forEach(),map(),filter(),find(),every,some,reduce
+
+### forEach()
+
+    // currentValue 数组中正在处理的当前元素,index 当前索引值,array 正在处理的数组
+    arr.forEach((currentValue,index,array)=>{});
+
+### map()
+应用场景：要返回一个要利用原数组经过运算后的数组，或者是在一个对象数组中要拿到某一个属性，并且返回一个新数组的情况
+
+    // currentValue = 当前执行元素,index = 当前索引值,array = 执行的数组
+    arr.map((currentValue,index,array)=>{})
+
+### filter()
+1)已知对象数组，要把对象数组中一些符合要求的对象重新组成一个数组
+2）筛选出符合多个条件的对象数组中的一些元素，组成新数组或者是直接覆盖原数组
+
+    //currentValue = 当前执行元素,index = 当前索引值,array = 执行的数组
+    arr.filter((currentValue,index,array)=>{});
+
+### find()
+find（）方法只会找到第一个符合的，找到之后就会直接返回当前数组得值或对象，就算下面还有符合要求的，也不会再找下去
+
+    let arr1 = arr.find((value, index, array) =>value > 2)
+
+### every()
+一假全假:every()相当于&&，遍历找到一个false，不再往下找
+
+    // currentValue = 当前执行元素,index = 当前索引值，array = 执行的数组,返回值是true或者false
+    arr.every((currentValue,index,array)=>{})
+
+### some()
+一真全真:some()相当于||，遍历返回一个true，不再往下找
+
+    // currentValue = 当前执行元素,index = 当前索引值,array = 执行的数组,返回值是true或者false
+    arr.some((currentValue,index,array)=>{})
+
+### reduce()
+1)代替map做一些简单的运算
+2）将一个对象数组中的某些属性的值抽出来，组成一个新的数组 
+
+    // 参数 = accumulator 第一次运行时的初始值,返回一个数值或者数组
+    arr.reduce((accumulator, currentValue,currentIndex,array)=>{},参数);
+
 ## 集合set
 Set 结构不会添加重复的值,Set 实例添加了两次NaN，但是只会加入一个。这表明，在 Set 内部，两个NaN是相等的。
 另外，两个对象总是不相等的
