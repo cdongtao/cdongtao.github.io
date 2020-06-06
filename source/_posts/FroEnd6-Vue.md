@@ -1,11 +1,5 @@
 ---
-title: FrontEnd Of Vue
+title: Vue
 tags: [Vue]
 categories: [FrontEnd]
 ---
-
-
-
-
-
-
