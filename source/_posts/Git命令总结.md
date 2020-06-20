@@ -172,4 +172,13 @@ git revert [版本号]
 回滚多个commit，但只做一次提交
 git revert  [版本号]
 git commit -m "revert commit1 commit2 commit3"
+
+git修改远程仓库地址 
+方法有三种：
+1.修改命令
+git remote origin set-url [url]
+2.先删后加
+git remote rm origin
+git remote add origin [url]
+3.直接修改config文件
 ```

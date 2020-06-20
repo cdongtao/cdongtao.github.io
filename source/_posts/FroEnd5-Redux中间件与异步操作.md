@@ -65,7 +65,7 @@ createStore方法可以接受整个应用的初始状态作为参数，那样的
 上面代码中，applyMiddleware方法的三个参数，就是三个中间件。有的中间件有次序要求，使用前要查一下文档。比如，logger就一定要放在最后，否则输出结果会不正确。
 
 ## applyMiddlewares()
-看到这里，你可能会问，applyMiddlewares这个方法到底是干什么的？
+看到这里，你可能会问，applyMiddlewares这个方法到底是干什么的?
 它是 Redux 的原生方法，作用是将所有中间件组成一个数组，依次执行。下面是它的源码。
 
     export default function applyMiddleware(...middlewares) {
@@ -75,18 +75,20 @@ createStore方法可以接受整个应用的初始状态作为参数，那样的
             var chain = [];
 
             var middlewareAPI = {
-            getState: store.getState,
-            dispatch: (action) => dispatch(action)
+                getState: store.getState,
+                dispatch: (action) => dispatch(action)
             };
+            
             chain = middlewares.map(middleware => middleware(middlewareAPI));
             dispatch = compose(...chain)(store.dispatch);
 
             return {...store, dispatch}
         }
     }
+
 上面代码中，所有中间件被放进了一个数组chain，然后嵌套执行，最后执行store.dispatch。可以看到，中间件内部（middlewareAPI）可以拿到getState和dispatch这两个方法。
 
-四、异步操作的基本思路
+## 异步操作的基本思路
 理解了中间件以后，就可以处理异步操作了。
 同步操作只要发出一种 Action 即可，异步操作的差别是它要发出三种 Action。
 
@@ -94,7 +96,6 @@ createStore方法可以接受整个应用的初始状态作为参数，那样的
 操作成功时的 Action
 操作失败时的 Action
 以向服务器取出数据为例，三种 Action 可以有两种不同的写法。
-
 
 // 写法一：名称相同，参数不同
     { type: 'FETCH_POSTS' }
@@ -105,6 +106,7 @@ createStore方法可以接受整个应用的初始状态作为参数，那样的
     { type: 'FETCH_POSTS_REQUEST' }
     { type: 'FETCH_POSTS_FAILURE', error: 'Oops' }
     { type: 'FETCH_POSTS_SUCCESS', response: { ... } }
+
 除了 Action 种类不同，异步操作的 State 也要进行改造，反映不同的操作状态。下面是 State 的一个例子。
 
     let state = {
@@ -113,9 +115,9 @@ createStore方法可以接受整个应用的初始状态作为参数，那样的
     didInvalidate: true,
     lastUpdated: 'xxxxxxx'
     };
+
 上面代码中，State 的属性isFetching表示是否在抓取数据。didInvalidate表示数据是否过时，lastUpdated表示上一次更新时间。
 
 现在，整个异步操作的思路就很清楚了。
-
 操作开始时，送出一个 Action，触发 State 更新为"正在操作"状态，View 重新渲染
 操作结束后，再送出一个 Action，触发 State 更新为"操作结束"状态，View 再一次重新渲染
