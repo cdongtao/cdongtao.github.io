@@ -1,5 +1,5 @@
 ---
-title: FroEnd10-测试工具Jest/enzyme.md
+title: 测试工具Jest/enzyme.md
 tags: [Jest中间件,测试中间件]
 categories: [FrontEnd]
 ---

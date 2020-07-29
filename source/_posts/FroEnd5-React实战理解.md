@@ -1,0 +1,93 @@
+---
+title: React实战理解
+tags: [Redux,React,Immutable]
+categories: [FrontEnd]
+---
+## 组件类型分类
+![展示型组件和容器型组件](/img/展示型组件和容器型组件.png "展示型组件和容器型组件")
+
+## store 机制
+![Store机制](/img/Store机制.png "Store机制")
+
+## reducer 基本机制
+![Reducer机制](/img/Reducer机制.png "Reducer机制")
+
+## redux 基本思想
+![Redux基本思想](/img/Redux基本思想.png "Redux基本思想")
+ 
+## react-redux使用
+![react-redux](/img/react-redux.png "react-redux")
+
+
+## 项目结构3种模式
+### 按类型划分
+![项目结构-类型模式](/img/项目结构-类型模式.png "项目结构-类型模式")
+![按类型划分](/img/按类型划分.png "按类型划分")
+
+### 按功能划分
+![项目结构-按功能划分](/img/项目结构-按功能划分.png "项目结构-按功能划分")
+![按功能划分](/img/按功能划分.png "项目结构-按功能划分")
+
+### Duck模式
+![项目结构-Duck模式](/img/项目结构-Duck模式.png "项目结构-Duck模式")
+![Duck模式](/img/Duck模式.png "Duck模式")
+
+## action的工厂模式
+![工厂模式定义action](/img/工厂模式定义action.png "工厂模式定义action")
+
+## state设计
+### 两种错误设计方式
+以API为设计State的依据
+以页面UI为设计State的依据
+
+### state设计原则
+store类似前端的数据库,每一个reducer对应数据库的表,reducer对象对应数据,设计state就如设计数据库一样
+![数据库三范式](/img/数据库三范式.png "数据库三范式")
+![State设计原则](/img/State设计原则.png "State设计原则")
+
+注：state设计尽量扁平化,避免嵌套过深
+UI State：具有松散兴特点
+
+## Selector函数
+Selector函数定义：读取Redux中的state的封装函数(以函数形式读取redux中state),在ontainer,Componets组件使用Selector函数读取state使用,达到解耦作用,这样如果某天修改了state的变量名,直接在函数中修改即可(多个地方使用一个函数)
+![Selector函数](/img/Selector函数.png "Selector函数")
+
+## Middleware(中间件)
+
+
+## Enhancer(少用)
+
+
+## react常用库
+### Immutable
+[Immutable collections for JavaScript](https://github.com/immutable-js/immutable-js)
+定义：Immutable Data 就是一旦创建,就不能再被更改的数据。对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象
+Immutable 实现的原理是 Persistent Data Structure(持久化数据结构),也就是使用旧数据创建新数据时,要保证旧数据同时可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗,Immutable 使用了 Structural Sharing···· (结构共享),即如果对象树中一个节点发生变化,只修改这个节点和受它影响的父节点,其它节点则进行共享。
+![Immutable原理](/img/Immutable原理.gif "Immutable原理.gif")
+
+#### 为什么要在React.js中使用Immutable
+
+它是一个完全独立的库,无论基于什么框架都可以用它。意义在于它弥补了 Javascript 没有不可变数据结构的问题，由于是不可变的,可以放心的对对象进行任意操作。在 React 开发中,频繁操作state对象或是 store ,配合 immutableJS 快、安全、方便，熟悉 React.js 的都应该知道, React.js 是一个 UI = f(states) 的框架,为了解决更新的问题, React.js 使用了 virtual dom , virtual dom 通过 diff 修改 dom ,来实现高效的 dom 更新。但是有一个问题。当 state 更新时,如果数据没变,你也会去做 virtual dom 的 diff ,这就产生了浪费。这种情况其实很常见。当然你可能会说,你可以使用 PureRenderMixin 来解决呀, PureRenderMixin 是个好东西,我们可以用它来解决一部分的上述问题。但 PureRenderMixin 只是简单的浅比较,不使用于多层比较。那怎么办？自己去做复杂比较的话,性能又会非常差。方案就是使用 immutable.js 可以解决这个问题。因为每一次 state 更新只要有数据改变,那么 PureRenderMixin 可以立刻判断出数据改变,可以大大提升性能
+
+#### 与React搭配使用，关键点是shouldComponentUpdate
+
+熟悉 React 的都知道，React 做性能优化时有一个避免重复渲染的大招，就是使用 shouldComponentUpdate()，但它默认返回 true，即始终会执行 render() 方法，然后做 Virtual DOM 比较，并得出是否需要做真实 DOM 更新，尽管React的虚拟算法复杂度已经有了很多优化，但是在大规模组件更新时，依然会是个不必要的损耗。会带来很多无必要的渲染并成为性能瓶颈。我们常用的Purecomponent的秘密其实是在shouldComponentUpdate中做了前后state和props的浅比较，如果不小心组件props的引用问题，这里会导致出现很多Bug。虽然第一层数据没变，但引用变了，就会造成虚拟 DOM 计算的浪费。第一层数据改变，但引用没变，会造成不渲染，所以需要很小心的操作数据。Object.assign可以实现不可变数据,唯一的就是性能问题
+
+#### Immutable 优点
+
+    Immutable 降低了 Mutable 带来的复杂度:可变（ Mutable ）数据耦合了 Time 和 Value 的概念，造成了数据很难被回溯
+    节省内存:Immutable.js 使用了 Structure Sharing 会尽量复用内存，甚至以前使用的对象也可以再次被复用。没有被引用的对象会被垃圾回收
+    Undo/Redo，Copy/Paste，甚至时间旅行这些功能做起来小菜一碟,因为每次数据都是不一样的，只要把这些数据放到一个数组里储存起来，想回退到哪里就拿出对应数据即可，很容易开发出撤销重做这种功能。
+    并发安全:传统的并发非常难做，因为要处理各种数据不一致问题，因此『聪明人』发明了各种锁来解决。但使用了 Immutable 之后，数据天生是不可变的，并发锁就不需要了。
+    拥抱函数式编程:Immutable 本身就是函数式编程中的概念，纯函数式编程比面向对象更适用于前端开发。因为只要输入一致，输出必然一致，这样开发的组件更易于调试和组装。
+
+#### Immutable 缺点
+    需要学习新的 API
+    增加了资源文件大小
+    容易与原生对象混淆
+
+### Reselect
+
+
+
+
