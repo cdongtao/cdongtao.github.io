@@ -48,22 +48,59 @@ store类似前端的数据库,每一个reducer对应数据库的表,reducer对�
 注：state设计尽量扁平化,避免嵌套过深
 UI State：具有松散兴特点
 
+## 高阶函数
+高阶函数定义：将函数作为参数或者返回值是函数的函数。
+高阶函数分两种：
+    常见的 sort,reduce 等函数
+    返回值是函数的函数
+```    
+    function add(a) {
+        return function(b) {
+            return a + b
+        }
+    }
+    
+    var add3 = add(3) //add3表示一个指向函数的变量 可以当成函数调用名来用
+    add3(4) === 3 + 4 //true
+```
+柯里化函数等价为add函数在es6写法
+    let add = a => b => a + b
+柯里化函数的功能
+    可以惰性求值
+    可以提前传递部分参数
+
 ## Selector函数
-Selector函数定义：读取Redux中的state的封装函数(以函数形式读取redux中state),在ontainer,Componets组件使用Selector函数读取state使用,达到解耦作用,这样如果某天修改了state的变量名,直接在函数中修改即可(多个地方使用一个函数)
+Selector函数定义：
+     读取Redux中的state的封装函数(以函数形式读取redux中state),在ontainer,Componets组件使用Selector函数读取state使用,达到解耦作用,这样如果某天修改了state的变量名,直接在函数中修改即可(多个地方使用一个函数)
 ![Selector函数](/img/Selector函数.png "Selector函数")
 
 ## Middleware(中间件)
+### MiddleWare原理
+![MiddleWare原理](/img/MiddleWare原理.png "MiddleWare原理")
+### Middleware源码
+![Middleware源码.png](/img/Middleware源码.png "Middleware源码")
+
+## Store_Enhancer(少用)
+### Store_Enhancer作用
+        可以增加store的dispatch,getState等功能,类似在一个函数处理前先添加函数进行处理
+![Store_Enhancer作用](/img/Store_Enhancer作用.png "Store_Enhancer作用")
+### Store_Enhancer结构
+![Store_Enhancer结构](/img/Store_Enhancer结构.png "Store_Enhancer结构")
 
 
-## Enhancer(少用)
-
+## Store_Enhancer(少用) 与 Middleware区别
+![Store_Enhancer与Middleware区别](/img/Store_Enhancer与Middleware区别.png "Store_Enhancer与Middleware区别")
+Store_Enhancer作用:
+        底层的抽象(更接近底层操作,存在更改底层逻辑风险),可以增加store的dispatch,getState等功能,类似在一个函数处理前先添加函数进行处理
+Middleware:
+        高层的抽象,进行约束行为,不容易改变底层逻辑
 
 ## react常用库
 ### Immutable
 [Immutable collections for JavaScript](https://github.com/immutable-js/immutable-js)
 定义：Immutable Data 就是一旦创建,就不能再被更改的数据。对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象
 Immutable 实现的原理是 Persistent Data Structure(持久化数据结构),也就是使用旧数据创建新数据时,要保证旧数据同时可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗,Immutable 使用了 Structural Sharing···· (结构共享),即如果对象树中一个节点发生变化,只修改这个节点和受它影响的父节点,其它节点则进行共享。
-![Immutable原理](/img/Immutable原理.gif "Immutable原理.gif")
+![Immutable原理](/img/Immutable原理.gif "Immutable原理")
 
 #### 为什么要在React.js中使用Immutable
 
@@ -86,8 +123,14 @@ Immutable 实现的原理是 Persistent Data Structure(持久化数据结构),�
     增加了资源文件大小
     容易与原生对象混淆
 
-### Reselect
+## Reselect库
+    npm install reselect;
+    作用：减少State计算,可以在state值没有改变情况下,不渲染页面(有的页面只要改变就需要渲染,其实state值并不变);
+    如果计算state并不是非常复杂,或不是redux性能有问题,或为了优化，尽量不用
 
-
-
-
+### 未引入reselect
+    State未更新值,但需要渲染
+![reselect作用1](/img/reselect作用1.png "reselect作用1")
+### 引入reselect
+    State未更新值,但不需要渲染
+![reselect作用2](/img/reselect作用2.png "reselect作用2")
