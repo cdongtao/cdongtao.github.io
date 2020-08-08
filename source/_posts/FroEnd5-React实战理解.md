@@ -95,7 +95,7 @@ Store_Enhancer作用:
 Middleware:
         高层的抽象,进行约束行为,不容易改变底层逻辑
 
-## react常用库
+## React常用库
 ### Immutable
 [Immutable collections for JavaScript](https://github.com/immutable-js/immutable-js)
 定义：Immutable Data 就是一旦创建,就不能再被更改的数据。对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象
