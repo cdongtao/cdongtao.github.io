@@ -182,3 +182,15 @@ git remote rm origin
 git remote add origin [url]
 3.直接修改config文件
 ```
+
+## Git修改commit信息
+### 修改最近后一次commit
+1.git commit --amend : 然后就会进入vim模式
+2.点击i编辑模式,按esc键退出编辑模式,:q退出，:wq保存退出
+
+### 修改更早记录
+1.git rebase -i commitId :然后就会进入vim模式
+2.点击i编辑模式,将需要修改commit行的pick 改为r或reword
+3.按esc键退出编辑模式,:q退出，:wq保存退出
+注:commitId选取
+
