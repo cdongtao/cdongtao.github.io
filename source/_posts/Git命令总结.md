@@ -189,8 +189,8 @@ git remote add origin [url]
 2.点击i编辑模式,按esc键退出编辑模式,:q退出，:wq保存退出
 
 ### 修改更早记录
-1.git rebase -i commitId :然后就会进入vim模式
-2.点击i编辑模式,将需要修改commit行的pick 改为r或reword
-3.按esc键退出编辑模式,:q退出，:wq保存退出
-注:commitId选取
-
+1.git rebase -i commitId :选取commitId，需要比要修改版本commitId向前一版本(见备注)
+2.点击i编辑模式,将需要修改commit行的pick 改为r或reword,按esc键退出编辑模式,:q退出，:wq保存退出
+3.自动跳回到上一步修改为r的版本修改,如果修改多个版本，每一次wq后都会到一个修改的r版本
+注:commitId选取规则如图:要修改2，则需要选比2更早一条commitId作为基版,因为是在3上面提交后才有2
+![Git更改commit信息](/img/Git更改commit信息.png "Git更改commit信息")
