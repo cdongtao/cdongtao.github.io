@@ -114,11 +114,21 @@ git add .的作用相反：git restore文件名字
 ----进行清除工作区的改变（git chechout 文件名的作用是一样的）
 ```
 
-## Git reset命令
-git reset hashId 重置改变分支"游标"指向,适用版本回退
-git reset --hard hashId 回退到一个版本，清空暂存区，将已提交的内容版本恢复到本地,本地内容被恢复覆盖
-git reset --soft hashId 回退到一个版本，不清空暂存区，将已提交的内容版本复制到本地,不影响本地内容
-git reset --mixed hashId 回退到一个版本，不清空暂存区，将已提交的内容版和本地已提交内容全部恢复到暂存区,不影响本地内容
+## 撤销命令reset/revert
+### Git reset(修改commit记录)
+git reset hashId 重置改变分支"游标"指向,适用版本回退,都不保留回退版本之后的版本记录;hard,soft,miexd对回退版本之后已经提交的版本内容处理
+git reset --hard hashId 回退到某一个版本，清空暂存区，将已提交的内容版本恢复到本地,本地内容被恢复覆盖
+git reset --soft hashId 回退到某一个版本，不清空暂存区，将已提交的内容版本复制到本地,不影响本地内容
+git reset --mixed hashId 回退到某一个版本，不清空暂存区，将已提交的内容版和本地已提交内容全部恢复到暂存区,不影响本地内容
+注:如果reset后重新push,会记录在reset后hashId后面
+
+### Git revert(保持commit记录)
+git revert commitId:
+将在当前版本将指定commitId的版本提交删除(撤销),直接生成新的commitId提交,接在最新提交的版本后面
+
+git revert 与 git reset 区别:
+git reset:需要重新push,而且不保留恢复指定版本之后的记录,可以通过hard,soft,miexd对回退版本之后已经提交的版本内容处理
+git rever:将某commitId版本删除,且保留此版本之后的提交的版本，
 
 ## Git remote命令
 git remote -v 显示远程库详细信息
@@ -183,14 +193,61 @@ git remote add origin [url]
 3.直接修改config文件
 ```
 
-## Git修改commit信息
-### 修改最近后一次commit
+## rebase(变基)命令
+### 改变产生分支起点位置
+dev:git rebase <branchA>//会将当前dev分支的提交复制到指定的branchA分支之上
+
+![git-rebase1](/img/git-rebase1.png "git-rebase1")
+![git-rebase2](/img/git-rebase2.png "git-rebase2")
+
+上面这个例子展示了在 master 分支上的变基，提交创建新的hash时会修改项目的历史记录。但是，在更大型的项目中，你通常不需要这样的操作。
+
+变基与合并区别：
+　　有一个重大的区别：Git 不会尝试确定要保留或不保留哪些文件。我们执行rebase的分支总是含有我们想要保留的最新近的修改！这样我们不会遇到任何合并冲突，而且可以保留一个漂亮的、线性的 Git 历史记录；git merge 需要解决冲突才能合并
+
+注:因为dev分支 git rebase 只是改变了dev最初产生分支的指针,指针指向了master在最新提交后面形成直线,同样的会合并最新提交代码，冲突部分以dev分支为主,有覆盖的master分支的危险,因此要使用该命令时,先把最新更新分支pull到dev,解决冲突后再rebase.
+
+### 修改commit后提交记录
+#### Git修改最近后一次commit信息
 1.git commit --amend : 然后就会进入vim模式
 2.点击i编辑模式,按esc键退出编辑模式,:q退出，:wq保存退出
 
-### 修改更早记录
-1.git rebase -i commitId :选取commitId，需要比要修改版本commitId向前一版本(见备注)
+#### 修改更早提交信息
+1.git rebase -i commitId 或  git rebase -i HEAD~3
+	选取commitId，需要比要修改版本commitId向前一版本(见备注);head后数字代表从head开始不包括head,向后退3个版本
 2.点击i编辑模式,将需要修改commit行的pick 改为r或reword,按esc键退出编辑模式,:q退出，:wq保存退出
 3.自动跳回到上一步修改为r的版本修改,如果修改多个版本，每一次wq后都会到一个修改的r版本
 注:commitId选取规则如图:要修改2，则需要选比2更早一条commitId作为基版,因为是在3上面提交后才有2
-![Git更改commit信息](/img/Git更改commit信息.png "Git更改commit信息")
+	![Git更改commit信息](/img/Git更改commit信息.png "Git更改commit信息")
+
+注: git rebase -i commitId 或  git rebase -i HEAD~3 后可以将进入vim模式,按i修改替换文件pick命令及作用有:
+	reword:修改提交信息
+	edit:修改此提交
+	squash:将提交融合到前一个提交中
+	fixup:将提交融合到前一个提交中，不保留该提交的日志消息
+	exec:在每个提交上运行我们想要 rebase 的命令
+	drop:移除该提交
+
+#### Cherry-picking(拣选)
+master:git Cherry-picking <dev-commitId> //将dev分支上的某个提交merge到master,而不是dev全部提交
+假设 dev 分支上的提交 76d12 为 index.js 文件添加了一项修改，而我们希望将其整合到 master 分支中。我们并不想要整个 dev 分支，而只需要这个提交
+
+![Cherry-picking1](/img/Cherry-picking1.png "Cherry-picking1")
+
+#### Reflog(还原)
+git reflog:是一个非常有用的命令,可以展示已经执行过的所有动作的日志。包括合并、重置、还原，基本上包含你对你的分支所做的任何修改。.
+根据 reflog 提供的对比分支信息通过重置 HEAD 来轻松地重做！
+假设我们实际上并不需要合并原有分支。当我们执行 git reflog 命令时，我们可以看到这个 repo 的状态在合并前位于 HEAD@{1}。那我们就执行一次 git reset，将 HEAD 重新指向在 HEAD@{1} 的位置。
+![reflog1](/img/reflog1.png "reflog1")
+![reflog2](/img/reflog2.png "reflog2")
+
+## 解决冲突
+<<<<<<< HEAD
+Creating a new branch is quick & simple
+=======
+Creating a new branch is quick AND simple
+>>>>>>> feature1
+
+1.在<<<<<<<  =======之间为自己的代码
+2.在=======  >>>>>>>之间为别人的代码。
+如果保留自己的代码，将别人的代码删掉即可。
