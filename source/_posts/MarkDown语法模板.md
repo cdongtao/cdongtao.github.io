@@ -3,27 +3,28 @@ title: MarkDown语法模板
 tags: [MarkDown]
 categories: [PluginTool]
 ---
-# 1.标题
+
+# [语法大全](http://www.mdeditor.com)
 ## 这是二级标题
 ### 这是三级标题
 #### 这是四级标题
 ##### 这是五级标题
 ###### 这是六级标题
 
-## 2.可复制区域
+## 可复制区域
 >可以复制区域/置灰区域
 >可以指定是bash/sql
 
 ```bash
 $ hexo new "My New Post"
 ```
-## 3.字体
+## 字体
 **这是加粗的文字**
 *这是倾斜的文字*`
 ***这是斜体加粗的文字***
 ~~这是加删除线的文字~~
 
-## 4.列表
+## 列表
 ###无序列表用 
 >- + * 任何一种都可以
 - 列表内容1
@@ -36,11 +37,11 @@ $ hexo new "My New Post"
 2. 列表内容2
 3. 列表内容3
 
-## 5.关联链接
+## 关联链接
 More info: [Writing](https://hexo.io/docs/writing.html)
 
 
-## 6.表格
+## 表格
 | 姓名 | 技能  | 排行 |
 | ---- | :---: | ---: |
 | 刘备 |  哭   | 大哥 |
@@ -48,7 +49,7 @@ More info: [Writing](https://hexo.io/docs/writing.html)
 | 张飞 |  骂   | 三弟 |
 
 
-## 7.分割线
+## 分割线
 三个或者三个以上的 - 或者 * 都可以
 ---
 ----
