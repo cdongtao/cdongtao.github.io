@@ -9,8 +9,13 @@ categories: [FrontEnd]
     react-Router-dom
     react-Router-active
 
-### 使用react-Router组件路由
-    包含<BrowerRouter> 与 <HashRouter>web常用web项目组件
+### react-Router(5种)路由
+    <BrowerRouter>:最新浏览器常用模式
+    <HashRouter>:路径前加入#号成为一个哈希值,Hash好处是支持一些旧版本,而且不会因为刷新找不到对应路径
+    <MemoryRouter>:不存储history,所有路径保存在内存里,不能前进和后退,因为地址栏没有发生变化
+    <NativeRouter>:多用于移动端开发,经常配合ReactNative使用
+    <StaticRouter>:设置静态路由,需要和后台服务器配合设置,比如设置服务器端染时使用
+    web常用web项目组件:包含<BrowerRouter> 与 <HashRouter>
 
 #### <BrowerRouter>
     基于HTML5 History API 实现(pushState,replaceState等)

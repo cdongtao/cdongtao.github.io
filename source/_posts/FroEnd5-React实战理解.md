@@ -19,20 +19,26 @@ categories: [FrontEnd]
 ![react-redux](/img/react-redux.png "react-redux")
 
 
-## 项目结构3种模式
-### 按类型划分
+## 项目文件目录结构3种模式
+### 按文件功能类型划分
+　　文件类型是一个component（展示组件），container（容器组件），在redux状态管理当中有，action，reducer等，这些不同角色的文件都放在一个单独的文件夹目录里，这种样式的结构也是React官方所推荐的结构;使用这种结构组织项目，每当增加一个新功能的时候，需要再containers，components文件夹下增加这个功能需要的组件，还需要再actions，reducers文件夹下分别添加Redux管理这个功能使用到的action，reducer，此时如果actionType放在另外一个文件夹，还需要在这个文件夹下增加新的actionType，所以开发一个新的功能，需要再这些文件夹下频繁的切换已修改不同的文件。如果项目比较小，问题不大，如果对于一个规模比较大的项目使用这种项目结构非常的麻烦。
+    注:这类展示因为状态都在同一个文件,不存在按页面功能划分导致状态分离在不同文件管理问题
+
 ![项目结构-类型模式](/img/项目结构-类型模式.png "项目结构-类型模式")
 ![按类型划分](/img/按类型划分.png "按类型划分")
 
-### 按功能划分
+### 按页面功能划分
+　　既一个页面功能对应一个文件夹，这个页面功能所用到的container，component，action，reducer等文件都放在这个文件夹下。如下为按照页面功能划分的项目结构示列.这种结构好处很明显，一个页面功能使用到的组件，状态和行为都在同一个文件夹下，方便开发和维护，同时易于扩展，github上很多的脚手架也选择了这种目录结构，不足之处是依然同按角色划分面临同样的问题，改变一个功能需要频繁的在reducer，action，actionType等不同文件夹间切换。$\color{red}{另外redux将整个的应用状态放在一个store中来管理，不同功能模块之间可以共享store中的公共部分状态(项目越复杂，这种场景会越多)，共享的状态应该放到哪一个页面文件夹下也是一个问题，这些问题归根结底是因为redux中状态管理逻辑并不是根据页面功能划分的，页面功能划分会导致公共状态分离在不同文件,功能模块耦合情况下,状态变化会存在相互影响}$
 ![项目结构-按功能划分](/img/项目结构-按功能划分.png "项目结构-按功能划分")
 ![按功能划分](/img/按功能划分.png "项目结构-按功能划分")
 
-### Duck模式
+### 按照store状态管理(Duck模式)
+　　ducks指的是一种新的redux项目目录结构，它提倡将相关的reducer，action，actionType和action creaters写在一个文件里面，$\color{red}${本质上是以应用状态作为划分模块的依据，而不是以页面的功能作为划分模块的依据，}$这样，管理相同状态的依赖都在同一个文件中，无论哪个容器组件需要这部分状态，只需要引入管理这个状态的模块文件即可 
 ![项目结构-Duck模式](/img/项目结构-Duck模式.png "项目结构-Duck模式")
 ![Duck模式](/img/Duck模式.png "Duck模式")
 
-## action的工厂模式
+#### action的工厂模式
+　　在前两种结构中，当container需要使用actions时，可以通过import * as actions from 'path/to/actions.js'的方式一次性的把一个action的文件中中所有的action creates都引入进来。但在使用Ducks结构时，action creater和reducer定义在同一个文件中，import*的导入方式会把reducer也导入进来(如果action types也被export ，那么还会导入action type)。为了解决这个问题。我们可以把action creators和action types定义到一个命名空间中
 ![工厂模式定义action](/img/工厂模式定义action.png "工厂模式定义action")
 
 ## state设计
