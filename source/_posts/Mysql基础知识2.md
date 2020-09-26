@@ -3,6 +3,8 @@ title: Mysql基础知识2
 tags: [Mysql,面试知识]
 categories: [Database]
 ---
+## MySQL的基本架构
+![MySQL的基本架构](/img/MySQL的基本架构.png "MySQL的基本架构")
 ## Mysql数据存储原理计算
 存储单位: 磁盘以扇区为单位=512字节  系统文件文件=4K   Mysql以页为单位=16k
 

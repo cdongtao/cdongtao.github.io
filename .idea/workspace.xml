@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d1e6f231-02d3-4a97-abd5-a3a42b826ad9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/source/_posts/Java-BIO&amp;&amp;NIO&amp;&amp;AIO.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Java-基础知识.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Java-控制流量宽带.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Java-虚拟机JVM基础知识.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Java-设计模式.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Java-锁概念.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Mysql基础知识1.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Mysql基础知识2.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Spring-Mybtis原理.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-任务调度.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-分布式锁Redis.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-分布式锁Zookeeper.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-文件管理Stream.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-日志管理Kibana.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-服务跟踪Jaeger.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-服务跟踪Sleuth.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-注册中心Dubbo.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-注册中心Eureka.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-注册中心ZooKeeper.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-海量搜索ElasticSearch.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-消息总线Kafa.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-消息总线RabbitMQ.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-消息总线RocketMQ.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-熔断器Hytrix.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-管理Admin.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-网关GetWay.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-网关Zuul.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-远程访问RPC.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-配置中心Apollo.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-配置中心config.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Web-SSO登陆模型.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/算法结构-BitMap.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/算法结构-RSA非对称加密.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/算法结构-排列组合.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/算法结构-时间复杂度.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/运维基础知识.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Oracle-优化存储过程.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/优化-存储过程经验.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Spring-Bean作用域.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/算法-BitMap.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/hexo-theme-next" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-next" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/hexo-theme-next/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-next/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/hexo-theme-next/layout/_partials/pagination.swig" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-next/layout/_partials/pagination.swig" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1385" />
+    <option name="height" value="745" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d1e6f231-02d3-4a97-abd5-a3a42b826ad9" name="Default Changelist" comment="" />
+      <created>1600606733844</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600606733844</updated>
+      <workItem from="1600606738650" duration="4000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
