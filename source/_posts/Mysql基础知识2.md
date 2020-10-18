@@ -1,8 +1,9 @@
 ---
-title: Mysql基础知识2
+title: MySql基础知识2
 tags: [Mysql,面试知识]
 categories: [Database]
 ---
+
 ## MySQL的基本架构
 <font color='red'>在 MySQL 5.5 以后,默认的存储引擎为 InnoDB,且只有 InnoDB 引擎支持事务和数据崩溃恢复,因此所有内容均是基于 InnoDB 存储引擎为前提</font>
 ![MySQL的基本架构](/img/MySQL的基本架构.png "MySQL的基本架构")
@@ -14,14 +15,11 @@ categories: [Database]
 ### Redo Log(重做日志)
 #### Redo Log定义
 redo log是InnoDB存储引擎层的日志,又称重做日志文件,用于记录事务操作的变化,记录的是数据页的物理修改(数据修改之后的值),不管事务是否提交都会记录下来.在实例和介质失败(media failure)时,redo log文件就能派上用场,如数据库掉电,InnoDB存储引擎会使用redo log恢复提交后的物理数据页(恢复数据页,且只能恢复到最后一次提交的位置),以此来保证数据的完整性.redo log日志的大小是固定的,即记录满了以后就从头循环写
-
 #### 作用
 确保事务的持久性.防止在发生故障的时间点,尚有脏页未写入磁盘,在重启mysql服务的时候,根据redo log进行重做,从而达到事务的持久性这一特性.
-
 #### Redo Log Buffer
 　　　当一条SQL更新完Data Buffer的缓存页后,就会记录一条 redo log 日志,前面提到了redo log日志是存储在磁盘上的,那么此时是不是立马就将 redo log 日志写入磁盘呢？显然不是的,而是先写入一个叫做 redo log buffer 的缓存中,<font color='red'>redo log buffer 是一块不同于Data Buffer的内存缓存区,在 MySQL 启动的时候,向内存中申请的一块redo log内存区域(在电脑cpu中的内存,与Mysql实例内存同级,而data buffer 是处于申请Mysql实例内存后,在实例里的内存区域),它是 redo log 日志缓冲区,默认大小是 16MB,由参数 innodb_log_buffer_size 控制(前面的截图中可以看到)</font>
 　　　redo log buffer内部又可以划分为许多 redo log block,每个 redo log block 大小为 512 字节.我们写入的 redo log 日志,最终实际上是先写入在 redo log buffer 的 redo log block 中,然后在某一个合适的时间点,将这条 redo log 所在的 redo log block 刷入到磁盘中.<font color='red'>这个合适的时间点究竟是什么时候呢？</font>查看下面Redo Log CheckPoint
-
 #### WAL技术(Write Ahead logging)
 &emsp;&emsp;具体到InnoDB中,Write-Ahead Log是Redo Log.在InnoDB中,不 光事务修改的数据库表数据是异步刷盘的,连Redo Log的写入本身也是 异步的.如图6-7所示,在事务提交之后, Redo Log先写入到内存中的 Redo Log Buffer中,然后异步地刷到磁盘上的Redo Log.
 ![RedoLog刷盘](/img/RedoLog刷盘.png "RedoLog刷盘")
@@ -38,31 +36,30 @@ redo log是InnoDB存储引擎层的日志,又称重做日志文件,用于记录�
 ### Undo Log(回滚日志)
 #### 定义
 逻辑格式的日志,在执行undo的时候,仅仅是将数据从逻辑上恢复至事务之前的状态,而不是从物理页面上操作实现的,这一点是不同于redo log的.
-* 什么时候产生：事务开始之前,将当前是的版本生成undo log,undo 也会产生 redo 来保证undo log的可靠性
-* 什么时候释放：当事务提交之后,undo log并不能立马被删除,而是放入待清理的链表,由purge线程判断是否由其他事务在使用undo段中表的上一个事务之前的版本信息,决定是否可以清理undo log的日志空间.
-
+* 什么时候产生:事务开始之前,将当前是的版本生成undo log,undo 也会产生 redo 来保证undo log的可靠性
+* 什么时候释放:当事务提交之后,undo log并不能立马被删除,而是放入待清理的链表,由purge线程判断是否由其他事务在使用undo段中表的上一个事务之前的版本信息,决定是否可以清理undo log的日志空间.
 #### 作用
 保存了事务发生之前的数据的一个版本,可以用于回滚,同时可以提供多版本并发控制下的读(MVCC),也即非锁定读
-
 #### 不同版本物理文件
 * MySQL5.6之前,undo表空间位于共享表空间的回滚段中,共享表空间的默认的名称是ibdata,位于数据文件目录中.
 * MySQL5.6之后,undo表空间可以配置成独立的文件,但是提前需要在配置文件中配置,完成数据库初始化后生效且不可改变undo log文件的个数
 如果初始化数据库之前没有进行相关配置,那么就无法配置成独立的表空间了.
-*关于MySQL5.7之后的独立undo 表空间配置参数如下：
+*关于MySQL5.7之后的独立undo 表空间配置参数如下:
 &emsp;&emsp;innodb_undo_directory = /data/undospace/ –undo独立表空间的存放目录
 &emsp;&emsp;innodb_undo_logs = 128 –回滚段为128KB
 &emsp;&emsp;innodb_undo_tablespaces = 4 –指定有4个undo log文件
 如果undo使用的共享表空间,这个共享表空间中又不仅仅是存储了undo的信息,共享表空间的默认为与MySQL的数据在相同目录下面,其属性由参数innodb_data_file_path配置.
 
 undo是在事务开始之前保存的被修改数据的一个版本,产生undo日志的时候,同样会伴随类似于保护事务持久化机制的redolog的产生.默认情况下undo文件是保持在共享表空间的,也即ibdatafile文件中,当数据库中发生一些大的事务性操作的时候,要生成大量的undo信息,全部保存在共享表空间中的.因此共享表空间可能会变的很大,默认情况下,也就是undo 日志使用共享表空间的时候,被“撑大”的共享表空间是不会也不能自动收缩的.因此,mysql5.7之后的“独立undo 表空间”的配置就显得很有必要了
+
 ### Bin Log(备份日志)
 #### 定义
 逻辑格式的日志,可以简单认为就是执行过的事务中的sql语句.但又不完全是sql语句这么简单,而是包括了执行的sql语句(增删改)反向的信息,也就意味着delete对应着delete本身和其反向的insert；update对应着update执行前后的版本的信息；insert对应着delete和insert本身的信息.
 在使用mysqlbinlog解析binlog之后一些都会真相大白.因此可以基于binlog做到类似于oracle的闪回功能,其实都是依赖于binlog中的日志记录.
-* 格式1：statement格式,记原始的SQL语句, insert/delete/update.
-* 格式2：RAW格式,记录每张表的每条记录的修 改前的值、修改后的值,类似(表,行,修改前的值,修改后的值).
-* 什么时候产生：事务提交的时候,一次性将事务中的sql语句(一个事物可能对应多个sql语句)按照一定的格式记录到binlog中.这里与redo log很明显的差异就是redo log并不一定是在事务提交的时候刷新到磁盘,redo log是在事务开始之后就开始逐步写入磁盘.因此对于事务的提交,即便是较大的事务,提交(commit)都是很快的,但是在开启了bin_log的情况下,对于较大事务的提交,可能会变得比较慢一些.这是因为binlog是在事务提交的时候一次性写入的造成的,这些可以通过测试验证.
-* 什么时候释放：binlog的默认是保持时间由参数expire_logs_days配置,也就是说对于非活动的日志文件,在生成时间超过expire_logs_days配置的天数之后,会被自动删除.
+* 格式1:statement格式,记原始的SQL语句, insert/delete/update.
+* 格式2:RAW格式,记录每张表的每条记录的修 改前的值、修改后的值,类似(表,行,修改前的值,修改后的值).
+* 什么时候产生:事务提交的时候,一次性将事务中的sql语句(一个事物可能对应多个sql语句)按照一定的格式记录到binlog中.这里与redo log很明显的差异就是redo log并不一定是在事务提交的时候刷新到磁盘,redo log是在事务开始之后就开始逐步写入磁盘.因此对于事务的提交,即便是较大的事务,提交(commit)都是很快的,但是在开启了bin_log的情况下,对于较大事务的提交,可能会变得比较慢一些.这是因为binlog是在事务提交的时候一次性写入的造成的,这些可以通过测试验证.
+* 什么时候释放:binlog的默认是保持时间由参数expire_logs_days配置,也就是说对于非活动的日志文件,在生成时间超过expire_logs_days配置的天数之后,会被自动删除.
 #### 作用
 1.用于复制,在主从复制中,从库利用主库上的binlog进行重播,实现主从同步. 
 2.用于数据库的基于时间点的还原.
@@ -79,7 +76,7 @@ binlog日志文件按照指定大小,当日志文件达到指定的最大的大�
 * 作用意义:binlog可以作为恢复数据使用,主从复制搭建,redo log作为异常宕机或者介质故障后的数据恢复使用.
 
 ### CheckPoint(同步/归档)磁盘时间点
-##### Redo Log Buffer(Log Buffer)
+#### Redo Log Buffer(Log Buffer)
 1.MySQL 正常关闭的时候;
 2.MySQL 的后台线程每隔一段时间定时的讲 redo log buffer 刷入到磁盘,默认是每隔 1s 刷一次;
 3.当 redo log buffer 中的日志写入量超过 redo log buffer 内存的一半时,即超过 8MB 时,会触发 redo log buffer 的刷盘;
@@ -95,7 +92,6 @@ binlog日志文件按照指定大小,当日志文件达到指定的最大的大�
 
 ##### Data Buffer
 checkpoint是为了定期将db buffer的内容刷新到data file.当遇到内存不足、db buffer已满等情况时,需要将db buffer中的内容/部分内容(特别是脏数据)转储到data file中.在转储时,会记录checkpoint发生的‘时刻’.在故障回复时候,只需要redo/undo最近的一次checkpoint之后的操作.
-
 #### Bin Log Buffer(Log Buffer)
 sync_binlog参数来控制数据库的binlog刷到磁盘上去
 show variables like "sync_binlog";
@@ -166,85 +162,18 @@ show variables like "sync_binlog";
     CREATE INDEX index_name ON table(column(length))
     ALTER TABLE table_name ADD INDEX index_name ON (column(length))
     DROP INDEX index_name ON table
-
 #### 唯一索引
 唯一索引与普通索引类似,不同的就是:索引列的值必须唯一,但允许有空值;如果是组合索引,则列值的组合必须唯一;简单来说:唯一索引是加速查询 + 列值唯一(可以有null);以通过以下几种方式来创建:
     CREATE UNIQUE INDEX indexName ON table(column(length))
     ALTER TABLE table_name ADD UNIQUE indexName ON (column(length))
-
 #### 主键索引
 主键索引是一种特殊的唯一索引,一个表只能有一个主键,不允许有空值;简单来说:主键索引是加速查询 + 列值唯一(不可以有null)+ 表中只有一个
 CREATE TABLE mytable( ID INT NOT NULL, username VARCHAR(16) NOT NULL, PRIMARY KEY(ID) );
-
 #### 组合索引
 组合索引指在多个字段上创建的索引,只有在查询条件中使用了创建索引时的第一个字段,索引才会被使用;使用组合索引时遵循最左前缀集合;组合索引是多列值组成的一个索引,专门用于组合搜索,其效率大于索引合并
     ALTER TABLE `table` ADD INDEX name_city_age (name,city,age);
-
 #### 全文索引
 全文索引主要用来查找文本中的关键字,而不是直接与索引中的值相比较;fulltext索引跟其它索引大不相同,它更像是一个搜索引擎,而不是简单的where语句的参数匹配;fulltext索引配合match against操作使用,而不是一般的where语句加like;它可以在create table,alter table ,create index使用,不过目前只有char、varchar,text 列上可以创建全文索引;值得一提的是,在数据量较大时候,现将数据放入一个没有全局索引的表中,然后再用CREATE index创建fulltext索引,要比先为一张表建立fulltext然后再将数据写入的速度快很多;
     CREATE TABLE `table` (`id` int(11) NOT NULL AUTO_INCREMENT ,FULLTEXT (content));
     ALTER TABLE article ADD FULLTEXT index_content(content)
     CREATE FULLTEXT INDEX index_content ON article(content)
-
-## Mysql优化基础
-优化逻辑: <font color='red'>选择存储引擎---->建表---->建索引---->优化sql---->硬件</font>
-    
-### 选择存储引擎
-#### 引擎种类
-InnoDby存储引擎,MyIsAm存储引擎,Memory存储引擎
-InnoDb引擎:如果数据量比较大,这是需要通过升级架构来解决,比如分表分库,读写分离,而不是单纯地依赖存储引擎
-
-#### 常用引擎比较
-| InnoDb引擎|MyIsAm引擎|
-|-----------|------------|
-|聚簇索引(主键索引和数据是在一起的)|非聚簇索引|
-|支持事务(出错还可以回滚还原)|不支持事务|
-|行级锁|全表锁|
-|全表删除,行级删|全表删除,重建表|
-|MVCC控制并发|不控制并发|
-|适合读写改删操作|适合写入频繁操作|
-
-聚簇索引:将数据存储与索引放到了一块,索引结构的叶子节点保存了行数据;如果表中没有主键或合适的唯一索引, 也就是无法生成聚簇索引的时候, InnoDB会帮我们自动生成聚集索引, 聚簇索引会使用DB_ROW_ID的值来作为主键; 如果表中有主键或者合适的唯一索引, 那么聚簇索引中也就不会包含 DB_ROW_ID了
-非聚簇索引:将数据与索引分开存储,索引结构的叶子节点(指针)指向了保存在磁盘上数据对应的位置
-
-聚集索引和非聚集索引的区别如下
-1.聚簇索引只需要一次按Page加载数据到缓冲区(一次I/O),已经加载在缓冲区的数据后续不需要再一次(I/O);非聚簇索引结构原因导致数据每一次查找都需要从硬盘加载(I/O)
-
-#### 为什么主键通常建议使用自增id
-如果主键不是自增id,B+树不断地调整数据的物理地址、分页.但如果是自增的,索引结构相对紧凑,磁盘碎片少,效率也高;
-
-### 为什么索引是int类型
-建议使用int类型的自增,如果主键其他类型值占用的存储空间越大,也就节点会变多,增加B+树的高度,IO操作也会变多.
-
-#### 为什么不适用UUid做聚簇索引
-当使用主键为聚簇索引时,主键最好不要使用uuid,因为uuid的值太过离散,不适合排序且可能出线新增加记录的uuid,会插入在索引树中间的位置,导致索引树调整复杂度变大,消耗更多的时间和资源.
-
-### 建表
-使用三范式建表/反三范式适当冗余
-#### 三范式建表
-* 保证表字段原子性
-* 完全依赖主键(消除除主键外,表字段对其他字段的唯一依赖)
-    字段ABC:主键A->C,B->C //C同时唯一依赖A/B,要消除B->C,让主键唯一依赖
-* 消除存在传递性依赖,适当增加中间表
-    字段ABC:主键A->B,B->C //可以由A推出B,B推出C,消除C
-
-### 建索引
-    建立主键,常用字段为索引,还有考虑联合索引
-
-### 优化sql
-#### 使用索引注意
-* Select:尽可能不使用select* 问题,select之后只写必要字段,增加索引覆盖率
-* Where:使用满足最左匹配索引原则
-* and:过于频繁使用and查询,合理使用复合索引,但是尽量少用
-* or:防止一边无索引,导致全部查询
-* order By:若无索引,则数据将从硬盘分批读取到内存中排序,最后合并结果
-* join...in:条件中建立索引
-* like:防止“%XXX%”全表查询,但是“XXX%”可以使用索引
-
-注:复合索引原理(A and B)
-    1.若AB都有索引树,先在A树找到再到B树找,取交集;
-    2.若以A_B拼接成字符串后做成联合索引,则在索引结果中找A,然后二分法找B,但复合索引树高度I/O过多,导致性能效率问题
-
-#### 看执行计划,查看索引使用情况
-MySQL 使用 explain + sql 语句查看 执行计划,该执行计划不一定完全正确但是可以参考
-

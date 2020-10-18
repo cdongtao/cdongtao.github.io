@@ -1,5 +1,5 @@
 ---
-title: Mysql基础知识1
+title: MySql基础知识1
 tags: [Mysql,面试知识]
 categories: [Database]
 ---
