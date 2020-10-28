@@ -1,6 +1,6 @@
 
 ---
-title: MySql优化
+title: MySql优化知识
 tags: [Mysql,面试知识,Mysql优化]
 categories: [Database]
 ---
