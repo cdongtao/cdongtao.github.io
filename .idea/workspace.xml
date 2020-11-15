@@ -2,45 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1e6f231-02d3-4a97-abd5-a3a42b826ad9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/source/_posts/Java-BIO&amp;&amp;NIO&amp;&amp;AIO.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Java-基础知识.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Java-控制流量宽带.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Java-虚拟机JVM基础知识.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Java-设计模式.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Java-锁概念.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Mysql基础知识1.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Mysql基础知识2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Spring-Mybtis原理.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-任务调度.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-分布式锁Redis.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-分布式锁Zookeeper.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-文件管理Stream.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-日志管理Kibana.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-服务跟踪Jaeger.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-服务跟踪Sleuth.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-注册中心Dubbo.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-注册中心Eureka.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-注册中心ZooKeeper.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-海量搜索ElasticSearch.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-消息总线Kafa.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-消息总线RabbitMQ.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-消息总线RocketMQ.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-熔断器Hytrix.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-管理Admin.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-网关GetWay.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-网关Zuul.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-远程访问RPC.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-配置中心Apollo.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/SpringCloud-配置中心config.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Web-SSO登陆模型.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/算法结构-BitMap.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/算法结构-RSA非对称加密.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/算法结构-排列组合.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/算法结构-时间复杂度.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/运维基础知识.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Oracle-优化存储过程.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/优化-存储过程经验.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Spring-Bean作用域.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/算法-BitMap.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Spring-PMP知识体系.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Spring-PMP知识体系.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/pmp/制定章程.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/pmp/制定项目管理计划.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/pmp/监控项目工作.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/pmp/第六版教程趋势.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/pmp/项目结束或阶段.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/hexo-theme-next" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-next" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/hexo-theme-next/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-next/_config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/hexo-theme-next/layout/_partials/pagination.swig" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-next/layout/_partials/pagination.swig" afterDir="false" />
@@ -66,9 +33,19 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="cdongtao.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cdongtao.github.io" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -89,6 +66,9 @@
       </list>
     </option>
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="d1e6f231-02d3-4a97-abd5-a3a42b826ad9" name="Default Changelist" comment="" />
@@ -97,26 +77,24 @@
       <option name="presentableId" value="Default" />
       <updated>1600606733844</updated>
       <workItem from="1600606738650" duration="4000" />
+      <workItem from="1605187673774" duration="43000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4000" />
+    <option name="totallyTimeSpent" value="47000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533512" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -124,16 +102,23 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="masterDetails">
     <states>
