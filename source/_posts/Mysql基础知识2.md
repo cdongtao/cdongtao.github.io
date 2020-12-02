@@ -3,7 +3,6 @@ title: MySql基础知识2
 tags: [Mysql,面试知识]
 categories: [Database]
 ---
-
 ## MySQL的基本架构
 <font color='red'>在 MySQL 5.5 以后,默认的存储引擎为 InnoDB,且只有 InnoDB 引擎支持事务和数据崩溃恢复,因此所有内容均是基于 InnoDB 存储引擎为前提</font>
 ![MySQL的基本架构](/img/MySQL的基本架构.png "MySQL的基本架构")
