@@ -2,12 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1e6f231-02d3-4a97-abd5-a3a42b826ad9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/source/_posts/Spring-PMP知识体系.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Spring-PMP知识体系.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/pmp/制定章程.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/pmp/制定项目管理计划.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/pmp/监控项目工作.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/pmp/第六版教程趋势.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/pmp/项目结束或阶段.png" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/项目管理-ACP敏捷知识体系.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/项目管理-实际总结.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/项目管理-敏捷总结.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/acp/12大原则.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/acp/不确定性和风险和生命周期选择.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/acp/周期特征.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/acp/敏捷宣言.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/acp/敏捷思维模式.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/acp/精益与敏捷关系.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/acp/迭代行周期.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/acp/预测型生命周期.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1002.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1003.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1201.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1202.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1203.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1204.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1205.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1301.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1302.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1303.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1305.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1306.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1307.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理1308.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/pmp/项目管理9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Mockito Tool.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Mockito Tool.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Spring-PMP知识体系.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/项目管理-PMP知识体系.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/cdongtao.github.io - 快捷方式.lnk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/hexo-theme-next" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-next" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/hexo-theme-next/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-next/_config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/hexo-theme-next/layout/_partials/pagination.swig" beforeDir="false" afterPath="$PROJECT_DIR$/themes/hexo-theme-next/layout/_partials/pagination.swig" afterDir="false" />
@@ -78,23 +115,23 @@
       <updated>1600606733844</updated>
       <workItem from="1600606738650" duration="4000" />
       <workItem from="1605187673774" duration="43000" />
+      <workItem from="1607523626286" duration="48000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47000" />
+    <option name="totallyTimeSpent" value="95000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533512" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25670242" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -106,6 +143,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
