@@ -1,7 +1,7 @@
 ---
 title: 文件加解密
 tags: [encrypt,decrypt]
-categories: [SpringBoot]
+categories: [SpringBoot,Spring]
 ---
 
 ## 文件与字串
