@@ -56,8 +56,15 @@ IDEA菜单栏选择File->Settings，左边栏选择Plugins--->下载SonarLint(�
 ### IDEA SonarLint使用
 * 安装SonarLint插件重启后，IDEA Tool Windows部分会出现SonarLint View。如果没有出现，选择菜单View->Tool Windows->SonarLint会显示
 
-### 激活SonarLint在线检测
-?????????????????????????
+#### 激活SonarLint在线检测
+
+
+#### 安装sonarqube检测
+[SonarQube部署及代码质量扫描入门教程](https://cloud.tencent.com/developer/article/1484850)
+[Sonar代码质量与技术债](https://www.jianshu.com/p/ecde17e91711)
+[Jenkins+SonarQube+Gitlab搭建自动化持续代码扫描质平台](https://mp.weixin.qq.com/s/V_IpoSDcWr37BE3sWKTbyw)
+[SonarQube 搭建代码质量管理平台（一）](https://www.jianshu.com/p/7d1c0f5dcc78)
+[SonarQube 搭建代码质量管理平台（二）](https://www.jianshu.com/p/dd2b2be06d38)
 
 ## Jacoco-覆盖率
 ###  在 pom.xml中引入Jacoco与Junit依赖
