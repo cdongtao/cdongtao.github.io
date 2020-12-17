@@ -3,6 +3,19 @@ title: Kafka
 tags: [消息,Kafka]
 categories: [SpringBoot,SpringCloud,Spring]
 ---
+简历写了会Kafka，面试官90%会让你讲讲acks参数对消息持久化的影响(https://mp.weixin.qq.com/s/IxS46JAr7D9sBtCDr8pd7A)
+
+窥探源码，让我更加优雅的使用Kafka生产者！(https://mp.weixin.qq.com/s/RHe_YM3fzcVKkV_nHuZcxg)
+
+为什么Kafka不支持读写分离？(https://mp.weixin.qq.com/s/OzAffmFx62Dcs5YgkkP06A)
+
+当面试官问你啥是Kafka的选举时，抓住机会“吊打”他！(https://mp.weixin.qq.com/s/XvDpq1xxXPzRoRKMO-MxeQ)
+
+干趴面试官系列：请简述一下Kafka中的分区分配？(https://mp.weixin.qq.com/s/cr_IVoAVcUpKJ5kqFbpTPw)
+
+Kafka如何通过精妙的架构设计优化JVM GC问题？(https://mp.weixin.qq.com/s/XheJNFr5iEVCptZNw6c2oQ)
+
+Kafka参数调优实战，看这篇文章就够了！(https://mp.weixin.qq.com/s/YLrGg-jx5ddmHECmdccppw)
 
 ## Kafka是什么？
 Kafka是分布式实时流处理平台。在这个平台上，可以：
