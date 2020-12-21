@@ -1,3 +1,4 @@
+准备外资验证文件
 0.完成代码转化:
 1.火车:于洋,考虑搬家,查找logback
 3.形象衣服:外套:裤子
@@ -5,7 +6,6 @@
 
 
 4.收藏kafka复习
-Rabbit MQ：https://mp.weixin.qq.com/s/Xx2A9-EGHgQtLg8MyCiB-Q
 
 5.完成敏捷知识:
 3.跟人学习准备敏捷方案体系
