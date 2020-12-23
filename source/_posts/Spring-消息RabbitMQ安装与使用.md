@@ -1,16 +1,8 @@
 ---
 title: 消息队列-RabbitMQ安装与使用
 tags: [消息队列,RabbitMQ]
-categories: [SpringCloud,Spring]
+categories: [SpringBoot,Spring]
 ---
-[RabbitMQ：RabbitMQ初体验](https://www.cnblogs.com/everyingo/p/12881577.html)
-[微服务之消息总线](https://www.jianshu.com/p/bdddca222c63)
-RabbitMQ 七战 Kafka,五胜二负,差异立现！(https://mp.weixin.qq.com/s/c_o5HIsQKVQmC6aiCtU8bg)
-
-延迟队列实现,定时任务,关闭订单(https://mp.weixin.qq.com/s/XtjPANZhbgvDYz06Q41CgQ)
-SpringBoot + RabbitMQ (保证消息100%投递成功并被消费)(https://mp.weixin.qq.com/s/de68BUMUQVNPYFWDEM8ChQ)
-SpringBoot+RabbitMQ (保证消息100%投递成功并被消费(https://mp.weixin.qq.com/s/G-DbD3F6gbJY_ubXyfg5DA)
-
 ## 消息中间件
 * 消息(Message)是指在应用间传送的数据。消息可以非常简单,比如：只包含文本字符串,JSON等,也可以很复杂,如内嵌对象。
 * 消息队列中间件(Message Queue Middleware,简称为MQ)是指利用高效可靠消息传递机制进行与平台无关的数据交流,并基于数据通信来进行分布式系统的集成。通过提供消息传递和消息排队模型,它可以在分布式环境下扩展进程间的通信。
@@ -653,8 +645,6 @@ RabbitMQ的自动连接恢复机制(automatic connection recovery)不支持 Queu
 QueueingConsumer不是事件驱动的。
 
 ##### 设置消息的TTL
-
-
 #### Consumer端消费消息接口
 RabbitMQ的消费模式分为两种：推(Push)模式和拉(Pull)模式。推模式采用Basic.Consume进行消费,而拉模式则是调用Basic.Get进行消费
 ##### 推模式
@@ -867,11 +857,6 @@ void basicReject(long deliveryTag, boolean requeue) throws IOException;
 * requeue：设置为true时,RabbitMQ会重新将这条消息存入队列,以便可以发送给下一个订阅的消费者；如果设置为false,则RabbitMQ会立即把消息从队列中移除,而不会把它发送给新的消费者。
 <font color="blue">Basic.Reject命令一次只能拒绝一条消息,如果想要批量拒绝消息,则可以使用Basic.Nack这个命令</font>
 
-
-
-
-
-
 ### 过期时间
 #### 设置消息的TTL(过期时间)
 设置消息TTL的两种方法：
@@ -923,7 +908,7 @@ DLX,全称为Dead-Letter-Exchange,可以称为死信交换器,当消息在一个
 DLX也是一个正常的交换器,和一般交换器没有区别,它能在任何的队列上被指定,实际上就是设置某个队列的属性。当这个队列中存在死信时,RabbitMQ就会自动地将这个消息重新发布到设置的DLX上去,进而被路由到另一个队列,即死信队列。可以监听这个队列中的消息以进行相应的处理,这个特性与将消息的TTL设置为0配合使用可以弥补immediate参数的功能。
 通过channel.queueDeclare方法中设置x-dead-letter-exchange参数来为这个队列添加DLX：
 ```
- //创建DLX：dlx_exchange
+        //创建DLX：dlx_exchange
         channel.exchangeDeclare("dlx_exchange", "direct");
 
         Map<String, Object> arguments = new HashMap<>();
