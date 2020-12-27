@@ -1,5 +1,5 @@
 ---
-title: 消息队列-RabbitMQ安装与使用
+title: RabbitMQ安装与使用
 tags: [消息队列,RabbitMQ]
 categories: [SpringBoot,Spring]
 ---
@@ -644,7 +644,6 @@ QueueingConsumer会拖累同一个 Connection下的所有信道,使其性能降�
 RabbitMQ的自动连接恢复机制(automatic connection recovery)不支持 QueueingConsumer的这种形式。
 QueueingConsumer不是事件驱动的。
 
-##### 设置消息的TTL
 #### Consumer端消费消息接口
 RabbitMQ的消费模式分为两种：推(Push)模式和拉(Pull)模式。推模式采用Basic.Consume进行消费,而拉模式则是调用Basic.Get进行消费
 ##### 推模式
@@ -902,22 +901,22 @@ RabbitMQ会确保在过期时间到达后将队列删除,但是不保障删除�
 DLX,全称为Dead-Letter-Exchange,可以称为死信交换器,当消息在一个队列中变成死信(dead message)之后,它能被重新发送到另一个交换器中,这个交换器就是DLX,绑定DLX的队列就称为死信队列。
 消息变成死信一般是由于这几种情况：
 
-* 消息被拒绝(Basic.Reject/Basic.Nack),并且设置requeue参数为false。
+* 消息被拒绝(Basic.Reject/Basic.Nack),并且设置requeue参数为false。  
 * 消息过期。
 * 队列达到最大长度。
 DLX也是一个正常的交换器,和一般交换器没有区别,它能在任何的队列上被指定,实际上就是设置某个队列的属性。当这个队列中存在死信时,RabbitMQ就会自动地将这个消息重新发布到设置的DLX上去,进而被路由到另一个队列,即死信队列。可以监听这个队列中的消息以进行相应的处理,这个特性与将消息的TTL设置为0配合使用可以弥补immediate参数的功能。
 通过channel.queueDeclare方法中设置x-dead-letter-exchange参数来为这个队列添加DLX：
 ```
-        //创建DLX：dlx_exchange
-        channel.exchangeDeclare("dlx_exchange", "direct");
+    //创建DLX：dlx_exchange
+    channel.exchangeDeclare("dlx_exchange", "direct");
 
-        Map<String, Object> arguments = new HashMap<>();
-        //为队列添加DLX
-        arguments.put("x-dead-letter-exchange", "dlx_exchange");
-        //也可以为这个DLX指定路由键，如果没有特殊指定，则使用原队列的路由键
-        arguments.put("x-dead-letter-routing-key", "dlx-routing-key");
+    Map<String, Object> arguments = new HashMap<>();
+    //为队列添加DLX
+    arguments.put("x-dead-letter-exchange", "dlx_exchange");
+    //也可以为这个DLX指定路由键，如果没有特殊指定，则使用原队列的路由键
+    arguments.put("x-dead-letter-routing-key", "dlx-routing-key");
 
-        channel.queueDeclare("queue_name", false, false, false, arguments);
+    channel.queueDeclare("queue_name", false, false, false, arguments);
 ```
 ```
 public class Send {
@@ -970,13 +969,18 @@ public class Send {
 }
 ```
 
+实上手动提交的时候，basicNack的最后一个参数requeue = true时，消息会被无限次的放入消费队列重新消费，直至回送ACK。
+channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, true);
+但是当requeue = false 的时候，此时消息就会立马进入到死信队列。
+channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);
+
 ### 延迟队列
 延迟队列存储的对象是对应的延迟消息，所谓“延迟消息”是指当消息被发送以后，并不想让消费者立刻拿到消息，而是等待特定时间后，消费者才能拿到这个消息进行消费。
 RabbitMQ本身没有直接支持延迟队列的功能，但是可以通过DLX(死信队列)和TTL(过期时间)模拟出延迟队列的功能。
 ![延迟队列](/rabbitMq/延迟队列.png "延迟队列")
 
 ### 优先级队列
-具有高优先级的队列具有高的优先权，优先级高的消息具备优先被消费的特权。
+具有高优先级的队列具有高的优先权，优先级高的消息具备优先被消费的特权
 可以通过设置队列的x-max-priority参数来实现：
 ```
     Map<String, Object> arguments = new HashMap<>();
