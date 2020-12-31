@@ -1,18 +1,12 @@
 准备外资验证文件
-0.完成代码转化:
-1.火车:于洋,考虑搬家,查找logback
-3.形象衣服:外套:裤子
 4.复习面试
 
-
+1.于洋,考虑搬家
+3.形象衣服:外套:裤子
 4.收藏kafka复习
-
-5.完成敏捷知识:
-3.跟人学习准备敏捷方案体系
-
-周六日：
 学习java猴子头像视频--->设计模式
-准备敏捷方案体系--->迅雷破解版  抓包工具[Wireshark/Charles]https://www.cnblogs.com/zhuochong/p/10412755.html
+准备敏捷方案体系--->              迅雷破解版  抓包工具[Wireshark/Charles]https://www.cnblogs.com/zhuochong/p/10412755.html
+3.跟人学习准备敏捷方案体系
 
 3.JAva视频学习
 4.自己搭建一套
