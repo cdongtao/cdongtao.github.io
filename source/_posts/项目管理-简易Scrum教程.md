@@ -4,4 +4,3 @@ tags: [Scrum,敏捷]
 categories: [项目管理]
 ---
 [敏捷测试团队的测试流程](https://www.cnblogs.com/testertechnology/p/10974959.html)
-registry=http://registry.npm.taobao.org/
