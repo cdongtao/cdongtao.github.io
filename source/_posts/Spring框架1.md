@@ -66,7 +66,6 @@ ApplicationContext ctx = new FileSystemXmlApplicationContext(new String[]{“d:\
 ```
 
 ## Spring 实例化bean
-
 ### Spring xml中配置三种实例化bean的方式：
 1.使用类构造器实例化
 ```
@@ -97,7 +96,6 @@ public class OrderFactory {
 ![解析xml注册bean](/img/解析xml注册bean.png "解析xml注册bean")
 
 ## 配置bean的作用域(Scope)
-
 >定义Bean可以使用的范围,类似定义变量时候,设置变量为局部变量还是全局变量,强调创建bean后的结果作用域
 
 #### 1.singleton （单例）
@@ -148,7 +146,6 @@ ctx.close();//正常关闭spring容器。
 
 ## Spring Bean生命周期
 >创建Bean的过程,即实例化过程，强调创建过程
-
 ![Bean实例化过程](/img/Bean实例化过程.png "Bean实例化过程")
 
 ### Bean实例生命周期的执行过程如下：
