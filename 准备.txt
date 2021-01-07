@@ -1,38 +1,34 @@
+
 ![项目管理111](/pmp/项目管理111.png "项目管理111")
-1月份跟妹子学习准备敏捷方案体系
-买:外套:裤子
 火车:于洋,考虑搬家(桃园,大新)
 
-1.外资面试？？？准备外资验证文件
-体检
-5.完成敏捷知识:项考100里面的项目延期文章
-4.结束Kafka复习
-练习git,回退版本，一线定基准
-如何改变serve加载配置地config目录：spring.location.config
-UAT/生成如何失效swagger：https://www.cnblogs.com/weijs/p/14153363.html
+上班:
+    1月份跟妹子学习准备敏捷方案体系
+    如何改变serve加载配置地config目录：spring.location.config
+    UAT/生成如何失效swagger：https://www.cnblogs.com/weijs/p/14153363.html
 
-周六日：
-学习java猴子头像视频--->设计模式
-学会监控每个spring,得不断反馈和修正
+休假:
+    外套:裤子
+    体检
+    结束Kafka复习：https://www.cnblogs.com/rickiyang/category/1487719.html
+    搭建敏捷工具平台
+    JAva视频学习
+    自己搭建一套，结合maven
 
-1.了解公司采用敏捷未来的一个规划，更好在出去做好导向准备
-3.JAva视频学习
-4.自己搭建一套，结合maven
-5.搭建敏捷工具平台
-准备敏捷方案体系
-6.制定敏捷整个工作流程(准备三套流程,与相关方商量决定选用那一套) 制定表格记录项目与上游与下游
-    诺亚那套敏捷:基于需求
-    华侨的敏捷:基于团队
-7.制定代码规范以及提交流程
-8.注意;漏洞，xss攻击,防止接口请求(做安全校验，黑白名单),解耦和，健壮，设计模式
+晚上:
+    1.外资面试？？？准备外资验证文件
+    JAva视频学习--->设计模式
+    入职后规划:
+        0.准备敏捷方案体系
+        1.了解公司采用敏捷未来的一个规划，更好在出去做好导向准备
+        2.定git基准，练习git,回退版本，一线定基准
+        3.制定代码规范以及提交流程：checklist :注意;漏洞，xss攻击,防止接口请求(做安全校验，黑白名单),解耦和，健壮，设计模式
+        4.学会监控每个spring,得不断反馈和修正
+        制定敏捷整个工作流程(准备三套流程,与相关方商量决定选用那一套) 制定表格记录项目与上游与下游
+            诺亚那套敏捷:基于需求
+            华侨的敏捷:基于团队
 
-在技术岗上，你的成功就只是决定于你做得有多好；在管理岗上，你的成功决定于别人做得有多好。
-成为管理者，一定要有这个思维方式的转变，重点是让别人（主要是属下）做好，而不是自己亲自动手。
-改倾听方式，反思沟通技巧,以问题导向,总分总结构说明问题
-工作然后阶段得有规划，沟通要有目标和结构化，汇报工作要有结构化
-理清楚做了什么，有什么问题，可以解决方案，有什么计划
-每一次变化都要注意后患(风险)
-
+0.每一次变化都要注意后患(风险)
 1.理解项目，确定相关方，
 2.建立规范:需求--->文档规划(存档)-->开发
 3.敏捷开发的流程培训准备文档
@@ -62,6 +58,8 @@ UAT/生成如何失效swagger：https://www.cnblogs.com/weijs/p/14153363.html
         还在用 Guava Cache？它才是 Java 本地缓存之王  https://mp.weixin.qq.com/s/Dnk7c0TthRG9puCWAsbb6g
         万字详解本地缓存之王 Caffeine，SpringBoot2.X 官方推荐  https://mp.weixin.qq.com/s/cAZdTyfM6D2GFFQmeoG-jg
     6. 日志打印
+        [springboot-自定义注解-系统打印日志](https://zhuanlan.zhihu.com/p/96597358)
+        你会正确的使用日志吗？:https://mp.weixin.qq.com/s/wHj12Pez3uSI86fXcA1kqg
         别在 Java 代码里乱打日志了，这才是打印日志的正确姿势   https://mp.weixin.qq.com/s/mGWB_VV8cemgRKfWZmZgiw
         [从 0 到 1，看我是如何玩弄千万日志于股掌的~](https://mp.weixin.qq.com/s/9x4HHTrPexwPvCqRZytNxw)
     7. 异常规范&& 全局异常
@@ -95,6 +93,7 @@ IDEA：工具
 
 
 别人博客;  https://www.cnblogs.com/rickiyang/
+    https://www.zhihu.com/people/xue-chuan-da-chong
 微服务全流程分析  :https://www.cnblogs.com/rickiyang/p/12153070.html
 零拷贝(Zero-copy) 浅析及其应用  https://www.cnblogs.com/rickiyang/p/13265043.html
 MYSQL 整体架构浅析 https://www.cnblogs.com/rickiyang/p/13473854.html
