@@ -1,7 +1,7 @@
 ---
 title: Mybatis原理
-tags: [Mybatis,ORM]
-categories: [Spring]
+tags: [Plugin,Mybatis]
+categories: [PluginTool]
 ---
 
 ## 原理

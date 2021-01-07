@@ -1,6 +1,6 @@
 ---
 title: 安装Hexo教程
-tags: [Hexo]
+tags: [Tool,Hexo]
 categories: [PluginTool]
 ---
 

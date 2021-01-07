@@ -1,6 +1,6 @@
 ---
 title: Spring 框架2
-tags: [spring-注入原理]
+tags: [注入原理]
 categories: [FrameWork]
 ---
 

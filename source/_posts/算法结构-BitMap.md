@@ -1,6 +1,6 @@
 ---
 title: BitMap算法详解
-tags: [算法,BitMap]
+tags: [BitMap]
 categories: [算法结构]
 ---
 

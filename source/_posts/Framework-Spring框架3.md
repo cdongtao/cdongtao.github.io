@@ -1,6 +1,6 @@
 ---
 title: Spring 框架3
-tags: [spring-AOP原理]
+tags: [AOP原理]
 categories: [FrameWork]
 ---
 

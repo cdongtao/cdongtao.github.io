@@ -1,6 +1,6 @@
 ---
 title: VS Code快捷键
-tags: [VS Code]
+tags: [Tool,VsCode]
 categories: [PluginTool]
 ---
 

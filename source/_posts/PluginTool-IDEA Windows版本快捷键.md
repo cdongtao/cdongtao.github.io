@@ -1,6 +1,6 @@
 ---
 title: IDEA Windows版本快捷键
-tags: [IDEA]
+tags: [Tool,IDEA]
 categories: [PluginTool]
 ---
 

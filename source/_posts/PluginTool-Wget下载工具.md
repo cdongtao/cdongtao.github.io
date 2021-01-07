@@ -1,6 +1,6 @@
 ---
 title: Wget批量下载
-tags: [Wget]
+tags: [Tool,Wget]
 categories: [PluginTool]
 ---
 

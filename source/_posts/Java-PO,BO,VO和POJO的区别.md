@@ -1,6 +1,6 @@
 ---
 title: PO,BO,VO和POJO的区别
-tags: [Java-BackEnd,API-design]
+tags: [BackEnd,Design]
 categories: [Java]
 ---
 ## PO,BO,VO和POJO的区别

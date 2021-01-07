@@ -1,7 +1,7 @@
 ---
 title: Redis详解
-tags: [Plugin-Redis]
-categories: [Plugin]
+tags: [Plugin,Redis]
+categories: [PluginTool]
 ---
 
 ## Redis简介

@@ -1,6 +1,6 @@
 ---
 title: npm 命令参数的区别
-tags: [npm,react]
+tags: [npm]
 categories: [FrontEnd]
 ---
 

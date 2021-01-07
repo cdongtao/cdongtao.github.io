@@ -1,6 +1,6 @@
 ---
 title: MarkDown语法模板
-tags: [MarkDown]
+tags: [Tool,MarkDown]
 categories: [PluginTool]
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Dijkstra算法-最短路径问题
-tags: [算法,Dijkstra算法]
+tags: [Dijkstra算法]
 categories: [算法结构]
 ---
 

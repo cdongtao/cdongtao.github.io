@@ -1,6 +1,6 @@
 ---
 title: Git核心内容
-tags: [Git]
+tags: [Tool,Git]
 categories: [PluginTool]
 ---
 ## Git 掌握命令要求

@@ -1,6 +1,6 @@
 ---
 title: RSA算法详解
-tags: [RSA,算法]
+tags: [RSA]
 categories: [算法结构]
 ---
 

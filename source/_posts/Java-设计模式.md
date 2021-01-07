@@ -1,6 +1,6 @@
 ---
 title: 设计模式
-tags: [设计模式,面试知识]
+tags: [Design,面试知识]
 categories: [Spring]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: JsonSchema
-tags: [Java-BackEnd,API-design]
-categories: [Java]
+tags: [base]
+categories: [FrontEnd]
 ---
 
 ## JsonSchema

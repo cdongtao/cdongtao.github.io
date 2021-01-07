@@ -1,6 +1,6 @@
 ---
 title: Spring 框架4
-tags: [spring-JPA]
+tags: [JPA]
 categories: [FrameWork]
 ---
 

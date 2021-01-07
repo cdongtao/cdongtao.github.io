@@ -1,8 +1,8 @@
 
 ---
 title: MySql优化知识
-tags: [Mysql,面试知识,Mysql优化]
-categories: [Database]
+tags: [面试知识,Mysql优化]
+categories: [Database,Mysql]
 ---
 ## Mysql优化基础
 优化逻辑: <font color='red'>选择存储引擎---->建表---->建索引---->优化sql---->硬件</font>

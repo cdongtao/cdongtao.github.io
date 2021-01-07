@@ -1,8 +1,8 @@
 
 ---
 title: MySql优化1
-tags: [Mysql,面试知识,Mysql优化,生产问题]
-categories: [Database]
+tags: [面试知识,Mysql优化,生产问题]
+categories: [Database,Mysql]
 ---
 ## Insert into select语句锁表
 ### 初始化建表
