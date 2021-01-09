@@ -4,20 +4,17 @@
 
 上班:
     1月份跟妹子学习准备敏捷方案体系
-    如何改变serve加载配置地config目录：spring.location.config
     UAT/生成如何失效swagger：https://www.cnblogs.com/weijs/p/14153363.html
 
 休假:
     外套:裤子
-    体检
     结束Kafka复习：https://www.cnblogs.com/rickiyang/category/1487719.html
-    搭建敏捷工具平台
-    JAva视频学习
+    搭建敏捷JIRA工具平台
+    JAva视频学习  JAva视频学习--->设计模式
     自己搭建一套，结合maven
 
 晚上:
     1.外资面试？？？准备外资验证文件
-    JAva视频学习--->设计模式
     入职后规划:
         0.准备敏捷方案体系
         1.了解公司采用敏捷未来的一个规划，更好在出去做好导向准备
@@ -29,7 +26,7 @@
             华侨的敏捷:基于团队
 
 0.每一次变化都要注意后患(风险)
-1.理解项目，确定相关方，
+1.理解项目，确定相关方
 2.建立规范:需求--->文档规划(存档)-->开发
 3.敏捷开发的流程培训准备文档
 
@@ -107,4 +104,24 @@ MySQL 主从复制原理不再难 https://www.cnblogs.com/rickiyang/p/13856388.h
 
 
 
- --->迅雷破解版  抓包工具[Wireshark/Charles]https://www.cnblogs.com/zhuochong/p/10412755.html   
+ --->迅雷破解版  抓包工具[Wireshark/Charles]https://www.cnblogs.com/zhuochong/p/10412755.html
+
+
+
+传统开发步骤:
+1. 增加一张表
+2. 创建实体对象，映射这张表
+3. 创建API入参VO
+4. 创建API出参VO
+5. 创建Controller
+6. 创建Service
+7. 创建Dao
+8. 创建Mapper, xml或者JPA
+9. 在mysql客户端，或者mongo客户端中写执行脚本语句，复制到代码中
+10. 反复重启，进行接口自测
+11. 编写API文档
+12. 完成一个功能点开发
+
+
+
+

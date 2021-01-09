@@ -18,7 +18,7 @@ Redis与其他key-value缓存产品有以下三个特点:
 * 其他特性-Redis 还支持 publish/subscribe 通知，key 过期等特性。
 
 ## Redis数据类型(5种)
-Redis支持5种数据类型：string(字符串)，hash(哈希)，list(列表)，set(集合)，zset(sorted set：有序集合)
+Redis支持5种数据类型：string(字符串)，hash(哈希)，list(列表)，set(集合:无序不重复)，zset(有序集合:有序不重复)
 
 ### string类型
 string类型是redis最基本的数据类型,最大能存储512MB,一个key对应一个value
