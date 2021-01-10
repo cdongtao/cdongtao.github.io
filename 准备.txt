@@ -1,16 +1,41 @@
+破解工具博客:https://zhile.io/archives/
+已付收费SpringBoot:https://blog.csdn.net/thinkingcao/category_9281035.html?utm_source=&spm=1001.2101.3001.4235
 
 ![项目管理111](/pmp/项目管理111.png "项目管理111")
 火车:于洋,考虑搬家(桃园,大新)
 
+传统开发步骤:
+1. 增加一张表
+2. 创建实体对象，映射这张表
+3. 创建API入参VO
+4. 创建API出参VO
+5. 创建Controller
+6. 创建Service
+7. 创建Dao
+8. 创建Mapper, xml或者JPA
+9. 在mysql客户端，或者mongo客户端中写执行脚本语句，复制到代码中
+10. 反复重启，进行接口自测
+11. 编写API文档
+12. 完成一个功能点开发
+
 上班:
     1月份跟妹子学习准备敏捷方案体系
-    UAT/生成如何失效swagger：https://www.cnblogs.com/weijs/p/14153363.html
+    JAva视频学习  JAva视频学习--->设计模式
+    消化管理学习
+        小团队如何落地敏捷开发:https://www.jianshu.com/p/908cae2e23c5
+        高效会议:https://www.jianshu.com/p/1417fda882ae
+        【科普】Git Branch Guidelines:https://www.jianshu.com/p/7023428689f0
+        桌面敏捷视频和网页敏捷：
+        管理博客:
+            https://my.oschina.net/wuweixiang?tab=newest&catalogId=5899639
+            https://www.zhihu.com/question/60198263
+            https://segmentfault.com/a/1190000018474870
+            https://www.cnblogs.com/juking/p/5472654.html
+            https://zhuanlan.zhihu.com/p/92590719
 
 休假:
     外套:裤子
     结束Kafka复习：https://www.cnblogs.com/rickiyang/category/1487719.html
-    搭建敏捷JIRA工具平台
-    JAva视频学习  JAva视频学习--->设计模式
     自己搭建一套，结合maven
 
 晚上:
@@ -102,26 +127,6 @@ MySQL 主从复制原理不再难 https://www.cnblogs.com/rickiyang/p/13856388.h
 谈谈几个 Spring Cloud 常见面试题及答案:https://mp.weixin.qq.com/s/T_XaGbDzKmwFSXSyeFo__g
 
 
-
-
  --->迅雷破解版  抓包工具[Wireshark/Charles]https://www.cnblogs.com/zhuochong/p/10412755.html
-
-
-
-传统开发步骤:
-1. 增加一张表
-2. 创建实体对象，映射这张表
-3. 创建API入参VO
-4. 创建API出参VO
-5. 创建Controller
-6. 创建Service
-7. 创建Dao
-8. 创建Mapper, xml或者JPA
-9. 在mysql客户端，或者mongo客户端中写执行脚本语句，复制到代码中
-10. 反复重启，进行接口自测
-11. 编写API文档
-12. 完成一个功能点开发
-
-
 
 
