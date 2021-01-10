@@ -1,7 +1,7 @@
 ---
 title: Maven Plugins
-tags: [Plugin,Tool]
-categories: [MyProject]
+tags: [Plugin]
+categories: [Project]
 ---
 
 

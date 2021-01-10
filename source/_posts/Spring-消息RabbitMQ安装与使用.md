@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ安装与使用
-tags: [消息队列,RabbitMQ]
-categories: [SpringBoot,Spring]
+tags: [Plugin,消息队列,RabbitMQ]
+categories: [PluginTool]
 ---
 ## 消息中间件
 * 消息(Message)是指在应用间传送的数据。消息可以非常简单,比如：只包含文本字符串,JSON等,也可以很复杂,如内嵌对象。

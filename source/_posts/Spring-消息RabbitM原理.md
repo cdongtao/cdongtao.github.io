@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ基本原理
-tags: [消息队列,RabbitMQ]
-categories: [SpringBoot,Spring]
+tags: [Plugin,消息队列,RabbitMQ]
+categories: [PluginTool]
 ---
 ## 应用
 [RabbitMQ 七战 Kafka](https://mp.weixin.qq.com/s/c_o5HIsQKVQmC6aiCtU8bg)

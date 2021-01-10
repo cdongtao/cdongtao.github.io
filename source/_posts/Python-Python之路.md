@@ -1,7 +1,7 @@
 ---
-title: Python之路
-tags: [Python]
-categories: [BackEnd]
+title: Python-path
+tags: [path]
+categories: [Python]
 ---
 [python基础及公众号](https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&__biz=MzU5MzU5NzIzMw==&scene=1&album_id=1339404513958117378#wechat_redirect)
 

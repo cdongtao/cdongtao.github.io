@@ -1,7 +1,7 @@
 ---
 title: Framework Path
 tags: [Path]
-categories: [MyProject]
+categories: [Project]
 ---
 
 ## 前端学习体系 1
