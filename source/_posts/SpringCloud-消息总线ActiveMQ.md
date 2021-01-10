@@ -1,5 +1,5 @@
 ---
 title: ActiveMQ
-tags: [消息,ActiveMQ]
-categories: [SpringBoot,SpringCloud,Spring]
+tags: [Plugin,消息中间件,ActiveMQ]
+categories: [PluginTool]
 ---

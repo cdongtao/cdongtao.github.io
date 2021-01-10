@@ -1,7 +1,7 @@
 ---
 title: 消息队列-RocketMQ
-tags: [消息队列,RocketMQ]
-categories: [SpringCloud,Spring]
+tags: [Plugin,消息队列,RocketMQ]
+categories: [PluginTool]
 ---
 
 进阶必看的 RocketMQ ，就这篇了

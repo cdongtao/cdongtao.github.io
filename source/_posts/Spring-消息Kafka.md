@@ -1,7 +1,7 @@
 ---
 title: Kafka
-tags: [消息,Kafka]
-categories: [SpringBoot,SpringCloud,Spring]
+tags: [Plugin,Kafka,消息中间件]
+categories: [PluginTool]
 ---
 简历写了会Kafka，面试官90%会让你讲讲acks参数对消息持久化的影响(https://mp.weixin.qq.com/s/IxS46JAr7D9sBtCDr8pd7A)
 

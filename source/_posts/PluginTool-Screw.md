@@ -1,5 +1,5 @@
 ---
-title:  Screw-数据库文档生成工具
+title:  Screw-管理数据库表结构文档
 tags: [Plugin,Screw]
 categories: [PluginTool]
 ---
