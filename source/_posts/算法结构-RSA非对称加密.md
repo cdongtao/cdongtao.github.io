@@ -1,7 +1,7 @@
 ---
 title: RSA算法详解
 tags: [RSA]
-categories: [算法结构]
+categories: [Algorithm]
 ---
 
 ## 原理

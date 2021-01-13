@@ -1,7 +1,7 @@
 ---
 title: PMP知识储备
 tags: [PMP]
-categories: [项目管理]
+categories: [Project Management]
 ---
 200道题,4个小时,10分钟要10道题速度答题,以10分钟为周期调整速度
 

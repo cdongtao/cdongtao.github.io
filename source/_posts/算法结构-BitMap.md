@@ -1,7 +1,7 @@
 ---
 title: BitMap算法详解
 tags: [BitMap]
-categories: [算法结构]
+categories: [Algorithm]
 ---
 
 ## 原理

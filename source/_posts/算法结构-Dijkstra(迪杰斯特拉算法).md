@@ -1,7 +1,7 @@
 ---
 title: Dijkstra算法-最短路径问题
 tags: [Dijkstra算法]
-categories: [算法结构]
+categories: [Algorithm]
 ---
 
 ## 解决的问题:
