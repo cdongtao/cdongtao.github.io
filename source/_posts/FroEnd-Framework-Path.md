@@ -1,6 +1,6 @@
 ---
 title: Framework Path
-tags: [Path]
+tags: [Path,FroEnd-Path]
 categories: [Project]
 ---
 
