@@ -1,3 +1,16 @@
+请求；
+获取数据
+响应
+test/覆盖率Jacoco
+jekins/编译时检查规范SonarLint
+jira devops
+
+[jenkins+sonarQube+gitlab持续集成指南][https://blog.csdn.net/yhmliunan/article/details/107927560]
+[Jenkins和sonarqube集成](https://www.cnblogs.com/wangxu01/articles/11113875.html)
+[jenkins流水线整合jacoco与sonar（一）](https://blog.csdn.net/qq_37965741/article/details/107018297)
+[jenkins集成sonar、jacoco](https://blog.csdn.net/fbb1995/article/details/80082119)
+[持续集成与自动化部署 - jenkins与sonar、gitlab集成 （六）](https://blog.51cto.com/damaicha/2118766)
+
 传统开发步骤:
 1. 增加一张表
 2. 创建实体对象，映射这张表 dto -> pojo
@@ -21,7 +34,6 @@
         桌面敏捷视频和网页敏捷
         
 上班:
-    
     JAva视频学习  JAva视频学习--->设计模式
     
 休假:

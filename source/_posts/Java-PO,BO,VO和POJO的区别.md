@@ -52,7 +52,7 @@ VO：value object 值对象 / view object 表现层对象
 1.主要对应页面显示（web页面/swt、swing界面）的数据对象。
 2.可以和表对应，也可以不，这根据业务的需要。
 
-## 实体转换工具
+## 实体转换工具()
 ### SpringFrame-BeanUtil转换工具
 org.springframework.beans.BeanUtils;
 [封装BeanUtils工具类](/file/BackEnd-Java-BeanConvertor.java)
@@ -74,8 +74,15 @@ org.springframework.beans.BeanUtils;
     <version>0.2.5</version>
 </dependency>
 ```
-### map转换
-
+### [Mapstruct转换](https://www.cnblogs.com/mmzs/p/12735212.html)
+[Mapstruct 使用教程](https://blog.csdn.net/Z143430039/article/details/111054479)
+```
+<dependency>
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct</artifactId>
+    <version>1.4.1.Final</version>
+</dependency>
+```
 
 
 

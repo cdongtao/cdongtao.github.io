@@ -584,3 +584,15 @@ public class StreamTest {
 流合并：[a, b, c, d, e, f, g]
 limit：[1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
 skip：[3, 5, 7, 9, 11]
+
+##Optional常用方法
+
+* 创建 Optional 对象，使用of(T) 或者 ofNullable(T)，它们的不同点在于对于传入的参数为null时，是如何处理的。
+* of(T) 如果传入的参数为null，会报NullPointerException
+* ofNullable(T) 如果传入的参数为null，它会返回一个empty的Optional对象。
+* ifPresent() 判断是否有值（不推荐直接使用这个方法，看看是否可以使用orElse(T)方法）
+* get() 获取值；这个方法迷惑性比较大，如果直接调用，在没有值的情况下，会报NoSuchElementException异常。
+* 设置默认值，orElse(T) 或者 orElseGet(T)；orElseGet(T)是orElse(T)的延迟调用版。
+* orElseThrow(T) 没有值的情况抛异常
+
+
