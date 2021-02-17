@@ -19,6 +19,30 @@ categories: [PluginTool]
 查看命令历史，以便确定要回到未来的哪个版本: git reflog
 ```
 
+## merge操作命令
+* git merge --abort : 将会抛弃合并过程并且尝试重建合并前的状态
+注:当合并开始时如果存在未commit的文件，git merge --abort在某些情况下将无法重现合并前的状态。（特别是这些未commit的文件在合并的过程中将会被修改时）
+* git config branch.master.mergeoptions "--no-ff" : 如果想对特定分支(如master)禁用fast forward:
+* git config merge.ff false : 禁用所有分支(fast foward)
+* git config --global core.mergeoptions --no-edit : 如何关闭git pull产生的merge 信息
+* git merge branch --on-ff --squash --no-edit -m #12345 merge
+* git merge branch --on-ff --no-edit -m #12345 merge
+
+### --log[=<n>]和 --no-log
+--log[=<n>]将在合并提交时，除了含有分支名以外，还将含有最多n个被合并commit节点的日志信息。
+--no-log并不会列出被合并分支得提交信息。
+### --edit和-e以及--no-edit 
+--edit和-e用于在成功合并、提交前调用编辑器来进一步编辑自动生成的合并信息。因此使用者能够进一步解释和判断合并的结果。
+--no-edit参数能够用于接受自动合并的信息（通常情况下并不鼓励这样做）。
+### --ff命令
+--ff是指fast-forward命令。当使用fast-forward模式进行合并时，将不会创造一个新的commit节点。默认情况下，git-merge采用fast-forward模式。
+关于fast-forward模式的详细解释，请看我的另一篇文章：一个成功的Git分支模型的“关于fast forward”一节。
+### --no-ff命令
+即使可以使用fast-forward模式，也要创建一个新的合并节点。这是当git merge在合并一个tag时的默认行为。
+
+
+
+
 ## Git分支操作命令
 
 >1.删除本地分支：git branch -d branchName
@@ -251,3 +275,4 @@ Creating a new branch is quick AND simple
 1.在<<<<<<<  =======之间为自己的代码
 2.在=======  >>>>>>>之间为别人的代码。
 如果保留自己的代码，将别人的代码删掉即可。
+
