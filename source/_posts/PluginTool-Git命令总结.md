@@ -21,10 +21,12 @@ categories: [PluginTool]
 
 ## merge操作命令
 * git merge --abort : 将会抛弃合并过程并且尝试重建合并前的状态
-注:当合并开始时如果存在未commit的文件，git merge --abort在某些情况下将无法重现合并前的状态。（特别是这些未commit的文件在合并的过程中将会被修改时）
-* git config branch.master.mergeoptions "--no-ff" : 如果想对特定分支(如master)禁用fast forward:
+注:当合并开始时如果存在未commit的文件，git merge --abort在某些情况下将无法重现合并前的状态。(特别是这些未commit的文件在合并的过程中将会被修改时)
+* git config branch.master.mergeoptions "--no-ff" : 如果想对特定分支(如master)禁用fast forward
 * git config merge.ff false : 禁用所有分支(fast foward)
 * git config --global core.mergeoptions --no-edit : 如何关闭git pull产生的merge 信息
+* git config --global pull.rebase true :设置默认pull时从新定基
+* git config --global branch.<name>.rebase true : 设置某个分支pull时从新定基
 * git merge branch --on-ff --squash --no-edit -m #12345 merge
 * git merge branch --on-ff --no-edit -m #12345 merge
 
