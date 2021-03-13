@@ -13,6 +13,7 @@ categories: [PluginTool]
 ## Git 查看提交记录详情
 ```
 查看所有的commit提交记录：git log
+查看所有的commit提交树形结构记录:git log --oneline --decorate --color --graph
 查看最新的commit：git show
 查看指定commit hashID的所有修改：git show <commitId>
 查看某次commit中具体某个文件的修改：git show <commitId> <filename>
@@ -27,8 +28,8 @@ categories: [PluginTool]
 * git config --global core.mergeoptions --no-edit : 如何关闭git pull产生的merge 信息
 * git config --global pull.rebase true :设置默认pull时从新定基
 * git config --global branch.<name>.rebase true : 设置某个分支pull时从新定基
-* git merge branch --on-ff --squash --no-edit -m #12345 merge
-* git merge branch --on-ff --no-edit -m #12345 merge
+* git merge branch/commitId --on-ff --squash --no-edit -m "#12345" merge
+* git merge branch/commitId --on-ff --no-edit -m "#12345" merge
 
 ### --log[=<n>]和 --no-log
 --log[=<n>]将在合并提交时，除了含有分支名以外，还将含有最多n个被合并commit节点的日志信息。
@@ -43,15 +44,13 @@ categories: [PluginTool]
 即使可以使用fast-forward模式，也要创建一个新的合并节点。这是当git merge在合并一个tag时的默认行为。
 
 
-
-
 ## Git分支操作命令
 
 >1.删除本地分支：git branch -d branchName
 >2.合并本地某B分支到当前分支：git merge branchNameB
 >	然后需要git push 才能把merge内容推送到远程缓存分支上
 
-### 1.本地创建新分支
+### 本地创建新分支
 ```
 查看本地所有分支：git branch    	注:带*号得代表显示当前得分支
 创建本地分支：git branch <name>
@@ -65,7 +64,7 @@ OR
 检出代码并切换分支：git checkout -b dev origin/RemoteDev (dev 为本地分支名，RemoteDev为远程分支名)
 ```
 
-### 2. clone分支(浅克隆后的操作)
+### clone分支(浅克隆后的操作)
 ```
 拉取最近一次提交记录：git clone --depth=1 -b dev  <URL>
 非浅层转换为完整的存储库,消除浅层存储库所施加的所有限制：
@@ -81,7 +80,7 @@ git fetch ogrigin dev
 git pull origin dev
 ```
 
-### 3.创建空分支需要清理缓存
+### 创建空分支需要清理缓存
 ```
 git branch <new_branch>
 git checkout <new_branch>
@@ -92,7 +91,7 @@ git push origin  <new_branch>
 ```
 
 ## Git提交远程缓存流程命令
-### A.与远程缓存分支对比：
+### 与远程缓存分支对比：
 ```
 当前本地分支得git状态： git status
 当前本地分支暂存代码： git stash
@@ -103,7 +102,7 @@ git push origin  <new_branch>
 最后查看状态： git status
 ```
 
-### B.提交远程缓存：
+### 提交远程缓存：
 ```
 查看分支状态：git status
 加入本地工作区：git add . or git add <file>
@@ -111,7 +110,7 @@ git push origin  <new_branch>
 推送远程缓存：git push
 ```
 
-### C.push操作命令
+### push操作命令
 ```
 将本地分支推送到远程缓存(创立远程缓存分支)且设置远程缓存分支拉取分支：
 git push --set-upstream origin <name>
@@ -222,7 +221,8 @@ git remote add origin [url]
 ## rebase(变基)命令
 ### 改变产生分支起点位置
 dev:git rebase <branchA>//会将当前dev分支的提交复制到指定的branchA分支之上
-
+git rebase --continue
+git rebase --abort
 ![git-rebase1](/img/git-rebase1.png "git-rebase1")
 ![git-rebase2](/img/git-rebase2.png "git-rebase2")
 
@@ -232,6 +232,8 @@ dev:git rebase <branchA>//会将当前dev分支的提交复制到指定的branch
 　　有一个重大的区别：Git 不会尝试确定要保留或不保留哪些文件。我们执行rebase的分支总是含有我们想要保留的最新近的修改！这样我们不会遇到任何合并冲突，而且可以保留一个漂亮的、线性的 Git 历史记录；git merge 需要解决冲突才能合并
 
 注:因为dev分支 git rebase 只是改变了dev最初产生分支的指针,指针指向了master在最新提交后面形成直线,同样的会合并最新提交代码，冲突部分以dev分支为主,有覆盖的master分支的危险,因此要使用该命令时,先把最新更新分支pull到dev,解决冲突后再rebase.
+
+
 
 ### 修改commit后提交记录
 #### Git修改最近后一次commit信息
@@ -256,8 +258,9 @@ dev:git rebase <branchA>//会将当前dev分支的提交复制到指定的branch
 
 #### Cherry-picking(拣选)
 master:git Cherry-picking <dev-commitId> //将dev分支上的某个提交merge到master,而不是dev全部提交
-假设 dev 分支上的提交 76d12 为 index.js 文件添加了一项修改，而我们希望将其整合到 master 分支中。我们并不想要整个 dev 分支，而只需要这个提交
+注意与git merge commitId 区别
 
+假设 dev 分支上的提交 76d12 为 index.js 文件添加了一项修改，而我们希望将其整合到 master 分支中。我们并不想要整个 dev 分支，而只需要这个提交
 ![Cherry-picking1](/img/Cherry-picking1.png "Cherry-picking1")
 
 #### Reflog(还原)
