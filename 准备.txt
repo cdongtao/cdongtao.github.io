@@ -1,66 +1,41 @@
-传统开发步骤:
-1. 增加一张表
-2. 创建实体对象，映射这张表 dto -> pojo
-3. 创建API入参BO->entity/POJO
-4. 创建API出参 entity ->VO 
-5. 创建Controller
-6. 创建Service
-7. 创建Dao
-8. 创建Mapper, xml或者JPA
-9. 在mysql客户端，或者mongo客户端中写执行脚本语句，复制到代码中
-10. 反复重启，进行接口自测
-11. 编写API文档
-12. 完成一个功能点开发
-
-devops搭建:
-jekins/编译时检查规范SonarLint
-[jenkins+sonarQube+gitlab持续集成指南][https://blog.csdn.net/yhmliunan/article/details/107927560]
-[Jenkins和sonarqube集成](https://www.cnblogs.com/wangxu01/articles/11113875.html)
-[jenkins流水线整合jacoco与sonar（一）](https://blog.csdn.net/qq_37965741/article/details/107018297)
-[jenkins集成sonar、jacoco](https://blog.csdn.net/fbb1995/article/details/80082119)
-[持续集成与自动化部署 - jenkins与sonar、gitlab集成 （六）](https://blog.51cto.com/damaicha/2118766)
-
-![项目管理111](/springBoot/项目管理111.png "项目管理111")
-![项目管理111](/pmp/项目管理111.png "项目管理111")
-考虑搬家(桃园,大新)
-小团队如何落地敏捷开发:https://www.jianshu.com/p/908cae2e23c5
-
 敏捷总结学习
         桌面敏捷视频和网页敏捷
-        
 上班:
     JAva视频学习  JAva视频学习--->设计模式
-    
+    ![项目管理111](/springBoot/项目管理111.png "项目管理111")
+    ![项目管理111](/pmp/项目管理111.png "项目管理111")
+    考虑搬家(桃园,大新)
+
 休假:
     结束Kafka复习：
     https://zhuanlan.zhihu.com/p/92590719
     https://www.cnblogs.com/rickiyang/category/1487719.html
     自己搭建一套，结合maven
 
-晚上:
-    1.外资面试？？？准备外资验证文件
-    入职后规划:
-        0.准备敏捷方案体系
-        1.了解公司采用敏捷未来的一个规划，更好在出去做好导向准备
-        2.定git基准，练习git,回退版本，一线定基准
-        3.制定代码规范以及提交流程：checklist :注意;漏洞，xss攻击,防止接口请求(做安全校验，黑白名单),解耦和，健壮，设计模式
-        4.学会监控每个spring,得不断反馈和修正
-        制定敏捷整个工作流程(准备三套流程,与相关方商量决定选用那一套) 制定表格记录项目与上游与下游
-            诺亚那套敏捷:基于需求
-            华侨的敏捷:基于团队
-
-0.每一次变化都要注意后患(风险)
-1.理解项目，确定相关方
-2.建立规范:需求--->文档规划(存档)-->开发
-3.敏捷开发的流程培训准备文档
+    0.每一次变化都要注意后患(风险)
+    1.理解项目，确定相关方
+    2.建立规范:需求--->文档规划(存档)-->开发
+    3.敏捷开发的流程培训准备文档
 
 需要考虑的范围:
     最好做表格统计：规范请假,每个spring 提前计划关注下个sprint公共节假日组员安排，预防评估团队能力
     定义数据库表约束字段，要合理
     考虑数据量，设计表结构合理
     review时，记录建立page记录技术债
-    同一类ticket，一个人做效率更高？？？
-    每个retro加产品来打分统计反馈
+
+传统开发步骤:
+    1. 增加一张表
+    2. 创建实体对象，映射这张表 dto -> pojo
+    3. 创建API入参BO->entity/POJO
+    4. 创建API出参 entity ->VO 
+    5. 创建Controller
+    6. 创建Service
+    7. 创建Dao
+    8. 创建Mapper, xml或者JPA
+    9. 在mysql客户端，或者mongo客户端中写执行脚本语句，复制到代码中
+    10. 反复重启，进行接口自测
+    11. 编写API文档
+    12. 完成一个功能点开发
 
 制定开发规范:
     0. 规划项目目录管理，检查开发环境:JDK1.8
@@ -79,6 +54,7 @@ jekins/编译时检查规范SonarLint
         还在用 Guava Cache？它才是 Java 本地缓存之王  https://mp.weixin.qq.com/s/Dnk7c0TthRG9puCWAsbb6g
         万字详解本地缓存之王 Caffeine，SpringBoot2.X 官方推荐  https://mp.weixin.qq.com/s/cAZdTyfM6D2GFFQmeoG-jg
     6. 日志打印
+        SSM中MyBatis Log Plugin插件使用详细教程:https://blog.csdn.net/weixin_44790046/article/details/105101688
         [springboot-自定义注解-系统打印日志](https://zhuanlan.zhihu.com/p/96597358)
         你会正确的使用日志吗？:https://mp.weixin.qq.com/s/wHj12Pez3uSI86fXcA1kqg
         别在 Java 代码里乱打日志了，这才是打印日志的正确姿势   https://mp.weixin.qq.com/s/mGWB_VV8cemgRKfWZmZgiw
@@ -87,7 +63,8 @@ jekins/编译时检查规范SonarLint
     8. 使用数据Flyway控制版本 
         Flyway版本化管理数据库常见错误和解决方法 https://www.icode9.com/content-2-626086.html
         Spring Boot项目使用Flyway的详细教程 https://www.cnblogs.com/it-deepinmind/p/11761616.html
-    9. 分页MybatisHepler    
+    9. 分页MybatisHepler  && ORM
+        MyBatisCodeHelper-Pro插件破解版[2.8.2]  :https://zhile.io/2019/04/23/mybatis-code-helper-pro-crack.html
     10. mysql 主键id用雪花算法
         一文搞定分布式系统 ID 生成方案  https://mp.weixin.qq.com/s/JtxOvPoIIpGHhaXbz_Ii9A
     11. MapStruct 实体转换类
@@ -101,7 +78,14 @@ jekins/编译时检查规范SonarLint
         MyBatis Plus 常用 API 全套教程，看完没有不懂的:https://mp.weixin.qq.com/s/MIW7Z3P9EJTVZopK1vMwsw
         https://www.cnblogs.com/it-deepinmind/p/11761616.html
     14.加密算法：https://www.cnblogs.com/rickiyang/p/13210830.html
-
+    15.devops搭建:
+        jekins/编译时检查规范SonarLint
+        [jenkins+sonarQube+gitlab持续集成指南][https://blog.csdn.net/yhmliunan/article/details/107927560]
+        [Jenkins和sonarqube集成](https://www.cnblogs.com/wangxu01/articles/11113875.html)
+        [jenkins流水线整合jacoco与sonar（一）](https://blog.csdn.net/qq_37965741/article/details/107018297)
+        [jenkins集成sonar、jacoco](https://blog.csdn.net/fbb1995/article/details/80082119)
+        [持续集成与自动化部署 - jenkins与sonar、gitlab集成 （六）](https://blog.51cto.com/damaicha/2118766)
+        
 chrome 插件
     1.Jsonview
     2.react 调试工具 dev-develop
