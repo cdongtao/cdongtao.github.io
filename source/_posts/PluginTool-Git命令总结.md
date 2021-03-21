@@ -233,7 +233,15 @@ git rebase --abort
 
 注:因为dev分支 git rebase 只是改变了dev最初产生分支的指针,指针指向了master在最新提交后面形成直线,同样的会合并最新提交代码，冲突部分以dev分支为主,有覆盖的master分支的危险,因此要使用该命令时,先把最新更新分支pull到dev,解决冲突后再rebase.
 
+### git rebase --onto(截取区间做新分支)
+// branch:分支名称 , 截取区间为: (fromCommitedId,toCommitedId]
+git rebase --onto branch fromCommitedId toCommitedId
 
+步骤:
+1.当前工作空间---分支A
+2.从当前工作的分支新建一个分支,并且换到该分支----git checkout -b newbranch
+3.git rebase --onto B fromCommitedId toCommitedId
+4.生成一个基于B分支和选择的提交区间(fromCommitedId,toCommitedId]的片段生成一个新的分支（detached Head）
 
 ### 修改commit后提交记录
 #### Git修改最近后一次commit信息

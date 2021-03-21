@@ -1,3 +1,4 @@
+
 敏捷总结学习
         桌面敏捷视频和网页敏捷
 上班:
@@ -88,7 +89,6 @@
         
 chrome 插件
     1.Jsonview
-    2.react 调试工具 dev-develop
     3.
 
 IDEA：工具
