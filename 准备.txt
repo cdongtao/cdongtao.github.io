@@ -8,9 +8,6 @@
     考虑搬家(桃园,大新)
 
 休假:
-    结束Kafka复习：
-    https://zhuanlan.zhihu.com/p/92590719
-    https://www.cnblogs.com/rickiyang/category/1487719.html
     自己搭建一套，结合maven
 
     0.每一次变化都要注意后患(风险)
