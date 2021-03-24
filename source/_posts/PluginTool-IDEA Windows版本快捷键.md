@@ -214,7 +214,7 @@ F9，恢复程序
 Alt+F10，定位到断点
 ```
 -----------------
-重构
+### 重构
 -----------------
 ```
 Ctrl+Alt+Shift+T，弹出重构菜单
@@ -224,4 +224,34 @@ F5，复制
 Alt+Delete，安全删除
 Ctrl+Alt+N，内联
 ```
+### 常用
+```
+ctrl + n ：显示类
+Ctrl+L,下一个相同的
+Ctrl+Y ：删除当前行
+Ctrl+d : 添加行
+Ctrl+F ，查找
+Ctrl+R ，替换
+ctrl + shift +R : 搜索
+ctrl + shift +f : 全局搜索
+shift+shift ：全局搜索 
+Ctrl+G : 定位行数
+Ctrl+F12:本類所有方法
+alt+方向：tab向前后前後
+alt+ctrl+方向，引用向前或向后
+fn+alt+F7：引用的地方
+shift+ctrl+方向：整行以分号结束的移动
+shift+alt+方向：整行上下移动
+
+
+eclipse
+ctrl+ d : 删除
+ctrl+F： 文件内查找
+ctrl + shift +R : 全局搜索
+ctrl+N ： 查找下一个一样得
+ctrl+K： 查走上一个一样得
+ctrl+L：定位行数
+```
+
+
 
