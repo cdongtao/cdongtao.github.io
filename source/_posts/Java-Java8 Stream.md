@@ -4,6 +4,70 @@ tags: [Stream]
 categories: [SpringBoot]
 ---
 
+## 方法引用( 双冒号:: )
+方法引用分为三种，方法引用通过一对双冒号:: 来表示，方法引用是一种函数式接口的另一种书写方式
+1. 静态方法引用，通过类名::静态方法名， 如 Integer::parseInt
+2. 实例方法引用，通过实例对象::实例方法，如 str::substring
+3. 构造方法引用，通过类名::new， 如 User::new
+
+### 使用
+通过方法引用，可以将方法的引用赋值给一个变量,通过赋值给Function，说明方法引用也是一种函数式接口的书写方式，Lambda表达式也是一种函数式接口，Lambda表达式一般用于自己提供方法体，而方法引用一般直接引用现成的方法。
+```
+public class User {
+    private String username;
+    private Integer age;
+
+    public User() {
+    }
+
+    public User(String username, Integer age) {
+        this.username = username;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    // Getter&Setter
+}
+
+public static int parseInt(String s) throws NumberFormatException {
+        return parseInt(s,10);
+}
+
+public static void main(String[] args) {
+    // 使用双冒号::来构造静态函数引用
+    Function<String, Integer> fun = Integer::parseInt;
+    Integer value = fun.apply("123");
+    System.out.println(value);
+
+    // 使用双冒号::来构造非静态函数引用
+    String content = "Hello JDK8";
+    Function<Integer, String> func = content::substring;
+    String result = func.apply(1);
+    System.out.println(result);
+
+    // 构造函数引用
+    BiFunction<String, Integer, User> biFunction = User::new;
+    User user = biFunction.apply("mengday", 28);
+    System.out.println(user.toString());
+
+    // 函数引用也是一种函数式接口，所以也可以将函数引用作为方法的参数
+    sayHello(String::toUpperCase, "hello");
+}
+
+// 方法有两个参数，一个是
+private static void sayHello(Function<String, String> func, String parameter){
+    String result = func.apply(parameter);
+    System.out.println(result);
+}
+```
+
 ## [Stream概述](https://zhuanlan.zhihu.com/p/299064490)
 ![Java8 Stream](/img/Java8-Stream.png "Java8 Stream")
 
@@ -595,66 +659,4 @@ skip：[3, 5, 7, 9, 11]
 * 设置默认值，orElse(T) 或者 orElseGet(T)；orElseGet(T)是orElse(T)的延迟调用版。
 * orElseThrow(T) 没有值的情况抛异常
 
-## 方法引用( 双冒号:: )
-方法引用分为三种，方法引用通过一对双冒号:: 来表示，方法引用是一种函数式接口的另一种书写方式
-1. 静态方法引用，通过类名::静态方法名， 如 Integer::parseInt
-2. 实例方法引用，通过实例对象::实例方法，如 str::substring
-3. 构造方法引用，通过类名::new， 如 User::new
 
-### 使用
-通过方法引用，可以将方法的引用赋值给一个变量,通过赋值给Function，说明方法引用也是一种函数式接口的书写方式，Lambda表达式也是一种函数式接口，Lambda表达式一般用于自己提供方法体，而方法引用一般直接引用现成的方法。
-```
-public class User {
-    private String username;
-    private Integer age;
-
-    public User() {
-    }
-
-    public User(String username, Integer age) {
-        this.username = username;
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", age=" + age +
-                '}';
-    }
-
-    // Getter&Setter
-}
-
-public static int parseInt(String s) throws NumberFormatException {
-        return parseInt(s,10);
-}
-
-public static void main(String[] args) {
-    // 使用双冒号::来构造静态函数引用
-    Function<String, Integer> fun = Integer::parseInt;
-    Integer value = fun.apply("123");
-    System.out.println(value);
-
-    // 使用双冒号::来构造非静态函数引用
-    String content = "Hello JDK8";
-    Function<Integer, String> func = content::substring;
-    String result = func.apply(1);
-    System.out.println(result);
-
-    // 构造函数引用
-    BiFunction<String, Integer, User> biFunction = User::new;
-    User user = biFunction.apply("mengday", 28);
-    System.out.println(user.toString());
-
-    // 函数引用也是一种函数式接口，所以也可以将函数引用作为方法的参数
-    sayHello(String::toUpperCase, "hello");
-}
-
-// 方法有两个参数，一个是
-private static void sayHello(Function<String, String> func, String parameter){
-    String result = func.apply(parameter);
-    System.out.println(result);
-}
-```
