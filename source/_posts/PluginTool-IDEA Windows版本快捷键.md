@@ -4,23 +4,21 @@ tags: [Tool,IDEA]
 categories: [PluginTool]
 ---
 
-# 十大Intellij IDEA快捷键
------------------
+## 十大IDEA快捷键
 ### 智能提示
-
-Intellij首当其冲的当然就是Intelligence智能！基本的代码提示用Ctrl+Space，还有更智能地按类型信息提示Ctrl+Shift+Space，但因为Intellij总是随着我们敲击而自动提示，所以很多时候都不会手动敲这两个快捷键(除非提示框消失了)。
-
-用F2/ Shift+F2移动到有错误的代码，Alt+Enter快速修复(即Eclipse中的Quick Fix功能)。当智能提示为我们自动补全方法名时，我们通常要自己补上行尾的反括号和分号，当括号嵌套很多层时会很麻烦，这时我们只需敲Ctrl+Shift+Enter就能自动补全末尾的字符。而且不只是括号，例如敲完if/for时也可以自动补上{}花括号。
+* 基本的代码提示用Ctrl+Space，还有更智能地按类型信息提示Ctrl+Shift+Space:但因为Intellij总是随着我们敲击而自动提示，所以很多时候都不会手动敲这两个快捷键(除非提示框消失了)。
+* 用F2/ Shift+F2移动到有错误的代码
+* Alt+Enter快速修复(即Eclipse中的Quick Fix功能)。
+* 当智能提示为我们自动补全方法名时，我们通常要自己补上行尾的反括号和分号，当括号嵌套很多层时会很麻烦，这时我们只需敲Ctrl+Shift+Enter就能自动补全末尾的字符。而且不只是括号，例如敲完if/for时也可以自动补上{}花括号。
 
 最后要说一点，Intellij能够智能感知Spring、Hibernate等主流框架的配置文件和类，以静制动，在看似“静态”的外表下，智能地扫描理解你的项目是如何构造和配置的。
 
 ### 重构
-
 Intellij重构是另一完爆Eclipse的功能，其智能程度令人瞠目结舌，比如提取变量时自动检查到所有匹配同时提取成一个变量等。尤其看过《重构-改善既有代码设计》之后，有了Intellij的配合简直是令人大呼过瘾！也正是强大的智能和重构功能，使Intellij下的TDD开发非常顺畅。
 
 切入正题，先说一个无敌的重构功能大汇总快捷键Ctrl+Shift+Alt+T，叫做Refactor This。按法有点复杂，但也符合Intellij的风格，很多快捷键都要双手完成，而不像Eclipse不少最有用的快捷键可以潇洒地单手完成(不知道算不算Eclipse的一大优点)，但各位用过Emacs的话就会觉得也没什么了(非Emacs黑)。
 
-此外，还有些最常用的重构技巧，因为太常用了，若每次都在Refactor This菜单里选的话效率有些低。比如Shift+F6直接就是改名，Ctrl+Alt+V则是提取变量。关注Java技术栈微信公众号，在后台回复关键字：IDEA，可以获取一份栈长整理的 IDEA 最新技术干货。
+此外，还有些最常用的重构技巧，因为太常用了，若每次都在Refactor This菜单里选的话效率有些低。比如Shift+F6直接就是改名，Ctrl+Alt+V则是提取变量。
 
 ### 代码生成
 
@@ -49,55 +47,35 @@ Intellij重构是另一完爆Eclipse的功能，其智能程度令人瞠目结�
 Intellij更加智能的又一佐证是在任意菜单或显示窗口，都可以直接输入你要找的单词，Intellij就会自动为你过滤。关注Java技术栈微信公众号，在后台回复关键字：IDEA，可以获取一份栈长整理的 IDEA 最新技术干货。
 
 ### 其他辅助
-
 以上这些神键配上一些辅助快捷键，即可让你的双手90%以上的时间摆脱鼠标，专注于键盘仿佛在进行钢琴表演。这些不起眼却是至关重要的最后一块拼图有：
-```
-Ø 命令：Ctrl+Shift+A可以查找所有Intellij的命令，并且每个命令后面还有其快捷键。所以它不仅是一大神键，也是查找学习快捷键的工具。
+*  命令：Ctrl+Shift+A可以查找所有Intellij的命令，并且每个命令后面还有其快捷键。所以它不仅是一大神键，也是查找学习快捷键的工具。
+*  新建：Alt+Insert可以新建类、方法等任何东西。
+*  格式化代码：格式化import列表Ctrl+Alt+O，格式化代码Ctrl+Alt+L。
+*  切换窗口：Alt+Num，常用的有1-项目结构，3-搜索结果，4/5-运行调试。Ctrl+Tab切换标签页，Ctrl+E/Ctrl+Shift+E打开最近打开过的或编辑过的文件。
+*  单元测试：Ctrl+Alt+T创建单元测试用例。
+*  运行：Alt+Shift+F10运行程序，Shift+F9启动调试，Ctrl+F2停止。
+*  调试：F7/F8/F9分别对应Step into，Step over，Continue。
 
-Ø 新建：Alt+Insert可以新建类、方法等任何东西。
-
-Ø 格式化代码：格式化import列表Ctrl+Alt+O，格式化代码Ctrl+Alt+L。
-
-Ø 切换窗口：Alt+Num，常用的有1-项目结构，3-搜索结果，4/5-运行调试。Ctrl+Tab切换标签页，Ctrl+E/Ctrl+Shift+E打开最近打开过的或编辑过的文件。
-
-Ø 单元测试：Ctrl+Alt+T创建单元测试用例。
-
-Ø 运行：Alt+Shift+F10运行程序，Shift+F9启动调试，Ctrl+F2停止。
-
-Ø 调试：F7/F8/F9分别对应Step into，Step over，Continue。
-```
 
 此外还有些我自定义的，例如水平分屏Ctrl+|等，和一些神奇的小功能Ctrl+Shift+V粘贴很早以前拷贝过的，Alt+Shift+Insert进入到列模式进行按列选中。
-```
-Ø Top #10切来切去：Ctrl+Tab
+* 切来切去：Ctrl+Tab
+* 选你所想：Ctrl+W
+* 代码生成：Template/Postfix +Tab
+* 发号施令：Ctrl+Shift+A
+* 无处藏身：Shift+Shift
+* 自动完成：Ctrl+Shift+Enter
+* 创造万物：Alt+Insert
 
-Ø Top #9选你所想：Ctrl+W
-
-Ø Top #8代码生成：Template/Postfix +Tab
-
-Ø Top #7发号施令：Ctrl+Shift+A
-
-Ø Top #6无处藏身：Shift+Shift
-
-Ø Top #5自动完成：Ctrl+Shift+Enter
-
-Ø Top #4创造万物：Alt+Insert
-```
 
 ### 太难割舍，前三名并列吧！
-```
-
-Ø Top #1智能补全：Ctrl+Shift+Space
-
-Ø Top #1自我修复：Alt+Enter
-
-Ø Top #1重构一切：Ctrl+Shift+Alt+T
-```
+* 智能补全：Ctrl+Shift+Space
+* 自我修复：Alt+Enter
+* 重构一切：Ctrl+Shift+Alt+T
 
 CTRL+ALT+ left/right 前后导航编辑过的地方 Ctrl＋Shift＋Backspace可以跳转到上次编辑的地方
 
-## 自动补全代码
------------------
+### 自动补全代码
+
 常用的有fori/sout/psvm+Tab即可生成循环、System.out、main方法等boilerplate样板代码 。
 
 例如要输入for(User user : users)只需输入user.for+Tab ；
@@ -130,9 +108,8 @@ CTRL+Q，可以看到当前方法的声明
 Shift+F6  重构-重命名 (包、类、方法、变量、甚至注释等)
 Ctrl+Alt+V 提取变量
 ```
------------------
-## 查询快捷键
------------------
+
+### 查询快捷键
 ```
 Ctrl＋Shift＋Backspace可以跳转到上次编辑的地
 CTRL+ALT+ left/right 前后导航编辑过的地方
@@ -177,9 +154,9 @@ CTRL+ALT+ left/right 前后导航编辑过的地方
 Ctrl＋Shift＋Backspace可以跳转到上次编辑的地
 Alt+6    查找TODO
 ```
------------------
+
 ### 其他快捷键
------------------
+
 ```
 SHIFT+ENTER 另起一行
 CTRL+Z   倒退(撤销)
@@ -191,9 +168,7 @@ CTRL+F4  关闭当前窗口
 Ctrl+Alt+V，可以引入变量。例如：new String(); 自动导入变量定义
 Ctrl+~，快速切换方案（界面外观、代码风格、快捷键映射等菜单）
 ```
------------------
 ### 调试快捷键
------------------
 ```
 其实常用的 就是F8 F7 F9 最值得一提的就是Drop Frame 可以让运行过的代码从头再来。
 
@@ -213,9 +188,8 @@ Ctrl+Alt+F9，强制运行至光标处
 F9，恢复程序
 Alt+F10，定位到断点
 ```
------------------
+
 ### 重构
------------------
 ```
 Ctrl+Alt+Shift+T，弹出重构菜单
 Shift+F6，重命名
@@ -224,7 +198,7 @@ F5，复制
 Alt+Delete，安全删除
 Ctrl+Alt+N，内联
 ```
-### 常用
+## eclipse/idea常用
 ```
 ctrl + n ：显示类
 Ctrl+L,下一个相同的
@@ -242,7 +216,6 @@ alt+ctrl+方向，引用向前或向后
 fn+alt+F7：引用的地方
 shift+ctrl+方向：整行以分号结束的移动
 shift+alt+方向：整行上下移动
-
 
 eclipse
 ctrl+ d : 删除
