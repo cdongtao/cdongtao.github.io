@@ -307,8 +307,6 @@ List<String> mock = Mockito.mock(List.class);
 
 ```
 
-
-
 #### 8.用spy监控真实对象,设置真实对象行为
 ```
   @Test(expected = IndexOutOfBoundsException.class)
