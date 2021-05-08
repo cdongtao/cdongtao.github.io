@@ -1,6 +1,6 @@
 ---
 title: Css of Sass & Less
-tags: [Css,Sass,Less]
+tags: [CSS,Sass,Less]
 categories: [FrontEnd]
 ---
 
