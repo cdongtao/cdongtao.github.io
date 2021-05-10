@@ -1,6 +1,6 @@
 ---
 title: ThreadLocal原理及源码解析
-tags: [ThreadLocal,源码]
+tags: [源码]
 categories: [SpringBoot]
 ---
 
@@ -18,8 +18,7 @@ ThreadLocal解决线程局部变量统一定义问题，多线程数据不能共
 ThreadLocalMap,去看它的源码：
 ![ThreadLocalMap](/java/ThreadLocal2.png)
 
-ThreadLocalMap是ThreadLocal的一个内部类。ThreadLocalMap是一个映射表，可以理解成HashMap结构。key是当前Thread对象，value为一个Entry对象。Entry对象，我们下面会介绍，先说这个ThreadLocalMap对象，很明显它在Thread中的值为null，那么它是在哪个地方进行初始化的呢？
-一共有两个地方，一个是ThreadLocal类set方法中，一个是ThreadLocal类get方法中
+ThreadLocalMap是ThreadLocal的一个静态内部类。ThreadLocalMap 内部是一个private Entry[](数组容器),Entry(K,V)结构存入数组,一共有两个地方初始化，一个是ThreadLocal类set方法中，一个是ThreadLocal类get方法中
 
 ### get方法
 先看get方法的源码：
@@ -63,14 +62,15 @@ set方法挺清晰的，就是获取当前线程对象，然后获取ThreadLocal
 ![ThreadLocalMap](/java/ThreadLocal8a.png)
 ![ThreadLocalMap](/java/ThreadLocal8.png)
 
+#### 问题1
 上图可以看出，ThreadLocalMap中维护的是一个Entry数组?
-为什么ThreadLocalMap中引用的Entry是一个数组类型呢？因为在一个线程中，我们可以new多个ThreadLocal对象。每一个ThreadLocal对象就对应着一个Entry对象，所以要使用数组存储这些Entry对象。
+为什么ThreadLocalMap中引用的Entry是一个数组类型呢？因为在一个线程中，我们可以new多个ThreadLocal对象。每一个ThreadLocal对象就对应着ThreadLocalMap(为什么静态ThreadLocalMap可以有多个，看看creatMap方法就知道，是new出新对象而不是使用静态对象)，每个一个map包含一个私有数组容器Entry对象，所以要使用数组存储这些Entry对象。
+### 问题2
 这里有一个问题，为什么ThreadLocal的作者要将Entry中的key设计成弱引用呢？
-作者的想法是：如果当前ThreadLocal对象没有强引用存在，就通知GC回收该key，此时key变为null。同时，作者在set，get中，都对key为null的情况做了处理。会清除掉key为null的Entry对象。这样就可以避免，我们使用了set和get方法，但是没有显示调用remove清除该key的问题。一定程度上避免了内存泄露的问题。
-虽然作者做了很多处理，但是由于线程池技术的普及，ThreadLocal对象使用不当，还是会造成内存泄露。为什么呢？
-原因是：我们在线程池中取出的链接不会销毁，会返回到池中复用。如果我们对ThreadLocal对象手动set了一个值，但是后期没有再次调用set和get方法。下一次GC发生时，会回收掉key，但是由于value为一个强引用，所以导致key为null，永远无法被取出。该块内存空间永远无法被使用。内存泄露。
-所以，我们在使用ThreadLocal对象时，用完的值要注意执行remove操作。
-另外，ThreadLocal的最佳实践是用static关键字修饰，防止产生多个ThreadLocal对象，内存浪费。
+　　如果当前ThreadLocal对象没有强引用存在，就通知GC回收该key，此时key变为null。同时，作者在set，get中，都对key为null的情况做了处理。会清除掉key为null的Entry对象。这样就可以避免，我们使用了set和get方法，但是没有显示调用remove清除该key的问题。一定程度上避免了内存泄露的问题。
+　　虽然作者做了很多处理，但是由于线程池技术的普及，ThreadLocal对象使用不当，还是会造成内存泄露。为什么呢？原因是：我们在线程池中取出的链接不会销毁，会返回到池中复用。如果我们对ThreadLocal对象手动set了一个值，但是后期没有再次调用set和get方法。下一次GC发生时，会回收掉key，但是由于value为一个强引用，所以导致key为null，永远无法被取出。该块内存空间永远无法被使用。内存泄露。所以，我们在使用ThreadLocal对象时，用完的值要注意执行remove操作。
+
+<font color='red'>另外，ThreadLocal的最佳实践是用static关键字修饰，防止产生多个ThreadLocal对象，内存浪费。【ThreadLocalMap是不是使用static引用而不是creatMap时使用new？】</font>
 
 ## ThreadLocal内存模型原理
 ![ThreadLocalMap](/java/ThreadLocal12.png)

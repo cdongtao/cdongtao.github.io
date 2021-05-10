@@ -1,7 +1,7 @@
 ---
 title: RESTful-API设计指南
 tags: [Restful]
-categories: [Java]
+categories: [Design]
 ---
 
 ## RESTful-API
