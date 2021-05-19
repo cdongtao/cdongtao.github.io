@@ -63,8 +63,8 @@ set方法挺清晰的，就是获取当前线程对象，然后获取ThreadLocal
 ![ThreadLocalMap](/java/ThreadLocal8.png)
 
 #### 问题1
-上图可以看出，ThreadLocalMap中维护的是一个Entry数组?
-为什么ThreadLocalMap中引用的Entry是一个数组类型呢？因为在一个线程中，我们可以new多个ThreadLocal对象。每一个ThreadLocal对象就对应着ThreadLocalMap(为什么静态ThreadLocalMap可以有多个，看看creatMap方法就知道，是new出新对象而不是使用静态对象)，每个一个map包含一个私有数组容器Entry对象，所以要使用数组存储这些Entry对象。
+上图可以看出，ThreadLocalMap中维护的是一个Entry数组作为存放threadLocal的Entry对象容器?
+为什么ThreadLocalMap中引用的Entry是一个数组类型呢？因为在一个线程中，我们可以new多个ThreadLocal对象。多个ThreadLocal对象就对应着一个ThreadLocalMap(以thread对象绑定)，一个map(数组容器)threadLocal Entry对象，以threadlocal对象计算数组下标。
 ### 问题2
 这里有一个问题，为什么ThreadLocal的作者要将Entry中的key设计成弱引用呢？
 　　如果当前ThreadLocal对象没有强引用存在，就通知GC回收该key，此时key变为null。同时，作者在set，get中，都对key为null的情况做了处理。会清除掉key为null的Entry对象。这样就可以避免，我们使用了set和get方法，但是没有显示调用remove清除该key的问题。一定程度上避免了内存泄露的问题。
