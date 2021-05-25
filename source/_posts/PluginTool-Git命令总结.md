@@ -84,8 +84,11 @@ git pull origin dev
 ```
 git branch <new_branch>
 git checkout <new_branch>
-注意-r后面还有跟着点+空格:git rm --cached -r . 
+git rm --cached -r . :注意-r后面还有跟着点+空格 
 git clean -f –d
+或者 
+git rm -rf . #清除所有git文件历史，为了空白分支
+git clean -d -fx #会清除所有git clone下的所有文件，只剩.git
 空分支推送:git commit --allow-empty -m "[empty] initial commit"
 git push origin  <new_branch>
 ```
