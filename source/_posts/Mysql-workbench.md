@@ -4,7 +4,6 @@ tags: [Workbench]
 categories: [Database,Mysql]
 ---
 ## 使用 Workbench 操作数据库
-
 ### 创建数据库
 打开 MySQL Workbench 软件，如下图所示，方框标识的部分就是当前数据库服务器中已经创建的数据库列表。
 ![图B1](/workbench/B1.png "图B1")
