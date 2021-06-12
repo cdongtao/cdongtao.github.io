@@ -4,7 +4,31 @@ tags: [Plugin,Template]
 categories: [Project]
 ---
 
-## Flyway
+## Flyway使用背景
+### 存在问题
+![1.png](/flyway/1.png "1.png")
+### 解决问题
+![2.png](/flyway/2.png "2.png")
+
+### 工作原理
+![3.png](/flyway/3.png "3.png")
+
+### 迁移脚本的命名规则
+![4.png](/flyway/4.png "4.png")
+
+### 实现路径方式
+![5.png](/flyway/5.png "5.png")
+
+#### API的方式
+![6.png](/flyway/6.png "6.png")
+
+Java API方式写迁移功能
+![7.png](/flyway/7.png "7.png")
+
+#### springboot方式
+![8.png](/flyway/8.png "8.png")
+
+## SprintBoot Flyway具体使用
 ### 引入flyway的依赖：
     <dependency>
         <groupId>org.flywaydb</groupId>
@@ -12,7 +36,7 @@ categories: [Project]
         <version>5.0.3</version>
 　　</dependency>
 
-### springboot 2.xx,使用
+### springboot 2.xx,使用5版本以后
     <dependency>
         <groupId>org.flywaydb</groupId>
         <artifactId>flyway-core</artifactId>
