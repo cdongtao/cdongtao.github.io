@@ -4,7 +4,9 @@ tags: [Plugin,Swagger]
 categories: [PluginTool]
 ---
 
-## 引入jar包
+## Swagger2
+URL:http://localhost:8080/swagger-ui/index.html
+### 引入jar包
 ```
         <!--     swagger2 接口API文档       -->
         <dependency>
@@ -17,40 +19,149 @@ categories: [PluginTool]
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.7.0</version>
         </dependency>
-        <!-- 上面两个jar的必须的，下面这个是第三方的UI界面的美化，不是必需的 -->
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>1.9.6</version>
-        </dependency>
     </dependencies>
 ```
 
-## 增加配置
+### 增加配置
 ```
+swagger:
+  enable: true
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: springfox swagger 3.0整合Demo
+  try-host: http://localhost:${server.port}
+
+@Component
+@Data
+@ConfigurationProperties("swagger")
+public class SwaggerProperties {
+    /**
+     * 是否开启swagger，生产环境一般关闭，所以这里定义一个变量
+     */
+    private Boolean enable;
+
+    /**
+     * 项目应用名
+     */
+    private String applicationName;
+
+    /**
+     * 项目版本信息
+     */
+    private String applicationVersion;
+
+    /**
+     * 项目描述信息
+     */
+    private String applicationDescription;
+
+    /**
+     * 接口调试地址
+     */
+    private String tryHost;
+}
+
+
 @Configuration
 @EnableSwagger2
 @ConditionalOnProperty(prefix = "swagger2",value = {"enable"},havingValue = "true")
-@ComponentScan(basePackages = "com.sprongboot.boot_mp.controller")//配置扫描的基础包
-public class SwaggerConfig {
-    //在构建文档的时候 只显示添加了@Api注解的类
-    @Bean //作为bean纳入spring容器
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
+public class SwaggerConfiguration implements WebMvcConfigurer {
+    private final SwaggerProperties swaggerProperties;
+
+    public SwaggerConfiguration(SwaggerProperties swaggerProperties) {
+        this.swaggerProperties = swaggerProperties;
+    }
+
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.OAS_30).pathMapping("/")
+
+                // 定义是否开启swagger，false为关闭，可以通过变量控制
+                .enable(swaggerProperties.getEnable())
+
+                // 将api的元信息设置为包含在json ResourceListing响应中。
                 .apiInfo(apiInfo())
+
+                // 接口调试地址
+                .host(swaggerProperties.getTryHost())
+
+                // 选择哪些接口作为swagger的doc发布
                 .select()
-                .paths(PathSelectors.any())//指定RequestHandlerSelectors.basePackage("com.aop8"))
-                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build()
+
+                // 支持的通讯协议集合
+                .protocols(newHashSet("https", "http"))
+
+                // 授权信息设置，必要的header token等认证信息
+                .securitySchemes(securitySchemes())
+
+                // 授权信息全局应用
+                .securityContexts(securityContexts());
+    }
+
+    /**
+     * API 页面上半部分展示信息
+     */
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder().title(swaggerProperties.getApplicationName() + " Api Doc")
+                .description(swaggerProperties.getApplicationDescription())
+                .contact(new Contact("lighter", null, "123456@gmail.com"))
+                .version("Application Version: " + swaggerProperties.getApplicationVersion() + ", Spring Boot Version: " + SpringBootVersion.getVersion())
                 .build();
     }
-    private ApiInfo apiInfo(){
-        return  new ApiInfoBuilder()
-                .title("API接口文档")
-                .description("API接口文档，及相关接口的说明")
-                .contact(new Contact("zhangsan", "http://www.baidu.com", "baidu@163.com"))
-                .version("1.0.0")
-                .build();
+
+    /**
+     * 设置授权信息
+     */
+    private List<SecurityScheme> securitySchemes() {
+        ApiKey apiKey = new ApiKey("BASE_TOKEN", "token", In.HEADER.toValue());
+        return Collections.singletonList(apiKey);
     }
+
+    /**
+     * 授权信息全局应用
+     */
+    private List<SecurityContext> securityContexts() {
+        return Collections.singletonList(
+                SecurityContext.builder()
+                        .securityReferences(Collections.singletonList(new SecurityReference("BASE_TOKEN", new AuthorizationScope[]{new AuthorizationScope("global", "")})))
+                        .build()
+        );
+    }
+
+    @SafeVarargs
+    private final <T> Set<T> newHashSet(T... ts) {
+        if (ts.length > 0) {
+            return new LinkedHashSet<>(Arrays.asList(ts));
+        }
+        return null;
+    }
+
+    /**
+     * 通用拦截器排除swagger设置，所有拦截器都会自动加swagger相关的资源排除信息
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        try {
+            Field registrationsField = FieldUtils.getField(InterceptorRegistry.class, "registrations", true);
+            List<InterceptorRegistration> registrations = (List<InterceptorRegistration>) ReflectionUtils.getField(registrationsField, registry);
+            if (registrations != null) {
+                for (InterceptorRegistration interceptorRegistration : registrations) {
+                    interceptorRegistration
+                            .excludePathPatterns("/swagger**/**")
+                            .excludePathPatterns("/webjars/**")
+                            .excludePathPatterns("/v3/**")
+                            .excludePathPatterns("/doc.html");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 ```
 
@@ -78,47 +189,25 @@ swagger2:
 此时我们访问开发环境可以进swagger，进生产环境则会被屏蔽调。
 
 ### 方式2
-```
-@Configuration
-@EnableSwagger2
-@Profile("dev")
-public class Swagger2 extends WebMvcConfigurationSupport {
-    @Bean
-    public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                .select()
-                //为当前包路径
-                .apis(RequestHandlerSelectors.basePackage("com.yq.demo.controller"))
-                .paths(PathSelectors.any())
-                .build();
-    }
-    //构建 api文档的详细信息函数,注意这里的注解引用的是哪个
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("Spring Boot 测试使用 Swagger2 构建RESTful API")
-                .contact(new Contact("EricYang", "https://github.com/yqbjtu/springbootJpa.git", "test@163.com"))
-                .version("1.0")
-                .description("User API 描述")
-                .build();
-    }
+在配置文件中配置，从配置文件读取
 
-    @Override
-    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/swagger-ui.html").addResourceLocations(
-                "classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations(
-                "classpath:/META-INF/resources/webjars/");
-    }
-}
-```
 
 注:在Spring Boot的启动过程中，只能有一个继承WebMvcConfigurationSupport的@Configuration类（使用@EnableMvc效果相同），如果存在多个这样的类，只有一个配置可以生效。对于这个问题，其实可以通过implements WebMvcConfigurer来解决，多个不同的类实现这个接口后的配置都可以正常运行或者合并到一个WebMvcConfigurationSupport中实现
-### Maven打包
-* 如果是mvn package -P dev，这样生成的jar包，启动后可以看到swagger可以正常访问，然后我们使用java -jar xxxx.jar启动
-* 使用mvc package -P prod将代码编译打包，然后我们使用java -jar xxxx.jar启动
 
-## Swagger2相关注解说明
+## Swagger 3
+通过在项目中引入 springfox-boot-starter 依赖，直接使用,也可以通过自带配置可以禁掉Swagger
+URL:http://localhost:8080/swagger-ui/
+### 依赖
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-boot-starter</artifactId>
+        <version>3.0.0</version>
+    </dependency>
+
+### 自带配置项
+![1.png](/swagger/1.png "1.png")
+
+## Swagger相关注解说明
 ```
 @Api：用在请求的类上，表示对类的说明
 	tags="说明该类的作用，可以在UI界面上看到的注解"
@@ -153,3 +242,4 @@ public class Swagger2 extends WebMvcConfigurationSupport {
 			请求参数无法使用@ApiImplicitParam注解进行描述的时候）
 	@ApiModelProperty：用在属性上，描述响应类的属性
 ```
+
