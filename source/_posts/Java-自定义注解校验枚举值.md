@@ -1,6 +1,6 @@
 ---
-title:自定义注解校验
-tags: [注解校验,Hibernate Validator]
+title: 自定义注解-Validator
+tags: [注解校验,HibernateValidator]
 categories: [SpringBoot]
 ---
 

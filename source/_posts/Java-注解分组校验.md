@@ -1,5 +1,5 @@
 ---
-title:自定义注解校验枚举值
+title: 自定义注解校验枚举值
 tags: [注解校验,Hibernate Validator]
 categories: [SpringBoot]
 ---
