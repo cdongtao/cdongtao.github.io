@@ -362,5 +362,9 @@ logger.trace(...);
     <appender-ref ref="RollingFileInfo"/>
 </AsyncLogger>
 
+## 同步与异步的流程图
+### 同步
+![同步](/springBoot/006.png "同步")
 
-
+### 异步
+![异步](/springBoot/007.png "异步")
