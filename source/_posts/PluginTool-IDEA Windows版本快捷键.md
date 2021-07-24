@@ -225,6 +225,17 @@ ctrl+N ： 查找下一个一样得
 ctrl+K： 查走上一个一样得
 ctrl+L：定位行数
 ```
+## 使用IDEA-Git快捷键
+添加新建的文件 即add 操作
+shift + alt + a
 
+提交操作 即 commit操作
+ctrl + k
+
+拉去远程分支操作 即pull操作
+ctrl + t
+
+提交操作 即push操作
+ctrl + shift + k
 
 

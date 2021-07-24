@@ -140,5 +140,17 @@ A中加入 <optional>true</optional>，则B不会继承到 jar 包。
     </dependencies>B
 ```
 
+## POM属性
+用户可以使用该属性引用POM文件中对应元素的值，常用的POM属性包括：
 
+${project.build.sourceDirectory}：项目的主源码目录，默认为 src/main/java
+${project.build.testSourceDirectory}：项目的测试源码目录，默认为 src/test/java
+${project.build.directory}：项目构件输出目录，默认为 target/
+${project.outputDirectory}：项目主代码编译输出目录，默认为 target/classes/
+${project.testOutputDirectory}：项目测试代码编译输出目录，默认为 target/test-classes/
+${project.groupId}：项目的 groupId
+${project.artifactId}：项目的 artifactId
+
+project.version项目的project.version， 与 {project.version}：项目的 version，与project.version：项目的version，与{version}等价
+project.build.finalName： 项 目 打 包 输 出 文 件 的 名 称 。 默 认 为 {project.build.fianlName}：项目打包输出文件的名称。默认为project.build.fianlName：项目打包输出文件的名称。默认为{project.artifactId}-${project.version}
 
