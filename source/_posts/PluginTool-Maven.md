@@ -140,7 +140,19 @@ A中加入 <optional>true</optional>，则B不会继承到 jar 包。
     </dependencies>B
 ```
 
-## POM属性
+## Maven 内置属性使用
+### 内置属性(Maven预定义,用户可以直接使用)
+${basedir}表示项目根目录,即包含pom.xml文件的目录;
+${version}表示项目版本;
+${project.basedir}同 ${basedir};
+${project.baseUri}表示项目文件地址;
+${maven.build.timestamp}表示项目构件开始时间;
+${maven.build.timestamp.format}表示属性 ${maven.build.timestamp}的展示格式,默认值为yyyyMMdd-HHmm,可自定义其格式,其类型可参考java.text.SimpleDateFormat。用法如下：
+<properties>
+	<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+</properties>
+
+### POM属性(使用pom属性可以引用到pom.xml文件对应元素的值)
 用户可以使用该属性引用POM文件中对应元素的值，常用的POM属性包括：
 
 ${project.build.sourceDirectory}：项目的主源码目录，默认为 src/main/java
@@ -153,4 +165,13 @@ ${project.artifactId}：项目的 artifactId
 
 project.version项目的project.version， 与 {project.version}：项目的 version，与project.version：项目的version，与{version}等价
 project.build.finalName： 项 目 打 包 输 出 文 件 的 名 称 。 默 认 为 {project.build.fianlName}：项目打包输出文件的名称。默认为project.build.fianlName：项目打包输出文件的名称。默认为{project.artifactId}-${project.version}
+
+### Java系统属性(所有的Java系统属性都可以使用Maven属性引用)
+使用mvn help:system命令可查看所有的Java系统属性;
+System.getProperties()可得到所有的Java属性;
+${user.home}表示用户目录;
+
+### 环境变量属性(所有的环境变量都可以用以env.开头的Maven属性引用)
+使用mvn help:system命令可查看所有环境变量;
+${env.JAVA_HOME}表示JAVA_HOME环境变量的值;
 
