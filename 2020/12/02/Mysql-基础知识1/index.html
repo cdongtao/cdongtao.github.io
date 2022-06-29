@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="数据库事务四大特性 原子性(Atomicity):一个事务执行过程中包含的各操作要么都成功,要么都不成功 隔离性(Isolation):一个事务的执行不能其它事务干扰;即一个事务内部的操作及使用的数据对其它并发事务是隔离的,并发执行的各个事务之间不能互相干扰 一致性(Durability):事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态;因此当数据库只包含成功事务提交的结果时,就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySql基础知识1">
+<meta property="og:url" content="https://cdongtao.github.io/2020/12/02/Mysql-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/index.html">
+<meta property="og:site_name" content="cdongtao">
+<meta property="og:description" content="数据库事务四大特性 原子性(Atomicity):一个事务执行过程中包含的各操作要么都成功,要么都不成功 隔离性(Isolation):一个事务的执行不能其它事务干扰;即一个事务内部的操作及使用的数据对其它并发事务是隔离的,并发执行的各个事务之间不能互相干扰 一致性(Durability):事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态;因此当数据库只包含成功事务提交的结果时,就">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdongtao.github.io/img/ReadUncommitted.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/ReadCommitted.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/RepeatableRead.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/Serializable.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/insert-Mvcc.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/select-mvcc1.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/select-mvcc2.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/deleted-mvcc1.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/deleted-mvcc2.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/update-mvcc1.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/update-mvcc2.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/innodb%E9%9A%90%E8%97%8F%E5%88%97.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/undolog.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/transaction_MVCC.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/undo_log%E9%93%BE.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/MVCC%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/ReadView.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/snapshot-read.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/current-read.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/%E5%88%86%E6%9E%90undo_log1.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/%E5%88%86%E6%9E%90undo_log2.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/%E5%BF%AB%E7%85%A7%E8%AF%BB%E8%BD%AC%E5%BD%93%E5%89%8D%E8%AF%BB.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/mvcc%E6%80%BB%E7%BB%93.png">
+<meta property="article:published_time" content="2020-12-02T12:15:04.363Z">
+<meta property="article:modified_time" content="2021-03-28T12:32:18.727Z">
+<meta property="article:author" content="cdongtao">
+<meta property="article:tag" content="面试知识">
+<meta property="article:tag" content="Mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdongtao.github.io/img/ReadUncommitted.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="cdongtao" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cdongtao.github.io/2020/12/02/Mysql-基础知识1/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MySql基础知识1 | cdongtao</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cdongtao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cdongtao.github.io/2020/12/02/Mysql-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cdongtao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cdongtao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySql基础知识1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-02 20:15:04" itemprop="dateCreated datePublished" datetime="2020-12-02T20:15:04+08:00">2020-12-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-03-28 20:32:18" itemprop="dateModified" datetime="2021-03-28T20:32:18+08:00">2021-03-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/12/02/Mysql-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/12/02/Mysql-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">26k 字</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">23 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数据库事务四大特性"><a href="#数据库事务四大特性" class="headerlink" title="数据库事务四大特性"></a>数据库事务四大特性</h2><ul>
+<li>原子性(Atomicity):一个事务执行过程中包含的各操作要么都成功,要么都不成功</li>
+<li>隔离性(Isolation):一个事务的执行不能其它事务干扰;即一个事务内部的操作及使用的数据对其它并发事务是隔离的,并发执行的各个事务之间不能互相干扰</li>
+<li>一致性(Durability):事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态;因此当数据库只包含成功事务提交的结果时,就说数据库处于一致性状态;如果数据库系统运行中发生故障,有些事务尚未完成就被迫中断,这些未完成事务对数据库所做的修改有一部分已写入物理数据库,这时数据库就处于一种不正确的状态,或者说是不一致的状态</li>
+<li>持久性(Consistency):指一个事务一旦提交,它对数据库中的数据的改变就应该是永久性的;接下来的其它操作或故障不应该对其执行结果有任何影响</li>
+</ul>
+<h2 id="数据库事务传播机制"><a href="#数据库事务传播机制" class="headerlink" title="数据库事务传播机制"></a>数据库事务传播机制</h2><h3 id="事务传播机制-7种"><a href="#事务传播机制-7种" class="headerlink" title="事务传播机制(7种)"></a>事务传播机制(7种)</h3><h4 id="REQUIRED"><a href="#REQUIRED" class="headerlink" title="REQUIRED"></a>REQUIRED</h4><pre><code>@Transactional(propagation=Propagation.REQUIRED)
+如果外层调用方法,本身有事务,那就加入该事务,没有就新建一个事务</code></pre><h4 id="REQUIRES-NEW"><a href="#REQUIRES-NEW" class="headerlink" title="REQUIRES_NEW"></a>REQUIRES_NEW</h4><pre><code>@Transactional(propagation=Propagation.REQUIRES_NEW)
+不管是否存在事务,都创建一个新的事务,原来的挂起,新的执行完毕,继续执行老的事务</code></pre><h4 id="SUPPORTS"><a href="#SUPPORTS" class="headerlink" title="SUPPORTS"></a>SUPPORTS</h4><pre><code>@Transactional(propagation=Propagation.SUPPORTS)
+如果外层调用方法存在事务,则加入该事务;如果外层调用方法没有事务,则以非事务运行</code></pre><h4 id="NOT-SUPPORTED"><a href="#NOT-SUPPORTED" class="headerlink" title="NOT_SUPPORTED"></a>NOT_SUPPORTED</h4><pre><code>@Transactional(propagation=Propagation.NOT_SUPPORTED)
+以非事务运行,如果外层调用方法存在事务,则事务就挂起;</code></pre><h4 id="MANDATORY"><a href="#MANDATORY" class="headerlink" title="MANDATORY"></a>MANDATORY</h4><pre><code>@Transactional(propagation=Propagation.MANDATORY)
+必须以事务运行执行,否则抛出异常</code></pre><h4 id="NEVER"><a href="#NEVER" class="headerlink" title="NEVER"></a>NEVER</h4><pre><code>@Transactional(propagation=Propagation.NEVER)
+不支持事务,如果存在事务,则抛出异常(与Propagation.MANDATORY相反)</code></pre><h4 id="NESTED"><a href="#NESTED" class="headerlink" title="NESTED"></a>NESTED</h4><pre><code>@Transactional(propagation=Propagation.NESTED)
+如果当前存在事务,则在嵌套事务内执行,类似数据库事务保存点;如果当前没有事务,则执行与PROPAGATION_REQUIRED类似的操作;</code></pre><h3 id="传播机制嵌套事务回滚-3种-情况"><a href="#传播机制嵌套事务回滚-3种-情况" class="headerlink" title="传播机制嵌套事务回滚(3种)情况"></a>传播机制嵌套事务回滚(3种)情况</h3><p>假设一个在事A方法,A方法内部套着一个存在事务B方法</p>
+<h4 id="A-B方法在同一个类"><a href="#A-B方法在同一个类" class="headerlink" title="A/B方法在同一个类"></a>A/B方法在同一个类</h4><pre><code>同一类内的调用,方法存在事务存在问题</code></pre><h4 id="A-B方法不在同一个类影响-如下3种"><a href="#A-B方法不在同一个类影响-如下3种" class="headerlink" title="A/B方法不在同一个类影响(如下3种)"></a>A/B方法不在同一个类影响(如下3种)</h4><pre><code>不同类内的方法事务调用存在问题:关键分析被调用事务使用与主动调用方式</code></pre><h5 id="REQUIRED-1"><a href="#REQUIRED-1" class="headerlink" title="REQUIRED"></a>REQUIRED</h5><pre><code>外层调用方法和内层调用方法,有异常一起回滚,没问题一起提交</code></pre><h5 id="REQUIRES-NEW-1"><a href="#REQUIRES-NEW-1" class="headerlink" title="REQUIRES_NEW"></a>REQUIRES_NEW</h5><pre><code>两个事务相互独立,互不干扰:外层的异常不会干扰内层,内层的异常不会干扰外层</code></pre><h5 id="NESTED-1"><a href="#NESTED-1" class="headerlink" title="NESTED"></a>NESTED</h5><pre><code>外层异常可以干扰内存回滚,内层异常不会干扰外层</code></pre><h2 id="事务隔离级别-4种"><a href="#事务隔离级别-4种" class="headerlink" title="事务隔离级别(4种)"></a>事务隔离级别(4种)</h2><h3 id="隔离级别解决的问题"><a href="#隔离级别解决的问题" class="headerlink" title="隔离级别解决的问题"></a>隔离级别解决的问题</h3><table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Read Uncommitted</td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Read Committed</td>
+<td>NO</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Repeatable Read</td>
+<td>NO</td>
+<td>NO</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Serializable</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+</tbody></table>
+<h3 id="Read-Uncommitted-未提交读"><a href="#Read-Uncommitted-未提交读" class="headerlink" title="Read Uncommitted(未提交读)"></a>Read Uncommitted(未提交读)</h3><p>set session transaction isolation level read uncommitted;<br>查看隔离级别是否设置成功<br>select @@transaction_isolation (mysql版本 8.0 以后)<br>select @@tx_isolation (mysql版本 8.0 之前)</p>
+<table>
+<thead>
+<tr>
+<th>加锁表达</th>
+<th>ReadUncommitted(未提交读)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/img/ReadUncommitted.png" alt="未提交读" title="未提交读"></td>
+<td><font color='red'> A:启动事务,此时数据为初始状态<br>B:启动事务,更新数据,但不提交<br>A:再次读取数据,发现数据已经被修改了,这就是所谓的“脏读”<br>B:回滚事务<br>A:再次读数据,发现数据变回初始状态</font></td>
+</tr>
+</tbody></table>
+<h3 id="Read-Committed-已提交读"><a href="#Read-Committed-已提交读" class="headerlink" title="Read Committed(已提交读)"></a>Read Committed(已提交读)</h3><p>set session transaction isolation level read committed;</p>
+<table>
+<thead>
+<tr>
+<th>加锁表达</th>
+<th>ReadUncommitted(未提交读)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/img/ReadCommitted.png" alt="读取已提交" title="读取已提交"></td>
+<td><font color='red'> A:启动事务,此时数据为初始状态<br>B:启动事务,更新数据,但不提交<br>A:再次读数据,发现数据未被修改<br>B:提交事务<br>A:再次读取数据,发现数据已发生变化,说明B提交的修改被事务中的A读到了,这就是所谓的“不可重复读”</font></td>
+</tr>
+</tbody></table>
+<p>已提交读隔离级别解决了脏读的问题,但是出现了不可重复读的问题,即事务A在两次查询的数据不一致,因为在两次查询之间事务B更新了一条数据。已提交读只允许读取已提交的记录,但不要求可重复读。</p>
+<h3 id="Repeatable-Read-可重复读"><a href="#Repeatable-Read-可重复读" class="headerlink" title="Repeatable Read(可重复读)"></a>Repeatable Read(可重复读)</h3><table>
+<thead>
+<tr>
+<th>加锁表达</th>
+<th>RepeatableRead(可重复读)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/img/RepeatableRead.png" alt="可重复读" title="可重复读"></td>
+<td><font color='red'> A:启动事务,此时数据为初始状态<br>B:启动事务,更新数据,但不提交<br>A:再次读数据,发现数据未被修改<br>B:提交事务<br>A:再次读取数据,发现数据依然未发生变化,这说明这次可以重复读了<br>B:插入一条新的数据,并提交<br>A:再次读取数据,发现数据依然未发生变化,虽然可以重复读了,但是却发现读的不是最新数据,这就是所谓的“幻读”<br>A:提交本次事务,再次读取数据,发现读取正常了<br></font></td>
+</tr>
+</tbody></table>
+<p>“幻读”指在一次事务里面,多次查询之后,结果集的个数不一致的情况叫做幻读。而多或者少的那一行被叫做幻行</p>
+<ul>
+<li>为什么要解决幻读？在高并发数据库系统中,需要保证事务与事务之间的隔离性,还有事务本身的一致性。</li>
+</ul>
+<h3 id="Serializable-可串行化"><a href="#Serializable-可串行化" class="headerlink" title="Serializable(可串行化)"></a>Serializable(可串行化)</h3><table>
+<thead>
+<tr>
+<th>加锁表达</th>
+<th>ReadUncommitted(未提交读)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/img/Serializable.png" alt="可串行化" title="可串行化"></td>
+<td><font color='red'> A:启动事务,此时数据为初始状态<br>B:发现B此时进入了等待状态,原因是因为A的事务尚未提交,只能等待(此时,B可能会发生等待超时)<br>A:提交事务<br>B:发现插入成功</font></td>
+</tr>
+</tbody></table>
+<p>serializable完全锁定字段,若一个事务来查询同一份数据就必须等待,直到前一个事务完成并解除锁定为止。是完整的隔离级别,会锁定对应的数据表格,因而会有效率的问题。</p>
+<h2 id="MCVV-简化分析"><a href="#MCVV-简化分析" class="headerlink" title="MCVV(简化分析)"></a>MCVV(简化分析)</h2><p>MVCC即Multi-Version Concurrency Control(多版本并发控制), MySQL的大多数事务型存储引擎实现的都不是简单的行级锁。基于提升并发性能的考虑,它们一般都同时实现了多版本并发控制(MVCC)。不仅是MySQL,包括Oracle、PostgreSQL等其他数据库系统也都实现了MVCC,但各自的实现机制不尽相同,因为MVCC没有一个统一的实现标准。可以认为MVCC是行级锁的一个变种,但是它在很多情况下避免了加锁操作,因此开销更低。虽然实现机制有所不同,但大都实现了非阻塞的读操作,写操作也只锁定必要的行。Mysql只在READ COMMITTED和READ COMMITTED两个隔离级别下工作。其他两个隔离级别和MVCC不兼容, 因为READ UNCOMMITTED总是读取最新的数据行, 而不是符合当前事务版本的数据行。而 SERIALIZABLE则会对所有读取的行都加锁。Serializable(可串行化)隔离级别,虽然不会出错,但是效率实在太低了,不能并发;在MYSQL中,MyISAM使用的是表锁,InnoDB使用的是行锁.而InnoDB的事务分为四个隔离级别,<font color='red'>其中默认的隔离级别REPEATABLE READ需要两个不同的事务相互之间不能影响,而且还能支持并发,这点悲观锁是达不到的,所以REPEATABLE READ采用的就是乐观锁,而乐观锁的实现采用的就是MVCC控制并发(认为是行级锁一个变种);正是因为有了MVCC,才造就InnoDB强大的事务处理能力(注:MVCC实现非堵塞读操作,写操作也只锁定必要行数据,防止写-写冲突)</font></p>
+<h3 id="Mysql的MVCC是解决了什么问题"><a href="#Mysql的MVCC是解决了什么问题" class="headerlink" title="Mysql的MVCC是解决了什么问题?"></a>Mysql的MVCC是解决了什么问题?</h3><p>MVCC解决了在REPEATABLE READ和READ COMMITTED两个隔离级别下读同一行和写同一行的多个事务的并发读数据问题,并没解决重复读与幻读,幻读;</p>
+<h2 id="MVCC原理分析-入门简化版本"><a href="#MVCC原理分析-入门简化版本" class="headerlink" title="MVCC原理分析(入门简化版本)"></a>MVCC原理分析(入门简化版本)</h2><p><font color='red'>InnoDB的MVCC,是通过在每行记录后面保存两个隐藏的列来实现的,这两个列分别是保存了行的创建时间(系统版本号)和行的删除时间(系统版本号)</font>这里存储的并不是实际的时间值,而是系统版本号(可以理解为事务的ID),每开始一个新的事务,系统版本号就会自动递增,事务开始时刻的系统版本号会作为事务的ID.下面看一下在REPEATABLE READ/READ COMMITTED隔离级别下,MVCC具体是如何操作的。</p>
+<h3 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a>INSERT</h3><ul>
+<li>insert操作:将新插入的行保存当前版本号为行版本号</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>执行事务ID=1</th>
+<th>执行事务ID=1结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>start transaction; <br>insert into yang values(NULL,’yang’);<br>insert into yang values(NULL,’long’);<br>insert into yang values(NULL,’fei’);<br>commit;</td>
+<td><img src="/img/insert-Mvcc.png" alt="insert-Mvcc" title="insert-Mvcc"></td>
+</tr>
+</tbody></table>
+<h3 id="SELECT操作"><a href="#SELECT操作" class="headerlink" title="SELECT操作"></a>SELECT操作</h3><ul>
+<li>SELECT操作:InnoDB会根据以下两个条件检查每行记录:<br><font color='red'>1.InnoDB只会查找版本(DB_TRX_ID)早于当前事务版本的数据行(也就是,当前事务的系统版本号&gt;=记录里数据行的创建系统版本号),这样可以确保事务读取的行,要么是在事务开始前已经存在的,要么是事务自身插入或者修改过的.</li>
+<li>2.当前事务版本号 &lt; 行的删除版本(DB_ROLL_PTR)或未定义(未更新过)(这可以确保事务读取到的行,在事务开始之前未被删除)<br>只有条件1、2同时满足的记录:记录里数据行的创建系统版本号 &lt;= 当前事务的系统版本号 &lt; 行的删除版本(DB_ROLL_PTR),才能返回作为查询结果</font></li>
+</ul>
+<p>假设在执行这个事务ID=2的第一行,这时有另一个事务ID=3往这个表里插入了一条数据; 第三个事务ID为3</p>
+<table>
+<thead>
+<tr>
+<th>执行事务ID=2</th>
+<th>执行事务ID=3</th>
+<th>执行事务ID=3结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>start transaction; <br>select * from yang; <br>select * from yang; <br>commit;</td>
+<td>start transaction;<br>insert into yang values(NULL,’tian’);<br>commit;</td>
+<td><img src="/img/select-mvcc1.png" alt="select-mvcc1" title="select-mvcc1"></td>
+</tr>
+</tbody></table>
+<p>然后接着执行事务ID=2中的第二行,由于id=4的数据的创建时间(事务ID为3),执行当前事务的ID=2,而InnoDB只会查找事务ID小于等于当前事务ID的数据行,所以数据id=4行并不会在执行事务ID=2中的第二行时被检索出来,在事务ID=2中的两条select 语句检索出来的数据如下:</p>
+<table>
+<thead>
+<tr>
+<th>执行事务ID=2结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/img/select-mvcc2.png" alt="select-mvcc2" title="select-mvcc2"></td>
+</tr>
+</tbody></table>
+<h3 id="DELETE操作"><a href="#DELETE操作" class="headerlink" title="DELETE操作"></a>DELETE操作</h3><ul>
+<li>delete操作:将删除的行保存当前版本号为删除标识</li>
+</ul>
+<p>假设在执行这个事务ID=2的第一行,假设事务执行完事务ID=3后,接着又执行了事务ID=4; </p>
+<table>
+<thead>
+<tr>
+<th>执行事务ID=4</th>
+<th>执行事务ID=4结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>start transaction; <br>delete from yang where id=1;<br>commit;</td>
+<td><img src="/img/deleted-mvcc1.png" alt="deleted-mvcc1" title="deleted-mvcc1"></td>
+</tr>
+</tbody></table>
+<p>接着执行事务ID=2的事务第二行,根据SELECT 检索条件可以知道,它会检索创建时间(创建事务的ID)小于当前事务ID的行和删除时间(删除事务的ID)大于当前事务的行,而id=4的行上面已经说过,而id=1的行由于删除时间(删除事务的ID)大于当前事务的ID,所以事务ID=2的第二行select * from yang也会把id=1的数据检索出来.所以,事务ID=2中的两条select 语句检索出来的数据都如下:</p>
+<table>
+<thead>
+<tr>
+<th>执行事务ID=2结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/img/deleted-mvcc2.png" alt="deleted-mvcc2" title="deleted-mvcc2"></td>
+</tr>
+</tbody></table>
+<h3 id="UPDATE操作"><a href="#UPDATE操作" class="headerlink" title="UPDATE操作"></a>UPDATE操作</h3><ul>
+<li>update操作:变为insert和delete操作的组合,insert的行保存当前版本号为行版本号,delete则保存当前版本号到原来的行作为删除标识</li>
+</ul>
+<p>假设在执行完事务ID=2的第一行时,其它用户执行了事务ID=3,ID=4,这时,又有一个用户对这张表执行了ID=5,UPDATE事务后,继续执行事务ID=2,根据select 语句的检索条件</p>
+<table>
+<thead>
+<tr>
+<th>执行事务ID=5</th>
+<th>执行事务ID=5结果</th>
+<th>执行事务ID=2结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>start transaction; <br>update yang set name=’Long’ where id=2;<br>commit;</td>
+<td><img src="/img/update-mvcc1.png" alt="update-mvcc1" title="update-mvcc1"></td>
+<td><img src="/img/update-mvcc2.png" alt="update-mvcc2" title="update-mvcc2"></td>
+</tr>
+</tbody></table>
+<p>注:<font color='red'>由于旧数据并不真正的删除,所以必须对这些数据进行清理,innodb会开启一个后台purge线程执行清理工作,具体的规则是将删除版本号小于当前系统版本的行删除</font></p>
+<h2 id="MCVV深入分析"><a href="#MCVV深入分析" class="headerlink" title="MCVV深入分析"></a>MCVV深入分析</h2><h3 id="Innodb中的隐藏列"><a href="#Innodb中的隐藏列" class="headerlink" title="Innodb中的隐藏列"></a>Innodb中的隐藏列</h3><p>InnoDB的内部实现中为每一行数据增加了三个隐藏列用于实现MVCC<br><img src="/img/innodb%E9%9A%90%E8%97%8F%E5%88%97.png" alt="innodb隐藏列" title="innodb隐藏列"></p>
+<ul>
+<li>DB_TRX_ID: 事务id(6byte),每处理一个事务,值自动加一;InnoDB中每个事务有一个唯一的事务ID叫做 transaction id。在事务开始时向InnoDB事务系统申请得到,是按申请顺序严格递增的.每行数据是有多个版本的,每次事务更新数据时都会生成一个新的数据版本,并且把transaction id赋值给这个数据行的DB_TRX_ID.</li>
+<li>DB_ROLL_PT: 回滚指针(7byte),指向当前记录的ROLLBACK SEGMENT 的undolog记录,通过这个指针获得之前版本的数据。该行记录上所有旧版本在 undolog 中都通过链表的形式组织．</li>
+<li>DB_ROW_ID:(隐含id,6byte,由innodb自动产生),我们可能听说过InnoDB下聚簇索引B+Tree的构造规则:如果声明了主键,InnoDB以用户指定的主键构建B+Tree,如果未声明主键,InnoDB 会自动生成一个隐藏主键,说的就是DB_ROW_ID。另外,每条记录的头信息(record header)里都有一个专门的bit(deleted_flag)来表示当前记录是否已经被删除</li>
+</ul>
+<h3 id="redo-log与undo-log"><a href="#redo-log与undo-log" class="headerlink" title="redo log与undo log"></a>redo log与undo log</h3><h4 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h4><p>redo log就是保存执行的SQL语句到一个指定的Log文件，当Mysql执行recovery时重新执行redo log记录的SQL操作即可。当客户端执行每条SQL（更新语句）时，redo log会被首先写入log buffer；当客户端执行COMMIT命令时，log buffer中的内容会被视情况刷新到磁盘。redo log在磁盘上作为一个独立的文件存在，即Innodb的log文件。</p>
+<h4 id="undo-log"><a href="#undo-log" class="headerlink" title="undo log"></a>undo log</h4><p>与redo log相反，undo log是为回滚而用，具体内容就是copy事务前的数据库内容（行）到undo buffer，在适合的时间把undo buffer中的内容刷新到磁盘。undo buffer与redo buffer一样，也是环形缓冲，但当缓冲满的时候，undo buffer中的内容会也会被刷新到磁盘；与redo log不同的是，磁盘上不存在单独的undo log文件，所有的undo log均存放在主ibd数据文件中（表空间），即使客户端设置了每表一个数据文件也是如此。</p>
+<h3 id="Undo-log工作过程"><a href="#Undo-log工作过程" class="headerlink" title="Undo log工作过程"></a>Undo log工作过程</h3><p>在不考虑redo log 的情况下利用undo log工作的简化过程为:<br><img src="/img/undolog.png" alt="undolog" title="undolog"><br>注:<font color='red'>undo log的持久化必须在在数据持久化之前,这样才能保证系统崩溃时,可以用undo log来回滚事务</font></p>
+<h3 id="Undo-log链分析"><a href="#Undo-log链分析" class="headerlink" title="Undo log链分析"></a>Undo log链分析</h3><p><img src="/img/transaction_MVCC.png" alt="transaction_MVCC" title="transaction_MVCC"><br>图的UPDATE(即操作2)来举例Undo log链的构建(假设第一行数据DB_ROW_ID=1)：</p>
+<ul>
+<li>事务A对DB_ROW_ID=1这一行加排它锁</li>
+<li>将修改行原本的值拷贝到Undo log中</li>
+<li>修改目标值产生一个新版本,将DB_TRX_ID设为当前事务ID即100,将DB_ROLL_PT指向拷贝到Undo log中的旧版本记录</li>
+<li>记录redo log, binlog</li>
+</ul>
+<p>最终生成的Undo log链如下图所示:<br><img src="/img/undo_log%E9%93%BE.png" alt="undo_log链" title="undo_log链"><br>相比与UPDATE,INSERT和DELETE都比较简单:</p>
+<ul>
+<li>INSERT: 产生一条新的记录,该记录的DB_TRX_ID为当前事务ID</li>
+<li>DELETE: 特殊的UPDATE,在DB_TRX_ID上记录下当前事务的ID,同时将delete_flag设为true,在执行commit时才进行删除操作</li>
+</ul>
+<h3 id="ReadView-一致性视图-判断当前版本数据项是否可见"><a href="#ReadView-一致性视图-判断当前版本数据项是否可见" class="headerlink" title="ReadView(一致性视图)判断当前版本数据项是否可见"></a>ReadView(一致性视图)判断当前版本数据项是否可见</h3><p><img src="/img/MVCC%E7%AE%97%E6%B3%95.png" alt="判断当前版本数据项是否可见" title="判断当前版本数据项是否可见"><br>在innodb中,创建一个新事务的时候,innodb会将当前系统中的活跃事务列表(trx_sys-&gt;trx_list)创建一个副本(read view),副本中保存的是系统当前不应该被本事务看到的其他事务id列表。当用户在这个事务中要读取该行记录的时候,innodb会将该行当前的版本号与该read view进行比较。<br>具体的算法如下:</p>
+<p>1.设该行的当前事务id为trx_id_0,read view中最早的事务id为trx_id_1, 最迟的事务id为trx_id_2。<br>2.如果trx_id_0&lt; trx_id_1的话,那么表明该行记录所在的事务已经在本次新事务创建之前就提交了,所以该行记录的当前值是可见的。跳到步骤6.<br>3.如果trx_id_0&gt;trx_id_2的话,那么表明该行记录所在的事务在本次新事务创建之后才开启,所以该行记录的当前值不可见.跳到步骤5。<br>4.如果trx_id_1&lt;=trx_id_0&lt;=trx_id_2, 那么表明该行记录所在事务在本次新事务创建的时候处于活动状态,从trx_id_1到trx_id_2进行遍历,如果trx_id_0等于他们之中的某个事务id的话,那么不可见。跳到步骤5.<br>5.从该行记录的DB_ROLL_PTR指针所指向的回滚段中取出最新的undo-log的版本号,将它赋值该trx_id_0,然后跳到步骤2.<br>6.将该可见行的值返回</p>
+<h4 id="ReadView-一致性视图"><a href="#ReadView-一致性视图" class="headerlink" title="ReadView(一致性视图)"></a>ReadView(一致性视图)</h4><p>InnoDB为每一个事务构造了一个数组m_ids用于保存快照读生成瞬间当前所有活跃事务(开始但未提交事务)的ID,将数组中事务ID最小值记为低水位m_up_limit_id,当前系统中已创建事务ID最大值+1记为高水位m_low_limit_id,构成如图所示:<br><img src="/img/ReadView.png" alt="ReadView" title="ReadView"></p>
+<p>一致性视图的流程如下:</p>
+<ul>
+<li>当查询发生时根据以上条件生成ReadView,该查询操作遍历Undo log链,根据当前被访问版本(可以理解为Undo log链中每一个记录即一个版本,遍历都是从最新版本向老版本遍历)的DB_TRX_ID,如果DB_TRX_ID小于m_up_limit_id,则该版本在ReadView生成前就已经完成提交,该版本可以被当前事务访问。DB_TRX_ID在绿色范围内的可以被访问</li>
+<li>若被访问版本的DB_TRX_ID大于m_up_limit_id,说明该版本在ReadView生成之后才生成,因此该版本不能被访问,根据当前版本指向上一版本的指针DB_ROLL_PT访问上一个版本,继续判断。DB_TRX_ID在蓝色范围内的都不允许被访问</li>
+<li>若被访问版本的DB_TRX_ID在[m_up_limit_id, m_low_limit_id)区间内,则判断DB_TRX_ID是否等于当前事务ID,等于则证明是当前事务做的修改,可以被访问,否则不可被访问, 继续向上寻找。只有DB_TRX_ID等于当前事务ID才允许访问橙色范围内的版本</li>
+<li>最后,还要确保满足以上要求的可访问版本的数据的delete_flag不为true,否则查询到的就会是删除的数据。<br>以上总结就是只有当前事务修改的未commit版本和所有已提交事务版本允许被访问</li>
+</ul>
+<h4 id="Read-Committed与Repeatable-Read的一致性视图-ReadView-区别"><a href="#Read-Committed与Repeatable-Read的一致性视图-ReadView-区别" class="headerlink" title="Read Committed与Repeatable Read的一致性视图(ReadView)区别"></a>Read Committed与Repeatable Read的一致性视图(ReadView)区别</h4><p>READ COMMITTD、REPEATABLE READ这两个隔离级别的一个很大不同就是生成ReadView的时机不同</p>
+<h4 id="Read-Committed的ReadView"><a href="#Read-Committed的ReadView" class="headerlink" title="Read Committed的ReadView"></a>Read Committed的ReadView</h4><p>在read committed级别下,readview会在事务中的<font color='red'>每一个SELECT语句查询发送前生成(也可以在声明事务时显式声明START TRANSACTION WITH CONSISTENT SNAPSHOT)。</font>因此每次SELECT都可以获取到当前已提交事务和自己修改的最新版本。</p>
+<h4 id="Repeatable-Read的ReadView"><a href="#Repeatable-Read的ReadView" class="headerlink" title="Repeatable Read的ReadView"></a>Repeatable Read的ReadView</h4><p>在repeatable read级别下,<font color='red'>每个事务只会在第一个SELECT语句查询发送前或显式声明处生成,其他查询操作都会基于这个ReadView。</font>这样就保证了一个事务中的多次查询结果都是相同的,因为他们都是基于同一个ReadView下进行MVCC机制的查询操作。</p>
+<h3 id="快照读-snapshot-read-与当前读-current-read"><a href="#快照读-snapshot-read-与当前读-current-read" class="headerlink" title="快照读(snapshot read)与当前读(current read)"></a>快照读(snapshot read)与当前读(current read)</h3><p>MySQL数据库支持两种读操作快照读(snapshot read)和当前读(current read)解决幻读</p>
+<h4 id="快照读-snapshot-read"><a href="#快照读-snapshot-read" class="headerlink" title="快照读(snapshot read)"></a>快照读(snapshot read)</h4><ul>
+<li><font color='red'>所有的快照读都依赖MVCC机制,读取特定的历史版本数据;<font color='red'>简单的select不加X锁/S锁操作,属于快照读(当然也有例外select加锁,如select … lock in share mode, select … for update)</font></li>
+<li>作用:在快照读读情况下,mysql通过mvcc来避免幻读;innodb的默认事务隔离级别是rr(可重复读),它的实现技术是mvcc(MVCC只在读提交可重复读两种隔离级别下工作),基于版本的控制协议。快照读不仅可以保证innodb的可重复读,而且可以防止幻读。但是它防止的是快照读,也就是读取的数据虽然是一致的,但是数据是历史数据</font></li>
+</ul>
+<p><img src="/img/snapshot-read.png" alt="snapshot-read" title="snapshot-read"></p>
+<h4 id="当前读-current-read"><a href="#当前读-current-read" class="headerlink" title="当前读(current read)"></a>当前读(current read)</h4><p>MySQL InnoDB的可重复读并不保证避免幻读,当前读情况下,需要使用加锁读来保证。而这个加锁度使用到的机制就是next-key locks。</p>
+<ul>
+<li><font color='red'>特殊的读操作(加锁读操作),读取当前最新的数据;insert/update/delete操作,需要加锁(X锁/S锁:select … lock in share mode, select … for update),属于当前读</li>
+<li>作用:如何做到保证数据是一致的(也就是一个事务,其内部读取对应某一个数据的时候,数据都是一样的),同时读取的数据是最新的数据。mysql innodb提供了Next-Key Lock机制来避免幻读;这是由行锁和Gap锁组成,在使用范围条件检索并锁定记录时,InnoDB这种加锁机制会阻塞符合条件范围内键值的并发插入,这往往会造成严重的锁等待。Gap锁在InnoDB的唯一作用就是防止其它事务的插入操作,以此来达到防止幻读的发生,所以间隙锁不分什么共享锁与排它锁</font></li>
+</ul>
+<p><img src="/img/current-read.png" alt="current-read" title="current-read"></p>
+<h4 id="例子分析"><a href="#例子分析" class="headerlink" title="例子分析"></a>例子分析</h4><p>比方说现在系统里有两个id分别为100、200的事务在执行:</p>
+<table>
+<thead>
+<tr>
+<th>Transaction 100</th>
+<th>Transaction 200</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BEGIN;<br>UPDATE t SET c = ‘关羽’ WHERE id = 1;<br>UPDATE t SET c = ‘张飞’ WHERE id = 1;</td>
+<td>BEGIN;<br>操作(更新了一些别的表的记录)<br>UPDATE t SET c = ‘赵云’ WHERE id = 1;<br>UPDATE t SET c = ‘诸葛亮’ WHERE id = 1;</td>
+</tr>
+</tbody></table>
+<p><img src="/img/%E5%88%86%E6%9E%90undo_log1.png" alt="分析undo_log1" title="分析undo_log1"></p>
+<h5 id="使用READ-COMMITTED隔离级别的事务"><a href="#使用READ-COMMITTED隔离级别的事务" class="headerlink" title="使用READ COMMITTED隔离级别的事务"></a>使用READ COMMITTED隔离级别的事务</h5><pre><code>BEGIN;
+//SELECT1：Transaction 100、200未提交
+SELECT * FROM t WHERE id = 1; # 得到的列c的值为&apos;刘备&apos;</code></pre><p>这个SELECT1的执行过程如下:</p>
+<ul>
+<li>在执行SELECT语句时会先生成一个ReadView，ReadView的m_ids列表的内容就是[100, 200]。</li>
+<li>然后从版本链中挑选可见的记录，从图中可以看出，最新版本的列c的内容是’张飞’，该版本的trx_id值为100，在m_ids列表内，所以不符合可见性要求，根据roll_pointer跳到下一个版本。</li>
+<li>下一个版本的列c的内容是’关羽’，该版本的trx_id值也为100，也在m_ids列表内，所以也不符合要求，继续跳到下一个版本。</li>
+<li>下一个版本的列c的内容是’刘备’，该版本的trx_id值为80，小于m_ids列表中最小的事务id100，所以这个版本是符合要求的，最后返回给用户的版本就是这条列c为’刘备’的记录。</li>
+</ul>
+<p>之后，我们把事务id为100的事务提交一下，就像这样：<br><img src="/img/%E5%88%86%E6%9E%90undo_log2.png" alt="分析undo_log2" title="分析undo_log2"></p>
+<h5 id="REPEATABLE-READ隔离级别的事务"><a href="#REPEATABLE-READ隔离级别的事务" class="headerlink" title="REPEATABLE READ隔离级别的事务"></a>REPEATABLE READ隔离级别的事务</h5><pre><code>//使用REPEATABLE READ隔离级别的事务中继续查找这个id为1的记录:
+BEGIN;
+//SELECT1：Transaction 100、200均未提交
+SELECT * FROM t WHERE id = 1; # 得到的列c的值为&apos;刘备&apos;
+//SELECT2：Transaction 100提交，Transaction 200未提交
+SELECT * FROM t WHERE id = 1; # 得到的列c的值仍为&apos;刘备&apos;</code></pre><p>这个SELECT2的执行过程如下：</p>
+<ul>
+<li>因为之前已经生成过ReadView了，所以此时直接复用之前的ReadView，之前的ReadView中的m_ids列表就是[100, 200]。</li>
+<li>然后从版本链中挑选可见的记录，从图中可以看出，最新版本的列c的内容是’诸葛亮’，该版本的trx_id值为200，在m_ids列表内，所以不符合可见性要求，根据roll_pointer跳到下一个版本。</li>
+<li>下一个版本的列c的内容是’赵云’，该版本的trx_id值为200，也在m_ids列表内，所以也不符合要求，继续跳到下一个版本。</li>
+<li>下一个版本的列c的内容是’张飞’，该版本的trx_id值为100，而m_ids列表中是包含值为100的事务id的，所以该版本也不符合要求，同理下一个列c的内容是’关羽’的版本也不符合要求。继续跳到下一个版本。</li>
+<li>下一个版本的列c的内容是’刘备’，该版本的trx_id值为80，80小于m_ids列表中最小的事务id100，所以这个版本是符合要求的，最后返回给用户的版本就是这条列c为’刘备’的记录。</li>
+</ul>
+<p>也就是说两次SELECT查询得到的结果是重复的，记录的列c值都是’刘备’，这就是可重复读的含义。如果我们之后再把事务id为200的记录提交了，之后再到刚才使用REPEATABLE READ隔离级别的事务中继续查找这个id为1的记录，得到的结果还是’刘备’，具体执行过程自己分析一下。</p>
+<h5 id="MySQL-InnoDB-引擎-RR-隔离级别是否解决了幻读"><a href="#MySQL-InnoDB-引擎-RR-隔离级别是否解决了幻读" class="headerlink" title="MySQL InnoDB 引擎 RR 隔离级别是否解决了幻读"></a>MySQL InnoDB 引擎 RR 隔离级别是否解决了幻读</h5><p>Mysql官方给出的幻读解释是：只要在一个事务中，第二次select多出了row就算幻读。<br>a事务先select，b事务insert确实会加一个gap锁，但是如果b事务commit，这个gap锁就会释放（释放后a事务可以随意dml操作），a事务再select出来的结果在MVCC下还和第一次select一样，接着a事务不加条件地update，这个update会作用在所有行上（包括b事务新加的），a事务再次select就会出现b事务中的新行，并且这个新行已经被update修改了，实测在RR级别下确实如此。</p>
+<ul>
+<li>T1 select 之后 update，会将 T2 中 insert 的数据一起更新，那么认为多出来一行，所以防不住幻读。但是其实这种方式是一种 bad case<br><img src="/img/%E5%BF%AB%E7%85%A7%E8%AF%BB%E8%BD%AC%E5%BD%93%E5%89%8D%E8%AF%BB.png" alt="快照读转当前读" title="快照读转当前读"></li>
+</ul>
+<h3 id="Mysql的MVCC实现原理的深刻反思"><a href="#Mysql的MVCC实现原理的深刻反思" class="headerlink" title="Mysql的MVCC实现原理的深刻反思"></a>Mysql的MVCC实现原理的深刻反思</h3><h4 id="理想MVCC有下面几个特点"><a href="#理想MVCC有下面几个特点" class="headerlink" title="理想MVCC有下面几个特点"></a>理想MVCC有下面几个特点</h4><ul>
+<li>每行数据都存在一个版本，每次数据更新时都更新该版本</li>
+<li>修改时Copy出当前版本, 然后随意修改，各个事务之间无干扰</li>
+<li>保存时比较版本号，如果成功(commit)，则覆盖原记录, 失败则放弃copy(rollback)</li>
+<li>就是每行都有版本号，保存时根据版本号决定是否成功，听起来含有乐观锁的味道, 因为这看起来正是，在提交的时候才能知道到底能否提交成功</li>
+</ul>
+<h4 id="InnoDB实现MVCC的方式是"><a href="#InnoDB实现MVCC的方式是" class="headerlink" title="InnoDB实现MVCC的方式是:"></a>InnoDB实现MVCC的方式是:</h4><ul>
+<li>事务以排他锁的形式修改原始数据</li>
+<li>把修改前的数据存放于undo log，通过回滚指针与主数据关联</li>
+<li>修改成功（commit）啥都不做，失败则恢复undo log中的数据（rollback）</li>
+</ul>
+<h4 id="二者最本质的区别是-当修改数据时是否要排他锁定，如果锁定了还算不算是MVCC？"><a href="#二者最本质的区别是-当修改数据时是否要排他锁定，如果锁定了还算不算是MVCC？" class="headerlink" title="二者最本质的区别是: 当修改数据时是否要排他锁定，如果锁定了还算不算是MVCC？"></a>二者最本质的区别是: 当修改数据时是否要排他锁定，如果锁定了还算不算是MVCC？</h4><p>　　Innodb的实现真算不上MVCC,因为并没有实现核心的多版本共存,undo log中的内容只是串行化的结果,记录了多个事务的过程,不属于多版本共存。但理想的MVCC是难以实现的,当事务仅修改一行记录使用理想的MVCC模式是没有问题的,可以通过比较版本号进行回滚;但当事务影响到多行数据时,理想的MVCC据无能为力了。<br>　　比如,如果Transaciton1执行理想的MVCC,修改Row1成功,而修改Row2失败,此时需要回滚Row1,但因为Row1没有被锁定,其数据可能又被Transaction2所修改,如果此时回滚Row1的内容,则会破坏Transaction2的修改结果,导致Transaction2违反ACID。<br>    理想MVCC难以实现的根本原因在于企图通过乐观锁代替二段提交。修改两行数据,但为了保证其一致性,与修改两个分布式系统中的数据并无区别,<br>而二提交是目前这种场景保证一致性的唯一手段。二段提交的本质是锁定,乐观锁的本质是消除锁定,二者矛盾,故理想的MVCC难以真正在实际中被应<br>用,Innodb只是借了MVCC这个名字,提供了读的非阻塞而已</p>
+<p><img src="/img/mvcc%E6%80%BB%E7%BB%93.png" alt="mvcc总结" title="mvcc总结"></p>
+<h2 id="数据库锁粒度"><a href="#数据库锁粒度" class="headerlink" title="数据库锁粒度"></a>数据库锁粒度</h2><h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>　　乐观锁大多是基于数据版本记录机制实现，一般是给数据库表增加一个”version”字段。读取数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。不需要对数据加锁也能取准确数据;如MVCC;</p>
+<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><pre><code>悲观锁依靠数据库提供的锁机制实现。MySQL中的共享锁和排它锁都是悲观锁。数据库的增删改操作默认都会加排他锁，而查询不会加任何锁</code></pre><h3 id="X锁-写锁-排他锁-Exclusive-Lock"><a href="#X锁-写锁-排他锁-Exclusive-Lock" class="headerlink" title="X锁/写锁/排他锁(Exclusive Lock)"></a>X锁/写锁/排他锁(Exclusive Lock)</h3><p>　　….for update 是加写锁,一行数据上只能有一个写锁,读写互斥;排它锁指的就是对于多个不同的事务，对同一个资源只能有一把锁。对某一资源加排它锁，自身可以进行增删改查，其他人无法进行加锁操作，更无法进行增删改操作。</p>
+<h3 id="S锁-读锁-共享锁-Share-lock"><a href="#S锁-读锁-共享锁-Share-lock" class="headerlink" title="S锁/读锁/共享锁(Share lock)"></a>S锁/读锁/共享锁(Share lock)</h3><p>　　….lock in share mode 是加读锁,一行数据上可以加多个读锁,读写互斥;共享锁指的就是对于多个不同的事务，对于一个资源共享同一个锁。对某一资源加共享锁，自身可可读该资源，其他人也可以读该资源(也可以再加共享锁，即共享锁共享多个内存)，但无法修改。要想修改就必须等所有共享锁都释放完之后。</p>
+<h3 id="表级锁-锁变表"><a href="#表级锁-锁变表" class="headerlink" title="表级锁:锁变表"></a>表级锁:锁变表</h3><p>　　表锁就是对一张表进行加锁，操作对象是数据表。Mysql大多数锁策略都支持(常见mysql innodb)，是系统开销最低但并发性最低的一个锁策略。事务t对整个表加读锁，则其他事务可读不可写，若加写锁，则其他事务增删改都不行。</p>
+<h4 id="Next-Key-Lock"><a href="#Next-Key-Lock" class="headerlink" title="Next-Key Lock"></a>Next-Key Lock</h4><pre><code>行锁(Record Lock)与间隙锁(Gap Lock)组合起来用就叫做Next-Key Lock</code></pre><h4 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h4><p>　　行锁就是给一行数据进行加锁，操作对象是数据表中的一行（共享锁和排他锁可能是行锁也可能是表锁，取决于对数据加锁的范围，是一行还是整个表）。是MVCC技术用的比较多的，但在MYISAM用不了，行级锁用mysql的储存引擎实现而不是mysql服务器。但行级锁对系统开销较大，处理高并发较好。</p>
+<h4 id="间隙锁-Gap-Lock"><a href="#间隙锁-Gap-Lock" class="headerlink" title="间隙锁(Gap Lock)"></a>间隙锁(Gap Lock)</h4><p> 　　在索引记录之间的间隙中加锁，或者是在某一条索引记录之前或者之后加锁，并不包括该索引记录本身。gap lock的机制主要是解决可重复读模式下的幻读问题。锁加在不存在的空闲空间,可以是两个索引记录之间(1 &lt; X &lt; 3&gt;&gt;),也可能是第一个索引记录之前(X &lt; 1)或最后一个索引之后的空间(X &gt; 1)</p>
+<pre><code>举例来说,假如user表中只有101条记录,其empid的值分别是 1,2,...,100,101,下面的SQL：
+select * from  user where user_id &gt; 100 for update;
+是一个范围条件的检索,InnoDB不仅会对符合条件的user_id值为101的记录加锁,也会对user_id大于101(这些记录并不存在)的“间隙”加锁。
+产生幻读的原因是,行锁只能锁住行,但是新插入记录这个动作,要更新的是记录之间的“间隙”。因此,为了解决幻读问题,InnoDB 只好引入新的锁,也就是间隙锁</code></pre><h4 id="Record-lock"><a href="#Record-lock" class="headerlink" title="Record lock"></a>Record lock</h4><p>单条索引记录上加锁，record lock锁住的永远是索引，而非记录本身，即使该表上没有任何索引，那么innodb会在后台创建一个隐藏的聚集主键索引，那么锁住的就是这个隐藏的聚集主键索引。所以说当一条sql没有走任何索引时，那么将会在每一条聚集索引后面加X锁，这个类似于表锁，但原理上和表锁应该是完全不同的。</p>
+<h4 id="Next-Key-Lock-1"><a href="#Next-Key-Lock-1" class="headerlink" title="Next-Key Lock"></a>Next-Key Lock</h4><p>行锁和间隙锁组合起来就叫Next-Key Lock</p>
+<p>当前读、快照读，record lock(记录锁)、gap lock(间隙锁)、next-key lock;<br>本来只有串读隔离级别才可以解决幻读问题，而实际上由于快照读的特性使可重复读也解决了幻读问题。<br>当前读是因为innodb默认为它加入了间隙锁，防止在事务期间对相关数据集插入记录，从而避免出现幻读。<br>在RR级别下，快照读是通过MVVC(多版本控制)和undo log来实现的，当前读是通过加record lock(记录锁)和gap lock(间隙锁)来实现的。如果需要实时显示数据，还是需要通过手动加锁来实现。这个时候会使用next-key技术来实现。<br>在mysql中，提供了两种事务隔离技术，第一个是mvcc，第二个是next-key技术。这个在使用不同的语句的时候可以动态选择。不加lock inshare mode之类的快照读就使用mvcc。否则 当前读使用next-key。mvcc的优势是不加锁，并发性高。缺点是不是实时数据。next-key的优势是获取实时数据，但是需要加锁。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/" rel="tag"># 面试知识</a>
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/02/Mysql-%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%BA%95%E5%B1%82%E5%88%86%E6%9E%90/" rel="next" title="MySQL事务实现原理之Redo Log底层分析">
+                <i class="fa fa-chevron-left"></i> MySQL事务实现原理之Redo Log底层分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/02/Mysql-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%862/" rel="prev" title="MySql基础知识2">
+                MySql基础知识2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="cdongtao" />
+            
+              <p class="site-author-name" itemprop="name">cdongtao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">149</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yourname" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:441623928@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库事务四大特性"><span class="nav-number">1.</span> <span class="nav-text">数据库事务四大特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库事务传播机制"><span class="nav-number">2.</span> <span class="nav-text">数据库事务传播机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务传播机制-7种"><span class="nav-number">2.1.</span> <span class="nav-text">事务传播机制(7种)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#REQUIRED"><span class="nav-number">2.1.1.</span> <span class="nav-text">REQUIRED</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#REQUIRES-NEW"><span class="nav-number">2.1.2.</span> <span class="nav-text">REQUIRES_NEW</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SUPPORTS"><span class="nav-number">2.1.3.</span> <span class="nav-text">SUPPORTS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NOT-SUPPORTED"><span class="nav-number">2.1.4.</span> <span class="nav-text">NOT_SUPPORTED</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MANDATORY"><span class="nav-number">2.1.5.</span> <span class="nav-text">MANDATORY</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NEVER"><span class="nav-number">2.1.6.</span> <span class="nav-text">NEVER</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NESTED"><span class="nav-number">2.1.7.</span> <span class="nav-text">NESTED</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传播机制嵌套事务回滚-3种-情况"><span class="nav-number">2.2.</span> <span class="nav-text">传播机制嵌套事务回滚(3种)情况</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-B方法在同一个类"><span class="nav-number">2.2.1.</span> <span class="nav-text">A&#x2F;B方法在同一个类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#A-B方法不在同一个类影响-如下3种"><span class="nav-number">2.2.2.</span> <span class="nav-text">A&#x2F;B方法不在同一个类影响(如下3种)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#REQUIRED-1"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">REQUIRED</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#REQUIRES-NEW-1"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">REQUIRES_NEW</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NESTED-1"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">NESTED</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务隔离级别-4种"><span class="nav-number">3.</span> <span class="nav-text">事务隔离级别(4种)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#隔离级别解决的问题"><span class="nav-number">3.1.</span> <span class="nav-text">隔离级别解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Uncommitted-未提交读"><span class="nav-number">3.2.</span> <span class="nav-text">Read Uncommitted(未提交读)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Committed-已提交读"><span class="nav-number">3.3.</span> <span class="nav-text">Read Committed(已提交读)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Repeatable-Read-可重复读"><span class="nav-number">3.4.</span> <span class="nav-text">Repeatable Read(可重复读)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serializable-可串行化"><span class="nav-number">3.5.</span> <span class="nav-text">Serializable(可串行化)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MCVV-简化分析"><span class="nav-number">4.</span> <span class="nav-text">MCVV(简化分析)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mysql的MVCC是解决了什么问题"><span class="nav-number">4.1.</span> <span class="nav-text">Mysql的MVCC是解决了什么问题?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVCC原理分析-入门简化版本"><span class="nav-number">5.</span> <span class="nav-text">MVCC原理分析(入门简化版本)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#INSERT"><span class="nav-number">5.1.</span> <span class="nav-text">INSERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SELECT操作"><span class="nav-number">5.2.</span> <span class="nav-text">SELECT操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DELETE操作"><span class="nav-number">5.3.</span> <span class="nav-text">DELETE操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UPDATE操作"><span class="nav-number">5.4.</span> <span class="nav-text">UPDATE操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MCVV深入分析"><span class="nav-number">6.</span> <span class="nav-text">MCVV深入分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Innodb中的隐藏列"><span class="nav-number">6.1.</span> <span class="nav-text">Innodb中的隐藏列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redo-log与undo-log"><span class="nav-number">6.2.</span> <span class="nav-text">redo log与undo log</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#redo-log"><span class="nav-number">6.2.1.</span> <span class="nav-text">redo log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undo-log"><span class="nav-number">6.2.2.</span> <span class="nav-text">undo log</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Undo-log工作过程"><span class="nav-number">6.3.</span> <span class="nav-text">Undo log工作过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Undo-log链分析"><span class="nav-number">6.4.</span> <span class="nav-text">Undo log链分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReadView-一致性视图-判断当前版本数据项是否可见"><span class="nav-number">6.5.</span> <span class="nav-text">ReadView(一致性视图)判断当前版本数据项是否可见</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ReadView-一致性视图"><span class="nav-number">6.5.1.</span> <span class="nav-text">ReadView(一致性视图)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Read-Committed与Repeatable-Read的一致性视图-ReadView-区别"><span class="nav-number">6.5.2.</span> <span class="nav-text">Read Committed与Repeatable Read的一致性视图(ReadView)区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Read-Committed的ReadView"><span class="nav-number">6.5.3.</span> <span class="nav-text">Read Committed的ReadView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Repeatable-Read的ReadView"><span class="nav-number">6.5.4.</span> <span class="nav-text">Repeatable Read的ReadView</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快照读-snapshot-read-与当前读-current-read"><span class="nav-number">6.6.</span> <span class="nav-text">快照读(snapshot read)与当前读(current read)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#快照读-snapshot-read"><span class="nav-number">6.6.1.</span> <span class="nav-text">快照读(snapshot read)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当前读-current-read"><span class="nav-number">6.6.2.</span> <span class="nav-text">当前读(current read)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子分析"><span class="nav-number">6.6.3.</span> <span class="nav-text">例子分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用READ-COMMITTED隔离级别的事务"><span class="nav-number">6.6.3.1.</span> <span class="nav-text">使用READ COMMITTED隔离级别的事务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#REPEATABLE-READ隔离级别的事务"><span class="nav-number">6.6.3.2.</span> <span class="nav-text">REPEATABLE READ隔离级别的事务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MySQL-InnoDB-引擎-RR-隔离级别是否解决了幻读"><span class="nav-number">6.6.3.3.</span> <span class="nav-text">MySQL InnoDB 引擎 RR 隔离级别是否解决了幻读</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mysql的MVCC实现原理的深刻反思"><span class="nav-number">6.7.</span> <span class="nav-text">Mysql的MVCC实现原理的深刻反思</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#理想MVCC有下面几个特点"><span class="nav-number">6.7.1.</span> <span class="nav-text">理想MVCC有下面几个特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#InnoDB实现MVCC的方式是"><span class="nav-number">6.7.2.</span> <span class="nav-text">InnoDB实现MVCC的方式是:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二者最本质的区别是-当修改数据时是否要排他锁定，如果锁定了还算不算是MVCC？"><span class="nav-number">6.7.3.</span> <span class="nav-text">二者最本质的区别是: 当修改数据时是否要排他锁定，如果锁定了还算不算是MVCC？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库锁粒度"><span class="nav-number">7.</span> <span class="nav-text">数据库锁粒度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#乐观锁"><span class="nav-number">7.1.</span> <span class="nav-text">乐观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#悲观锁"><span class="nav-number">7.2.</span> <span class="nav-text">悲观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#X锁-写锁-排他锁-Exclusive-Lock"><span class="nav-number">7.3.</span> <span class="nav-text">X锁&#x2F;写锁&#x2F;排他锁(Exclusive Lock)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#S锁-读锁-共享锁-Share-lock"><span class="nav-number">7.4.</span> <span class="nav-text">S锁&#x2F;读锁&#x2F;共享锁(Share lock)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表级锁-锁变表"><span class="nav-number">7.5.</span> <span class="nav-text">表级锁:锁变表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Next-Key-Lock"><span class="nav-number">7.5.1.</span> <span class="nav-text">Next-Key Lock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行锁"><span class="nav-number">7.5.2.</span> <span class="nav-text">行锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#间隙锁-Gap-Lock"><span class="nav-number">7.5.3.</span> <span class="nav-text">间隙锁(Gap Lock)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Record-lock"><span class="nav-number">7.5.4.</span> <span class="nav-text">Record lock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Next-Key-Lock-1"><span class="nav-number">7.5.5.</span> <span class="nav-text">Next-Key Lock</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cdongtao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">324k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:54</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uASAKzQTPhuJIplOaklnAaqK-gzGzoHsz',
+        appKey: 'LRW155uTAdoeaAjf9q9D53Ps',
+        placeholder: 'Welcome to comment!',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

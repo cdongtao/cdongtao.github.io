@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="简历写了会Kafka，面试官90%会让你讲讲acks参数对消息持久化的影响(https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;IxS46JAr7D9sBtCDr8pd7A) 窥探源码，让我更加优雅的使用Kafka生产者！(https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;RHe_YM3fzcVKkV_nHuZcxg) 为什么Kafka不支持读写分离？(https:&#x2F;&#x2F;mp.weixin.q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kafka">
+<meta property="og:url" content="https://cdongtao.github.io/2020/09/12/Spring-%E6%B6%88%E6%81%AFKafka/index.html">
+<meta property="og:site_name" content="cdongtao">
+<meta property="og:description" content="简历写了会Kafka，面试官90%会让你讲讲acks参数对消息持久化的影响(https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;IxS46JAr7D9sBtCDr8pd7A) 窥探源码，让我更加优雅的使用Kafka生产者！(https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;RHe_YM3fzcVKkV_nHuZcxg) 为什么Kafka不支持读写分离？(https:&#x2F;&#x2F;mp.weixin.q">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdongtao.github.io/Kafka/%E8%A7%A3%E8%80%A61.png">
+<meta property="og:image" content="https://cdongtao.github.io/Kafka/%E8%A7%A3%E8%80%A62.png">
+<meta property="og:image" content="https://cdongtao.github.io/Kafka/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BD%8D%E7%BD%AE.png">
+<meta property="og:image" content="https://cdongtao.github.io/Kafka/%E5%9B%9B%E5%A4%A7%E6%A0%B8%E5%BF%83API.png">
+<meta property="og:image" content="https://cdongtao.github.io/Kafka/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
+<meta property="og:image" content="https://cdongtao.github.io/Kafka/kafka%E4%B8%8EZK.png">
+<meta property="og:image" content="https://cdongtao.github.io/Kafka/%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB.png">
+<meta property="og:image" content="https://cdongtao.github.io/Kafka/%E6%B6%88%E6%81%AF%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%88%86%E5%8C%BA.png">
+<meta property="og:image" content="https://cdongtao.github.io/Kafka/%E5%88%86%E5%8C%BA%E5%8E%9F%E7%90%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/Kafka/%E6%B6%88%E8%B4%B9%E8%80%85%E4%B8%8E%E6%B6%88%E8%B4%B9%E8%80%85%E7%BE%A4.png">
+<meta property="og:image" content="https://cdongtao.github.io/Kafka/rebalance.png">
+<meta property="article:published_time" content="2020-09-12T02:31:10.289Z">
+<meta property="article:modified_time" content="2021-01-10T03:31:53.995Z">
+<meta property="article:author" content="cdongtao">
+<meta property="article:tag" content="Plugin">
+<meta property="article:tag" content="Kafka">
+<meta property="article:tag" content="消息中间件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdongtao.github.io/Kafka/%E8%A7%A3%E8%80%A61.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="cdongtao" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cdongtao.github.io/2020/09/12/Spring-消息Kafka/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Kafka | cdongtao</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cdongtao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cdongtao.github.io/2020/09/12/Spring-%E6%B6%88%E6%81%AFKafka/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cdongtao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cdongtao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kafka
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-09-12 10:31:10" itemprop="dateCreated datePublished" datetime="2020-09-12T10:31:10+08:00">2020-09-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-10 11:31:53" itemprop="dateModified" datetime="2021-01-10T11:31:53+08:00">2021-01-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PluginTool/" itemprop="url" rel="index"><span itemprop="name">PluginTool</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/12/Spring-%E6%B6%88%E6%81%AFKafka/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/09/12/Spring-%E6%B6%88%E6%81%AFKafka/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">25k 字</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">23 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>简历写了会Kafka，面试官90%会让你讲讲acks参数对消息持久化的影响(<a href="https://mp.weixin.qq.com/s/IxS46JAr7D9sBtCDr8pd7A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/IxS46JAr7D9sBtCDr8pd7A</a>)</p>
+<p>窥探源码，让我更加优雅的使用Kafka生产者！(<a href="https://mp.weixin.qq.com/s/RHe_YM3fzcVKkV_nHuZcxg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/RHe_YM3fzcVKkV_nHuZcxg</a>)</p>
+<p>为什么Kafka不支持读写分离？(<a href="https://mp.weixin.qq.com/s/OzAffmFx62Dcs5YgkkP06A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/OzAffmFx62Dcs5YgkkP06A</a>)</p>
+<p>当面试官问你啥是Kafka的选举时，抓住机会“吊打”他！(<a href="https://mp.weixin.qq.com/s/XvDpq1xxXPzRoRKMO-MxeQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/XvDpq1xxXPzRoRKMO-MxeQ</a>)</p>
+<p>干趴面试官系列：请简述一下Kafka中的分区分配？(<a href="https://mp.weixin.qq.com/s/cr_IVoAVcUpKJ5kqFbpTPw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/cr_IVoAVcUpKJ5kqFbpTPw</a>)</p>
+<p>Kafka如何通过精妙的架构设计优化JVM GC问题？(<a href="https://mp.weixin.qq.com/s/XheJNFr5iEVCptZNw6c2oQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/XheJNFr5iEVCptZNw6c2oQ</a>)</p>
+<p>Kafka参数调优实战，看这篇文章就够了！(<a href="https://mp.weixin.qq.com/s/YLrGg-jx5ddmHECmdccppw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/YLrGg-jx5ddmHECmdccppw</a>)</p>
+<h2 id="Kafka是什么？"><a href="#Kafka是什么？" class="headerlink" title="Kafka是什么？"></a>Kafka是什么？</h2><p>Kafka是分布式实时流处理平台。在这个平台上，可以：</p>
+<ul>
+<li>发布与订阅消息</li>
+<li>作为消息中间件使用(类比于一个有入水口和出水口的大型蓄水池)</li>
+<li>对实时流数据传输具有可靠保证</li>
+</ul>
+<h3 id="Kafka解决什么问题？"><a href="#Kafka解决什么问题？" class="headerlink" title="Kafka解决什么问题？"></a>Kafka解决什么问题？</h3><p><img src="/Kafka/%E8%A7%A3%E8%80%A61.png" alt="解耦1" title="解耦1"><br><img src="/Kafka/%E8%A7%A3%E8%80%A62.png" alt="解耦2" title="解耦2"></p>
+<ul>
+<li>解耦:让系统解耦,不再相互依赖</li>
+<li>削峰:</li>
+<li>异步:<h3 id="Kafka在大数据体系中的位置"><a href="#Kafka在大数据体系中的位置" class="headerlink" title="Kafka在大数据体系中的位置"></a>Kafka在大数据体系中的位置</h3><img src="/Kafka/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BD%8D%E7%BD%AE.png" alt="大数据位置" title="大数据位置"></li>
+</ul>
+<h3 id="Kafka一共提供了如下四类核心API"><a href="#Kafka一共提供了如下四类核心API" class="headerlink" title="Kafka一共提供了如下四类核心API"></a>Kafka一共提供了如下四类核心API</h3><p><img src="/Kafka/%E5%9B%9B%E5%A4%A7%E6%A0%B8%E5%BF%83API.png" alt="四大核心API" title="四大核心API"><br>Kafka所起的作用是：消息中间件、消息引擎、消息队列等</p>
+<ul>
+<li>Producer API：生产者API</li>
+<li>Consumer API：消费者API</li>
+<li>Streams API：流式处理API</li>
+<li>Connector API：与各其他数据库系统对接API</li>
+</ul>
+<h2 id="Kafka集群的安装、部署与配置"><a href="#Kafka集群的安装、部署与配置" class="headerlink" title="Kafka集群的安装、部署与配置"></a>Kafka集群的安装、部署与配置</h2><h3 id="Kafka集群HA-高可用-模式部署的原理"><a href="#Kafka集群HA-高可用-模式部署的原理" class="headerlink" title="Kafka集群HA(高可用)模式部署的原理"></a>Kafka集群HA(高可用)模式部署的原理</h3><ul>
+<li>任何分布式系统都有HA(Hight Availability)模式，即高可用性模式。</li>
+<li>Kafka的HA机制主要是通过数据复制和领袖选举来保证的</li>
+</ul>
+<p>假设用三台服务器部署Kafka集群，其整体架构应该如下所示<br><img src="/Kafka/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="高可用架构图" title="高可用架构图"></p>
+<p>这里网上很多其他教程中ZooKeeper只有一个实例，这其实是不对的。ZooKeeper应该需要多个实例才能真正做到高可用性。具体表现为两个方面的高可用性：</p>
+<ul>
+<li>ZK集群的高可用性：<br>　　当ZooKeeper集群中有一个结点挂掉的话，会立刻有新的ZK结点代替该挂掉的结点。集群版的Zookeeper之间实际上是互为备份的，这样保证了ZK的整体服务不会有问题。</li>
+<li>Kafka集群的高可用性<br>　　当Kafka中有一个实例挂掉的话，ZooKeeper服务会立刻从剩下的实例中选出一个作为新的领袖结点，从而代替挂掉的实例，实现了Kafka集群的高可用性。</li>
+</ul>
+<p>ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。</p>
+<h3 id="Kafka与ZooKeeper的关系"><a href="#Kafka与ZooKeeper的关系" class="headerlink" title="Kafka与ZooKeeper的关系"></a>Kafka与ZooKeeper的关系</h3><p>那么为什么搭建Kafka集群一定需要ZooKeeper呢？从以上其实可以看出：Kafka集群实际上是利用了外部的ZooKeeper集群来解决其分布式一致性问题。如下图所示<br><img src="/Kafka/kafka%E4%B8%8EZK.png" alt="kafka与ZK" title="kafka与ZK"></p>
+<p>我们可以简单的认为Kafka将ZooKeeper做数据库用了(哨兵)，用于管理producer，broker和consumer之间的协同调用。<br>一般分布式系统中状态一致性的维护有以下两种方式：</p>
+<ul>
+<li>P2P自己维护，例如Redis集群</li>
+<li>通过第三方系统(ZooKeeper)维护，例如Kafka集群</li>
+</ul>
+<h3 id="Kafka集群的故障转移"><a href="#Kafka集群的故障转移" class="headerlink" title="Kafka集群的故障转移"></a>Kafka集群的故障转移</h3><p>在高可用性分布式系统中，故障转移一般是以“心跳”或者“会话”的机制来实现的。Kafka的故障转移方式则是采用会话机制：每个Kafka实例启动后，都会以会话形式把自己注册到ZooKeeper服务中。一旦该实例运转现问题，它与ZooKeeper的会话便不能维持从而超时失效，此时Kafka集群会选举出另一个实例来完全代替这个实例继续提供服务，并且这一切换过程对外界服务完全透明。下图表明的是Kafka在ZooKeeper中保存的相关信息及其作用：<br><img src="/Kafka/%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB.png" alt="故障转移" title="故障转移"></p>
+<h3 id="Kafka集群搭建"><a href="#Kafka集群搭建" class="headerlink" title="Kafka集群搭建"></a>Kafka集群搭建</h3><p>Kafka集群的搭建过程，一共分为三个步骤</p>
+<h4 id="Step1：下载Kafka包"><a href="#Step1：下载Kafka包" class="headerlink" title="Step1：下载Kafka包"></a>Step1：下载Kafka包</h4><p>示例采用的Kafka版本为kafka_2.11-2.0.0。注意这个版本号前面的2.11表明的是编译该Kafka所用的Scala语言的版本号，后面的2.0.0才是Kafka的真正版本号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1# 下载包</span><br><span class="line">2wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;apache&#x2F;kafka&#x2F;2.0.0&#x2F;kafka_2.11-2.0.0.tgz</span><br><span class="line">3# 解压缩</span><br><span class="line">4tar -zxvf kafka_2.11-2.0.0.tgz</span><br><span class="line">5cd kafka_2.11-2.0.0</span><br></pre></td></tr></table></figure>
+
+<h4 id="Step2：修改配置文件"><a href="#Step2：修改配置文件" class="headerlink" title="Step2：修改配置文件"></a>Step2：修改配置文件</h4><p>要修改的配置文件名称为：server.properties，修改的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1broker.id&#x3D;2 # 用唯一的数字进行区分</span><br><span class="line">2listeners&#x3D;PLAINTEXT:&#x2F;&#x2F;99.99.99.99:9092 # 本机IP</span><br><span class="line">3advertised.listeners&#x3D;PLAINTEXT:&#x2F;&#x2F;99.99.99.99:9092  # 本机IP</span><br><span class="line">4zookeeper.connect&#x3D;99.99.99.99:2181,99.99.99.98:2181,99.99.99.97:2181 # zookeeper的集群地址</span><br><span class="line">5log.dirs&#x3D;&#x2F;home&#x2F;work&#x2F;kafka-logs # 数据存放地址</span><br><span class="line">6log.retention.hours&#x3D;1 # 数据保留的时间</span><br></pre></td></tr></table></figure>
+<h4 id="Step3：启动Kafka"><a href="#Step3：启动Kafka" class="headerlink" title="Step3：启动Kafka"></a>Step3：启动Kafka</h4><ul>
+<li>启动之前确保ZooKeeper进程存在，且处于正常状态</li>
+<li>在每台机器上逐一启动（重要）<br>启动和关闭命令如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1# 启动Kafka</span><br><span class="line">2bin&#x2F;kafka-server-start.sh config&#x2F;server.properties &gt; kafka_start.log 2&gt;&amp;1 &amp;</span><br><span class="line">3# 关闭Kafka</span><br><span class="line">4bin&#x2F;kafka-server-stop.sh</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Kafka监控的安装、部署与配置"><a href="#Kafka监控的安装、部署与配置" class="headerlink" title="Kafka监控的安装、部署与配置"></a>Kafka监控的安装、部署与配置</h2><ul>
+<li>监控工具用的是：Kafka-Manager</li>
+<li><a href="https://github.com/yahoo/kafka-manager" target="_blank" rel="noopener">点击源码下载</a></li>
+<li><a href="https://blog.wolfogre.com/posts/kafka-manager-download/" target="_blank" rel="noopener">点击编译好的包下载</a>：非常感谢作者的维护</li>
+</ul>
+<h3 id="Step1：下载编译好的项目并解压"><a href="#Step1：下载编译好的项目并解压" class="headerlink" title="Step1：下载编译好的项目并解压"></a>Step1：下载编译好的项目并解压</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1# 下载编译好的包</span><br><span class="line">2wget &quot;https:&#x2F;&#x2F;github.com&#x2F;wolfogre&#x2F;kafka-manager-docker&#x2F;releases&#x2F;download&#x2F;1.3.3.23&#x2F;kafka-manager-1.3.3.23.zip&quot;</span><br><span class="line">3# 下载安装压缩与解压缩的包</span><br><span class="line">4sudo yum install zip</span><br><span class="line">5sudo yum install unzip</span><br><span class="line">6# 解压缩</span><br><span class="line">7unzip kafka-manager-1.3.3.23.zip</span><br></pre></td></tr></table></figure>
+<h3 id="Step2：修改配置文件-1"><a href="#Step2：修改配置文件-1" class="headerlink" title="Step2：修改配置文件"></a>Step2：修改配置文件</h3><p>修改配置文件conf/application.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1kafka-manager.zkhosts&#x3D;&quot;99.99.99.99:2181,99.99.99.98:2181,99.99.99.97:2181&quot;</span><br><span class="line">2basicAuthentication.enabled&#x3D;true  # 开启访问认证 </span><br><span class="line">3basicAuthentication.username&#x3D;&quot;admin&quot;  # 设置访问用户名</span><br><span class="line">4basicAuthentication.password&#x3D;&quot;admin&quot;  # 设置访问密码</span><br></pre></td></tr></table></figure>
+<h3 id="Step3：启动监控进程"><a href="#Step3：启动监控进程" class="headerlink" title="Step3：启动监控进程"></a>Step3：启动监控进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 启动监控</span><br><span class="line">bin&#x2F;kafka-manager -Dconfig.file&#x3D;.&#x2F;conf&#x2F;application.conf -Dhttp.port&#x3D;8081 &gt; kafka_manager_start.log 2&gt;&amp;1 &amp;</span><br><span class="line"># 关闭监控</span><br><span class="line">1ps aux | grep kafka-manager | grep -v grep | awk &#39;&#123;print $2&#125;&#39; | xargs kill</span><br></pre></td></tr></table></figure>
+
+<h3 id="Step4：访问监控地址"><a href="#Step4：访问监控地址" class="headerlink" title="Step4：访问监控地址"></a>Step4：访问监控地址</h3><ul>
+<li>可以查看Kafka集群的监控:<a href="http://localhost:8081" target="_blank" rel="noopener">http://localhost:8081</a></li>
+</ul>
+<h2 id="Kafka原理详解"><a href="#Kafka原理详解" class="headerlink" title="Kafka原理详解"></a>Kafka原理详解</h2><ul>
+<li>Kafka中的基本概念</li>
+<li>broker：一个独立的Kafka服务器称为一个broker</li>
+<li>集群：多个broker组成一个Kafka集群</li>
+<li>消息(Message)：Kafka中的数据单元，通过&lt;tpoic、partition、offset&gt;三元组，可以找到在Kafka中唯一对应的一条消息</li>
+<li>批次：消息被分批次写入Kafka，批次就是一组消息</li>
+<li>副本(Replica)：冗余机制，防止数据丢失。分为领导者副本（leader replica）与追随者副本（follower replica）</li>
+<li>消息模式：消息被序列化的方式：Json、XML、Apache Avro</li>
+<li>提交：更新分区当前位置的操作叫作提交</li>
+<li>主题(Topic)：不同的主题，类比MySQL数据库中不同的表格</li>
+<li>分区(Partition)：一个主题的消息可以设置多个分区</li>
+<li>生产者：创建消息，消息的输入</li>
+<li>消费者：读取消息，消息的输出</li>
+</ul>
+<h3 id="消息复制与分区"><a href="#消息复制与分区" class="headerlink" title="消息复制与分区"></a>消息复制与分区</h3><p><img src="/Kafka/%E6%B6%88%E6%81%AF%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%88%86%E5%8C%BA.png" alt="消息复制与分区" title="消息复制与分区"></p>
+<ul>
+<li>一个主题可以包含多个分区。Kafka无法在整个主题范围内保证消息的顺序，但可以保证消息在单个分区内的顺序。</li>
+<li>Kafka在物理上把Topic分成一个或多个Partition，每个Partiton在物理上对应一个文件夹，该文件夹下存储这个Partition的所有消息和索引文件。</li>
+<li>Kafka通过分区设计可以实现数据冗余和伸缩，分区可以分布在不同的服务器上，以此为高并发提供可能。</li>
+<li>消息复制指的是每一个分区都可能会有一个或者多个副本，其中有一个副本会被推选为领袖节点，其余的落选的为从节点。其中领袖节点将会跟踪与其保持同步的副本列表，该列表称为ISR（In-Sync Replica）。</li>
+</ul>
+<p>Kafka默认提供了很智能的leader选举算法，可以在集群的所有机器上以均等机会分散各个分区的leader节点，从而整体上实现了负载均衡。Kafka保证同一个分区的多个副本一定不会分配在同一台物理机上。如下图所示：<br><img src="/Kafka/%E5%88%86%E5%8C%BA%E5%8E%9F%E7%90%86.png" alt="分区原理" title="分区原理"></p>
+<h3 id="数据的清理"><a href="#数据的清理" class="headerlink" title="数据的清理"></a>数据的清理</h3><ul>
+<li>对于Kafka来说，磁盘是最重要的子系统。所有的消息都保存在磁盘上，所以Kafka的性能严重依赖磁盘的性能。</li>
+<li>对于超过时间周期的数据，Kafka会对其进行清理</li>
+</ul>
+<h3 id="Kafka的高性能"><a href="#Kafka的高性能" class="headerlink" title="Kafka的高性能"></a>Kafka的高性能</h3><p>Kafka的吞吐性能可达到千万级，相比于其他的系统，Kafka为什么有如此优秀的性能表现呢？原因有以下几点：</p>
+<ul>
+<li>Kafka大量使用操作系统页缓存，内存操作速度快且命中率高</li>
+<li>Kafka不直接参与物理I/O操作，而是交由最擅长此事的操作系统来完成</li>
+<li>采用追加写入方式，摒弃了缓慢的磁盘随机读写操作</li>
+<li>使用以sendfile为代表的零拷贝技术加强了网络间的数据传输效率<h2 id="Kafka配置文件详解"><a href="#Kafka配置文件详解" class="headerlink" title="Kafka配置文件详解"></a>Kafka配置文件详解</h2>Kafka中一共有四类配置，分别如下：</li>
+</ul>
+<ol>
+<li>broker configs：server.properties（主要）</li>
+<li>zookeeper configs：zookeeper.properties（主要）</li>
+<li>consumer configs ：consumer.properties（生产者配置文件）</li>
+<li>producer configs：producer.properties（消费者配置文件）其中broker和zookeeper是主要的配置文件。</li>
+</ol>
+<h3 id="Kafka的配置文件"><a href="#Kafka的配置文件" class="headerlink" title="Kafka的配置文件"></a>Kafka的配置文件</h3><p>Kafka的配置文件对应名称为：server.properties，其示例及字段解释如下：</p>
+<ul>
+<li>broker.id=0 # 用唯一的数字进行区分实例，从0开始</li>
+<li>host.name=99.99.99.99 #本机的IP地址</li>
+<li>zookeeper.connect=99.99.99.99:2181,99.99.99.98:2181,99.99.99.97:2181 # Zookeeper的集群地址</li>
+<li>log.dirs=/ssd1/kafka-logs-1,/ssd2/kafka-logs-2,/ssd3/kafka-logs-3 # 数据存放地址</li>
+<li>num.network.threads=24 # broker处理消息的线程数</li>
+<li>num.io.threads=60 # broker处理磁盘IO的线程数</li>
+<li>socket.send.buffer.bytes=102400</li>
+<li>socket.receive.buffer.bytes=102400</li>
+<li>socket.request.max.bytes=104857600</li>
+<li>num.partitions=3 # 创建topic时的默认分区数</li>
+<li>num.recovery.threads.per.data.dir=8</li>
+<li>offsets.topic.replication.factor=3</li>
+<li>transaction.state.log.replication.factor=3</li>
+<li>transaction.state.log.min.isr=3</li>
+<li>log.retention.hours=96 # 日志保留时间为四天</li>
+<li>log.segment.bytes=107374182</li>
+<li>log.retention.check.interval.ms=300000 # 文件大小检查时间周期</li>
+<li>zookeeper.connection.timeout.ms=6000 # zookeeper的心跳时间间隔</li>
+<li>group.initial.rebalance.delay.ms=3<br>// 新增修改的配置</li>
+<li>auto.create.topics.enable=false   # 不允许自动创建Topic</li>
+<li>auto.leader.rebalance.enable=true   # 允许自动平衡数据</li>
+<li>background.threads=15 # 后台任务的线程数</li>
+<li>delete.topic.enable=true # 允许通过客户端删除topic</li>
+<li>leader.imbalance.check.interval.seconds=300 # 检查leader是否不平衡的时间间隔，5分钟检查一次</li>
+<li>leader.imbalance.per.broker.percentage=10 # leader的不平衡比例，如果超过这个比例，会对分区进行重新平衡</li>
+<li>default.replication.factor=2 # 创建Topic时的默认副本数，表示一份数据，有两份</li>
+<li>controlled.shutdown.enable=true # 优雅的重启，关闭一台机器的时候将leader转移到其他机器</li>
+</ul>
+<p>其中对于磁盘容量的规划与以下因素有关：</p>
+<ul>
+<li>新增消息数</li>
+<li>消息留存时间</li>
+<li>平均消息大小</li>
+<li>副本数</li>
+<li>是否启动压缩</li>
+</ul>
+<h3 id="ZooKeeper的配置文件"><a href="#ZooKeeper的配置文件" class="headerlink" title="ZooKeeper的配置文件"></a>ZooKeeper的配置文件</h3><p>ZooKeeper的配置文件对应名称为：zookeeper.properties，其示例及字段解释如下：</p>
+<ul>
+<li>dataDir=/ssd1/zookeeper # 数据存储目录</li>
+<li>clientPort=2181 # zookeeper 对外服务的接口</li>
+<li>maxClientCnxns=0 # 最大客户端连接数量</li>
+<li>tickTime=2000 # 最小时间单元（毫秒）</li>
+<li>initLimit=10 # 领袖节点同步最新数据的最长时间，10个时间单元</li>
+<li>syncLimit=5 # 心跳机制的时间间隔，5个时间单元</li>
+<li>server.1=99.99.99.99:2888:3888 # 第一个端口是主从同步的通信端口，第二个端口是领袖选举的端口</li>
+<li>server.2=99.99.99.98:2888:3888</li>
+<li>server.3=99.99.99.97:2888:3888</li>
+</ul>
+<h2 id="Kafka命令行操作"><a href="#Kafka命令行操作" class="headerlink" title="Kafka命令行操作"></a>Kafka命令行操作</h2><p>本节主要讲解Kafka常用的命令行操作及其示例<br>Topic的创建、删除与查看<br>//创建一个副本数为1，分区数为3的Topic，名称为test</p>
+<ul>
+<li>bin/kafka-topics.sh –create –zookeeper 99.99.99.99:2181 –replication-factor 1 –partitions 3 –topic test<br>// 创建一个副本数为1，分区数为3，日志保留6小时的Topic，名称为test2</li>
+<li>bin/kafka-topics.sh –create –zookeeper 99.99.99.99:2181 –replication-factor 1 –partitions 3 –topic test –config delete.retention.ms=21600000<br>// 删除Topic</li>
+<li>bin/kafka-topics.sh –delete –zookeeper 99.99.99.99:2181 –topic test<br>// 查看指定Topic的所有信息</li>
+<li>bin/kafka-topics.sh –describe –zookeeper 99.99.99.99:2181 –topic test<br>// 列出所有的Topic 注意Zookeeper后面的IP地址可以写集群里面任一Zookeeper的地址和端口</li>
+<li>bin/kafka-topics.sh –list –zookeeper 99.99.99.99:2181</li>
+</ul>
+<h3 id="生产者与消费者客户端使用示例"><a href="#生产者与消费者客户端使用示例" class="headerlink" title="生产者与消费者客户端使用示例"></a>生产者与消费者客户端使用示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 生产者</span><br><span class="line">bin&#x2F;kafka-console-producer.sh --broker-list 99.99.99.99:9092 --topic test</span><br><span class="line"># 消费者</span><br><span class="line">bin&#x2F;kafka-console-consumer.sh --bootstrap-server 99.99.99.99:9092 --topic test --from-beginning</span><br></pre></td></tr></table></figure>
+<p>这些所有Kafka脚本工具虽然实现了各自不同的功能，但底层都是使用kafka-run-class.sh脚本来实现的</p>
+<h3 id="列出所有的消费者"><a href="#列出所有的消费者" class="headerlink" title="列出所有的消费者"></a>列出所有的消费者</h3><p>bin/kafka-consumer-groups.sh –bootstrap-server 99.99.99.99:9092 –list</p>
+<h3 id="查看分区里面最新的消息"><a href="#查看分区里面最新的消息" class="headerlink" title="查看分区里面最新的消息"></a>查看分区里面最新的消息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 注意这里写机器的IP地址和域名都可以,查看指定Topic，指定分区的最新消息。</span><br><span class="line">bin&#x2F;kafka-console-consumer.sh --bootstrap-server 99.99.99.99:9092 --topic test --offset latest --partition 0</span><br></pre></td></tr></table></figure>
+<h3 id="生产者吞吐量测试"><a href="#生产者吞吐量测试" class="headerlink" title="生产者吞吐量测试"></a>生产者吞吐量测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin&#x2F;kafka-producer-perf-test.sh --num-records 100000 --topic test --producer-props bootstrap.servers&#x3D;99.99.99.99:9092,99.99.99.98:9092,99.99.99.97:9092 --throughput 5000 --record-size 102400 --print-metrics</span><br></pre></td></tr></table></figure>
+<h3 id="消费者吞吐量测试"><a href="#消费者吞吐量测试" class="headerlink" title="消费者吞吐量测试"></a>消费者吞吐量测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin&#x2F;kafka-consumer-perf-test.sh --topic test --messages 100000 --num-fetch-threads 10 --threads 10 --broker-list 99.99.99.99:9092,99.99.99.98:9092,99.99.99.97:9092 --group perf-consumer-30108</span><br></pre></td></tr></table></figure>
+
+<h2 id="Kafka生产者"><a href="#Kafka生产者" class="headerlink" title="Kafka生产者"></a>Kafka生产者</h2><p>消息发送机制,发送消息有以下三种方式：</p>
+<ul>
+<li>发送并忘记：发送消息，但不关心它是否真正到达</li>
+<li>同步发送：阻塞发送确保消息到达</li>
+<li>异步发送：非阻塞发送，不一定确保消息达到，但有重试机制<br>注:Kafka异步发送消息比同步发送消息要快，一般采用异步发送消息</li>
+</ul>
+<p>其中消息发送中的键有两个用途：</p>
+<ul>
+<li>可以作为消息的附加信息</li>
+<li>可以用来决定消息该被写入到主题的哪个分区（hash指定），拥有相同键的消息将被写到同一个分区</li>
+</ul>
+<h3 id="生产者Python代码示例"><a href="#生产者Python代码示例" class="headerlink" title="生产者Python代码示例"></a>生产者Python代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">from kafka import KafkaProducer</span><br><span class="line"></span><br><span class="line">producer &#x3D; KafkaProducer(bootstrap_servers&#x3D;[&quot;99.99.99.99:9092&quot;,&quot;99.99.99.98:9092&quot;,&quot;99.99.99.97:9092&quot;], retries&#x3D;5, client_id&#x3D;&quot;1&quot;, acks&#x3D;1)</span><br><span class="line"></span><br><span class="line">topic &#x3D; &quot;test&quot;</span><br><span class="line"></span><br><span class="line">for number in range(100):</span><br><span class="line">   time.sleep(1)</span><br><span class="line">   message &#x3D; &quot;Hello &#123;0&#125;&quot;.format(number)</span><br><span class="line">   future &#x3D; producer.send(topic,  json.dumps(message).encode(&#39;utf-8&#39;))</span><br><span class="line">   result &#x3D; future.get(timeout&#x3D;10)</span><br><span class="line">   print (result.topic)</span><br><span class="line">   print (result.partition)</span><br><span class="line">   print (result.offset)</span><br></pre></td></tr></table></figure>
+<p>以上Kafka生产者中，有几个重要参数，说明如下：</p>
+<ul>
+<li>acks参数制定了必须要有多少个分区副本收到消息，生产者才会认为消息写入是成功的</li>
+<li>buffer.memory设置生产者内存缓冲区的大小</li>
+<li>comperssion.type指定消息压缩方式</li>
+<li>retries重试机制</li>
+<li>batch.size每一批次发送消息的大小</li>
+</ul>
+<h2 id="Kafka消费者"><a href="#Kafka消费者" class="headerlink" title="Kafka消费者"></a>Kafka消费者</h2><h3 id="消费者和消费者群组"><a href="#消费者和消费者群组" class="headerlink" title="消费者和消费者群组"></a>消费者和消费者群组</h3><p>Kafka消费者经常会做一些高延迟的操作，比如把数据写到数据库或HDFS，或者使用数据进行比较耗时的计算。在这些情况下，单个消费者无法跟上数据生成的速度，所以可以增加更多的消费者，让它们分担负载，每个消费者只处理部分分区的消息。我们有必要为主题创建大量的分区，在负载增长时可以加入更多的消费者。不过不要让消费者的数量超过主题分区的数量。<br><img src="/Kafka/%E6%B6%88%E8%B4%B9%E8%80%85%E4%B8%8E%E6%B6%88%E8%B4%B9%E8%80%85%E7%BE%A4.png" alt="消费者与消费者群" title="消费者与消费者群"></p>
+<h3 id="提交与偏移量"><a href="#提交与偏移量" class="headerlink" title="提交与偏移量"></a>提交与偏移量</h3><ul>
+<li>一个消费者关闭或者崩溃则离开消费者群组，原本应该被它读取的消息由其它消费者接收，前提是他们属于同一个消费者群组。</li>
+<li>分区的所有权从一个消费者转移到另一个消费者称之为<font color ="red">再均衡（rebalance）</font>。这个过程中，消费者群组无法处理消息。</li>
+<li>分区的所有权通过消费者向broker发送心跳来维持，同时消费者的心跳行为也用来维持和群组的从属关系。如果消费者停止发送心跳的时间足够长，导致会话过期，则群组协调器认为它已经死亡，触发再均衡。<br>注:Kafka的再均衡机制会导致一定程度的重复消费问题，解决办法是将消费者与分区绑定。<br>以下详细说明Kafka的再均衡过程<br><img src="/Kafka/rebalance.png" alt="rebalance" title="rebalance"></li>
+</ul>
+<h3 id="消费者Python代码示例"><a href="#消费者Python代码示例" class="headerlink" title="消费者Python代码示例"></a>消费者Python代码示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from kafka import KafkaConsumer</span><br><span class="line">import time</span><br><span class="line">topic &#x3D; &quot;test&quot;</span><br><span class="line">consumer &#x3D; KafkaConsumer(topic, group_id&#x3D;&quot;consumer1&quot;, client_id&#x3D;&quot;2&quot;, bootstrap_servers&#x3D;[&quot;99.99.99.99:9092&quot;,&quot;99.99.99.98:9092&quot;,&quot;99.99.99.97:9092&quot;])</span><br><span class="line">for message in consumer:</span><br><span class="line">print (message.topic, message.partition, message.offset, message.key, message.value)</span><br></pre></td></tr></table></figure>
+<p>以上Kafka消费者中，有几个重要参数，说明如下：</p>
+<ul>
+<li>group.id属性，它指定了消费者所属群组的名字</li>
+<li>消费者根据消费者群组id来唯一区分和隔离</li>
+<li>如果多个消费者进程属于同一个消费群组（groupid）他们之间不会重复消费数据。</li>
+</ul>
+<h2 id="Kafka-Streams"><a href="#Kafka-Streams" class="headerlink" title="Kafka Streams"></a>Kafka Streams</h2><p>Kafka Streams是Kafka的流式计算的API，Kafka利用这类API可以进行简单的类似于Storm和Flink一样的流式计算处理。流式计算对每一条消息，一共有如下三种处理方式：</p>
+<ul>
+<li>最多一次（at most once）：消息可能丢失，但不会被重复处理</li>
+<li>最小一次（at least once）：消息不会丢失，但可能被处理多次</li>
+<li>精确一次（exactly once）：消息一定会被处理且只会被处理一次</li>
+</ul>
+<p>水印（watermark）通常被用在流式处理领域（Storm、Flink等），以表征元素或事件在基于时间层面上的进度。一个比较经典的表述为：流式系统保证水印t时刻，事件时间（event time）= t’ 且 t’ &lt;= t的所有事件都已经到达或被观测到。</p>
+<p>利用Kafka Streams演示word count示例程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 创建一个文件数据流</span><br><span class="line">echo -e &quot;all streams lead to kafka\nhello kafka streams\njoin kafka summit&quot; &gt; file-input.txt</span><br><span class="line"># 创建一个Topic</span><br><span class="line">bin&#x2F;kafka-topics.sh --create --zookeeper 99.99.99.99:2181 --replication-factor 1 --partitions 3 --topic streams-file-input</span><br><span class="line"># 启动流式计算的处理程序</span><br><span class="line">bin&#x2F;kafka-run-class.sh org.apache.kafka.streams.examples.wordcount.WordCountDemo</span><br><span class="line"># 将文件数据流发送到创建的Topic中，此时流式计算会显示各个单词的数目</span><br><span class="line">bin&#x2F;kafka-console-producer.sh --broker-list 99.99.99.99:9092 --topic streams-file-input &lt; file-input.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="Kafka-Connect"><a href="#Kafka-Connect" class="headerlink" title="Kafka Connect"></a>Kafka Connect</h2><p>Kafka Connect使Kafka可以和各种数据对接，Kafka Connect与Flume的功能一样</p>
+<ul>
+<li>Source负责导入数据到Kafka</li>
+<li>Sink负责从Kafka导出数据</li>
+</ul>
+<p>利用Kafka Connect演示从一个文件导入数据到另一个文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 通过配置文件配置数据输入和输出源</span><br><span class="line">&#x2F;bin&#x2F;connect-standalone.sh config&#x2F;connect-standalone.properties config&#x2F;connect-file-source.properties config&#x2F;connect-file-sink.properties</span><br></pre></td></tr></table></figure>
+<h2 id="Kafka集群的监控与运维"><a href="#Kafka集群的监控与运维" class="headerlink" title="Kafka集群的监控与运维"></a><a href="https://zhuanlan.zhihu.com/p/92590719" target="_blank" rel="noopener">Kafka集群的监控与运维</a></h2><ul>
+<li>Kafka的监控:Kafka-Manager是用Scala语言写的。</li>
+<li>Kafka提供了丰富的JMX指标用于实时监控集群运行的健康程度，Kafka-Manager的监控原理就是通过轮询JMX来实时获取这些指标，然后可视化的显示出整个集群的状态。但是在使用它们时，必须要在启动broker前先设置好JMX端口。如下所示：</li>
+</ul>
+<p>//直接在环境变量里面设置<br>export JMX_PORT=9999</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Plugin/" rel="tag"># Plugin</a>
+          
+            <a href="/tags/Kafka/" rel="tag"># Kafka</a>
+          
+            <a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag"># 消息中间件</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/12/SpringCloud-%E7%86%94%E6%96%AD%E5%99%A8Hytrix/" rel="next" title="熔断器-Hystrix">
+                <i class="fa fa-chevron-left"></i> 熔断器-Hystrix
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/12/SpringCloud-%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83Apollo/" rel="prev" title="配置中心-Apollo">
+                配置中心-Apollo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="cdongtao" />
+            
+              <p class="site-author-name" itemprop="name">cdongtao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">149</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yourname" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:441623928@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka是什么？"><span class="nav-number">1.</span> <span class="nav-text">Kafka是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka解决什么问题？"><span class="nav-number">1.1.</span> <span class="nav-text">Kafka解决什么问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka在大数据体系中的位置"><span class="nav-number">1.2.</span> <span class="nav-text">Kafka在大数据体系中的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka一共提供了如下四类核心API"><span class="nav-number">1.3.</span> <span class="nav-text">Kafka一共提供了如下四类核心API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka集群的安装、部署与配置"><span class="nav-number">2.</span> <span class="nav-text">Kafka集群的安装、部署与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka集群HA-高可用-模式部署的原理"><span class="nav-number">2.1.</span> <span class="nav-text">Kafka集群HA(高可用)模式部署的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka与ZooKeeper的关系"><span class="nav-number">2.2.</span> <span class="nav-text">Kafka与ZooKeeper的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka集群的故障转移"><span class="nav-number">2.3.</span> <span class="nav-text">Kafka集群的故障转移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka集群搭建"><span class="nav-number">2.4.</span> <span class="nav-text">Kafka集群搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Step1：下载Kafka包"><span class="nav-number">2.4.1.</span> <span class="nav-text">Step1：下载Kafka包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step2：修改配置文件"><span class="nav-number">2.4.2.</span> <span class="nav-text">Step2：修改配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Step3：启动Kafka"><span class="nav-number">2.4.3.</span> <span class="nav-text">Step3：启动Kafka</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka监控的安装、部署与配置"><span class="nav-number">3.</span> <span class="nav-text">Kafka监控的安装、部署与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step1：下载编译好的项目并解压"><span class="nav-number">3.1.</span> <span class="nav-text">Step1：下载编译好的项目并解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step2：修改配置文件-1"><span class="nav-number">3.2.</span> <span class="nav-text">Step2：修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step3：启动监控进程"><span class="nav-number">3.3.</span> <span class="nav-text">Step3：启动监控进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step4：访问监控地址"><span class="nav-number">3.4.</span> <span class="nav-text">Step4：访问监控地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka原理详解"><span class="nav-number">4.</span> <span class="nav-text">Kafka原理详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息复制与分区"><span class="nav-number">4.1.</span> <span class="nav-text">消息复制与分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的清理"><span class="nav-number">4.2.</span> <span class="nav-text">数据的清理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka的高性能"><span class="nav-number">4.3.</span> <span class="nav-text">Kafka的高性能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka配置文件详解"><span class="nav-number">5.</span> <span class="nav-text">Kafka配置文件详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka的配置文件"><span class="nav-number">5.1.</span> <span class="nav-text">Kafka的配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZooKeeper的配置文件"><span class="nav-number">5.2.</span> <span class="nav-text">ZooKeeper的配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka命令行操作"><span class="nav-number">6.</span> <span class="nav-text">Kafka命令行操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生产者与消费者客户端使用示例"><span class="nav-number">6.1.</span> <span class="nav-text">生产者与消费者客户端使用示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出所有的消费者"><span class="nav-number">6.2.</span> <span class="nav-text">列出所有的消费者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看分区里面最新的消息"><span class="nav-number">6.3.</span> <span class="nav-text">查看分区里面最新的消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生产者吞吐量测试"><span class="nav-number">6.4.</span> <span class="nav-text">生产者吞吐量测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消费者吞吐量测试"><span class="nav-number">6.5.</span> <span class="nav-text">消费者吞吐量测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka生产者"><span class="nav-number">7.</span> <span class="nav-text">Kafka生产者</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生产者Python代码示例"><span class="nav-number">7.1.</span> <span class="nav-text">生产者Python代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka消费者"><span class="nav-number">8.</span> <span class="nav-text">Kafka消费者</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消费者和消费者群组"><span class="nav-number">8.1.</span> <span class="nav-text">消费者和消费者群组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交与偏移量"><span class="nav-number">8.2.</span> <span class="nav-text">提交与偏移量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消费者Python代码示例"><span class="nav-number">8.3.</span> <span class="nav-text">消费者Python代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-Streams"><span class="nav-number">9.</span> <span class="nav-text">Kafka Streams</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-Connect"><span class="nav-number">10.</span> <span class="nav-text">Kafka Connect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka集群的监控与运维"><span class="nav-number">11.</span> <span class="nav-text">Kafka集群的监控与运维</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cdongtao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">324k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:54</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uASAKzQTPhuJIplOaklnAaqK-gzGzoHsz',
+        appKey: 'LRW155uTAdoeaAjf9q9D53Ps',
+        placeholder: 'Welcome to comment!',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

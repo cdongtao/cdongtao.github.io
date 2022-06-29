@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="敏捷是什么？“敏捷”是一种问题解决方式，为了应对高度不确定项目变化速度快,复杂性和风险也高.为了在短时间内探讨可行性,根据评估和反馈快速调整。同时是在问题本身或问题解决能力不能确定的情况下取得尽可能好的结果的问题解决方式;因此敏捷是根据应对不确定性出现时,寻找近优解或更优解。 ACP 的学习包含了波浪式规划、迭代递增式交付、对变化做出快速而灵活的反应 在团队、干系人和客户之间进行开放式交流，敏捷遵">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ACP敏捷知识">
+<meta property="og:url" content="https://cdongtao.github.io/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-ACP%E6%95%8F%E6%8D%B7%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/index.html">
+<meta property="og:site_name" content="cdongtao">
+<meta property="og:description" content="敏捷是什么？“敏捷”是一种问题解决方式，为了应对高度不确定项目变化速度快,复杂性和风险也高.为了在短时间内探讨可行性,根据评估和反馈快速调整。同时是在问题本身或问题解决能力不能确定的情况下取得尽可能好的结果的问题解决方式;因此敏捷是根据应对不确定性出现时,寻找近优解或更优解。 ACP 的学习包含了波浪式规划、迭代递增式交付、对变化做出快速而灵活的反应 在团队、干系人和客户之间进行开放式交流，敏捷遵">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E6%95%8F%E6%8D%B7%E5%AE%A3%E8%A8%80.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/12%E5%A4%A7%E5%8E%9F%E5%88%99.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E6%95%8F%E6%8D%B7%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E7%B2%BE%E7%9B%8A%E4%B8%8E%E6%95%8F%E6%8D%B7%E5%85%B3%E7%B3%BB.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%92%8C%E9%A3%8E%E9%99%A9%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%80%89%E6%8B%A9.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E5%91%A8%E6%9C%9F%E7%89%B9%E5%BE%81.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E9%A2%84%E6%B5%8B%E5%9E%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E8%BF%AD%E4%BB%A3%E8%A1%8C%E5%91%A8%E6%9C%9F.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E5%A2%9E%E9%87%8F%E5%9E%8B.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E6%95%8F%E6%8D%B7%E5%9E%8B.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E6%B7%B7%E5%90%88%E5%9E%8B.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E9%A2%84%E6%B5%8B%E4%B8%BA%E4%B8%BB.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E6%95%8F%E6%8D%B7%E4%B8%BA%E4%B8%BB.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E8%A3%81%E5%89%AA%E5%9B%A0%E7%B4%A0.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E6%95%8F%E6%8D%B7%E5%9B%A2%E9%98%9F%E5%90%88%E4%BD%9C.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E6%95%8F%E6%8D%B7%E5%9B%A2%E9%98%9F%E8%A7%92%E8%89%B2.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E6%95%8F%E6%8D%B7%E7%97%9B%E7%82%B9%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E6%95%8F%E6%8D%B7%E7%97%9B%E7%82%B9%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%952.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E6%95%8F%E6%8D%B7%E7%9C%8B%E6%9D%BF.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E4%BA%A7%E5%93%81%E4%BB%A3%E5%8A%9E%E5%88%97%E8%A1%A8%E7%87%83%E8%B5%B7%E5%9B%BE.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E7%B4%AF%E7%A7%AF%E6%B5%81%E5%9B%BE.png">
+<meta property="og:image" content="https://cdongtao.github.io/acp/%E4%BC%98%E5%85%88%E7%BA%A7%E8%AF%84%E4%BC%B0%E8%A1%A8.png">
+<meta property="article:published_time" content="2021-01-05T13:28:02.326Z">
+<meta property="article:modified_time" content="2021-01-11T05:09:01.949Z">
+<meta property="article:author" content="cdongtao">
+<meta property="article:tag" content="敏捷">
+<meta property="article:tag" content="ACP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdongtao.github.io/acp/%E6%95%8F%E6%8D%B7%E5%AE%A3%E8%A8%80.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="cdongtao" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cdongtao.github.io/2021/01/05/项目管理-ACP敏捷知识体系/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ACP敏捷知识 | cdongtao</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cdongtao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cdongtao.github.io/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-ACP%E6%95%8F%E6%8D%B7%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cdongtao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cdongtao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ACP敏捷知识
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-01-05 21:28:02" itemprop="dateCreated datePublished" datetime="2021-01-05T21:28:02+08:00">2021-01-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-11 13:09:01" itemprop="dateModified" datetime="2021-01-11T13:09:01+08:00">2021-01-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Project-Management/" itemprop="url" rel="index"><span itemprop="name">Project Management</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-ACP%E6%95%8F%E6%8D%B7%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-ACP%E6%95%8F%E6%8D%B7%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">27k 字</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">24 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="敏捷是什么？"><a href="#敏捷是什么？" class="headerlink" title="敏捷是什么？"></a>敏捷是什么？</h2><p>“敏捷”是一种问题解决方式，<font color="red">为了应对高度不确定项目变化速度快,复杂性和风险也高.为了在短时间内探讨可行性,根据评估和反馈快速调整。同时是在问题本身或问题解决能力不能确定的情况下取得尽可能好的结果的问题解决方式;因此敏捷是根据应对不确定性出现时,寻找近优解或更优解。</font></p>
+<p>ACP 的学习包含了波浪式规划、迭代递增式交付、对变化做出快速而灵活的反应 在团队、干系人和客户之间进行开放式交流，敏捷遵循极限编程、Scrum、精益、看板、测试驱动开发、功能驱动开发等原则，快速解决项目中出现的问题，并进行对客户的不断交付。整个模型核心为客户快速提供有价值的可交付成果</p>
+<h3 id="主要解决6大模块的问题。内容总结如下："><a href="#主要解决6大模块的问题。内容总结如下：" class="headerlink" title="主要解决6大模块的问题。内容总结如下："></a>主要解决6大模块的问题。内容总结如下：</h3><pre><code>1.如何交付与客户需求一致的产品?
+2.如何管理干系人的参与和期望?
+3.如何在敏捷管理过程中提升团队的绩效?
+4.如何让计划更好的适应变化?
+5.如何及时发现问题并有效解决?
+6.如何持续改进—产品、过程、人</code></pre><h3 id="面临问题"><a href="#面临问题" class="headerlink" title="面临问题"></a>面临问题</h3><pre><code>1.估算不准确,导致延期风险：加班/或者部分交付/延期交付：提前识别逾期
+2.识别有用需求,排期合理，
+3.拆分工作包</code></pre><h3 id="每日站立会："><a href="#每日站立会：" class="headerlink" title="每日站立会："></a>每日站立会：</h3><h2 id="敏捷的核心规则"><a href="#敏捷的核心规则" class="headerlink" title="敏捷的核心规则"></a>敏捷的核心规则</h2><h3 id="敏捷4大宣言"><a href="#敏捷4大宣言" class="headerlink" title="敏捷4大宣言"></a>敏捷4大宣言</h3><p><img src="/acp/%E6%95%8F%E6%8D%B7%E5%AE%A3%E8%A8%80.png" alt="敏捷宣言" title="敏捷宣言"></p>
+<h3 id="12大原则"><a href="#12大原则" class="headerlink" title="12大原则"></a>12大原则</h3><p><img src="/acp/12%E5%A4%A7%E5%8E%9F%E5%88%99.png" alt="12大原则" title="12大原则"></p>
+<h3 id="敏捷思维模式"><a href="#敏捷思维模式" class="headerlink" title="敏捷思维模式"></a>敏捷思维模式</h3><p><img src="/acp/%E6%95%8F%E6%8D%B7%E6%80%9D%E7%BB%B4%E6%A8%A1%E5%BC%8F.png" alt="敏捷思维模式" title="敏捷思维模式"></p>
+<h3 id="精益与敏捷关系"><a href="#精益与敏捷关系" class="headerlink" title="精益与敏捷关系"></a>精益与敏捷关系</h3><p><img src="/acp/%E7%B2%BE%E7%9B%8A%E4%B8%8E%E6%95%8F%E6%8D%B7%E5%85%B3%E7%B3%BB.png" alt="精益与敏捷关系" title="精益与敏捷关系"><br>项目团队有时候会发现将各种方法结合起来使用更加有用,只要对组织或团队有效的方法,无论来源如何,都应该采纳.</p>
+<h3 id="不确定性-风险和生命周期选择"><a href="#不确定性-风险和生命周期选择" class="headerlink" title="不确定性,风险和生命周期选择"></a>不确定性,风险和生命周期选择</h3><p><img src="/acp/%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%92%8C%E9%A3%8E%E9%99%A9%E5%92%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%80%89%E6%8B%A9.png" alt="不确定性和风险和生命周期选择" title="不确定性和风险和生命周期选择"></p>
+<p>不确定性包括:<br>    1. 适用性和需求(正在构建的产品是否正确?)<br>    2. 技术可行性和性能(产品是否可以采用这种方法构建?)<br>    3. 过程和人员(这是否为团队工作的一种有效方式)</p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><ul>
+<li>四种类型生命周期形态<br><img src="/acp/%E5%91%A8%E6%9C%9F%E7%89%B9%E5%BE%81.png" alt="周期特征" title="周期特征"></li>
+</ul>
+<h3 id="预测型"><a href="#预测型" class="headerlink" title="预测型"></a>预测型</h3><p><img src="/acp/%E9%A2%84%E6%B5%8B%E5%9E%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="预测型生命周期" title="预测型生命周期"><br>预测型生命周期预计会从高确定性的明确的需求,稳定的团队和低风险中获益。<br>团队需要详细计划,了解要交付什么以及怎么样交付.如果过程变更收到控制,那项目就容易成功.预测型项目根据部门划分的，有效的，顺序的工作,并且不能在项目前结束商业价值,如果遇到变更或需求分歧,或技术解决方案变得不在简单明了,预测型项目就产生意想不到的成本。</p>
+<h3 id="迭代型"><a href="#迭代型" class="headerlink" title="迭代型"></a>迭代型</h3><p><img src="/acp/%E8%BF%AD%E4%BB%A3%E8%A1%8C%E5%91%A8%E6%9C%9F.png" alt="迭代行周期" title="迭代行周期"><br>当项目复杂性高,变更频繁或当项目范围受到相关方对所需最终产品的不同观点的支配时，采用迭代型生命周期有优势。迭代型生命周期可能需要更长时间,因为他是为学习而优化,而不是交付速度而优化.</p>
+<p>场景1:</p>
+<ul>
+<li>您是否并不确定新的商业服务在实践中怎么样发挥作用?用评估标准来创建一个概念验证,以此探讨期望结果,如果您怀疑需求将根据客户反馈发生更变,请使用迭代方法。</li>
+</ul>
+<p>场景2：</p>
+<ul>
+<li>您是否曾经参与过这样的项目,在项目过程中,需求视乎每天都在变化,您认为,“我们在交付企业批准的原型就会了解需求”。如果情况如此，那么敏捷方法将有助于这个项目。原型法鼓励反馈，并有助于更好理解可纳入每个交付成果的需求。</li>
+</ul>
+<h3 id="增量型"><a href="#增量型" class="headerlink" title="增量型"></a>增量型</h3><p><img src="/acp/%E5%A2%9E%E9%87%8F%E5%9E%8B.png" alt="增量型" title="增量型"><br>为了快速交付,许多项目无法等待所有事情全部完成,这种情况下,客户愿意接受整个解决方案的一部分.这种少量交付成果的频繁交付成为增量型生命周期。</p>
+<ul>
+<li>生命周期不一样</li>
+<li>通过不断交付的反馈，团队可以有效管理项目偏差.与客户在项目中结束时获得价值相比,确保客户能尽早获得价值,其变更和差异程度的重要型变得不那么重要。</li>
+<li>由于完整性和交付是主观的,团队可能需要获得关于原型的反馈,然后可能选择将最小可行性产品交付客户。客户反馈会帮助团队了解他们需要为随后交付最终功能提供什么。</li>
+<li>采用增量方法的一个例子:为客户提供一个单一功能或是交付一项完成的工作。如商品房未完成之前先提交样本房。</li>
+</ul>
+<h3 id="敏捷型"><a href="#敏捷型" class="headerlink" title="敏捷型"></a>敏捷型</h3><p><img src="/acp/%E6%95%8F%E6%8D%B7%E5%9E%8B.png" alt="敏捷型" title="敏捷型"><br>在敏捷环境中,团队预料需求会发生更变.迭代和增量方法能够提供反馈,以便改善项目下一部分的计划.不过在项目敏捷中,增量交付会发现隐藏或误解的需求。图中事先了交付两种可能的方法,这样便于项目与客户需求保持一致,并根据需求调整。</p>
+<ul>
+<li><p>迭代敏捷:团队以迭代(相等持续的时间盒)形式交付完整的功能。团队集中于最重要功能,作为一个团队合作完成其工作.然后,团队再集中于下一项最重要的功能,并合作完成其工作.团队可决定一次进行若干功能的开发工作,但是团队不会同时完成所有迭代工作(团队不会在完全分析等工作后再解决所有需求)</p>
+</li>
+<li><p>流程基础上的敏捷方法:团队将根据自身能力,从代办事项列表中提取若干功能开始工作,而不是安装基于迭代的进度计划开始工作.团队定义任务板各列工作流,并管理各列的进行中的工作.完成不同工能所花费的时间可能有所不同。团队让进行中的工作规模尽量小,以便尽早发现问题,并在需要更变时减少返工.<font color="red">无需利用迭代定义计划和审核点,而由团队和业务相关方决定规划,产品评审与回顾的最适当的进度计划</font></p>
+</li>
+<li><p>敏捷生命周期是符合《敏捷宣言》原则的周期,特别是,客户满意度将随着有价值产品的早期交付和持续交付不断提升.功能性的，提供价值的增量可交付成果,是衡量进展的主要尺度。为了更适应更频繁的变更,和更频繁的交付项目价值,敏捷生命周期结合迭代和增量的方法</p>
+</li>
+</ul>
+<h3 id="迭代与增量应用特点"><a href="#迭代与增量应用特点" class="headerlink" title="迭代与增量应用特点"></a>迭代与增量应用特点</h3><pre><code>1.非常短的反馈循环
+2.频繁调整过程
+3.重新进行优先级排序
+4.定期更新计划
+5.频繁交付
+6.需要研究与开发
+7.变更速度极快
+8.具有不明确或未知的需求,不确定性或风险
+9.最终目标难以描述:通过构建小增量,然后对其进行评估测试,团队可以在短时间内以低成本探索不确定性,降低风险,最大程度的实现商业价值的交付.</code></pre><h3 id="混合型"><a href="#混合型" class="headerlink" title="混合型"></a>混合型</h3><p><img src="/acp/%E6%B7%B7%E5%90%88%E5%9E%8B.png" alt="混合型" title="混合型"><br>对于整个项目,没有必要使用单一的方法.为了达到特定的目标,经常要结合不同的生命周期要素.预测,迭代,增量和敏捷方法的组合就是混合方法.</p>
+<ul>
+<li><p>案例有:<br>　　１.医药公司上市前需要审批,每一次审批都是修正,但是一旦审批通过就可以批量生产,因此整个生命周期嵌套了不一样类型生命周期<br>  2.需要从预期型过度到敏捷:添加站立会,回顾,采取短迭代….</p>
+</li>
+<li><p>预测为主,敏捷为辅<br><img src="/acp/%E9%A2%84%E6%B5%8B%E4%B8%BA%E4%B8%BB.png" alt="预测为主" title="预测为主"><br>以敏捷处理项目中具有不确定性,复杂性或者范围存在蔓延机会项目的一部分.其余都是预测<br>如承包商可能计划首先在地面上进行小规模安装实验,已确定最佳安装方法,并在有足够时间解决问题时尽早发现问题,随后通过试验和调整,增量地改进</p>
+</li>
+<li><p>敏捷为主,预测为辅<br><img src="/acp/%E6%95%8F%E6%8D%B7%E4%B8%BA%E4%B8%BB.png" alt="敏捷为主" title="敏捷为主"><br>当某个特定要素不可协商,或者使用敏捷方法不可执行时,可能会使用这种方法.<br>如集成不同外部供应商开发外部组件,这些组件不能或不会以协作或增量方式合作。组件交付之后,需要单独集成</p>
+</li>
+</ul>
+<h2 id="影响裁剪项目的因素"><a href="#影响裁剪项目的因素" class="headerlink" title="影响裁剪项目的因素"></a>影响裁剪项目的因素</h2><p><img src="/acp/%E8%A3%81%E5%89%AA%E5%9B%A0%E7%B4%A0.png" alt="裁剪因素" title="裁剪因素"></p>
+<h2 id="创建敏捷环境"><a href="#创建敏捷环境" class="headerlink" title="创建敏捷环境"></a>创建敏捷环境</h2><h3 id="敏捷环境需要思考的问题"><a href="#敏捷环境需要思考的问题" class="headerlink" title="敏捷环境需要思考的问题"></a>敏捷环境需要思考的问题</h3><ol>
+<li>项目团队如何以敏捷方式行动？</li>
+<li>为了下一个周期受益,团队需要快速交付那些成果并获得早期反馈？</li>
+<li>团队如何以一种透明的方式行动？</li>
+<li>为了专注高优先级的项目，可以避免那些工作？</li>
+<li>仆人式领导对团队达成目标有何益处？</li>
+</ol>
+<h3 id="仆人式领导"><a href="#仆人式领导" class="headerlink" title="仆人式领导"></a>仆人式领导</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>定义:仆人式领导是通过对团队服务来领导团队的实践,它注重理解和关注团队成员的需要和发展,旨在使团队尽可能达到最高绩效。<br>作用:促进团队发现和定义敏捷,以身作则实践并传播敏捷<br>仆人式领导按照以下顺序从事项目工作:</p>
+<ol>
+<li>目的:与团队一起定义“为什么”或目的,以便他们能够围绕项目目标进行合作互动。参与决策同时也是让他们达成共识，让整个团队在项目层面而不是在人员层面优化</li>
+<li>人员:目标确立后，鼓励团队创造一个人人都能成长的环境.要求每个团队成员在项目工作中做出贡献</li>
+<li>过程:不能计划遵循”完美”的敏捷过程,而是关注通过敏捷带来的结果。要以结果为导向来敏捷，不能以敏捷导向结果。如果跨智能团队能够常常交付完成的价值并反思产品和过程，团队就是敏捷的。团队将其过程称作什么不重要。</li>
+</ol>
+<h4 id="仆人式领导特征"><a href="#仆人式领导特征" class="headerlink" title="仆人式领导特征"></a>仆人式领导特征</h4><ol>
+<li>提升自我意识</li>
+<li>倾听</li>
+<li>为团队服务</li>
+<li>帮助他人成长</li>
+<li>引导与控制</li>
+<li>促进安全,尊重与信任;</li>
+<li>促进他人精力与才智提升</li>
+</ol>
+<h4 id="仆人式职责"><a href="#仆人式职责" class="headerlink" title="仆人式职责"></a>仆人式职责</h4><p>仆人式领导通过管理关系,在团队内和组织中建立沟通与协作。这些关系可以帮助领导在组织中得心应手地为团队提供支持。这种支持有助于消除障碍,促进团队理顺过程。由于仆人式领导了解敏捷，在应用具体方法时践行敏捷，因此他们能够帮助满足团队需要</p>
+<h4 id="仆人式领导促进地作用"><a href="#仆人式领导促进地作用" class="headerlink" title="仆人式领导促进地作用"></a>仆人式领导促进地作用</h4><p>仆人式领导工作重点就是从”管理协调”转向”促进合作”。促进帮助每个人各尽所能地思考与工作，促进鼓励团队参与，理解，并对团队输出共同承担责任。促进帮助团队创建可以接受地解决方案</p>
+<p>仆人式领导促进团队内部和团队之间的合作与对话。例如，仆人式领导在团队内部和团队之间帮助发现瓶颈问题，并进行相应沟通。然后团队将解决这些瓶颈问题。此外鼓励大家通过交互式会议，非正式对话和知识共享展开工作协作.仆人式领导要通过成为公正的搭桥者和教练来做到这一点，而不是代替其他责任人作出决策。</p>
+<h4 id="仆人式领导消除组织障碍"><a href="#仆人式领导消除组织障碍" class="headerlink" title="仆人式领导消除组织障碍"></a>仆人式领导消除组织障碍</h4><p>仆人式领导职责是认真审视那些阻碍团队敏捷或组织敏捷的过程,并努力使其合理化.<br>如一个部门需要大量文档,仆人式领导的角色就能发挥作用,他们可以与部门合作审查所需要文档,就敏捷交付如何满足这些需求达成共识提供协助,并对所需的文档数量进行评估,从而使团队能够将时间更多地提供有价值地产品,而不是创建详尽地文档.<br>仆人式领导还应该关注其他冗长地过程,这些过程往往造成瓶颈问题,阻碍团队或组织地敏捷性.可能需要处理地过程或部门地例子包括,财务部门,变更控制委员会或审计部门。仆人式领导可以与他人携手合作,共同质疑和审核他们地过程,为敏捷团队和领导提供支持.如对团队而言,每2周交付一个工作产品仅仅是为了让产品进入队列或过程,而冗长地分布过程可能需要6周或更长时间,这样做有什么好处?太多组织都有这些瓶颈过程,正是他们阻碍了团队快速交付有价值地产品或服务。仆人式领导有能力改变或消除障碍,为交付团队提供支持。</p>
+<h4 id="仆人式领导为他人贡献铺路"><a href="#仆人式领导为他人贡献铺路" class="headerlink" title="仆人式领导为他人贡献铺路"></a>仆人式领导为他人贡献铺路</h4><p>在敏捷中,团队管理其工作过程及其工作产品.自我管理和自我组织适用于所有为组织和项目提供支持地人.仆人式领导为满足团队,项目和组织地需求而工作。仆人式领导可以在团队工作场所与团队一起工作,与管理层一起工作。使团队能够一次专注于一个项目,或者与产品负责人合作,与团队共同开发故事.有些仆人式领导与审计人员合作,改善监管环境中所需地过程,有些仆人式领导与财务部合作,帮助组织向增量预算过度。仆人式领导注重为团队铺路,让团队尽其所能.仆人式领导影响项目,鼓励组织以不同方式思考</p>
+<ul>
+<li>人际关系技能与专业技能<br>除仆人式领导外,团队成员还有重视自身地人际关系技能和清商技能,不仅仅是专业技能.团队中每个人都要努力展示更多主动性,正直,清商,诚实,合作态度,谦逊和以往不同方式沟通地愿意,才能促进整个团队携手共进.团队需要上述技能，才能对项目方向地变化和技术产品地变更做出积极应对.只有每个人都能适应工作彼此适应,整个团队才更有可能迈向成功</li>
+</ul>
+<h4 id="考虑仆人式领导职责"><a href="#考虑仆人式领导职责" class="headerlink" title="考虑仆人式领导职责"></a>考虑仆人式领导职责</h4><p>仆人式领导可能有很多头衔,但是最重要地还是他们所做地工作，以下仆人式领导地职责示例<br>1.教育培训相关方,使其了解为什么要敏捷以及如何敏捷.根据优先级说明商业价值地好处,对被赋权团队加强问责,提高工作效率,并通过更频繁评审改进质量<br>2.通过指导,鼓励和帮助为团队提供支持。提倡团队成员培训和职业发展。通过支持,鼓励和专业发展,团队成员将获得信心,承担更多责任,并在组织中做出更大贡献.仆人式领导的一个关键作用是,培养和发展团队成员,帮助他们超越自身当前的角色,既使团队将失去他们也在所不惜<br>3.通过技术项目管理活动,如量化风险分析帮助团队.有时团队成员可能并不具备在某些角色或功能方面知识或经验,对相关技能有更多接触或接受过相关培训的仆人式领导可以通过提高培训或开展这些活动来为团队提供支持<br>4.庆祝团队的成功,为团队与外部团队合作提供支持,并起到桥梁作用,创造相互欣赏的积极范围,建立加强合作的良好意愿.</p>
+<h4 id="项目经理与仆人式领导"><a href="#项目经理与仆人式领导" class="headerlink" title="项目经理与仆人式领导"></a>项目经理与仆人式领导</h4><p>项目经理已经习惯于项目的协调中心,负责跟踪团队的状态,并向组织中其他成员反映.当项目被分解为孤立功能时,这种方法没有问题；但是对于高不确定性项目,项目的复杂性是一个人无法管理的.而跨职能团队既能协调自身工作，还能与业务代表(产品负责人)开展合作，这时候项目经理就从团队中心转为团队和管理人员提供服务。在敏捷环境中，项目经理充当仆人式领导,其工作重点转变为引导需要帮助的人.促进团队的合作,项目经理要鼓励将责任分配给团队成员,分配给那些掌握完成任务所需要知识的人</p>
+<h3 id="团队的构成"><a href="#团队的构成" class="headerlink" title="团队的构成"></a>团队的构成</h3><p>《敏捷宣言》的价值观和原则的一个核心宗旨是强调个人和交互的重要性.敏捷优化了价值流,强调了客户快速交付功能,而不是怎么样用人.要善于激励项目人员,为他们提供所需要的环境和支持,信任他们能够完成工作.</p>
+<ul>
+<li>敏捷优化了价值流好处<br>1.人员更有可能合作<br>2.团队更快地完成价值地工作<br>3.由于不从事多余任务，没必要重新建立环境,团队减少了时间浪费<br><img src="/acp/%E6%95%8F%E6%8D%B7%E5%9B%A2%E9%98%9F%E5%90%88%E4%BD%9C.png" alt="敏捷团队合作" title="敏捷团队合作"></li>
+</ul>
+<h4 id="敏捷团队角色"><a href="#敏捷团队角色" class="headerlink" title="敏捷团队角色"></a>敏捷团队角色</h4><p><img src="/acp/%E6%95%8F%E6%8D%B7%E5%9B%A2%E9%98%9F%E8%A7%92%E8%89%B2.png" alt="敏捷团队角色" title="敏捷团队角色"></p>
+<h4 id="识别团队人才"><a href="#识别团队人才" class="headerlink" title="识别团队人才"></a>识别团队人才</h4><p>敏捷团队是跨职能的,往往由T型人才(横向)和I型人才(纵向)组成;由于团队密切合作和自我组织,敏捷团队才能够迅速完成工作,这就是需要相互帮助成为常态.敏捷团队成员都要致力于培养这样的特质。一个人的能力大小无关紧要。如果给其他团队其他成员来的瓶颈问题,集中于某一个人能力甚至是有害的.团队的目的是优化已经完成工作,并且获得反馈</p>
+<h4 id="尽力使得小组成员形成专职"><a href="#尽力使得小组成员形成专职" class="headerlink" title="尽力使得小组成员形成专职"></a>尽力使得小组成员形成专职</h4><p>　　　经常会出现团队成员不是100%为团队专职工作,这样情况经常无法避免.多任务处理缓解了整个团队的进展,因为团队要浪费时间切换环境或者相互等待其他工作完成.当人员100%为团队专职工作时,团队最有可能最快产出.如果让一个团队非100%投入,这样带来的问题是，处理多任务但是会降低团队的产出,并影响团队从燃尽图预测交付能力一致性。而且随着任务增加,效率损失呈指数增加。关键人们减少投入精力,在一心多用同时更加容易犯错误.任务频繁切换会消耗工作记忆,多任务处理不太可能记住对于的工作背景和其中技术，也不利团队成员沉淀与发展。<br>　　　追逐太阳的开发过程是一种每天结束工作时将工作移交到下一个工作状态,并不要是要求团队中拥有自身需要的全部角色。例如DBA，如果有外部团队成员来支援,则需要确定这名成员能否100%专职？分配支援时间多久？对团队每个人设定期望</p>
+<h4 id="团队工作场所"><a href="#团队工作场所" class="headerlink" title="团队工作场所"></a>团队工作场所</h4><p>分散式管理团队沟通技术包括鱼缸窗口和远程结对</p>
+<ul>
+<li>鱼缸窗口：通过视频会议链接不同地点团队,创建鱼缸窗口.开始工作时，打开链接,工作结束时,关闭链接。以此来互动，减少不同工作地方所有滞后问题</li>
+<li>使用虚拟工具来共享屏幕:包括语音和视频链接,建立远程结对,这样类似面对面结对一样有效</li>
+</ul>
+<h4 id="克服组织存在得孤岛"><a href="#克服组织存在得孤岛" class="headerlink" title="克服组织存在得孤岛"></a>克服组织存在得孤岛</h4><p><font color ="blue">作为敏捷的领导,首先重点放在如何组建跨职能团队,让所有团队成员100%投入团队工作.即使这只是意味关键团队成员(如开发和测试人员)每天一起工作交流，也是迈向敏捷方向一步.拥有不同技能的人共同组成团队,培养管理者和领导的敏捷思维模式,在敏捷开发早期就让他们参与其中.为了克服组织孤岛问题,就要与团队成员不同管理者合作，让他们为夸职能团队安排必要专职人员.这样不仅建立团队协同,而且能让组织看到怎么样用人才能优化进行中的项目和产品</front></p>
+<h2 id="实施敏捷"><a href="#实施敏捷" class="headerlink" title="实施敏捷"></a>实施敏捷</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><h4 id="项目章程"><a href="#项目章程" class="headerlink" title="项目章程"></a>项目章程</h4><p>每个项目都需要一个项目章程,这样项目团队就能了解项目之所以重要的原因,团队的前进方向以及项目的目标.</p>
+<h4 id="团队章程"><a href="#团队章程" class="headerlink" title="团队章程"></a>团队章程</h4><p>对团队而言,还需要团队规范以及对一起工作方式的理解.这样就需要一个团队章程，制定章程的过程能帮助团队学习如何一起工作,怎样围绕项目协作。对于敏捷而言,团队至少还需要项目愿景或目标,以及一组清晰的工作协议.</p>
+<p>项目需要回答一下问题</p>
+<ol>
+<li>我们为什么做这个项目?项目愿景</li>
+<li>谁会从中受益?如何受益?这是可能项目愿景和/或项目目标的一部分</li>
+<li>对此项目而言,达到那些条件才意味着项目完成?这些是项目的发布标准</li>
+<li>我们怎么样合作?这就说明预期的工作流,仆人式领导可以促进章程的制定过程.团队可以通过一起工作实现协作,而制定项目章程是一种很好的开始工作的方式.此外,团队成员可能希望通过协作了解他们将如何一起工作。只要团队知道如何一起工作,制定章程就不需要一个正式的过程.有些团队可以从团队制定章程的过程中受益。下面是对团队成员制定章程的一些建议,可以将其作为制定团队社会契约的基础<ol>
+<li>团队价值观:如何可持续的开发速度和核心工作时间</li>
+<li>工作协议: 例如”就绪”如何定义,这是团队可以接受工作的前提;”完成”如何定义,这样团队才能一致的判断完整性;考虑时间盒;使用工作过程限制;</li>
+<li>团队规范,例如团队如何对待会议时间.仆人式领导可以与团队一起决定处理其他行为.</li>
+</ol>
+</li>
+</ol>
+<p><font color ="blue">请记住,团队的社会契约,即团队章程,将规定团队成员之间彼此互动方式。团队章程的目标是创建一个敏捷的环境,在这个环境中,团队成员可以发挥他们作为团队的最大能力</font></p>
+<h3 id="Retro-Meeting-回顾"><a href="#Retro-Meeting-回顾" class="headerlink" title="Retro Meeting(回顾)"></a>Retro Meeting(回顾)</h3><p>Retro 是一个最重要的实践,原因是它能让团队学习,改进和调整其过程。回顾可以帮助团队从之前的产品开发工作及其过程中学习.在敏捷宣言里背后的原则之一:”团队要定期反省如何能够做到更加有效,并相应地调整团队的行为”</p>
+<h4 id="回顾的关键时刻"><a href="#回顾的关键时刻" class="headerlink" title="回顾的关键时刻"></a>回顾的关键时刻</h4><ol>
+<li>当团队完成一个发布或者加入一些功能时.这不一定是一个巨大的增量,它可以是任何发布,无论它有多小</li>
+<li>当团队出现问题时,以及团队协作完成工作不顺畅时</li>
+<li>当团队达到任何其他里程碑时,团队可以通过分配足够时间学习受益,无论时在项目中间回顾,还是在项目结束时回顾.团队需要了解他们的工作产品和工作过程。例如，有些团队在完成工作时遇到困难,团队可以计划用充足的时间组织回顾,以此收集数据,处理数据,再决定之后要尝试的实验做法.<ol>
+<li>首要的是,回顾并不是责备;回顾是让团队以从前的工作中学习并做出小的改进</li>
+<li>回顾针对定性的(人的感觉)和定量的(权衡指标)数据,然后利用这些数据找到根源,设计对策,并制定行动计划.项目团队可以采取许多行事项来消除障碍</li>
+<li>考虑限制行动事项的数量,使团队在进行的迭代或工作期限间有能力改进.尝试依次改进太多的事情却没有完成其中任何一件,比计划完成较少的事情并成功全部完成要糟糕得多.然后在时间允许得情况下,团队可以进行列表中得下一个改进。团队选择改进时,要决定如何衡量结果。然后，下一段时间内要权衡结果.以验证每个改进成功与否。团队引导者通过一个活动对所有改进事项得重要性进行排序.完成对改进事项得排序后,团队为下一次迭代选择合适得数量(或者在流程基础上增加工作)</li>
+</ol>
+</li>
+</ol>
+<h4 id="待表事项列表"><a href="#待表事项列表" class="headerlink" title="待表事项列表"></a>待表事项列表</h4><p>工作开始之时,只需要了解第一个发布主要内容正确即可,不需要为项目创建所有故事。考虑使用影响地图查看产品如何组合在一起.产品负责人可能会制作一个产品路线图,以显示预期得可交付成果序列，这样产品负责人根据团队得实际成果重新规划路线图。</p>
+<h4 id="待办列表细化"><a href="#待办列表细化" class="headerlink" title="待办列表细化"></a>待办列表细化</h4><p>在执行敏捷过程中,产品责任人在多次得会议里,目的细化足够得故事，让团队充分了解故事内容,以及故事之间得相互关系.</p>
+<ul>
+<li>许多基于迭代敏捷团队在两周得迭代中用了1小时的时间盒讨论(团队选择一个迭代持续时间,为他们提供足够频繁反馈)</li>
+<li>基于迭代的敏捷团队的多次细化讨论,团队可以在陌生的产品,产品领域或问题领域使用这一技巧；同时在细化过程，产品负责可以让团队了解故事中潜在的挑战或问题.如果产品负责人不确定依赖关系,还可以请求团队对相应功能进行刺探,以便了解风险。</li>
+</ul>
+<p>产品负责细化代表事项列表</p>
+<ul>
+<li>鼓励团队在开发人员,测试人员,业务分析人和产品负责人三方合作开展讨论和撰写故事</li>
+<li>把这个故事的概念呈现给团队,团队进行讨论,并根据需要将其细化为许多故事</li>
+<li>产品负责人需要与团队一起寻找各种方法探索和撰写故事,确保所有的故事足够小,以便团队能源源不断地交付完成地工作.考虑每天至少完成一个故事，团队通常有个目标，就是每周用不超过1小时地时间来为下一批工作细化故事。团队希望把时间尽可能花在工作上,而不是计划上.如果团队每周花1小时以上来细化故事,那么产品负责人可能会过度准备或者团队可能缺乏评估和细化工作地一些关键技能</li>
+</ul>
+<h3 id="每日站立会"><a href="#每日站立会" class="headerlink" title="每日站立会"></a>每日站立会</h3><p>站立会存在目的:1.为了发现存在问题。2.知道团队/队员进度状态,给予及时帮助.3.不在会上解决问题</p>
+<h4 id="关注每个人进度"><a href="#关注每个人进度" class="headerlink" title="关注每个人进度"></a>关注每个人进度</h4><p>规定每日站立会地时间盒子:一般不超出15分钟<br>每个人轮流回答以下问题</p>
+<ol>
+<li>昨天来我都完成了什么？</li>
+<li>接下来今天我打算完成什么？</li>
+<li>我遇到地障碍/风险/问题是什么？<br>这样地问题得出的答案能够让团队自我组织,并让团队成员完成之前承若地工作承担地责任.<h4 id="关注团队产出"><a href="#关注团队产出" class="headerlink" title="关注团队产出"></a>关注团队产出</h4>可以从看板中从右到左进行评估</li>
+<li>我们还需要做些什么来推进这一工作？</li>
+<li>作为一个团队,我们需要完成什么?</li>
+<li>工作流程是否存在瓶颈或阻碍？</li>
+</ol>
+<h4 id="反模式1"><a href="#反模式1" class="headerlink" title="反模式1"></a>反模式1</h4><p>站立会成为状态报告会议,传统上在预测环境中工作地团队可能倾向于采用这样反模式,因为他们习惯报告状态。鼓励任何团队成员主持会议而不是由项目经理或者领导主持,确保它不会变成状态报告会议,而是作为团队进行自我组织相互承诺地会议。</p>
+<h4 id="反模式2"><a href="#反模式2" class="headerlink" title="反模式2"></a>反模式2</h4><p>当问题变得明显时,团队才开始解决问题.站立是为了发现问题而不是解决他们.发现地问题可以记录在停车场,然后创建会议，并解决问题。将团队地注意力吸引到反模式,并帮助团队发现如何改进战会.团队可以举办自己的战会,只要体现团队工作需要密切合作，进行顺利,战会就非常有用.</p>
+<h4 id="注意问题"><a href="#注意问题" class="headerlink" title="注意问题"></a>注意问题</h4><p>要针对团队何时需要站会，站会是否有效等问题有意识地做出决定</p>
+<h4 id="Retro-Meeting-展示-评审"><a href="#Retro-Meeting-展示-评审" class="headerlink" title="Retro Meeting(展示/评审)"></a>Retro Meeting(展示/评审)</h4><p>当团队完成用户故事的形式完成特定功能时,团队会定期展示工作产品.看过展示后,产品负责人接受或拒绝故事。在基于迭代敏捷中,团队在迭代结束时展示所有已完成工作项,基于敏捷流程的敏捷中,团队在需要时完成展示工作,通常是当完成的功能积累到足以构成一个连贯组合时,团队包括产品负责人都需要反馈来决定合适需要产品反馈。</p>
+<p>一般做法是:没两周至少展示一次团队工作产品,这样频率对于大多数团队来说是足够的,这样,团队成员就可以得到反馈,防止他们朝着错误方向前进。这样的频率也可以让团队保持产品开发足够清晰,按照自己希望或需要的频率构建一个完整产品.如果没有展示/回顾/评审的团队,其学习书读不会快,也可能没采用敏捷技术</p>
+<h4 id="规划故事注意"><a href="#规划故事注意" class="headerlink" title="规划故事注意"></a>规划故事注意</h4><ol>
+<li>充分了解:提前一个sprint,关注下一个sprint是否有节假日,以及人员是否存在请假.最好做表格统计<br>团队不能100%确定自己能够交付什么,因为他们无法知道意外情况。当产品负责人拆分故事使其变为小的时候,团队看到的是产品的完成进度,团队就知道他们将来能够作什么。</li>
+</ol>
+<h4 id="注重交付产品价值-质量"><a href="#注重交付产品价值-质量" class="headerlink" title="注重交付产品价值(质量)"></a>注重交付产品价值(质量)</h4><p>如果团队不重视质量,那就无法快速发布任何东西,需要返工导致不断延期</p>
+<ol>
+<li>持续集成.无论产品如何都要频繁将工作集成到整体中,然后再进行重新测试,以确定整个产品然按照预期工作</li>
+<li>在不同层面测试.对端到端信息使用系统及测试,对构建使用单元测试.两者之间,了解是否需要进行集成测试,以及在何处进行测试。团队发现冒烟测试有助于测试工作产品是否良好.以便决定何时以及对那些产品进行回归测试,可以帮助他们在维护产品质量的同时,良好构建性能。自动化测试可以让团队构建保持交付的产品能力提高</li>
+<li>验收测试驱动开发(ATDD).在ATDD中，整个团队聚集一堂讨论工作产品的验收标准.然后团队创建测试,让这个团队能够编写足够的代码进行自动化测试,满足标准要求。</li>
+<li>测试驱动开发(TDD)和行为驱动开发(BDD).在创建或编写产品之前些自动化测试,实际可以帮助人员设计产品，防止产品无耻</li>
+<li>刺探(实际盒研究或实验)刺探对学习何有用,可以在诸如评估,验收标准定义以及通过产品了解用户行为的流程中使用</li>
+</ol>
+<h3 id="敏捷痛点及解决方法"><a href="#敏捷痛点及解决方法" class="headerlink" title="敏捷痛点及解决方法"></a>敏捷痛点及解决方法</h3><p><img src="/acp/%E6%95%8F%E6%8D%B7%E7%97%9B%E7%82%B9%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.png" alt="敏捷痛点及解决方法" title="敏捷痛点及解决方法"><br><img src="/acp/%E6%95%8F%E6%8D%B7%E7%97%9B%E7%82%B9%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%952.png" alt="敏捷痛点及解决方法2" title="敏捷痛点及解决方法2"></p>
+<h3 id="衡量敏捷团队的衡量结果"><a href="#衡量敏捷团队的衡量结果" class="headerlink" title="衡量敏捷团队的衡量结果"></a>衡量敏捷团队的衡量结果</h3><p>预测型衡量指标问题再于,他们往往并不反映真实情况。有时候会到项目上线前才暴露问题,这项目也是西瓜项目(外面绿里面红)。而敏捷项目衡量指标含有意义的信息,这些信息提供了历史记录,项目团队可以利用这些数据改进和决策。<br>团队可以根据自己的情况收集定性衡量指标.这些指标侧重于团队选择的实践,评估团队使用这些实践情况，例如对交付功能的业务满意度,团队的士气;团队希望跟踪的任何东西都是定性衡量指标</p>
+<p>敏捷倾向于使用基于经验和价值的衡量指标,而不是预测型衡量指标。敏捷团队的能力(故事点数)达到平衡,就能根据这些数量很来衡量预估后续项目时长。或者当团队成员开发故事点数趋于平稳,也可以预估个人开发能力;同时实时监控团队还有多少工作,以及团队是否能够按时完成工作</p>
+<h4 id="故事的点数评估要素"><a href="#故事的点数评估要素" class="headerlink" title="故事的点数评估要素:"></a>故事的点数评估要素:</h4><ol>
+<li>任务本身的难易程度</li>
+<li>繁琐度/复杂度</li>
+<li>风险<br>误区:有些团队根据已完成的任务评估未完成的故事点,这是错误的,故事点衡量的是能力,而不是以及完成的工作。这违背了”可用的软件是衡量进度的主要指标”,当然这样的相对估算缺点是:无法比较各个团队或者团队之间的增加速度。<h4 id="敏捷流程衡量指标"><a href="#敏捷流程衡量指标" class="headerlink" title="敏捷流程衡量指标"></a>敏捷流程衡量指标</h4></li>
+</ol>
+<ul>
+<li>交付周期: 交付一个工作项目总花费实际,从项目添加到看板到项目完成</li>
+<li>周期时间: 处理一个工作项目所需的时间</li>
+<li>响应时间:一个工作项目等待工作开始的时间<br><img src="/acp/%E6%95%8F%E6%8D%B7%E7%9C%8B%E6%9D%BF.png" alt="敏捷看板" title="敏捷看板"><br>当团队依赖外部团队时,衡量周期时间可了解团队完成工作所需要的时间。团队完成工作之后,衡量交付周期可了解外部依赖关系。还可以测量反应时间,从准备就绪到第一列时间,了解平均需要多长时间才能对新需求响应</li>
+</ul>
+<h4 id="衡量指标"><a href="#衡量指标" class="headerlink" title="衡量指标"></a>衡量指标</h4><p>团队会发现一般要4-8次迭代才能达到稳定速度,团队需要从每个迭代中获得反馈,了解他们工作情况以及如何改进。<br>作用:团队能查看他们的已完成工作,也能显示迭代过程范围的变化，这将有利对项目进一步安排。迭代结束时,他们可能根据自己在这个迭代中完成工作的能力(多少故事或故事点)来建立他们下一个迭代的能力衡量指标,这样就能让产品负责人与团队一起重新规划,团队就更有可能在下一次迭代中成功交付,同时实际完成的点数也代表速度,可以通过观察历史数据来估算团队的能力，以便规划下一阶段项目工作;</p>
+<ul>
+<li><p>功能图(燃尽图/燃起图)<br>功能图可以显示项目期间需求的发展情况.功能完成线显示团队以正常速度完成功能.<br>总功能线显示了项目的总功能随时间的变化.剩余的燃尽线显示功能完成速度的变化.每次在项目中添加功能时,燃尽线都会有改变。</p>
+</li>
+<li><p>产品代办列表燃起图<br><img src="/acp/%E4%BA%A7%E5%93%81%E4%BB%A3%E5%8A%9E%E5%88%97%E8%A1%A8%E7%87%83%E8%B5%B7%E5%9B%BE.png" alt="产品代办列表燃起图" title="产品代办列表燃起图"><br>产品代办事项列表燃气图显示已经完成的工作与区间里程碑或迭代中的预期工作总量的比较</p>
+</li>
+<li><p>敏捷体系挣值<br>一个团队一次只能完成一个故事,为了完成一个包含多个故事的打功能.团队会有待完成剩余故事,并且除非拥有更多时间，否则可能无法完成整个功能.团队可以用一个产品代表事项列表燃起图来显示已经完成的价值。如果一个团队需要衡量挣值,可以考虑起用燃起图:如SPI=实际完成故事点/计划故事点，CPI= 完成的价值成本 /实际使用成本</p>
+</li>
+<li><p>累积流图<br>累积流图显示了看板上进行的工作。如果一个团队有许多等待测试的故事,项目测试团队将会扩大。积累工作一目了然,团队处理积累工作方面有困难,团队进行中的工作,而不是已经完成的工作,如果团队有大量进行的工作,就会延迟整体功能交付.团队交付越长,相同时间内有更多功能,团队压力越大;可以将累积流图调整到项目任务搬<br><img src="/acp/%E7%B4%AF%E7%A7%AF%E6%B5%81%E5%9B%BE.png" alt="累积流图" title="累积流图"></p>
+</li>
+</ul>
+<h2 id="关于敏捷性考虑要素"><a href="#关于敏捷性考虑要素" class="headerlink" title="关于敏捷性考虑要素"></a>关于敏捷性考虑要素</h2><p>这里探讨组织及(某些情况下)项目环境影响项目的方式,领导可以通过探讨变革方案来提高项目成功率。如果组织能够做出相应调整,则可以提高项目敏捷性的效率和适用性</p>
+<h3 id="传统变革到敏捷因素"><a href="#传统变革到敏捷因素" class="headerlink" title="传统变革到敏捷因素"></a>传统变革到敏捷因素</h3><h4 id="与加速交付管理的变革"><a href="#与加速交付管理的变革" class="headerlink" title="与加速交付管理的变革"></a>与加速交付管理的变革</h4><p>敏捷方法强调频繁并尽快交付项目的输出.但是接受组织可能尚未做好加速纳入这些输出的充分准备.加速交付将会考虑组织适应该交付能力.成功发现和交付项目功能是不够的.如果组织抗拒项目输出,则会延迟项目的投资回报,客户接受并支持项目输出在敏捷环境中日益盛行</p>
+<h4 id="与敏捷方法相关的变革"><a href="#与敏捷方法相关的变革" class="headerlink" title="与敏捷方法相关的变革"></a>与敏捷方法相关的变革</h4><p>组织在刚开始采用敏捷方法时也会经历更高程度的变革.高级别协作可能需要团队,部门或供应商之间频繁的交流.将工作分解到迭代原型时会涉及到不利的返工.领导应该考虑利用变革管理技术来解决过度到敏捷方法时所遇到的阻碍。</p>
+<h4 id="变革考虑组织文化"><a href="#变革考虑组织文化" class="headerlink" title="变革考虑组织文化"></a>变革考虑组织文化</h4><p>组织在开始采用敏捷方法时应该了解这些方法与当前方法之间的相对兼容性.某些组织特征可能跟容易支持跨部门协作,持续学习和内部过程演变等敏捷原则<br>正面变革友好型特征包括:</p>
+<ol>
+<li>管理层的变革意愿</li>
+<li>组织在员工认知,审核和评估方式上做出改变的意愿</li>
+<li>集中或分散项目,项目集和项目组合管理职能</li>
+<li>专注于短期预算和指标而不是长期目标</li>
+<li>人才管理成熟度和能力</li>
+</ol>
+<p>反面变革特征:</p>
+<ol>
+<li>工作被分解为部门孤岛,从而创造出阻碍加速交付的依赖关系,而不是构建在能力中心指导下的跨职能团队</li>
+<li>采购策略基于短期定价策略,而不是长期能力</li>
+<li>奖励领导的一句是本地效率而不是端到端项目交付流或整体优化情况(就组织而言)</li>
+<li>员工属于特定领域人才,实现技能多元化的工具或激励有限,不重视培养T型人才</li>
+<li>分散化项目组合使员工同时分配到过多的项目,而无法专注于单个项目.组织审查和修改这些实践的意愿程度将决定采用敏捷方法的速度和效率。但是,为了解决这些敏捷组织障碍,项目领导可以尝试多种方法来加速文化兼容:<ol>
+<li>积极明确管理层支持</li>
+<li>变革管理实践，包括沟通和引导</li>
+<li>逐个项目应用敏捷实践</li>
+<li>向团队增量引入敏捷实践</li>
+<li>通过采取适用的敏捷技术和实践示范引导</li>
+</ol>
+</li>
+</ol>
+<h3 id="组织文化"><a href="#组织文化" class="headerlink" title="组织文化"></a>组织文化</h3><p>组织文化就是组织的DNA-组织的核心标识.文化始终影响敏捷方法使用.组织文化一直在连续运转.从高预测计划到一切皆为实验的精益创业阶段皆有体现.尽管敏捷方法与精益创业文化相当吻合,高预测型组织可以鼓励实证的衡量指标,小型实验和不断学习一边向敏捷方向转变。<br><font color="red">敏捷强调人的承诺和热情对于一份事业的重要性，无论您在团队中实施何种策略计划,其成功与否将会受到实施该计划得人员的控制.如果推动策略的人员对变革没有热情，甚至漠视其工作和组织,则您可能没有机会实施变革</font>组织文化难以改变，但是组织中最重要的文化规范一愿意尝试任何新方法或技术只有在安全,诚实和透明的环境中,团队和领导才可以真正反思其成功,确保项目持续进步,或者应用从失败项目中所吸取教训,不在重蹈覆辙。</p>
+<h4 id="评估文化"><a href="#评估文化" class="headerlink" title="评估文化"></a>评估文化</h4><p>每个项目都会遇到相关方意愿相左的棘手情况.</p>
+<ol>
+<li>团队如何在不影响质量的情况下取得快速进展?</li>
+<li>团队如何在保留灵活性的同时确保时效性?</li>
+<li>更重要的是,团队如何满足客户要求</li>
+</ol>
+<p>项目领导可能感觉其职责就是满足各个相关方的期望;但是在面对选择时,通常需要根据组织业务环境的文化和要求来确定优先级；如电信项目偏重于速度，而政府项目可能偏重于大宗化和稳定性。要引导这些动态变化, 项目领导应该花费时间去评估组织通常所关注的重点。下面是项目领导发起与相关方,团队成员和高层管理者对话以讨论组织优先级,这些优先级根据滑动尺标在这两个极端之间的位置来进行记录,然后再利用该结果去找最合适这些优先级的敏捷技术，有些模型可以用于评估这些变动，<font color ="red">选哪个评估并不重要,重要的是了解某组织需要满足的组织与行业需求后才能选择合适对话,权衡尤其是技术。</font><br><img src="/acp/%E4%BC%98%E5%85%88%E7%BA%A7%E8%AF%84%E4%BC%B0%E8%A1%A8.png" alt="优先级评估表" title="优先级评估表.png"><br>有些人坚持在开始各种文化转型前构建新的组织结构.还有些人持相反意见,认为新型组织结构只是表面的调整,只有集体文化朝着有意义的方向转变才是根本.实际上,任何一方都是孤掌难鸣,如果要实现敏捷,项目领导应同时考虑其组织这两方面的当前和未来状态.</p>
+<h3 id="采购合同"><a href="#采购合同" class="headerlink" title="采购合同"></a>采购合同</h3><p>协作方法提倡共担项目风险和共享项目奖励的关系,实现所有方共赢。设计这样动态特性合同签署技术包括</p>
+<ol>
+<li>多层结构.除了在单个文档中正式说明整个合同关系, 项目方可以通过不同文档中说明不同方面来提高灵活性.通常固定项目(担保/仲裁)可以锁定在主协议中.同时所有方将可能会更变的其他项目(服务价格/产品说明)列服务明细表中.合同主要服务协议中注明这些服务参考.最后范围进度计划和预算等更多动态变化项目可以列在轻量级工作说明书中。多动态变化项目可以列在轻量级工作说明书中。通过将合同中更多变化因素隔离到单独的文档中，将会简化修改工作并提高灵活性。</li>
+<li>强调价值交付.许多供应商关系是专注于中间人因素的固定里程碑或阶段关口控制,而不是由增量业务价值完全可交付成果控制。通常,这些控制会限制利用反馈来改进产品。与之相反的是,里程碑和支付项目可以根据价值驱动可交付成果来构建，以增强项目敏捷性</li>
+<li>总价增量。可以将范围化解为总价微型可交付成功(用户故事),对于供应商而言,这可以限制对单个功能或可交付成果的过多承诺所带来的财务风险</li>
+<li>固定时间和材料。客户在采用传统的时间和材料方法时会产生不必要的风险。一种替代方法是将整体预算限制为固定数量。这就允许客户在最初未计划的项目中纳入新的观点和创新。如果客户需要纳入新的观点,则必须管理给定能力,用新的工作来替代原有工作。应密切监控工作防止所分配的时间超过限制。此外,在认为有用的情况下,还可以在最大预算中规划额外应急<br>时间。</li>
+<li>累进的时间和材料。一种替代方法是共担财务风险法在捷法中,质量标准是已完成工作的一部分如果在合同期限之前交付,则可对供应商的高率进行奖励。相反,如果供应商延迟交付,则扣除一定费用。提前取消方案。如果敏捷供应商在仅完成一半范围时便可交付足够的价值,且客户不再需要另外一半范围,则不必支付这部分费用。但合同中可以规定客户应为项目剩余部分支付一定的取消费用。因为不再需要这些服务,客户可以限制预算敞口,而供应商也获得可观的收入</li>
+<li>动态范围方案。对于具有固定预算的合同，供应商可为客户提供在项目特定点改变项目范围的方案。客户可调整功能以适应该能力。这样客户便可利用创新机会，同时限制供应商的过度承诺风险。</li>
+<li>团队扩充。大多数协作合同方法是将供应商服务直接嵌入客户组织中。通过资助团队而不是特定范围，可以保留客户自行确定需要完成工作这方面策略的权力。</li>
+<li>支持全方位供应商。为了分化风险，客户可能需要采取多供应商策略。但是，这样签署合同的结果是，每家供应商只能负责一项工作，这就会产生许多依赖关系，阻碍可行服务或产品的交付。相反，要强调提供全面价值的合约（这与已完成独立功能集中的观点相符）。</li>
+<li>可以创建敏捷合同。敏捷是在协作和信任的共同基础上建立的。如果供应商能够尽早频繁交付价值，则有助于实现这一点。如果客户能够提供及时反馈，则有助于实现这一点。</li>
+</ol>
+<h3 id="商业实践"><a href="#商业实践" class="headerlink" title="商业实践"></a>商业实践</h3><p>在需求产生时,组织创建新能力的意和能力即是组织敏捷性的标志。对于关注敏捷及其所提供结果的组织而言,这些不必是颜覆性的变革,破坏性较小。适明和开放协作至关重要。在跨职能团队交付价值时,团队和个人可能会遇到组织多种支持职能方面的可题。如果团队定期交付价值,财务部]可能有机会以不同的方式获得产品收益。如果团队与其他组织签署了合同,采购部门可能需要变更这些合同以帮助其他组织频交付价值并与团队保持同团队开始以团结协作的方式展开工作后,将会对内部管理策略提出挑战。人力资源可能注意到个人激励不足,而经理可能会在自组织员工的绩效评估方面绞尽脑汁。在各种情况下都有机会评审现有实践对敏捷工作方式的支持程度。当组织发展到更高敏捷性时,其他业务部门将有必要更改其交互方式并履行自己的职责。现在应拥护对组织其他领域有益的变更,以此来提高整个组织的效率</p>
+<h4 id="多团队协作和依关系-扩展"><a href="#多团队协作和依关系-扩展" class="headerlink" title="多团队协作和依关系(扩展)"></a>多团队协作和依关系(扩展)</h4><p>多个项目之间会产生依赖关系,即使不是在给定项目集中进行管理。因此有必要了解敏捷工作在现有项目集和项目组合管理环境下的工作方式</p>
+<h4 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h4><p>大多数流行敏捷方法(如 Scrum和极限编程)的指导专注于单个小型目通常是集中办公的跨职能团队活动。这对于需要单个团队的工作非常有用,但对于需要在一个项目集或项目组合中进行多个敏捷团队协作的举措却显得捉襟见肘。目前已出现许多框架(如大规模捷框架、大规模捷开发和规范敏捷)和方法(例如 ScrumofScrums)来应对这种情况。有关这些框架和方法的更多详细信息</p>
+<h4 id="考虑事项"><a href="#考虑事项" class="headerlink" title="考虑事项"></a>考虑事项</h4><p>有多种扩展工作的方式。团队可能需要将多个敏捷项目工作扩展到单个敏捷项目集中。或者,组织可以设计出支持整个项目组合中不同敏捷方法的结构。例如,可以从小项目着手,然后尽快了解组织环境中比较适合的方式。即使一切还未完全转换到敏捷方法,团队仍可获得成功无论采用哪种方法,关键成功因素是健康的敏捷团队。如果单个团队采取敏捷方法无法获得成功,则勿尝试将其扩展到更大范围;而是要先行解决阻止团队敏捷工作的组织障碍。大规模敏捷项目的目标是协调不同团队的工作以便为客户提供价值。这有多种实现方式。团队可以采用正式的框架或应用敏捷思维调整现有项目集管理实践</p>
+<h4 id="敏捷和项目管理办公室-PMo"><a href="#敏捷和项目管理办公室-PMo" class="headerlink" title="敏捷和项目管理办公室(PMo)"></a>敏捷和项目管理办公室(PMo)</h4><p>设立PMO的目的是引导组织实现商业价值。可以通过帮助实现项目目标来做到这一点。PMO有时还会提供团队教育(或安排培训)和项目支持。PMO还会针对给定项目或项目集提供相关商业价值方面的管理建议由于敏捷会带来文化变更,随看时间的推移,组织可能也需要变更,包括PMO。例如,经理会决定资助的项目及其时间,团队会决定培训或建议需求。</p>
+<h4 id="敏捷PMo为价值驱动型"><a href="#敏捷PMo为价值驱动型" class="headerlink" title="敏捷PMo为价值驱动型"></a>敏捷PMo为价值驱动型</h4><p>所有项目都应在合适的时间为合适的受众提供合适的价值。PMO的目标是帮助促进这个目标的实现。基于敏捷的PMO方法以客户协作思维为基础,并存在于所有PMO项目集中。在许多情况下,这意味看PMO的运营方式类似于咨询企业,需要根据给定项的特定需求来定制其工作。有些项目可能需要工具和模板,还有些项目可能会从管理层引导获益。PMO应努力按需交付并紧跟客户需求确保了解并适应他们的需求。这种內部创业方法专注于能为所支持的项目提供最大价值的PMO活动。</p>
+<h4 id="敏捷PMo为面向创新型"><a href="#敏捷PMo为面向创新型" class="headerlink" title="敏捷PMo为面向创新型"></a>敏捷PMo为面向创新型</h4><p>为了在基于价值的章程下加速发展,PMO可能需要强制执行某些解决方案或方法,例如,保持所有人行动的一致性以快速获得成功。但需要确保员工的参与意愿才能提高效率。只邀请感兴趣的人员参与PMO服务即可实现这一点。PMO实践的参与度越高,便更容易提高这些实践的“粘合力”。如果PMO为其客户提供了价值,则客户很可能会要求这种服务并采用其实践。</p>
+<h4 id="敏捷PMo为多学科型"><a href="#敏捷PMo为多学科型" class="headerlink" title="敏捷PMo为多学科型"></a>敏捷PMo为多学科型</h4><p>为了支持特定项目需求,PMO还需要熟悉项E管理本身以外的其他一些能力,因为不同的项要求不同的能力。例如,一个项目可能需要组织设计来解决人员配备挑战,而另一个项目可能需要组织变革管理技术来确保相关方参与或获得独特的业务模型以支持客户目标某些组织已将其PMO转换为卓越敏捷中心以提供以下服务制定和实施标准。提供用户故事、测试案例、累积流图等模板,提供敏捷工具并培训支持小组了解迭代开发概念□通过培训和指导发展人才。协调敏捷培训课程、教练和导师以帮助员工过渡到敏捷思维模式并升级其技能。鼓励和支持员工参与本地敏捷活多项目管理。通过不同项目交流协调敏捷团考虑分享进度、问题、回顾性发现和改进实验等内容。借助适当的框架,帮助管理项目层的主要客户发布和项目组合层的投资主题促进组织学习。收集项目进度信息并获取、存储和记录回顾性发现成果管理相关方。提供产品负责人培训,指导验收测试以及评估方法,并提供系统反馈。宣扬主题专家(SME对项目的重要性招聘、筛选和评估项目领导。制定敏捷实践者访谈指南。执行专业化项目任务。培训和提供回顾促进者,与敏捷项目问题解决者订立协议,并提供导师和教练。</p>
+<h4 id="组织结构"><a href="#组织结构" class="headerlink" title="组织结构"></a>组织结构</h4><p>组织结构会严重影响其转向新信息或转变市场需求的能力。下面列出了主要特征地理。地理分散的项目组织可能会在各种项发现阻碍工作进展的一些挑战。项目领导和区域经理可能持有不同或相反的目标。此外,文化差异、语言障碍和低可视化可能会降低工作效率。幸运得是,采用敏捷方法可以鼓励更好的协作并提高信心。在这些环境下,项目领导应鼓励团队和管理层对话,定制该环境所需的技术并管理对工作需求的期望职能结构。有些组织按照高度项目型、矩阵型或高度职能型的方式构建。具有髙度职能结构的项目可能会在组织内部协作方面遇到很大阻项目可交付成果的大小。缩小项目可交付成果将会激励部门之间更频繁的交流,由此带来更频繁的交互以及组织内部更快速的价值流动。项目人员分配。另一种方法是在各个部抽出一个人,将其临时完全分配到最高优先级项重釆购型组织。有些组织选择主要通过供应商实施项目。尽管项目目标可能非常明确,供应商也有责任监管自己的财务状况。但是,供应商完成其义务并退出合约后,相关项目知识也将随之带走。这就会限制持续灵活性和速度所需的内部能力。如果在供应商还参与时采用敏捷技术(例如回顾和跟踪可能改进的领域),则可帮助缓解产品知识缺失情况。</p>
+<h4 id="组织演变"><a href="#组织演变" class="headerlink" title="组织演变"></a>组织演变</h4><p>应对单个挑战领域或实施新的混合或敏捷方法时,建议以累积方式承接工作。常用实践是将变更过程视为一个敏捷项目,团队可以根据自己的价值观或其他考虑事项引入自己的变更待办事项列表并确定其优先级。每个变更可以被视为一个实验,将进行短时间测试以确定每个变更的适应性以及进一步细化/考虑需求。使用看板面板跟踪进度,显示已作为“已完成”使用的新方法、被视为“进行中”的方法以及仍在等待被引入“待办事项”的方法。请参见图6-3以了解具有待办事项列表排序的初始面板。图6-4显示了面板工作进度的示例</p>
+<p>通过使用这些工具来组织和管理变更实施,将可提供进度的可视化并对正在实施的方法进行建模。以透明和吸引人的方式部署变更,将可以提高成功可能性。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%8F%E6%8D%B7/" rel="tag"># 敏捷</a>
+          
+            <a href="/tags/ACP/" rel="tag"># ACP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" rel="next" title="项目管理注意事项">
+                <i class="fa fa-chevron-left"></i> 项目管理注意事项
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" rel="prev" title="项目管理流程总结">
+                项目管理流程总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="cdongtao" />
+            
+              <p class="site-author-name" itemprop="name">cdongtao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">149</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yourname" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:441623928@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#敏捷是什么？"><span class="nav-number">1.</span> <span class="nav-text">敏捷是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要解决6大模块的问题。内容总结如下："><span class="nav-number">1.1.</span> <span class="nav-text">主要解决6大模块的问题。内容总结如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面临问题"><span class="nav-number">1.2.</span> <span class="nav-text">面临问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每日站立会："><span class="nav-number">1.3.</span> <span class="nav-text">每日站立会：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#敏捷的核心规则"><span class="nav-number">2.</span> <span class="nav-text">敏捷的核心规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷4大宣言"><span class="nav-number">2.1.</span> <span class="nav-text">敏捷4大宣言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12大原则"><span class="nav-number">2.2.</span> <span class="nav-text">12大原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷思维模式"><span class="nav-number">2.3.</span> <span class="nav-text">敏捷思维模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#精益与敏捷关系"><span class="nav-number">2.4.</span> <span class="nav-text">精益与敏捷关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不确定性-风险和生命周期选择"><span class="nav-number">2.5.</span> <span class="nav-text">不确定性,风险和生命周期选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期"><span class="nav-number">3.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预测型"><span class="nav-number">3.1.</span> <span class="nav-text">预测型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代型"><span class="nav-number">3.2.</span> <span class="nav-text">迭代型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增量型"><span class="nav-number">3.3.</span> <span class="nav-text">增量型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷型"><span class="nav-number">3.4.</span> <span class="nav-text">敏捷型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代与增量应用特点"><span class="nav-number">3.5.</span> <span class="nav-text">迭代与增量应用特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合型"><span class="nav-number">3.6.</span> <span class="nav-text">混合型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#影响裁剪项目的因素"><span class="nav-number">4.</span> <span class="nav-text">影响裁剪项目的因素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建敏捷环境"><span class="nav-number">5.</span> <span class="nav-text">创建敏捷环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷环境需要思考的问题"><span class="nav-number">5.1.</span> <span class="nav-text">敏捷环境需要思考的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#仆人式领导"><span class="nav-number">5.2.</span> <span class="nav-text">仆人式领导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">5.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#仆人式领导特征"><span class="nav-number">5.2.2.</span> <span class="nav-text">仆人式领导特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#仆人式职责"><span class="nav-number">5.2.3.</span> <span class="nav-text">仆人式职责</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#仆人式领导促进地作用"><span class="nav-number">5.2.4.</span> <span class="nav-text">仆人式领导促进地作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#仆人式领导消除组织障碍"><span class="nav-number">5.2.5.</span> <span class="nav-text">仆人式领导消除组织障碍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#仆人式领导为他人贡献铺路"><span class="nav-number">5.2.6.</span> <span class="nav-text">仆人式领导为他人贡献铺路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#考虑仆人式领导职责"><span class="nav-number">5.2.7.</span> <span class="nav-text">考虑仆人式领导职责</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目经理与仆人式领导"><span class="nav-number">5.2.8.</span> <span class="nav-text">项目经理与仆人式领导</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#团队的构成"><span class="nav-number">5.3.</span> <span class="nav-text">团队的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#敏捷团队角色"><span class="nav-number">5.3.1.</span> <span class="nav-text">敏捷团队角色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#识别团队人才"><span class="nav-number">5.3.2.</span> <span class="nav-text">识别团队人才</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#尽力使得小组成员形成专职"><span class="nav-number">5.3.3.</span> <span class="nav-text">尽力使得小组成员形成专职</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#团队工作场所"><span class="nav-number">5.3.4.</span> <span class="nav-text">团队工作场所</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#克服组织存在得孤岛"><span class="nav-number">5.3.5.</span> <span class="nav-text">克服组织存在得孤岛</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实施敏捷"><span class="nav-number">6.</span> <span class="nav-text">实施敏捷</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">6.1.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目章程"><span class="nav-number">6.1.1.</span> <span class="nav-text">项目章程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#团队章程"><span class="nav-number">6.1.2.</span> <span class="nav-text">团队章程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Retro-Meeting-回顾"><span class="nav-number">6.2.</span> <span class="nav-text">Retro Meeting(回顾)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回顾的关键时刻"><span class="nav-number">6.2.1.</span> <span class="nav-text">回顾的关键时刻</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#待表事项列表"><span class="nav-number">6.2.2.</span> <span class="nav-text">待表事项列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#待办列表细化"><span class="nav-number">6.2.3.</span> <span class="nav-text">待办列表细化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每日站立会"><span class="nav-number">6.3.</span> <span class="nav-text">每日站立会</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注每个人进度"><span class="nav-number">6.3.1.</span> <span class="nav-text">关注每个人进度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关注团队产出"><span class="nav-number">6.3.2.</span> <span class="nav-text">关注团队产出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反模式1"><span class="nav-number">6.3.3.</span> <span class="nav-text">反模式1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反模式2"><span class="nav-number">6.3.4.</span> <span class="nav-text">反模式2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意问题"><span class="nav-number">6.3.5.</span> <span class="nav-text">注意问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Retro-Meeting-展示-评审"><span class="nav-number">6.3.6.</span> <span class="nav-text">Retro Meeting(展示&#x2F;评审)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规划故事注意"><span class="nav-number">6.3.7.</span> <span class="nav-text">规划故事注意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注重交付产品价值-质量"><span class="nav-number">6.3.8.</span> <span class="nav-text">注重交付产品价值(质量)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷痛点及解决方法"><span class="nav-number">6.4.</span> <span class="nav-text">敏捷痛点及解决方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#衡量敏捷团队的衡量结果"><span class="nav-number">6.5.</span> <span class="nav-text">衡量敏捷团队的衡量结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#故事的点数评估要素"><span class="nav-number">6.5.1.</span> <span class="nav-text">故事的点数评估要素:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#敏捷流程衡量指标"><span class="nav-number">6.5.2.</span> <span class="nav-text">敏捷流程衡量指标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#衡量指标"><span class="nav-number">6.5.3.</span> <span class="nav-text">衡量指标</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于敏捷性考虑要素"><span class="nav-number">7.</span> <span class="nav-text">关于敏捷性考虑要素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传统变革到敏捷因素"><span class="nav-number">7.1.</span> <span class="nav-text">传统变革到敏捷因素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#与加速交付管理的变革"><span class="nav-number">7.1.1.</span> <span class="nav-text">与加速交付管理的变革</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与敏捷方法相关的变革"><span class="nav-number">7.1.2.</span> <span class="nav-text">与敏捷方法相关的变革</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变革考虑组织文化"><span class="nav-number">7.1.3.</span> <span class="nav-text">变革考虑组织文化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组织文化"><span class="nav-number">7.2.</span> <span class="nav-text">组织文化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#评估文化"><span class="nav-number">7.2.1.</span> <span class="nav-text">评估文化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#采购合同"><span class="nav-number">7.3.</span> <span class="nav-text">采购合同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#商业实践"><span class="nav-number">7.4.</span> <span class="nav-text">商业实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多团队协作和依关系-扩展"><span class="nav-number">7.4.1.</span> <span class="nav-text">多团队协作和依关系(扩展)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#框架"><span class="nav-number">7.4.2.</span> <span class="nav-text">框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#考虑事项"><span class="nav-number">7.4.3.</span> <span class="nav-text">考虑事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#敏捷和项目管理办公室-PMo"><span class="nav-number">7.4.4.</span> <span class="nav-text">敏捷和项目管理办公室(PMo)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#敏捷PMo为价值驱动型"><span class="nav-number">7.4.5.</span> <span class="nav-text">敏捷PMo为价值驱动型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#敏捷PMo为面向创新型"><span class="nav-number">7.4.6.</span> <span class="nav-text">敏捷PMo为面向创新型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#敏捷PMo为多学科型"><span class="nav-number">7.4.7.</span> <span class="nav-text">敏捷PMo为多学科型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组织结构"><span class="nav-number">7.4.8.</span> <span class="nav-text">组织结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组织演变"><span class="nav-number">7.4.9.</span> <span class="nav-text">组织演变</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cdongtao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">324k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:54</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uASAKzQTPhuJIplOaklnAaqK-gzGzoHsz',
+        appKey: 'LRW155uTAdoeaAjf9q9D53Ps',
+        placeholder: 'Welcome to comment!',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="AOP(Aspect Oriented Programming)OOP允许开发者定义纵向的关系,在OOP设计中，它导致了大量代码的重复，而不利于各个模块的重用。AOP技术恰恰相反，它利用一种称为”横切”的技术，剖解开封装的对象内部，并将那些影响了多个类的公共行为封装到一个可重用模块(抽象出全局方法)，并将其命名为”Aspect”，即切面。所谓”切面”，简单说就是那些与业务无关，却为业务模块所共同调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring 框架3">
+<meta property="og:url" content="https://cdongtao.github.io/2018/03/03/Framework-Spring%E6%A1%86%E6%9E%B63/index.html">
+<meta property="og:site_name" content="cdongtao">
+<meta property="og:description" content="AOP(Aspect Oriented Programming)OOP允许开发者定义纵向的关系,在OOP设计中，它导致了大量代码的重复，而不利于各个模块的重用。AOP技术恰恰相反，它利用一种称为”横切”的技术，剖解开封装的对象内部，并将那些影响了多个类的公共行为封装到一个可重用模块(抽象出全局方法)，并将其命名为”Aspect”，即切面。所谓”切面”，简单说就是那些与业务无关，却为业务模块所共同调">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdongtao.github.io/img/AOP.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/AOP%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5.png">
+<meta property="article:published_time" content="2018-03-03T01:58:08.000Z">
+<meta property="article:modified_time" content="2021-01-07T07:52:45.218Z">
+<meta property="article:author" content="cdongtao">
+<meta property="article:tag" content="AOP原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdongtao.github.io/img/AOP.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="cdongtao" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cdongtao.github.io/2018/03/03/Framework-Spring框架3/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Spring 框架3 | cdongtao</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cdongtao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cdongtao.github.io/2018/03/03/Framework-Spring%E6%A1%86%E6%9E%B63/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cdongtao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cdongtao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring 框架3
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-03 09:58:08" itemprop="dateCreated datePublished" datetime="2018-03-03T09:58:08+08:00">2018-03-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-07 15:52:45" itemprop="dateModified" datetime="2021-01-07T15:52:45+08:00">2021-01-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FrameWork/" itemprop="url" rel="index"><span itemprop="name">FrameWork</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/03/Framework-Spring%E6%A1%86%E6%9E%B63/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/03/03/Framework-Spring%E6%A1%86%E6%9E%B63/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">40k 字</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">36 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="AOP-Aspect-Oriented-Programming"><a href="#AOP-Aspect-Oriented-Programming" class="headerlink" title="AOP(Aspect Oriented Programming)"></a>AOP(Aspect Oriented Programming)</h2><p>OOP允许开发者定义纵向的关系,在OOP设计中，它导致了大量代码的重复，而不利于各个模块的重用。AOP技术恰恰相反，它利用一种称为”横切”的技术，剖解开封装的对象内部，并将那些影响了多个类的公共行为封装到一个可重用模块(抽象出全局方法)，并将其命名为”Aspect”，即切面。所谓”切面”，简单说就是那些与业务无关，却为业务模块所共同调用的逻辑或责任封装起来，便于减少系统的重复代码，降低模块之间的耦合度，并有利于未来的可操作性和可维护性。</p>
+<p>使用”横切”技术，AOP把软件系统分为两个部分：核心关注点和横切关注点。业务处理的主要流程是核心关注点，与之关系不大的部分是横切关注点。横切关注点的一个特点是，他们经常发生在核心关注点的多处，而各处基本相似，比如权限认证、日志、事物。AOP的作用在于分离系统中的各种关注点，将核心关注点和横切关注点分离开来。</p>
+<blockquote>
+<p>SpringAOP、事物原理、日志打印、权限控制、远程调用、安全代理 可以隐蔽真实角色<br>Spring声明式事务管理器类：<br>Jdbc技术：DataSourceTransactionManager<br>Hibernate技术：HibernateTransactionManager</p>
+</blockquote>
+<h2 id="提出问题及解决思路"><a href="#提出问题及解决思路" class="headerlink" title="提出问题及解决思路"></a>提出问题及解决思路</h2><p>现在提出这样一个需求：</p>
+<p>1.拦截某个类或全部业务方法。<br>2.判断用户是否有权限，有权限就允许他执行业务方法，没有权限就不允许他执行业务方法。(是否有权限是根据user是否为null作为判断依据的)<br><img src="/img/AOP.png" alt="AOP解决方案" title="AOP解决方案"></p>
+<p>解决方法：<br>1.最直接得方法是：所有方法都加上判断.//不是实际<br>2.做个过滤器：适合拦截所有业务；但是不是合适拦截某个类得业务<br>3.AOP使用代理处理：适合所有业务或某个业务；在执行目标前创建代理，在代理这一层做处理,满足处理条件后再调用真实对象处理得方法处理业务(动态代理就是动态得将需要处理业务包装成一个新类新方法里面，这样就能在包装得新方法处理业务前后处理切面需求)</p>
+<h2 id="AOP代理技术"><a href="#AOP代理技术" class="headerlink" title="AOP代理技术"></a>AOP代理技术</h2><h4 id="JDK动态代理-amp-amp-Cglib技术-差异"><a href="#JDK动态代理-amp-amp-Cglib技术-差异" class="headerlink" title="JDK动态代理 &amp;&amp; Cglib技术 差异"></a>JDK动态代理 &amp;&amp; Cglib技术 差异</h4><p>1.JDK的动态代理有个限制，就是使用动态代理的目标对象必须实现至少一个接口，由此，没有实现接口但是想要使用代理的目标对象，就可以使用Cglib代理。<br>2.Cglib是强大的高性能的代码生成包，它可以在运行期间拓展Java类与实现Java接口。它广泛的被许多AOP的框架使用，例如Spring AOP和synaop，为他们提供方法的interception(拦截)。<br>3.Cglib包的底层是通过使用一个小而快的字节码处理框架ASM来转换字节码并生成新的类，不鼓励直接只使用ASM，因为它要求你必须对JVM内部结构，包括class文件的格式和指令集都很熟悉。</p>
+<h4 id="JDK动态代理技术"><a href="#JDK动态代理技术" class="headerlink" title="JDK动态代理技术"></a>JDK动态代理技术</h4><p>必须条件：<br>1.存在接口(原对象必须是以接口形式实现得对象)<br>2.实现InvocationHandler接口，重写invoke方法<br>或 Proxy.newProxyInstance实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class JDKProxyFactory implements InvocationHandler &#123;</span><br><span class="line">    private Object targetObject; &#x2F;&#x2F; 代理的目标对象</span><br><span class="line"></span><br><span class="line">    public Object createProxyInstance(Object targetObject) &#123;</span><br><span class="line">        this.targetObject &#x3D; targetObject; </span><br><span class="line">        &#x2F;*</span><br><span class="line">         * 第一个参数设置代码使用的类装载器，一般采用跟目标类相同的类装载器</span><br><span class="line">         * 第二个参数设置代理类实现的接口</span><br><span class="line">         * 第三个参数设置回调对象，当代理对象的方法被调用时，会委派给该参数指定对象的invoke方法</span><br><span class="line">         *&#x2F;</span><br><span class="line">        return Proxy.newProxyInstance(this.targetObject.getClass().getClassLoader(), </span><br><span class="line">                this.targetObject.getClass().getInterfaces(), this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">        PersonServiceBean bean &#x3D; (PersonServiceBean)this.targetObject;</span><br><span class="line">        Object result &#x3D; null;</span><br><span class="line">        if (bean.getUser() !&#x3D; null) &#123; &#x2F;&#x2F; 有权限</span><br><span class="line">            result &#x3D; method.invoke(targetObject, args); &#x2F;&#x2F; 把方法调用委派给目标对象</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public Object getProxyInstance() &#123;</span><br><span class="line">    return Proxy.newProxyInstance(</span><br><span class="line">     target.getClass().getClassLoader(),target.getClass().getInterfaces(), new InvocationHandler() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">                    System.out.println(&quot;日志打印： before&quot;);</span><br><span class="line">                    &#x2F;&#x2F;执行目标对象方法</span><br><span class="line">                    Object returnValue &#x3D; method.invoke(target,args;</span><br><span class="line">                    System.out.println(&quot;日志打印： after&quot;);</span><br><span class="line">                    return returnValue;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="CGLIB动态代理技术"><a href="#CGLIB动态代理技术" class="headerlink" title="CGLIB动态代理技术"></a>CGLIB动态代理技术</h4><p>Cglib代理，也叫做子类代理，它是在内存中构件一个子类对象，从而实现对目标对象的功能拓展。<br>注：通过类继承方式实现动态代理(不存在接口);实现MethodInterceptor 接口重写intercept方法<br>在Maven中可以直接在POM.xml中添加下列引用即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;cglib&#x2F;cglib --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;cglib&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;cglib&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.2.5&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果不是maven项目，除了到cglib包还需要导入asm.jar包，不然会报异常</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">public class MyProxyByGclib implements MethodInterceptor &#123;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;维护目标对象</span><br><span class="line">    private Object target;</span><br><span class="line">    </span><br><span class="line">   </span><br><span class="line">    public MyProxyByGclib(Object target) &#123;</span><br><span class="line">        this.target &#x3D; target;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public Object getProxyInstance() &#123;</span><br><span class="line">        &#x2F;&#x2F;1. 实例化工具类</span><br><span class="line">        Enhancer en &#x3D; new Enhancer();</span><br><span class="line">        &#x2F;&#x2F;2. 设置父类对象</span><br><span class="line">        en.setSuperclass(this.target.getClass());</span><br><span class="line">        &#x2F;&#x2F;3. 设置回调函数</span><br><span class="line">        en.setCallback(this);</span><br><span class="line">        &#x2F;&#x2F;4. 创建子类，也就是代理对象</span><br><span class="line">        return en.create();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override &#x2F;&#x2F; @Around---&gt;从另一种角度看：整个方法可看作环绕通知,代理生产最新整个方法</span><br><span class="line">    public Object intercept(Object proxy, Method method, Object[] objects, MethodProxy arg3)&#123;</span><br><span class="line">        System.out.println(&quot;Begin Transaction&quot;);</span><br><span class="line">            &#x2F;&#x2F; @Before----&gt; 前置通知(所谓通知，就是我们拦截到业务方法之后所要干的事情)</span><br><span class="line">        try &#123;</span><br><span class="line">            &#x2F;&#x2F;执行目标对象的方法</span><br><span class="line">            Object returnValue &#x3D; method.invoke(target, objects);</span><br><span class="line">            &#x2F;&#x2F;@AfterReturning ----&gt; 后置通知</span><br><span class="line">            &#125; catch (RuntimeException e) &#123;</span><br><span class="line">            &#x2F;&#x2F;@AfterThrowing ----&gt; 异常通知</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">            &#x2F;&#x2F; @After ----&gt; 最终通知</span><br><span class="line">            &#125;</span><br><span class="line">        System.out.println(&quot;End Transaction&quot;);</span><br><span class="line">        return returnValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        &#x2F;&#x2F;目标对象</span><br><span class="line">        MyServiceImpl myService &#x3D; new MyServiceImpl();</span><br><span class="line">        &#x2F;&#x2F;生成代理对象</span><br><span class="line">        MyServiceImpl myProxy &#x3D; (MyServiceImpl)new MyProxyByGclib(myService).getProxyInstance();</span><br><span class="line">        &#x2F;&#x2F;调用对象方法</span><br><span class="line">        myProxy.eat();</span><br><span class="line">        myProxy.sleep();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="实现AOP方式-xml配置-注解方式"><a href="#实现AOP方式-xml配置-注解方式" class="headerlink" title="实现AOP方式(xml配置 || 注解方式)"></a>实现AOP方式(xml配置 || 注解方式)</h2><h3 id="AOP-核心概念"><a href="#AOP-核心概念" class="headerlink" title="AOP 核心概念"></a>AOP 核心概念</h3><p><img src="/img/AOP%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5.png" alt="AOP核心概念" title="AOP核心概念"></p>
+<ol>
+<li><p>切面（Aspect）<br>　　对哪些方法进行拦截，拦截后怎么处理，这些关注点称之为横切关注点。切面就是在一个怎么样的环境中工作。类是对物体特征的抽象，切面就是对横切关注点的抽象。比如数据库的事务直接贯穿了整个代码层面，这就是一个切面，它能够在被代理对象的方法之前,之后,产生异常或者正常返回后切入你的代码，甚至代替原来被代理对象的方法，在动态代理中可以把它理解成一个拦截器。</p>
+</li>
+<li><p>通知（Adice）<br>　　•通知是切面开启后，切面的方法。它根据在代理对象真实方法调用前、后的顺序和逻辑区分，它和约定游戏的例子里的拦截器的方法十分接近。<br>　　•前置通知（before）：在动态代理反射原有对象方法或者执行环绕通知前执行的通知功能。<br>　　•后置通知（after）： 在动态代理反射原有对象方法或者执行环绕通知后执行的通知功能。无论是否抛出异常，它都会被执行。<br>　　•返回通知（afterReturning）：在动态代理反射原有对象方法或者执行环绕通知后执行的通知功能。<br>　　•异常通知（afterThrowing）：在动态代理反射原有对象方法或者执行环绕通知产生异常后执行的通知功能。<br>　　•环绕通知（aroundThrowing）：在动态代理中，它可以取代当前被拦截对象的方法，通过参数或反射调用被拦截对象的方法。</p>
+</li>
+</ol>
+<blockquote>
+<p>afterReturning处理&lt; after处理:afterReturning 在处理在after处理后</p>
+</blockquote>
+<ol start="3">
+<li><p>引入（Introduction）<br>　　在不修改代码的前提下，引入可以在运行期为类动态地添加一些方法或字段.</p>
+</li>
+<li><p>切入点（Pointcut）<br>　　在动态代理中，被切面拦截的方法就是一个切点，切面将可以将其切点和被拦截的方法按照一定的逻辑织入到约定流程当中.</p>
+</li>
+<li><p>连接点（join point）<br>　　连接点是一个判断条件，由它可以指定哪些是切点。对于指定的切点，Spring会生成代理对象去使用对应的切面对其拦截，否则就不会拦截它。被拦截到的点，因为Spring只支持方法类型的连接点，所以在Spring中连接点指的就是被拦截到的方法，实际上连接点还可以是字段或者构造器</p>
+</li>
+<li><p>织入（Weaving）<br>　　织入是一个生成代理对象的过程。实际代理的方法分为静态代理和动态代理。静态代理是在编译class文件时生成的代码逻辑，但是在Spring中并不使用这样的方式，所以我们就不展开讨论了。一种是通过ClassLoader也就是在类加载的时候生成的代码逻辑，但是它在应用程序代码运行前就生成对应的逻辑。还有一种是运行期，动态生成代码的方式，这是Spring AOP所采用的方式，Spring是以JDK和CGLIB动态代理来生成代理对象的</p>
+</li>
+</ol>
+<h3 id="1-Spring-xml配置文件"><a href="#1-Spring-xml配置文件" class="headerlink" title="1.Spring xml配置文件"></a>1.Spring xml配置文件</h3><p>下面给出一个Spring AOP的.xml文件模板，名字叫做aop.xml，之后的内容都在aop.xml上进行扩展：</p>
+<p>使用Spring AOP，只用Spring提供给开发者的jar包是不够的，请额外上网下载两个jar包：<br>1、aopalliance.jar<br>2、aspectjweaver.jar</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">    xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">    xmlns:aop&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;aop&quot;</span><br><span class="line">    xmlns:tx&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;tx&quot;</span><br><span class="line">    xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans</span><br><span class="line">        http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans-4.2.xsd</span><br><span class="line">        http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;aop</span><br><span class="line">        http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;aop&#x2F;spring-aop-4.2.xsd&quot;&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;bean id&#x3D;&quot;helloWorldImpl1&quot; class&#x3D;&quot;com.xrq.aop.HelloWorldImpl1&quot; &#x2F;&gt;</span><br><span class="line">        &lt;bean id&#x3D;&quot;helloWorldImpl2&quot; class&#x3D;&quot;com.xrq.aop.HelloWorldImpl2&quot; &#x2F;&gt;</span><br><span class="line">        &lt;bean id&#x3D;&quot;timeHandler&quot; class&#x3D;&quot;com.xrq.aop.TimeHandler&quot; &#x2F;&gt;</span><br><span class="line">        &lt;bean id&#x3D;&quot;logHandler&quot; class&#x3D;&quot;com.xrq.aop.LogHandler&quot; &#x2F;&gt;</span><br><span class="line">        </span><br><span class="line">        &#x2F;&#x2F; 要想让logHandler在timeHandler前使用有两个办法：</span><br><span class="line">        &#x2F;&#x2F;（1）aspect里面有一个order属性，order属性的数字就是横切关注点的顺序</span><br><span class="line">        &#x2F;&#x2F;（2）把logHandler定义在timeHandler前面，Spring默认以aspect的定义顺序作为织入顺序</span><br><span class="line">        &lt;aop:config&gt;</span><br><span class="line">            &lt;aop:aspect id&#x3D;&quot;time&quot; ref&#x3D;&quot;timeHandler&quot; order&#x3D;&quot;1&quot;&gt;</span><br><span class="line">                &lt;aop:pointcut id&#x3D;&quot;addTime&quot; expression&#x3D;&quot;execution(* com.xrq.aop.HelloWorld.print*(..))&quot; &#x2F;&gt;</span><br><span class="line">                &lt;aop:before method&#x3D;&quot;printTime&quot; pointcut-ref&#x3D;&quot;addTime&quot; &#x2F;&gt;</span><br><span class="line">                &lt;aop:after method&#x3D;&quot;printTime&quot; pointcut-ref&#x3D;&quot;addTime&quot; &#x2F;&gt;</span><br><span class="line">            &lt;&#x2F;aop:aspect&gt;</span><br><span class="line">            &lt;aop:aspect id&#x3D;&quot;log&quot; ref&#x3D;&quot;logHandler&quot; order&#x3D;&quot;2&quot;&gt;</span><br><span class="line">                &lt;aop:pointcut id&#x3D;&quot;printLog&quot; expression&#x3D;&quot;execution(* com.xrq.aop.HelloWorld.do*(..))&quot; &#x2F;&gt;</span><br><span class="line">                &lt;aop:before method&#x3D;&quot;LogBefore&quot; pointcut-ref&#x3D;&quot;printLog&quot; &#x2F;&gt;</span><br><span class="line">                &lt;aop:after method&#x3D;&quot;LogAfter&quot; pointcut-ref&#x3D;&quot;printLog&quot; &#x2F;&gt;</span><br><span class="line">            &lt;&#x2F;aop:aspect&gt;</span><br><span class="line">        &lt;&#x2F;aop:config&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">强制使用CGLIB生成代理</span><br><span class="line">前面说过Spring使用动态代理或是CGLIB生成代理是有规则的，高版本的Spring会自动选择是使用动态代理还是CGLIB生成代理内容，当然我们也可以强制使用CGLIB生成代理，那就是&lt;aop:config&gt;里面有一个&quot;proxy-target-class&quot;属性，这个属性值如果被设置为true，那么基于类的代理将起作用，如果proxy-target-class被设置为false或者这个属性被省略，那么基于接口的代理将起作用</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现AOP的注解方式"><a href="#实现AOP的注解方式" class="headerlink" title="实现AOP的注解方式"></a>实现AOP的注解方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">开启事物注解权限：传统spring xml配置开启注解模式</span><br><span class="line">    &lt;aop:aspectj-autoproxy&gt;&lt;&#x2F;aop:aspectj-autoproxy&gt;</span><br></pre></td></tr></table></figure>
+<p>五个注解:<br>@Aspect 指定一个类为切面类<br>@Pointcut(“execution(* com.itmayiedu.service.UserService.add(…))”) 指定切入点表达式<br>@Before(“pointCut_()”) 前置通知: 目标方法之前执行<br>@After(“pointCut_()”) 后置通知：目标方法之后执行（始终执行）<br>@AfterReturning(“pointCut_()”) 返回后通知： 执行方法结束前执行(异常不执行)<br>@AfterThrowing(“pointCut_()”) 异常通知: 出现异常时候执行<br>@Around(“pointCut_()”) 环绕通知： 环绕目标方法执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">@Aspect</span><br><span class="line">public class MyInterceptor &#123;</span><br><span class="line">    @Pointcut(&quot;execution (* cn.itcast.service.impl.PersonServiceImpl.*(..))&quot;)</span><br><span class="line">    private void anyMethod() &#123;&#125; &#x2F;&#x2F; 声明一个切入点，anyMethod为切入点名称</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 声明该方法是一个前置通知：在目标方法开始之前执行 </span><br><span class="line">   1. @Before(&quot;anyMethod()&quot;)</span><br><span class="line">    public void doAccessCheck() &#123;</span><br><span class="line">        System.out.println(&quot;前置通知&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   2. @AfterReturning(&quot;anyMethod()&quot;)</span><br><span class="line">    public void doAfterReturning() &#123;</span><br><span class="line">        System.out.println(&quot;后置通知&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   3. @After(&quot;anyMethod()&quot;)</span><br><span class="line">    public void doAfter() &#123;</span><br><span class="line">        System.out.println(&quot;最终通知&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   4. @AfterThrowing(&quot;anyMethod()&quot;)</span><br><span class="line">    public void doAfterThrowing() &#123;</span><br><span class="line">        System.out.println(&quot;异常通知&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   5. @Around(&quot;anyMethod()&quot;)</span><br><span class="line">    public Object doBasicProfiling(ProceedingJoinPoint pjp) throws Throwable &#123;</span><br><span class="line">        System.out.println(&quot;进入方法&quot;);</span><br><span class="line">        Object result &#x3D; pjp.proceed();</span><br><span class="line">        System.out.println(&quot;退出方法&quot;);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="注解执行顺序"><a href="#注解执行顺序" class="headerlink" title="注解执行顺序"></a>注解执行顺序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@Override &#x2F;&#x2F; @Around---&gt;从另一种角度看：整个方法可看作环绕通知,代理生产最新整个方法</span><br><span class="line">public Object intercept(Object proxy, Method method, Object[] objects, MethodProxy arg3)&#123;</span><br><span class="line">        &#x2F;&#x2F;@Around进入方法</span><br><span class="line">        &#x2F;&#x2F; @Before----&gt; 前置通知(所谓通知，就是我们拦截到业务方法之后所要干的事情)</span><br><span class="line">    try &#123;</span><br><span class="line">        &#x2F;&#x2F;执行目标对象的方法</span><br><span class="line">        Object returnValue &#x3D; method.invoke(target, objects);</span><br><span class="line">        &#x2F;&#x2F;@AfterReturning ----&gt; 后置通知</span><br><span class="line">        &#125; catch (RuntimeException e) &#123;</span><br><span class="line">        &#x2F;&#x2F;@AfterThrowing ----&gt; 异常通知</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">        &#x2F;&#x2F; @After ----&gt; 最终通知</span><br><span class="line">        &#125;</span><br><span class="line">    System.out.println(&quot;End Transaction&quot;);</span><br><span class="line">    return returnValue;</span><br><span class="line">        &#x2F;&#x2F;@Around退出方法 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>@Around进入方法–&gt;@Before–&gt;目标函数–&gt;@AfterReturning(or @AfterThrowing)–&gt;@After–&gt;@Around退出方法 </p>
+</blockquote>
+<p>不同切面间的执行顺序:多个切面嵌套<br>如果知道上面的执行顺序，不同 Aspect 切面的执行顺序很好理解。<br>首先根据 @Order 注解，或者 xml 中的顺序，先进入到顺序靠前的切面。<br>然后我们只需要把上面执行顺序中执行目标函数位置替换为第二个切面的执行顺序，同理，第三个切面的执行位置，就是把第二个切面的执行顺序里面执行目标函数替换即可，以此类推。</p>
+<p>需要注意的是异常的抛出，我们的环绕通知是有能力捕获目标函数异常并且不抛出的，如果捕获并且不抛出，会触发后置返回通知而不会触发后置异常通知，同时也会影响其他切面的执行。所以我们捕获处理后，还要抛出去。</p>
+<h4 id="切入点表达式"><a href="#切入点表达式" class="headerlink" title="切入点表达式"></a>切入点表达式</h4><h5 id="切入点指示符"><a href="#切入点指示符" class="headerlink" title="切入点指示符"></a>切入点指示符</h5><p>　　切入点指示符用来指示切入点表达式目的，在Spring AOP中目前只有执行方法这一个连接点，Spring AOP支持的AspectJ切入点指示符如下：</p>
+<p>execution：用于匹配方法执行的连接点；<br>within：用于匹配指定的类及其子类中的所有方法。<br>this：匹配可以向上转型为this指定的类型的代理对象中的所有方法。<br>target：匹配可以向上转型为target指定的类型的目标对象中的所有方法。<br>args：用于匹配运行时传入的参数列表的类型为指定的参数列表类型的方法；<br>@within：用于匹配持有指定注解的类的所有方法；<br>@target：用于匹配的持有指定注解目标对象的所有方法；<br>@args：用于匹配运行时 传入的参数列表的类型持有 注解列表对应的注解 的方法；<br>@annotation：用于匹配持有指定注解的方法；<br>　　AspectJ切入点支持的切入点指示符还有： call、get、set、preinitialization、staticinitialization、initialization、handler、adviceexecution、withincode、cflow、cflowbelow、if、@this、@withincode；但Spring AOP目前不支持这些指示符，使用这些指示符将抛出IllegalArgumentException异常。</p>
+<h5 id="类型匹配语法"><a href="#类型匹配语法" class="headerlink" title="类型匹配语法"></a>类型匹配语法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(1) *：匹配任何数量字符；</span><br><span class="line">(2) ..：匹配任何数量字符的重复，如在类型模式中匹配任何数量子包；而在方法参数模式中匹配任何数量参数</span><br><span class="line">(3) +：匹配指定类型的子类型；仅能作为后缀放在类型模式后边。</span><br><span class="line">AspectJ使用 且（&amp;&amp;）、或（||）、非（！）来组合切入点表达式。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在Schema风格下，由于在XML中使用“&amp;&amp;”需要使用转义字符“&amp;&amp;”来代替之，所以很不&gt;方便，因此Spring ASP 提供了and、or、not来代替&amp;&amp;、||、！。</p>
+</blockquote>
+<h4 id="常见切入点表达式"><a href="#常见切入点表达式" class="headerlink" title="常见切入点表达式"></a>常见切入点表达式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">任意公共方法的执行： </span><br><span class="line">execution(public * *(..)) </span><br><span class="line"></span><br><span class="line">任何一个以“set”开始的方法的执行： </span><br><span class="line">execution(* set*(..)) </span><br><span class="line"></span><br><span class="line">AccountService 接口的任意方法的执行： </span><br><span class="line">execution(* com.xyz.service.AccountService.*(..)) </span><br><span class="line"></span><br><span class="line">定义在service包里的任意方法的执行： </span><br><span class="line">execution(* com.xyz.service.*.*(..)) </span><br><span class="line"></span><br><span class="line">定义在service包或者子包里的任意方法的执行： </span><br><span class="line">execution(* com.xyz.service..*.*(..)) </span><br><span class="line"></span><br><span class="line">在service包里的任意连接点（在Spring AOP中只是方法执行） ： </span><br><span class="line">within(com.xyz.service.*) </span><br><span class="line"></span><br><span class="line">在service包或者子包里的任意连接点（在Spring AOP中只是方法执行） ： </span><br><span class="line">within(com.xyz.service..*) </span><br><span class="line"></span><br><span class="line">实现了 AccountService 接口的代理对象的任意连接点（在Spring AOP中只是方法执行） ： </span><br><span class="line">this(com.xyz.service.AccountService) </span><br><span class="line"></span><br><span class="line">实现了 AccountService 接口的目标对象的任意连接点（在Spring AOP中只是方法执行） ： </span><br><span class="line">target(com.xyz.service.AccountService) </span><br><span class="line"></span><br><span class="line">任何一个只接受一个参数，且在运行时传入的参数实现了 Serializable 接口的连接点 （在Spring AOP中只是方法执行） </span><br><span class="line">args(java.io.Serializable) </span><br><span class="line"></span><br><span class="line">有一个 @Transactional 注解的目标对象中的任意连接点（在Spring AOP中只是方法执行） </span><br><span class="line">@target(org.springframework.transaction.annotation.Transactional) </span><br><span class="line"></span><br><span class="line">任何一个目标对象声明的类型有一个 @Transactional 注解的连接点（在Spring AOP中只是方法执行） </span><br><span class="line">@within(org.springframework.transaction.annotation.Transactional) </span><br><span class="line"></span><br><span class="line">任何一个执行的方法有一个 @Transactional annotation的连接点（在Spring AOP中只是方法执行） </span><br><span class="line">@annotation(org.springframework.transaction.annotation.Transactional) </span><br><span class="line"></span><br><span class="line">任何一个接受一个参数，并且传入的参数在运行时的类型实现了 @Classified annotation的连接点（在Spring AOP中只是方法执行） </span><br><span class="line">@args(com.xyz.security.Classified)</span><br></pre></td></tr></table></figure>
+
+<h4 id="切入点指示符详解"><a href="#切入点指示符详解" class="headerlink" title="切入点指示符详解"></a>切入点指示符详解</h4><h5 id="execution"><a href="#execution" class="headerlink" title="execution"></a>execution</h5><p>execution(&lt;修饰符模式&gt;?&lt;返回类型模式&gt;&lt;方法名模式&gt;(&lt;参数模式&gt;)&lt;异常模式&gt;?)<br>除了返回类型模式、方法名模式和参数模式外，其它项都是可选的。<br>参数模式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">():匹配一个不接受任何参数的方法</span><br><span class="line">(..):匹配一个接受任意数量参数的方法</span><br><span class="line">(*):匹配了一个接受一个任何类型的参数的方法</span><br><span class="line">(*,String):匹配了一个接受两个参数的方法，其中第一个参数是任意类型，第二个参数必须是String类型</span><br></pre></td></tr></table></figure>
+<p>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">匹配所有目标类的public方法</span><br><span class="line">execution(public * *(..))</span><br><span class="line"></span><br><span class="line">匹配所有以To为后缀的方法</span><br><span class="line">execution(* *To(..))</span><br><span class="line"></span><br><span class="line">匹配Waiter接口中的所有方法</span><br><span class="line">execution(* com.aop.learn.service.Writer.*(..))</span><br><span class="line"></span><br><span class="line">匹配Waiter接口中及其实现类的方法</span><br><span class="line">execution(* com.aop.learn.service.Writer+.*(..))</span><br><span class="line"></span><br><span class="line">匹配 com.aop.learn.service 包下所有类的所有方法</span><br><span class="line">execution(* com.aop.learn.service.*(..))</span><br><span class="line"></span><br><span class="line">匹配 com.aop.learn.service 包,子孙包下所有类的所有方法</span><br><span class="line">execution(* com.aop.learn.service..*(..))</span><br><span class="line"></span><br><span class="line">匹配 包名前缀为com的任何包下类名后缀为ive的方法,方法必须以Smart为前缀</span><br><span class="line">execution(* com..*.*ive.Smart*(..))</span><br><span class="line"></span><br><span class="line">匹配 save(String name,int age) 函数</span><br><span class="line">execution(* save(String,int))</span><br><span class="line"></span><br><span class="line">匹配 save(String name,*) 函数 第二个参数为任意类型</span><br><span class="line">execution(* save(String,*))</span><br><span class="line"></span><br><span class="line">匹配 save(String name,..) 函数 除第一个参数固定外,接受后面有任意个入参且入参类型不限</span><br><span class="line">execution(* save(String,..))</span><br><span class="line"></span><br><span class="line">匹配 save(String+) 函数  String+ 表示入参类型是String的子类</span><br><span class="line">execution(* save(String+))</span><br></pre></td></tr></table></figure>
+
+<h5 id="with"><a href="#with" class="headerlink" title="with"></a>with</h5><p>within是用来指定类型的，指定类型中的所有方法将被拦截。</p>
+<p>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">表示匹配包aop_part以及子包的所有方法</span><br><span class="line">within(aop_part..*) </span><br><span class="line"></span><br><span class="line">匹配UserServiceImpl类对应对象的所有方法外部调用，而且这个对象只能是UserServiceImpl类型，不能是其子类型。</span><br><span class="line">within(com.elim.spring.aop.service.UserServiceImpl)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于execution可以匹配包、类、方法，而within只能匹配包、类，因此execution完全可以代替within的功能。</p>
+</blockquote>
+<h5 id="this"><a href="#this" class="headerlink" title="this"></a>this</h5><p>Spring Aop是基于代理的，this就表示代理对象。this类型的Pointcut表达式的语法是this(type)，当生成的代理对象可以转换为type指定的类型时则表示匹配。基于JDK接口的代理和基于CGLIB的代理生成的代理对象是不一样的。</p>
+<p>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">表示匹配了当前给出具体代理对象,即实现了IGodInterface接口的具体代理对象的所有连接点()</span><br><span class="line">this(aop_part.service.IGodInterface)&#x2F;&#x2F;连接IGodInterface接口实现了的某一个具体对象</span><br></pre></td></tr></table></figure>
+
+<h5 id="target"><a href="#target" class="headerlink" title="target"></a>target</h5><p>Spring Aop是基于代理的，target则表示被代理的目标对象。当被代理的目标对象可以被转换为指定的类型时则表示匹配。</p>
+<p>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">表示匹配实现了IGodInterface接口的目标对象的所有连接点</span><br><span class="line">target(aop_part.service.IGodInterface)&#x2F;&#x2F;连接只要IGodInterface接口实现了的具体对象</span><br></pre></td></tr></table></figure>
+
+<h5 id="args"><a href="#args" class="headerlink" title="args"></a>args</h5><p>args用来匹配方法参数的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">“args()”匹配任何不带参数的方法。</span><br><span class="line">“args(java.lang.String)”匹配任何只带一个参数，而且这个参数的类型是String的方法。</span><br><span class="line">“args(..)”带任意参数的方法。</span><br><span class="line">“args(java.lang.String,..)”匹配带任意个参数，但是第一个参数的类型是String的方法。</span><br><span class="line">“args(..,java.lang.String)”匹配带任意个参数，但是最后一个参数的类型是String的方法。</span><br></pre></td></tr></table></figure>
+
+<h5 id="target-1"><a href="#target-1" class="headerlink" title="@target"></a>@target</h5><p>匹配当被代理的目标对象对应的类型及其父类型上拥有指定的注解时。</p>
+<p>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">匹配被代理的目标对象对应的类型上拥有MyAnnotation注解时</span><br><span class="line">@target(com.elim.spring.support.MyAnnotation)</span><br></pre></td></tr></table></figure>
+
+<h5 id="args-1"><a href="#args-1" class="headerlink" title="@args"></a>@args</h5><p>匹配被调用的方法上含有参数，且对应的参数类型上拥有指定的注解的情况。<br>“@args(com.elim.spring.support.MyAnnotation)”匹配方法参数类型上拥有MyAnnotation注解的方法调用。如我们有一个方法add(MyParam param)接收一个MyParam类型的参数，而MyParam这个类是拥有注解MyAnnotation的，则它可以被Pointcut表达式“@args(com.elim.spring.support.MyAnnotation)”匹配上。</p>
+<h5 id="within"><a href="#within" class="headerlink" title="@within"></a>@within</h5><p>用于匹配被代理的目标对象对应的类型或其父类型拥有指定的注解的情况，但只有在调用拥有指定注解的类上的方法时才匹配。</p>
+<p>“@within(com.elim.spring.support.MyAnnotation)”匹配被调用的方法声明的类上拥有MyAnnotation注解的情况。比如有一个ClassA上使用了注解MyAnnotation标注，并且定义了一个方法a()，那么在调用ClassA.a()方法时将匹配该Pointcut；如果有一个ClassB上没有MyAnnotation注解，但是它继承自ClassA，同时它上面定义了一个方法b()，那么在调用ClassB().b()方法时不会匹配该Pointcut，但是在调用ClassB().a()时将匹配该方法调用，因为a()是定义在父类型ClassA上的，且ClassA上使用了MyAnnotation注解。但是如果子类ClassB覆写了父类ClassA的a()方法，则调用ClassB.a()方法时也不匹配该Pointcut。</p>
+<h5 id="annotation"><a href="#annotation" class="headerlink" title="@annotation"></a>@annotation</h5><p>用于匹配方法上拥有指定注解的情况。<br>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">匹配所有的方法上拥有MyAnnotation注解的方法外部调用。</span><br><span class="line">@annotation(com.elim.spring.support.MyAnnotation)</span><br></pre></td></tr></table></figure>
+
+<h5 id="bean"><a href="#bean" class="headerlink" title="@bean"></a>@bean</h5><p>用于匹配当调用的是指定的Spring的某个bean的方法时。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">“bean(abc)”匹配Spring Bean容器中id或name为abc的bean的方法调用。</span><br><span class="line">“bean(user*)”匹配所有id或name为以user开头的bean的方法调用。</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AOP%E5%8E%9F%E7%90%86/" rel="tag"># AOP原理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/03/Framework-Spring%E6%A1%86%E6%9E%B64/" rel="next" title="Spring 框架4">
+                <i class="fa fa-chevron-left"></i> Spring 框架4
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/18/Java-PO,BO,VO%E5%92%8CPOJO%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="prev" title="PO,BO,VO和POJO的区别">
+                PO,BO,VO和POJO的区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="cdongtao" />
+            
+              <p class="site-author-name" itemprop="name">cdongtao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">149</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yourname" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:441623928@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP-Aspect-Oriented-Programming"><span class="nav-number">1.</span> <span class="nav-text">AOP(Aspect Oriented Programming)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提出问题及解决思路"><span class="nav-number">2.</span> <span class="nav-text">提出问题及解决思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP代理技术"><span class="nav-number">3.</span> <span class="nav-text">AOP代理技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JDK动态代理-amp-amp-Cglib技术-差异"><span class="nav-number">3.0.1.</span> <span class="nav-text">JDK动态代理 &amp;&amp; Cglib技术 差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JDK动态代理技术"><span class="nav-number">3.0.2.</span> <span class="nav-text">JDK动态代理技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CGLIB动态代理技术"><span class="nav-number">3.0.3.</span> <span class="nav-text">CGLIB动态代理技术</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现AOP方式-xml配置-注解方式"><span class="nav-number">4.</span> <span class="nav-text">实现AOP方式(xml配置 || 注解方式)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AOP-核心概念"><span class="nav-number">4.1.</span> <span class="nav-text">AOP 核心概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Spring-xml配置文件"><span class="nav-number">4.2.</span> <span class="nav-text">1.Spring xml配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现AOP的注解方式"><span class="nav-number">4.3.</span> <span class="nav-text">实现AOP的注解方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注解执行顺序"><span class="nav-number">4.3.1.</span> <span class="nav-text">注解执行顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切入点表达式"><span class="nav-number">4.3.2.</span> <span class="nav-text">切入点表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#切入点指示符"><span class="nav-number">4.3.2.1.</span> <span class="nav-text">切入点指示符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#类型匹配语法"><span class="nav-number">4.3.2.2.</span> <span class="nav-text">类型匹配语法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见切入点表达式"><span class="nav-number">4.3.3.</span> <span class="nav-text">常见切入点表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切入点指示符详解"><span class="nav-number">4.3.4.</span> <span class="nav-text">切入点指示符详解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#execution"><span class="nav-number">4.3.4.1.</span> <span class="nav-text">execution</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#with"><span class="nav-number">4.3.4.2.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#this"><span class="nav-number">4.3.4.3.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#target"><span class="nav-number">4.3.4.4.</span> <span class="nav-text">target</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#args"><span class="nav-number">4.3.4.5.</span> <span class="nav-text">args</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#target-1"><span class="nav-number">4.3.4.6.</span> <span class="nav-text">@target</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#args-1"><span class="nav-number">4.3.4.7.</span> <span class="nav-text">@args</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#within"><span class="nav-number">4.3.4.8.</span> <span class="nav-text">@within</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#annotation"><span class="nav-number">4.3.4.9.</span> <span class="nav-text">@annotation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bean"><span class="nav-number">4.3.4.10.</span> <span class="nav-text">@bean</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cdongtao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">324k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:54</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uASAKzQTPhuJIplOaklnAaqK-gzGzoHsz',
+        appKey: 'LRW155uTAdoeaAjf9q9D53Ps',
+        placeholder: 'Welcome to comment!',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

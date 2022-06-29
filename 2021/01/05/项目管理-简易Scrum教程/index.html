@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="敏捷测试团队的测试流程 初学者简易Scrum教程Agile是一种软件开发方法，可以使用1至4周的短迭代逐步构建软件，以便开发过程与不断变化的业务需求保持一致。而不是预先预测所有要求和风险的6到18个月的单程开发，敏捷采用频繁反馈的过程，其中在1到4周的迭代后交付可行的产品。 敏捷中的角色跨职能团队每个敏捷团队都应该是一个自给自足的团队，拥有5到9名团队成员，平均经验为6到10年。通常，敏捷团队由3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrum流程">
+<meta property="og:url" content="https://cdongtao.github.io/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E7%AE%80%E6%98%93Scrum%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="cdongtao">
+<meta property="og:description" content="敏捷测试团队的测试流程 初学者简易Scrum教程Agile是一种软件开发方法，可以使用1至4周的短迭代逐步构建软件，以便开发过程与不断变化的业务需求保持一致。而不是预先预测所有要求和风险的6到18个月的单程开发，敏捷采用频繁反馈的过程，其中在1到4周的迭代后交付可行的产品。 敏捷中的角色跨职能团队每个敏捷团队都应该是一个自给自足的团队，拥有5到9名团队成员，平均经验为6到10年。通常，敏捷团队由3">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdongtao.github.io/scrum/001.png">
+<meta property="og:image" content="https://cdongtao.github.io/scrum/002.png">
+<meta property="og:image" content="https://cdongtao.github.io/scrum/003.png">
+<meta property="og:image" content="https://cdongtao.github.io/scrum/004.png">
+<meta property="og:image" content="https://cdongtao.github.io/scrum/007.png">
+<meta property="og:image" content="https://cdongtao.github.io/scrum/008.png">
+<meta property="article:published_time" content="2021-01-05T13:28:02.327Z">
+<meta property="article:modified_time" content="2021-01-11T07:27:44.220Z">
+<meta property="article:author" content="cdongtao">
+<meta property="article:tag" content="Scrum">
+<meta property="article:tag" content="敏捷">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdongtao.github.io/scrum/001.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="cdongtao" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cdongtao.github.io/2021/01/05/项目管理-简易Scrum教程/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Scrum流程 | cdongtao</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cdongtao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cdongtao.github.io/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E7%AE%80%E6%98%93Scrum%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cdongtao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cdongtao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Scrum流程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-01-05 21:28:02" itemprop="dateCreated datePublished" datetime="2021-01-05T21:28:02+08:00">2021-01-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-11 15:27:44" itemprop="dateModified" datetime="2021-01-11T15:27:44+08:00">2021-01-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Project-Management/" itemprop="url" rel="index"><span itemprop="name">Project Management</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E7%AE%80%E6%98%93Scrum%E6%95%99%E7%A8%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E7%AE%80%E6%98%93Scrum%E6%95%99%E7%A8%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">13k 字</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">12 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.cnblogs.com/testertechnology/p/10974959.html" target="_blank" rel="noopener">敏捷测试团队的测试流程</a></p>
+<h2 id="初学者简易Scrum教程"><a href="#初学者简易Scrum教程" class="headerlink" title="初学者简易Scrum教程"></a><a href="https://segmentfault.com/a/1190000018474870" target="_blank" rel="noopener">初学者简易Scrum教程</a></h2><p>Agile是一种软件开发方法，可以使用1至4周的短迭代逐步构建软件，以便开发过程与不断变化的业务需求保持一致。而不是预先预测所有要求和风险的6到18个月的单程开发，敏捷采用频繁反馈的过程，其中在1到4周的迭代后交付可行的产品。<br><img src="/scrum/001.png" alt="001" title="001"></p>
+<h3 id="敏捷中的角色"><a href="#敏捷中的角色" class="headerlink" title="敏捷中的角色"></a><a href="https://www.visual-paradigm.com/scrum/what-is-scrum-team/" target="_blank" rel="noopener">敏捷中的角色</a></h3><h4 id="跨职能团队"><a href="#跨职能团队" class="headerlink" title="跨职能团队"></a>跨职能团队</h4><p>每个敏捷团队都应该是一个自给自足的团队，拥有5到9名团队成员，平均经验为6到10年。通常，敏捷团队由3到4名开发人员，1名测试人员，1名技术主管，1名产品所有者和1名Scrum主人组成。产品负责人和Scrum master被认为是Team Interface的一部分，而其他成员则是Technical Interface的一部分。<br><img src="/scrum/002.png" alt="002" title="002"></p>
+<h4 id="Scrum-Master"><a href="#Scrum-Master" class="headerlink" title="Scrum Master"></a>Scrum Master</h4><p>Scrum Master是团队领导者和推动者，帮助团队成员遵循敏捷实践，以便他们能够履行承诺。Scrum master的职责如下 -</p>
+<ul>
+<li>实现所有角色和功能之间的紧密合作。</li>
+<li>删除任何块。</li>
+<li>保护团队免受任何干扰。</li>
+<li>与组织合作以跟踪公司的进度和流程。</li>
+<li>确保Agile Inspect＆Adapt流程得到适当利用，包括<ol>
+<li>每日站立(daliy meeting)</li>
+<li>计划会议(planning meeting)</li>
+<li>演示</li>
+<li>评论(review meeting)</li>
+<li>回顾会议(retro meeting)</li>
+<li>促进团队会议和决策过程</li>
+</ol>
+</li>
+</ul>
+<h4 id="Product-Owner-产品拥有者"><a href="#Product-Owner-产品拥有者" class="headerlink" title="Product Owner(产品拥有者)"></a>Product Owner(产品拥有者)</h4><p>接受符合完成和已定义验收标准定义的用户故事。</p>
+<ul>
+<li>定义需求并确定其值的优先级。</li>
+<li>确定发布日期和内容。</li>
+<li>在迭代计划和发布计划会议中发挥积极作用。</li>
+<li>确保团队致力于最有价值的要求。</li>
+<li>代表客户的声音。</li>
+<li>接受符合完成和已定义验收标准定义的用户故事。</li>
+</ul>
+<h3 id="敏捷团队如何规划其工作？"><a href="#敏捷团队如何规划其工作？" class="headerlink" title="敏捷团队如何规划其工作？"></a>敏捷团队如何规划其工作？</h3><p>敏捷团队在迭代中工作，以提供每次迭代为10到15天的用户故事。每个用户故事都是根据其积压优先级和大小来规划的。团队使用其能力 - 团队可以使用多少小时来完成任务 - 来决定他们计划的范围。<br><img src="/scrum/003.png" alt="003" title="003"></p>
+<h3 id="敏捷-故事"><a href="#敏捷-故事" class="headerlink" title="敏捷-故事"></a>敏捷-故事</h3><h4 id="什么是用户故事？"><a href="#什么是用户故事？" class="headerlink" title="什么是用户故事？"></a>什么是用户故事？</h4><p>用户故事是定义用户需要什么作为功能的要求。用户故事可以有两种形式 -</p>
+<ul>
+<li>作为&lt;用户角色&gt;我想要&lt;功能&gt;以便&lt;业务价值&gt;</li>
+<li>为了&lt;业务价值&gt;作为&lt;用户角色&gt;我想要&lt;功能&gt;<br>在发布计划期间，使用相对比例作为点对用户故事进行粗略估计。在迭代计划期间，故事被分解为任务。</li>
+</ul>
+<h4 id="评估故事-Story-Point"><a href="#评估故事-Story-Point" class="headerlink" title="评估故事(Story Point)"></a>评估故事(Story Point)</h4><p>复杂度，繁琐度，风险系数<br>Point定义了团队可以提交多少。一点通常指8小时。每个故事都以分数估算。<br>容量定义了个人可以提交多少。容量估计为小时。</p>
+<h4 id="用户故事与任务的关系"><a href="#用户故事与任务的关系" class="headerlink" title="用户故事与任务的关系"></a>用户故事与任务的关系</h4><ul>
+<li>用户故事讲述了要做什么。它定义了用户需要的内容。</li>
+<li>任务谈论如何完成。它定义了如何实现功能。</li>
+<li>故事由任务实现。每个故事都是一系列任务。</li>
+<li>用户故事在当前迭代中计划时分为任务。</li>
+<li>任务以小时计算，通常为2至12小时。</li>
+<li>使用验收测试验证故事。<br><img src="/scrum/004.png" alt="004" title="004"></li>
+</ul>
+<h4 id="故事完成标准"><a href="#故事完成标准" class="headerlink" title="故事完成标准"></a>故事完成标准</h4><p>故事决定做什么意味着什么-标准可能是</p>
+<ul>
+<li>所有任务（开发，测试）都已完成。</li>
+<li>所有验收测试都在运行并通过。</li>
+<li>没有缺陷是开放的。</li>
+<li>产品所有者已经接受了这个故事</li>
+<li>可交付给最终用户。</li>
+</ul>
+<h4 id="如何定义需求任务？"><a href="#如何定义需求任务？" class="headerlink" title="如何定义需求任务？"></a>如何定义需求任务？</h4><p>要求定义为</p>
+<ul>
+<li>用户故事</li>
+<li>有验收标准:定义功能所需的功能，行为和性能，以便产品所有者可以接受。它定义了要做什么，以便开发人员知道用户故事何时完成。</li>
+<li>实现故事的任务。</li>
+</ul>
+<h3 id="敏捷-特征"><a href="#敏捷-特征" class="headerlink" title="敏捷 - 特征"></a>敏捷 - 特征</h3><h4 id="迭代-增量和准备进化"><a href="#迭代-增量和准备进化" class="headerlink" title="迭代/增量和准备进化"></a>迭代/增量和准备进化</h4><p>大多数敏捷开发方法都将问题分解为较小的任务。任何要求都没有直接的长期规划。通常，计划的迭代具有变化的短时间段，例如1至4周。为每个迭代创建一个跨职能团队，该团队适用于软件开发的所有功能，如规划，需求分析，设计，编码，单元测试和验收测试。迭代结束时的结果是一个工作产品，它在迭代结束时向利益相关者展示。演示之后，将审核评论并计划根据需要合并到工作软件中。</p>
+<h4 id="面对面交流"><a href="#面对面交流" class="headerlink" title="面对面交流"></a>面对面交流</h4><p>每个敏捷团队都应该有一个客户代表，例如scrum方法中的产品所有者。该代表被授权代表利益相关者行事，他可以在迭代之间回答开发人员的查询。<br>信息辐射器（物理显示器）通常位于办公室的显眼位置，路人可以看到敏捷团队的进度。此信息散热器显示项目状态的最新摘要。  </p>
+<h4 id="反馈回路"><a href="#反馈回路" class="headerlink" title="反馈回路"></a>反馈回路</h4><p>每日站立是任何敏捷开发的共同文化; 它也被称为每日Scrum。这是一种简短的会话，每个团队成员互相报告他们所做的事情，下一步该做什么以及他们面临的任何问题。</p>
+<h3 id="敏捷-每日站立运作-daliy-meeting"><a href="#敏捷-每日站立运作-daliy-meeting" class="headerlink" title="敏捷-每日站立运作(daliy meeting)"></a>敏捷-每日站立运作(daliy meeting)</h3><p>顾名思义，每日站立是敏捷团队所有成员之间的每日状态会议。它不仅提供定期更新的论坛，而且还将团队成员的问题集中在一起，以便快速解决。无论办公地点如何，无论如何建立敏捷团队，每日站立都是必须的做法。</p>
+<h4 id="每日站立"><a href="#每日站立" class="headerlink" title="每日站立"></a>每日站立</h4><ul>
+<li>每日站立是所有团队成员之间的每日状态会议，大约持续15分钟。</li>
+<li>每个成员都必须回答三个重要问题 -<ol>
+<li>我昨天做了什么？</li>
+<li>我今天要做什么？</li>
+<li>我面临的任何障碍…… /我因……而被封锁</li>
+</ol>
+</li>
+<li>每日站立是为了状态更新，而不是任何讨论。对于讨论，团队成员应该在不同的时间安排另一次会议。</li>
+<li>参与者通常站立而不是坐着，以便会议快速结束。</li>
+</ul>
+<h4 id="为什么站立是重要的？"><a href="#为什么站立是重要的？" class="headerlink" title="为什么站立是重要的？"></a>为什么站立是重要的？</h4><p>每日站立敏捷的好处如下 -</p>
+<ul>
+<li>团队可以每天评估进度，看看他们是否可以按照迭代计划进行交付。</li>
+<li>每个团队成员都会告知他/她当天的承诺。</li>
+<li>它可以让团队了解任何延迟或障碍。</li>
+</ul>
+<h4 id="谁出席了站立？"><a href="#谁出席了站立？" class="headerlink" title="谁出席了站立？"></a>谁出席了站立？</h4><ul>
+<li>Scrum主管，产品所有者和交付团队应每天参加站立。</li>
+<li>鼓励利益相关者和客户参加会议，他们可以作为观察员，但他们不应该参加站立。</li>
+<li>Scrum主管有责任记录每个团队成员的疑问及他们面临的问题。</li>
+</ul>
+<h4 id="地理位置分散的团队"><a href="#地理位置分散的团队" class="headerlink" title="地理位置分散的团队"></a>地理位置分散的团队</h4><p>如果敏捷团队成员在不同的时区运营，可以通过多种方式进行站立 -</p>
+<ul>
+<li>轮流选择会员，谁可以参加位于不同时区的团队的站立会议。</li>
+<li>每个团队单独站立，在Rally，SharePoint，Wikis等工具中更新站立状态。</li>
+<li>拥有各种各样的通信工具，如电话会议，视频会议，即时消息或任何其他第三方知识共享工具。</li>
+</ul>
+<h3 id="敏捷-完成的定义"><a href="#敏捷-完成的定义" class="headerlink" title="敏捷 - 完成的定义"></a>敏捷 - 完成的定义</h3><h4 id="用户故事"><a href="#用户故事" class="headerlink" title="用户故事"></a>用户故事</h4><p>用户故事是在用户的日常用语中用几句话表达的要求，并且应该在迭代内完成。用户故事在何时完成</p>
+<ul>
+<li>所有相关代码都已签入。</li>
+<li>所有单元测试用例都已通过。</li>
+<li>所有验收测试用例均已通过。</li>
+<li>帮助文本已写入。</li>
+<li>产品负责人接受了这个故事。</li>
+</ul>
+<h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>迭代是在产品发布中处理和接受的用户故事/缺陷的时间盒装集合。迭代在迭代计划会议期间定义，并通过迭代演示和审阅会议完成。迭代也称为冲刺。迭代完成时</p>
+<ul>
+<li>产品备份完成。</li>
+<li>性能已经过测试。</li>
+<li>用户故事已被接受或移至下一次迭代。</li>
+<li>缺陷已被修复或推迟到下一次迭代。</li>
+</ul>
+<h4 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h4><p>版本是一个重要的里程碑，代表产品/系统的工作，测试版本的内部或外部交付。发布时就完成了</p>
+<ul>
+<li>系统经过压力测试。</li>
+<li>性能得到了调整。</li>
+<li>进行安全验证。</li>
+<li>灾难恢复计划已经过测试。</li>
+</ul>
+<h3 id="敏捷-发布计划"><a href="#敏捷-发布计划" class="headerlink" title="敏捷 - 发布计划"></a>敏捷 - 发布计划</h3><p>发布计划的目的是创建一个计划，以便为产品提供增量。每2至3个月完成一次。</p>
+<h4 id="谁参与了？"><a href="#谁参与了？" class="headerlink" title="谁参与了？"></a>谁参与了？</h4><ul>
+<li>Scrum Master - Scrum master是敏捷交付团队的推动者。</li>
+<li>产品负责人 - 产品负责人代表产品待办事项的一般视图。</li>
+<li>敏捷团队 - 敏捷交付团队提供有关技术可行性或任何依赖关系的见解。</li>
+<li>利益相关者 - 像客户，项目经理，主题专家这样的利益相关者担任顾问，因为决策是围绕发布计划做出的。</li>
+</ul>
+<h4 id="规划的先决条件"><a href="#规划的先决条件" class="headerlink" title="规划的先决条件"></a>规划的先决条件</h4><p>发布计划的先决条件如下 -</p>
+<ul>
+<li>由产品负责人管理的排名产品积压。通常采用五到十个特征，产品所有者认为可以包含在版本中</li>
+<li>团队关于能力，已知速度或任何技术挑战的意见</li>
+<li>高层愿景</li>
+<li>市场和业务目标</li>
+<li>确认是否需要新产品积压项目</li>
+</ul>
+<h4 id="所需材料"><a href="#所需材料" class="headerlink" title="所需材料"></a>所需材料</h4><p>发布计划所需的材料清单如下 -</p>
+<ul>
+<li>发表议程，目的</li>
+<li>翻转图表，白板，标记</li>
+<li>投影仪，在计划会议期间共享具有所需数据/工具的计算机的方式</li>
+<li>规划数据</li>
+</ul>
+<h4 id="规划数据"><a href="#规划数据" class="headerlink" title="规划数据"></a>规划数据</h4><p>进行发布计划所需的数据列表如下 -</p>
+<ul>
+<li>以前的迭代或发布计划结果</li>
+<li>各利益相关方对产品，市场状况和截止日期的反馈</li>
+<li>先前版本/迭代的行动计划</li>
+<li>要考虑的特征或缺陷</li>
+<li>先前版本/估计的速度。</li>
+<li>组织和个人日历</li>
+<li>来自其他团队和主题专家的输入，以管理任何依赖关系</li>
+</ul>
+<h4 id="产量"><a href="#产量" class="headerlink" title="产量"></a>产量</h4><p>发布计划的输出可以是以下 -</p>
+<ul>
+<li>发布计划</li>
+<li>承诺</li>
+<li>要监控的问题，顾虑，依赖关系和假设</li>
+<li>建议改进未来的发布计划</li>
+</ul>
+<h4 id="议程"><a href="#议程" class="headerlink" title="议程"></a>议程</h4><p>发布计划的议程可以是 -</p>
+<ul>
+<li>开幕式 - 欢迎辞，审查目的和议程，组织工具和商业赞助商介绍。</li>
+<li>产品愿景，路线图 - 展示产品的大图。</li>
+<li>查看以前的版本 - 讨论可能影响计划的任何项目。</li>
+<li>发布名称/主题 - 检查路线图主题的当前状态并执行所需的调整（如果有）。</li>
+<li>速度 - 显示当前版本和先前版本的速度。</li>
+<li>发布计划 - 审核关键里程碑并决定发布时的发布和迭代时间框。</li>
+<li>问题和顾虑 - 检查任何问题或问题并记录下来。</li>
+<li>回顾和更新所做的定义 -回顾的定义完成，并根据技术，技能或团队成员自上次迭代/释放变化作适当的改变。</li>
+<li>要考虑的故事和项目 - 显示产品待办事项中的用户故事和功能，以便在当前版本中进行安排。</li>
+<li>确定大小调整值 - 如果速度未知，则计划要在发布计划中使用的大小调整值。</li>
+<li>粗略的故事大小 - 交付团队确定所考虑故事的适当大小，并在故事太大时将故事分成多个迭代。产品所有者和主题专家澄清疑虑，详细说明验收标准，并进行适当的故事分割。Scrum master促进了协作。</li>
+<li>将故事映射到迭代 - 交付团队和产品所有者根据大小和速度移动迭代中的故事/缺陷。Scrum master促进了协作。</li>
+<li>新的顾虑或问题 - 根据以往的经验检查任何新问题并记录相同的问题。</li>
+<li>依赖关系和假设 - 检查在发布计划期间计划的任何依赖关系/假设。</li>
+<li>提交 - Scrum master要求进行规划。交付团队和产品负责人将其视为最佳计划，然后承诺进入下一级计划，即迭代计划。</li>
+<li>沟通和物流规划 - 审核/更新发布的沟通和后勤规划。</li>
+<li>停车场 - 处理停车场意味着所有项目都应该被解决或设置为行动项目。</li>
+<li>分发行动项目和行动计划 - 在其所有者之间分配行动项目，处理行动计划。</li>
+<li>回顾 - 征求参与者的反馈意见，使会议取得成功。</li>
+<li>关闭 - 庆祝成功。</li>
+</ul>
+<h3 id="敏捷-迭代计划"><a href="#敏捷-迭代计划" class="headerlink" title="敏捷 - 迭代计划"></a>敏捷 - 迭代计划</h3><p>迭代计划的目的是让团队完成一系列排名靠前的产品积压项目。此承诺是基于迭代长度和团队速度的时间框。<br><img src="/scrum/007.png" alt="007" title="007"></p>
+<h4 id="谁参与了？-1"><a href="#谁参与了？-1" class="headerlink" title="谁参与了？"></a>谁参与了？</h4><p>Scrum Master - Scrum master是敏捷交付团队的推动者。<br>产品负责人 - 产品负责人处理产品待办事项的详细视图及其验收标准。<br>敏捷团队 - 敏捷交付定义了他们的任务，并设置了履行承诺所需的工作量估算。</p>
+<h4 id="规划的先决条件-1"><a href="#规划的先决条件-1" class="headerlink" title="规划的先决条件"></a>规划的先决条件</h4><ul>
+<li>产品待办事项中的项目已调整大小并分配了相对故事点。</li>
+<li>产品所有者已对产品组合项进行了排名。</li>
+<li>已为每个项目组合项目明确说明了接受标准。</li>
+</ul>
+<h4 id="规划过程"><a href="#规划过程" class="headerlink" title="规划过程"></a>规划过程</h4><p>以下是迭代计划中涉及的步骤 -</p>
+<ul>
+<li>确定迭代中可以容纳多少个故事。</li>
+<li>将这些故事分解为任务并将每个任务分配给其所有者。</li>
+<li>每项任务都以小时为单位进行估算。</li>
+<li>这些估计值可帮助团队成员检查每个成员为迭代执行的任务小时数。</li>
+<li>考虑到团队成员的速度或能力，他们会被分配任务，以免他们负担过重。</li>
+</ul>
+<h4 id="速度计算"><a href="#速度计算" class="headerlink" title="速度计算"></a>速度计算</h4><p>敏捷团队根据过去的迭代计算速度。Velocity是在迭代中完成用户故事所需的平均单位数。例如，如果团队在最后三次迭代中在每次迭代中花费了12,14,10个故事点，则团队可以将12作为下一次迭代的速度。<br>计划速度告诉团队在当前迭代中可以完成多少用户故事。如果团队快速完成分配的任务，则可以提取更多用户故事。否则，故事也可以移出到下一次迭代。</p>
+<h4 id="任务能力"><a href="#任务能力" class="headerlink" title="任务能力"></a>任务能力</h4><p>团队的能力来自以下三个事实 -</p>
+<ul>
+<li>一天中理想的工作时数</li>
+<li>迭代中的人的可用天数</li>
+<li>成员专门为团队提供的时间百分比。</li>
+</ul>
+<p>假设一个团队有5名成员，他们致力于在项目中全职工作（每天8小时），并且在迭代期间没有人休假，那么两周迭代的任务能力将是 -<br>5×8×10 = 400小时</p>
+<h4 id="规划步骤"><a href="#规划步骤" class="headerlink" title="规划步骤"></a>规划步骤</h4><ul>
+<li>产品负责人描述了排名最高的产品待办事项。</li>
+<li>团队描述完成项目所需的任务。</li>
+<li>团队成员拥有这些任务。</li>
+<li>团队成员估计完成每项任务的时间。</li>
+<li>对迭代中的所有项重复这些步骤。</li>
+<li>如果任何个人的任务过载，那么他/她的任务将分配给其他团队成员。</li>
+</ul>
+<h3 id="敏捷-产品Backlog"><a href="#敏捷-产品Backlog" class="headerlink" title="敏捷 - 产品Backlog"></a>敏捷 - 产品Backlog</h3><p>产品待办事项是要完成的项目列表。项目按功能描述排名。在理想情况下，项目应分解为用户故事。</p>
+<h4 id="产品Backlog为何重要？"><a href="#产品Backlog为何重要？" class="headerlink" title="产品Backlog为何重要？"></a>产品Backlog为何重要？</h4><ul>
+<li>它是经过准备的，可以对每个特征进行估算。</li>
+<li>它有助于规划产品的路线图。</li>
+<li>它有助于对功能进行重新排名，从而可以为产品添加更多价值。</li>
+<li>它有助于确定优先排序的内容。团队对项目进行排名，然后建立价值。</li>
+</ul>
+<h4 id="产品积压的特征"><a href="#产品积压的特征" class="headerlink" title="产品积压的特征"></a>产品积压的特征</h4><ul>
+<li>每个产品应该有一个产品积压，可以有一组大到大的功能。</li>
+<li>多个团队可以处理单个产品待办事项。</li>
+<li>功能排名基于业务价值，技术价值，风险管理或战略适应性。</li>
+<li>在发布计划期间，排名最高的项目会被分解为较小的故事，以便在将来的迭代中完成。</li>
+</ul>
+<h3 id="敏捷-实用术语"><a href="#敏捷-实用术语" class="headerlink" title="敏捷 - 实用术语"></a>敏捷 - 实用术语</h3><h4 id="验收标准"><a href="#验收标准" class="headerlink" title="验收标准"></a>验收标准</h4><p>这是产品所有者或客户设定的条件，以便接受有效且符合其要求的功能。</p>
+<h4 id="积压修饰"><a href="#积压修饰" class="headerlink" title="积压修饰"></a>积压修饰</h4><p><img src="/scrum/008.png" alt="008" title="008"><br>这是一个持续的过程，产品经理或客户通过从敏捷团队获得反馈来管理产品待办事项。这个过程包括对项目组合项目进行优先排序，将它们分解为较小的项目，为将来的迭代计划它们，创建新的故事，更新验收标准或详细阐述验收标准。</p>
+<h4 id="容量"><a href="#容量" class="headerlink" title="容量"></a>容量</h4><p>这是团队在一次迭代中完成的工作量。</p>
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>这是团队在一次迭代中完成的工作量。</p>
+<h4 id="增量"><a href="#增量" class="headerlink" title="增量"></a>增量</h4><p>增量是产品在逐渐发展时的变化状态。它通常由里程碑或固定迭代次数表示。</p>
+<h4 id="产品拥有者"><a href="#产品拥有者" class="headerlink" title="产品拥有者"></a>产品拥有者</h4><p>产品所有者是敏捷交付团队的成员，负责收集产品待办事项中的业务需求并对其进行排名。产品所有者在发布/迭代中传达要执行的操作。他/她设定承诺并负责保护团队在迭代期间不受任何需求变化的影响。</p>
+<h4 id="产品积压"><a href="#产品积压" class="headerlink" title="产品积压"></a>产品积压</h4><p>一套功能性和非功能性产品要求。</p>
+<h4 id="产品待办事项"><a href="#产品待办事项" class="headerlink" title="产品待办事项"></a>产品待办事项</h4><p>可能是敏捷团队要开发的用户故事，缺陷和功能。</p>
+<h4 id="点"><a href="#点" class="headerlink" title="点"></a>点</h4><p>用于设置用户故事，功能或任何其他项目组合项的相对大小的常用单位。</p>
+<h4 id="发布-1"><a href="#发布-1" class="headerlink" title="发布"></a>发布</h4><p>一个时间框，用于完成工作以支持向软件提供可测试的增量。在scrum中，发布包含多次迭代。</p>
+<h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p>满足所述合同或功能的软件产品规范。用户故事和项目组合项目是需求类型。</p>
+<h4 id="故事点"><a href="#故事点" class="headerlink" title="故事点"></a>故事点</h4><p>敏捷团队用于估计用户故事和功能的相对大小的单元。</p>
+<h4 id="短跑"><a href="#短跑" class="headerlink" title="短跑"></a>短跑</h4><p>与迭代相同。</p>
+<h4 id="时间盒"><a href="#时间盒" class="headerlink" title="时间盒"></a>时间盒</h4><p>确定可交付成果的固定持续时间。通常，随着时间框的修复开始和结束日期，资源的数量也是固定的。</p>
+<h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><p>它是一个工作单元，有助于在迭代中完成用户故事。用户故事被分解为多个任务，每个任务可以在团队成员之间划分，并将其标记为任务的所有者。团队成员可以根据需要负责每项任务，更新估算，记录已完成的工作或待办事项。</p>
+<h4 id="用户故事-1"><a href="#用户故事-1" class="headerlink" title="用户故事"></a>用户故事</h4><p>列出的验收标准，以满足用户的某些要求。它通常是从最终用户的角度编写的。</p>
+<h4 id="速度"><a href="#速度" class="headerlink" title="速度"></a>速度</h4><p>在迭代或时间框中对接受的工作进行加权的度量。通常它是迭代中接受的故事点的总和。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Scrum/" rel="tag"># Scrum</a>
+          
+            <a href="/tags/%E6%95%8F%E6%8D%B7/" rel="tag"># 敏捷</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" rel="next" title="项目管理流程总结">
+                <i class="fa fa-chevron-left"></i> 项目管理流程总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/07/Issue-%E6%8E%92%E7%94%9F%E4%BA%A7%E9%97%AE%E9%A2%98%E6%9F%A5%E5%B7%A5%E5%85%B7%E7%AE%B1/" rel="prev" title="生产问题工具箱">
+                生产问题工具箱 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="cdongtao" />
+            
+              <p class="site-author-name" itemprop="name">cdongtao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">149</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yourname" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:441623928@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初学者简易Scrum教程"><span class="nav-number">1.</span> <span class="nav-text">初学者简易Scrum教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷中的角色"><span class="nav-number">1.1.</span> <span class="nav-text">敏捷中的角色</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#跨职能团队"><span class="nav-number">1.1.1.</span> <span class="nav-text">跨职能团队</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scrum-Master"><span class="nav-number">1.1.2.</span> <span class="nav-text">Scrum Master</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Product-Owner-产品拥有者"><span class="nav-number">1.1.3.</span> <span class="nav-text">Product Owner(产品拥有者)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷团队如何规划其工作？"><span class="nav-number">1.2.</span> <span class="nav-text">敏捷团队如何规划其工作？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷-故事"><span class="nav-number">1.3.</span> <span class="nav-text">敏捷-故事</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是用户故事？"><span class="nav-number">1.3.1.</span> <span class="nav-text">什么是用户故事？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评估故事-Story-Point"><span class="nav-number">1.3.2.</span> <span class="nav-text">评估故事(Story Point)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户故事与任务的关系"><span class="nav-number">1.3.3.</span> <span class="nav-text">用户故事与任务的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#故事完成标准"><span class="nav-number">1.3.4.</span> <span class="nav-text">故事完成标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何定义需求任务？"><span class="nav-number">1.3.5.</span> <span class="nav-text">如何定义需求任务？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷-特征"><span class="nav-number">1.4.</span> <span class="nav-text">敏捷 - 特征</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#迭代-增量和准备进化"><span class="nav-number">1.4.1.</span> <span class="nav-text">迭代&#x2F;增量和准备进化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面对面交流"><span class="nav-number">1.4.2.</span> <span class="nav-text">面对面交流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反馈回路"><span class="nav-number">1.4.3.</span> <span class="nav-text">反馈回路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷-每日站立运作-daliy-meeting"><span class="nav-number">1.5.</span> <span class="nav-text">敏捷-每日站立运作(daliy meeting)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#每日站立"><span class="nav-number">1.5.1.</span> <span class="nav-text">每日站立</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么站立是重要的？"><span class="nav-number">1.5.2.</span> <span class="nav-text">为什么站立是重要的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#谁出席了站立？"><span class="nav-number">1.5.3.</span> <span class="nav-text">谁出席了站立？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#地理位置分散的团队"><span class="nav-number">1.5.4.</span> <span class="nav-text">地理位置分散的团队</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷-完成的定义"><span class="nav-number">1.6.</span> <span class="nav-text">敏捷 - 完成的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户故事"><span class="nav-number">1.6.1.</span> <span class="nav-text">用户故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迭代"><span class="nav-number">1.6.2.</span> <span class="nav-text">迭代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布"><span class="nav-number">1.6.3.</span> <span class="nav-text">发布</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷-发布计划"><span class="nav-number">1.7.</span> <span class="nav-text">敏捷 - 发布计划</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#谁参与了？"><span class="nav-number">1.7.1.</span> <span class="nav-text">谁参与了？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规划的先决条件"><span class="nav-number">1.7.2.</span> <span class="nav-text">规划的先决条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所需材料"><span class="nav-number">1.7.3.</span> <span class="nav-text">所需材料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规划数据"><span class="nav-number">1.7.4.</span> <span class="nav-text">规划数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#产量"><span class="nav-number">1.7.5.</span> <span class="nav-text">产量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#议程"><span class="nav-number">1.7.6.</span> <span class="nav-text">议程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷-迭代计划"><span class="nav-number">1.8.</span> <span class="nav-text">敏捷 - 迭代计划</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#谁参与了？-1"><span class="nav-number">1.8.1.</span> <span class="nav-text">谁参与了？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规划的先决条件-1"><span class="nav-number">1.8.2.</span> <span class="nav-text">规划的先决条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规划过程"><span class="nav-number">1.8.3.</span> <span class="nav-text">规划过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#速度计算"><span class="nav-number">1.8.4.</span> <span class="nav-text">速度计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#任务能力"><span class="nav-number">1.8.5.</span> <span class="nav-text">任务能力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规划步骤"><span class="nav-number">1.8.6.</span> <span class="nav-text">规划步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷-产品Backlog"><span class="nav-number">1.9.</span> <span class="nav-text">敏捷 - 产品Backlog</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#产品Backlog为何重要？"><span class="nav-number">1.9.1.</span> <span class="nav-text">产品Backlog为何重要？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#产品积压的特征"><span class="nav-number">1.9.2.</span> <span class="nav-text">产品积压的特征</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷-实用术语"><span class="nav-number">1.10.</span> <span class="nav-text">敏捷 - 实用术语</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#验收标准"><span class="nav-number">1.10.1.</span> <span class="nav-text">验收标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#积压修饰"><span class="nav-number">1.10.2.</span> <span class="nav-text">积压修饰</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容量"><span class="nav-number">1.10.3.</span> <span class="nav-text">容量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征"><span class="nav-number">1.10.4.</span> <span class="nav-text">特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增量"><span class="nav-number">1.10.5.</span> <span class="nav-text">增量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#产品拥有者"><span class="nav-number">1.10.6.</span> <span class="nav-text">产品拥有者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#产品积压"><span class="nav-number">1.10.7.</span> <span class="nav-text">产品积压</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#产品待办事项"><span class="nav-number">1.10.8.</span> <span class="nav-text">产品待办事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#点"><span class="nav-number">1.10.9.</span> <span class="nav-text">点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布-1"><span class="nav-number">1.10.10.</span> <span class="nav-text">发布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#需求"><span class="nav-number">1.10.11.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#故事点"><span class="nav-number">1.10.12.</span> <span class="nav-text">故事点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#短跑"><span class="nav-number">1.10.13.</span> <span class="nav-text">短跑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间盒"><span class="nav-number">1.10.14.</span> <span class="nav-text">时间盒</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#任务"><span class="nav-number">1.10.15.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户故事-1"><span class="nav-number">1.10.16.</span> <span class="nav-text">用户故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#速度"><span class="nav-number">1.10.17.</span> <span class="nav-text">速度</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cdongtao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">324k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:54</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uASAKzQTPhuJIplOaklnAaqK-gzGzoHsz',
+        appKey: 'LRW155uTAdoeaAjf9q9D53Ps',
+        placeholder: 'Welcome to comment!',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前端学习体系 1小码哥前端学习架构路线小码哥前端学习体系 前端学习体系 2第一阶段(HTML5+CSS3)主讲内容：前端开发软件、HTML5、CSS2、CSS3、框架实战项目、前端必备的 UI 技能 知识要点：1、前端开发软件：Webstorm 安装与使用。2、HTML5：HTML5 语法与发展史、HTML 标签与 H5 新标签、HTML5 语义化、表单与表格。3、CSS2：CSS2 基本语法、选">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Framework Path">
+<meta property="og:url" content="https://cdongtao.github.io/2019/04/22/FroEnd-Framework-Path/index.html">
+<meta property="og:site_name" content="cdongtao">
+<meta property="og:description" content="前端学习体系 1小码哥前端学习架构路线小码哥前端学习体系 前端学习体系 2第一阶段(HTML5+CSS3)主讲内容：前端开发软件、HTML5、CSS2、CSS3、框架实战项目、前端必备的 UI 技能 知识要点：1、前端开发软件：Webstorm 安装与使用。2、HTML5：HTML5 语法与发展史、HTML 标签与 H5 新标签、HTML5 语义化、表单与表格。3、CSS2：CSS2 基本语法、选">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-22T01:58:08.000Z">
+<meta property="article:modified_time" content="2021-01-17T13:25:52.555Z">
+<meta property="article:author" content="cdongtao">
+<meta property="article:tag" content="Path">
+<meta property="article:tag" content="FroEnd-Path">
+<meta name="twitter:card" content="summary">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="cdongtao" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cdongtao.github.io/2019/04/22/FroEnd-Framework-Path/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Framework Path | cdongtao</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cdongtao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cdongtao.github.io/2019/04/22/FroEnd-Framework-Path/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cdongtao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cdongtao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Framework Path
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-22 09:58:08" itemprop="dateCreated datePublished" datetime="2019-04-22T09:58:08+08:00">2019-04-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-17 21:25:52" itemprop="dateModified" datetime="2021-01-17T21:25:52+08:00">2021-01-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Project/" itemprop="url" rel="index"><span itemprop="name">Project</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/22/FroEnd-Framework-Path/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/04/22/FroEnd-Framework-Path/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">5.2k 字</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">5 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前端学习体系-1"><a href="#前端学习体系-1" class="headerlink" title="前端学习体系 1"></a>前端学习体系 1</h2><p><a href="/file/FrontEnd-KnowledgePath.pdf">小码哥前端学习架构路线</a><br><a href="http://xiaomage.ke.qq.com/#category=15733794887010602&tab=1" target="_blank" rel="noopener">小码哥前端学习体系</a></p>
+<h2 id="前端学习体系-2"><a href="#前端学习体系-2" class="headerlink" title="前端学习体系 2"></a><a href="http://www.wolfcode.cn/article/index/id/1592" target="_blank" rel="noopener">前端学习体系 2</a></h2><h3 id="第一阶段-HTML5-CSS3"><a href="#第一阶段-HTML5-CSS3" class="headerlink" title="第一阶段(HTML5+CSS3)"></a>第一阶段(HTML5+CSS3)</h3><p>主讲内容：<br>前端开发软件、HTML5、CSS2、CSS3、框架实战项目、前端必备的 UI 技能</p>
+<p>知识要点：<br>1、前端开发软件：Webstorm 安装与使用。<br>2、HTML5：HTML5 语法与发展史、HTML 标签与 H5 新标签、HTML5 语义化、表单与表格。<br>3、CSS2：CSS2 基本语法、选择器讲解、内嵌式、行内式、外链式、文本样式控制、px、em、rem、vw/vh 和百分比。<br>4、CSS3：Chrome-debug、投影/圆角/阴影、CSS3 2D,CSS3 3D 变换、 CSS3 动画特效、H5+C3 炫酷页面开发、Flex 伸缩布局、圣杯布局、双飞翼布局、瀑布流，流式布局、sprite 技术、 移动端主流适配方案、常见移动端样式兼容方案。<br>5、框架实战项目：favicon 与 iconfont、企业站开发、移动端 M 站开发、响应式网站开发、部署项目到线上、预处理语言、Bootstrap 框架、SEO 搜索引擎优化、lazyload 懒加载。<br>6、前端必备的 UI 技能：用户界面设计原理、思维导图（脑图）、PS 切图与快捷键、前端与设计的协同开发平台、原型图、Axure RP 与 firefox。</p>
+<p>学习目标：<br>1、打造学员编程思维；<br>2、快速入门 HTML5 与 CSS3 两门语言，并掌握网站动态特效的制作方法；<br>3、帮助学员掌握页面布局方法；<br>4、帮助学员掌握 PC 端企业站开发、移动端 M 站开发；<br>5、项目线上部署，让学员了解真正的前端开发流程；<br>6、掌握 css 预处理语言，提升 css 书写速度；<br>7、掌握 BS 框架，帮助学员掌握快速构建项目的技巧；<br>8、掌握 lazyload 方法；</p>
+<h3 id="第二阶段-第二阶段"><a href="#第二阶段-第二阶段" class="headerlink" title="第二阶段(第二阶段)"></a>第二阶段(第二阶段)</h3><p>主讲内容：<br>JS 语法基础、JS-WebApi</p>
+<p>知识要点：<br>1、JS 语法基础：打印与弹框、变量、基本数据类型与复杂数据类型、数据类型转换、内置对象、JSON 技术、预加载。<br>2、JS-WebApi：ECMAScript、DOM、BOM、JS 兼容性测试、动画函数封装、轮播图、购物预览、tab 切换栏等特效。</p>
+<p>学习目标：<br>1、带领学生入门 JS 语言，打下坚实基础；<br>2、使用原生 JS 实现网站特效。</p>
+<h2 id="第三阶段-JQuery-与动效框架"><a href="#第三阶段-JQuery-与动效框架" class="headerlink" title="第三阶段(JQuery 与动效框架)"></a>第三阶段(JQuery 与动效框架)</h2><p>主讲内容：<br>JQuery 语法、zepto 与 weui 框架、动效框架、动效轮播</p>
+<p>知识要点：<br>1、JQuery 语法：讲解 JQuery 语法及优势、对比原生 JS 开发、JQuery 操作 DOM、快速制作动画效果、链式编程。<br>2、zepto 与 weui 框架：zepto 入门、插件引用、源码阅读与修改、weui 框架、微信公众号页面开发、fastclick。<br>3、动效框架：AnimateCss 框架、wowJs 框架、scrollRevealJs 框架。<br>4、动效轮播：swiper 框架、MouseWheel 插件、滚滚屏实现。</p>
+<p>学习目标：<br>1、在学员掌握原生 JS 开发后，迅速上手 JQuery 框架，实现对“面向过程”开发的理解；<br>2、使用 zepto 和 weui 开发微信公众号网页；<br>3、解决书写移动端页面出现的 bug；<br>4、借用三大动效框架，完成页面动态效果；<br>5、使用 swiper 框架快速制作动效轮播图；<br>6、使用 mousewheel 插件实现滚滚屏。</p>
+<h3 id="第四阶段-JavaScript-高级"><a href="#第四阶段-JavaScript-高级" class="headerlink" title="第四阶段(JavaScript 高级)"></a>第四阶段(JavaScript 高级)</h3><p>主讲内容：<br>ES6/ES7、JS 面向对象</p>
+<p>知识要点：<br>1、ES6/ES7：新增语法、Promise、Async-await、解构、内置对象扩展。<br>2、JavaScript 面向对象思想、对象的创建、闭包、详解原型与原型链、ES6 面向对象、详解 this、作用域、Class、constructor 与 super 等。</p>
+<p>学习目标：<br>1、掌握 JavaScript 最新语法，区别于 ES5，并将 ES6/7 与 ES5 对比进行教学;<br>2、熟练掌握 ES5/6 的面向对象思想及用法，能将面向过程的开发思维逐渐转变为面向对象。</p>
+<h3 id="第五阶段-NodeJS"><a href="#第五阶段-NodeJS" class="headerlink" title="第五阶段(NodeJS)"></a>第五阶段(NodeJS)</h3><p>主讲内容：<br>AJAX、NodeJs、Express、会话存储、数据库、综合案例、Linux、Nginx、MySQL</p>
+<p>知识要点：<br>1、AJAX：http 请求、原生 AJAX、异步与同步、AJAX 封装、基于 JQuery 的 AJAX、跨域、Formdata、axios。<br>2、NodeJs：环境安装、包管理器、模块使用。<br>3、Express：express 安装与入门、路由、静态资源管理、中间件、模板引擎、API 介绍、RESTful。<br>4、会话存储：cookie 与 storage、cookie 封装、加密、Base64 与 https。<br>5、数据库：同源策略、MongoDB 的安装与 CRUD、可视化工具、Mongoose。<br>6、综合案例：结合 Ajax、NodeJs 与 MongoDB 完成案例。<br>7、Linux：Linux 概念与安装、Linux 使用方法 。<br>8、Nginx：Nginx 安装配置、Nginx 命令行操作、使用 Nginx 进行反向代理。<br>9、了解关系型数据库含义、图形化界面使用及工具安装、常见增删改查处理。</p>
+<p>学习目标：<br>1、让学员了解数据请求的原理及方法；<br>2、解决跨域问题；<br>3、深入学习 NodeJs 相关技术点；<br>4、掌握 express 框架、会话存储与 MongoDB 数据库操作，并通过完整项目实战来加强；<br>5、帮助学员了解 Linux 操作系统；<br>6、帮助学员了解 Nginx 常用操作；<br>7、掌握 MySQL 数据库的用法；</p>
+<h3 id="第六阶段-移动端商城项目"><a href="#第六阶段-移动端商城项目" class="headerlink" title="第六阶段(移动端商城项目)"></a>第六阶段(移动端商城项目)</h3><p>主讲内容：<br>Git/github/gulp、移动 Web 实战项目</p>
+<p>知识要点：<br>1、Git/github/gulp：深入讲解 git 的使用、深入讲解 gulp 的使用。<br>2、移动 Web 实战项目：原生 JS 构建移动端项目。</p>
+<p>学习目标：<br>掌握 git 与 gulp 的使用，并使用原生 JS 构建移动端项目。</p>
+<h3 id="第七阶段-VueJs"><a href="#第七阶段-VueJs" class="headerlink" title="第七阶段(VueJs)"></a>第七阶段(VueJs)</h3><p>主讲内容：<br>VueJS 入门、vue 全家桶、vue 进阶、vue 项目实战、可视化大数据</p>
+<p>知识要点：<br>1、VueJS 入门：MVVM 模式详解、vue 双向数据绑定、生命周期、methods、computed 与 watch、v-if、v-for、自定义指令、组件、父子、兄弟组件通信、vueDevTools。<br>2、vue 全家桶：项目构建工具 vue-cli、路由 vue-router、数据请求 axios、状态管理 vuex。<br>3、vue 进阶：request 封装。<br>4、vue 项目实战：nextTick、发布订阅模式、双向数据绑定原理与实现、移动端商城项目、后台管理系统项目。<br>5、可视化大数据：Echarts 图标、canvas 绘图。</p>
+<p>学习目标：<br>1、掌握 vue 的基本语法；<br>2、掌握目前市面上最火的 vue 全家桶开发；<br>3、深入了解 vue 使用技能与底层原理；<br>4、使用 vue 全家桶完成移动端与 PC 端项目开发，PC 端项目搭配 Gitee；<br>5、可视化图表操作与绘图。</p>
+<h3 id="第八阶段-微信小程序"><a href="#第八阶段-微信小程序" class="headerlink" title="第八阶段(微信小程序)"></a>第八阶段(微信小程序)</h3><p>主讲内容：<br>小程序入门、小程序进阶</p>
+<p>知识要点：<br>1、小程序入门：组件使用、事件处理、WXS。<br>2、小程序进阶：自定义对话框、构建 npm、网络请求、文件操作、数据缓存、登录与跳转、API 兼容、小米商城项目。</p>
+<p>学习目标：<br>1、掌握 vue 的基本语法；<br>2、调用 API，并最终完成商城项目。</p>
+<h3 id="第九阶段-React"><a href="#第九阶段-React" class="headerlink" title="第九阶段(React)"></a>第九阶段(React)</h3><p>主讲内容：<br>React.js 入门、项目实战</p>
+<p>主讲内容：<br>1、React.js 入门：webpack 复习、前端三大主流框架对比、React 核心概念虚拟 DOM,DIFF 算法、创建虚拟 DOM JSX 语法、React 组件，组件通信，组件拆分、Class 组件、组件样式管理 CSS 模块化、生命周期、React 双向数据绑定、React 路由。<br>2、项目实战：WolfMovie 综合项目。</p>
+<p>学习目标：<br>1、掌握 react 的基本语法；<br>2、完成 MolfMovie 项目。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Path/" rel="tag"># Path</a>
+          
+            <a href="/tags/FroEnd-Path/" rel="tag"># FroEnd-Path</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/12/Java-Mockito%E4%BD%BF%E7%94%A8/" rel="next" title="Mock-data">
+                <i class="fa fa-chevron-left"></i> Mock-data
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/08/FroEnd-HTML&&CSS/" rel="prev" title="HTML&&CSS">
+                HTML&&CSS <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="cdongtao" />
+            
+              <p class="site-author-name" itemprop="name">cdongtao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">149</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yourname" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:441623928@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前端学习体系-1"><span class="nav-number">1.</span> <span class="nav-text">前端学习体系 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端学习体系-2"><span class="nav-number">2.</span> <span class="nav-text">前端学习体系 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一阶段-HTML5-CSS3"><span class="nav-number">2.1.</span> <span class="nav-text">第一阶段(HTML5+CSS3)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二阶段-第二阶段"><span class="nav-number">2.2.</span> <span class="nav-text">第二阶段(第二阶段)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三阶段-JQuery-与动效框架"><span class="nav-number">3.</span> <span class="nav-text">第三阶段(JQuery 与动效框架)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第四阶段-JavaScript-高级"><span class="nav-number">3.1.</span> <span class="nav-text">第四阶段(JavaScript 高级)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五阶段-NodeJS"><span class="nav-number">3.2.</span> <span class="nav-text">第五阶段(NodeJS)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六阶段-移动端商城项目"><span class="nav-number">3.3.</span> <span class="nav-text">第六阶段(移动端商城项目)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第七阶段-VueJs"><span class="nav-number">3.4.</span> <span class="nav-text">第七阶段(VueJs)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第八阶段-微信小程序"><span class="nav-number">3.5.</span> <span class="nav-text">第八阶段(微信小程序)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第九阶段-React"><span class="nav-number">3.6.</span> <span class="nav-text">第九阶段(React)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cdongtao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">324k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:54</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uASAKzQTPhuJIplOaklnAaqK-gzGzoHsz',
+        appKey: 'LRW155uTAdoeaAjf9q9D53Ps',
+        placeholder: 'Welcome to comment!',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

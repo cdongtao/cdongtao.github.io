@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="组件类型分类 store 机制 reducer 基本机制 redux 基本思想 react-redux使用 项目文件目录结构3种模式按文件功能类型划分　　文件类型是一个component（展示组件），container（容器组件），在redux状态管理当中有，action，reducer等，这些不同角色的文件都放在一个单独的文件夹目录里，这种样式的结构也是React官方所推荐的结构;使用这种结构组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React实战理解">
+<meta property="og:url" content="https://cdongtao.github.io/2019/09/11/FroEnd-React%E5%AE%9E%E6%88%98%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="cdongtao">
+<meta property="og:description" content="组件类型分类 store 机制 reducer 基本机制 redux 基本思想 react-redux使用 项目文件目录结构3种模式按文件功能类型划分　　文件类型是一个component（展示组件），container（容器组件），在redux状态管理当中有，action，reducer等，这些不同角色的文件都放在一个单独的文件夹目录里，这种样式的结构也是React官方所推荐的结构;使用这种结构组">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdongtao.github.io/img/%E5%B1%95%E7%A4%BA%E5%9E%8B%E7%BB%84%E4%BB%B6%E5%92%8C%E5%AE%B9%E5%99%A8%E5%9E%8B%E7%BB%84%E4%BB%B6.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/Store%E6%9C%BA%E5%88%B6.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/Reducer%E6%9C%BA%E5%88%B6.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/Redux%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/react-redux.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84-%E7%B1%BB%E5%9E%8B%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/%E6%8C%89%E7%B1%BB%E5%9E%8B%E5%88%92%E5%88%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84-%E6%8C%89%E5%8A%9F%E8%83%BD%E5%88%92%E5%88%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/%E6%8C%89%E5%8A%9F%E8%83%BD%E5%88%92%E5%88%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84-Duck%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/Duck%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E5%AE%9A%E4%B9%89action.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E8%8C%83%E5%BC%8F.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/State%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/Selector%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/MiddleWare%E5%8E%9F%E7%90%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/Middleware%E6%BA%90%E7%A0%81.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/Store_Enhancer%E4%BD%9C%E7%94%A8.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/Store_Enhancer%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/Store_Enhancer%E4%B8%8EMiddleware%E5%8C%BA%E5%88%AB.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/Immutable%E5%8E%9F%E7%90%86.gif">
+<meta property="og:image" content="https://cdongtao.github.io/img/reselect%E4%BD%9C%E7%94%A81.png">
+<meta property="og:image" content="https://cdongtao.github.io/img/reselect%E4%BD%9C%E7%94%A82.png">
+<meta property="article:published_time" content="2019-09-11T01:58:08.000Z">
+<meta property="article:modified_time" content="2019-09-11T06:17:30.000Z">
+<meta property="article:author" content="cdongtao">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="Immutable">
+<meta property="article:tag" content="Redux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdongtao.github.io/img/%E5%B1%95%E7%A4%BA%E5%9E%8B%E7%BB%84%E4%BB%B6%E5%92%8C%E5%AE%B9%E5%99%A8%E5%9E%8B%E7%BB%84%E4%BB%B6.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="cdongtao" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cdongtao.github.io/2019/09/11/FroEnd-React实战理解/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>React实战理解 | cdongtao</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cdongtao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cdongtao.github.io/2019/09/11/FroEnd-React%E5%AE%9E%E6%88%98%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cdongtao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cdongtao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React实战理解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-11 09:58:08 / 修改时间：14:17:30" itemprop="dateCreated datePublished" datetime="2019-09-11T09:58:08+08:00">2019-09-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FrontEnd/" itemprop="url" rel="index"><span itemprop="name">FrontEnd</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/11/FroEnd-React%E5%AE%9E%E6%88%98%E7%90%86%E8%A7%A3/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/09/11/FroEnd-React%E5%AE%9E%E6%88%98%E7%90%86%E8%A7%A3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">11k 字</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">10 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="组件类型分类"><a href="#组件类型分类" class="headerlink" title="组件类型分类"></a>组件类型分类</h2><p><img src="/img/%E5%B1%95%E7%A4%BA%E5%9E%8B%E7%BB%84%E4%BB%B6%E5%92%8C%E5%AE%B9%E5%99%A8%E5%9E%8B%E7%BB%84%E4%BB%B6.png" alt="展示型组件和容器型组件" title="展示型组件和容器型组件"></p>
+<h2 id="store-机制"><a href="#store-机制" class="headerlink" title="store 机制"></a>store 机制</h2><p><img src="/img/Store%E6%9C%BA%E5%88%B6.png" alt="Store机制" title="Store机制"></p>
+<h2 id="reducer-基本机制"><a href="#reducer-基本机制" class="headerlink" title="reducer 基本机制"></a>reducer 基本机制</h2><p><img src="/img/Reducer%E6%9C%BA%E5%88%B6.png" alt="Reducer机制" title="Reducer机制"></p>
+<h2 id="redux-基本思想"><a href="#redux-基本思想" class="headerlink" title="redux 基本思想"></a>redux 基本思想</h2><p><img src="/img/Redux%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3.png" alt="Redux基本思想" title="Redux基本思想"></p>
+<h2 id="react-redux使用"><a href="#react-redux使用" class="headerlink" title="react-redux使用"></a>react-redux使用</h2><p><img src="/img/react-redux.png" alt="react-redux" title="react-redux"></p>
+<h2 id="项目文件目录结构3种模式"><a href="#项目文件目录结构3种模式" class="headerlink" title="项目文件目录结构3种模式"></a>项目文件目录结构3种模式</h2><h3 id="按文件功能类型划分"><a href="#按文件功能类型划分" class="headerlink" title="按文件功能类型划分"></a>按文件功能类型划分</h3><p>　　文件类型是一个component（展示组件），container（容器组件），在redux状态管理当中有，action，reducer等，这些不同角色的文件都放在一个单独的文件夹目录里，这种样式的结构也是React官方所推荐的结构;使用这种结构组织项目，每当增加一个新功能的时候，需要再containers，components文件夹下增加这个功能需要的组件，还需要再actions，reducers文件夹下分别添加Redux管理这个功能使用到的action，reducer，此时如果actionType放在另外一个文件夹，还需要在这个文件夹下增加新的actionType，所以开发一个新的功能，需要再这些文件夹下频繁的切换已修改不同的文件。如果项目比较小，问题不大，如果对于一个规模比较大的项目使用这种项目结构非常的麻烦。<br>    注:这类展示因为状态都在同一个文件,不存在按页面功能划分导致状态分离在不同文件管理问题</p>
+<p><img src="/img/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84-%E7%B1%BB%E5%9E%8B%E6%A8%A1%E5%BC%8F.png" alt="项目结构-类型模式" title="项目结构-类型模式"><br><img src="/img/%E6%8C%89%E7%B1%BB%E5%9E%8B%E5%88%92%E5%88%86.png" alt="按类型划分" title="按类型划分"></p>
+<h3 id="按页面功能划分"><a href="#按页面功能划分" class="headerlink" title="按页面功能划分"></a>按页面功能划分</h3><p>　　既一个页面功能对应一个文件夹，这个页面功能所用到的container，component，action，reducer等文件都放在这个文件夹下。如下为按照页面功能划分的项目结构示列.这种结构好处很明显，一个页面功能使用到的组件，状态和行为都在同一个文件夹下，方便开发和维护，同时易于扩展，github上很多的脚手架也选择了这种目录结构，不足之处是依然同按角色划分面临同样的问题，改变一个功能需要频繁的在reducer，action，actionType等不同文件夹间切换。<font color='red'>另外redux将整个的应用状态放在一个store中来管理，不同功能模块之间可以共享store中的公共部分状态(项目越复杂，这种场景会越多)，共享的状态应该放到哪一个页面文件夹下也是一个问题，这些问题归根结底是因为redux中状态管理逻辑并不是根据页面功能划分的，页面功能划分会导致公共状态分离在不同文件,功能模块耦合情况下,状态变化会存在相互影响</font><br><img src="/img/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84-%E6%8C%89%E5%8A%9F%E8%83%BD%E5%88%92%E5%88%86.png" alt="项目结构-按功能划分" title="项目结构-按功能划分"><br><img src="/img/%E6%8C%89%E5%8A%9F%E8%83%BD%E5%88%92%E5%88%86.png" alt="按功能划分" title="项目结构-按功能划分"></p>
+<h3 id="按照store状态管理-Duck模式"><a href="#按照store状态管理-Duck模式" class="headerlink" title="按照store状态管理(Duck模式)"></a>按照store状态管理(Duck模式)</h3><p>　　ducks指的是一种新的redux项目目录结构，它提倡将相关的reducer，action，actionType和action creaters写在一个文件里面，$\color{red}${本质上是以应用状态作为划分模块的依据，而不是以页面的功能作为划分模块的依据，}$这样，管理相同状态的依赖都在同一个文件中，无论哪个容器组件需要这部分状态，只需要引入管理这个状态的模块文件即可<br><img src="/img/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84-Duck%E6%A8%A1%E5%BC%8F.png" alt="项目结构-Duck模式" title="项目结构-Duck模式"><br><img src="/img/Duck%E6%A8%A1%E5%BC%8F.png" alt="Duck模式" title="Duck模式"></p>
+<h4 id="action的工厂模式"><a href="#action的工厂模式" class="headerlink" title="action的工厂模式"></a>action的工厂模式</h4><p>　　在前两种结构中，当container需要使用actions时，可以通过import * as actions from ‘path/to/actions.js’的方式一次性的把一个action的文件中中所有的action creates都引入进来。但在使用Ducks结构时，action creater和reducer定义在同一个文件中，import*的导入方式会把reducer也导入进来(如果action types也被export ，那么还会导入action type)。为了解决这个问题。我们可以把action creators和action types定义到一个命名空间中<br><img src="/img/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E5%AE%9A%E4%B9%89action.png" alt="工厂模式定义action" title="工厂模式定义action"></p>
+<h2 id="state设计"><a href="#state设计" class="headerlink" title="state设计"></a>state设计</h2><h3 id="两种错误设计方式"><a href="#两种错误设计方式" class="headerlink" title="两种错误设计方式"></a>两种错误设计方式</h3><p>以API为设计State的依据<br>以页面UI为设计State的依据</p>
+<h3 id="state设计原则"><a href="#state设计原则" class="headerlink" title="state设计原则"></a>state设计原则</h3><p>store类似前端的数据库,每一个reducer对应数据库的表,reducer对象对应数据,设计state就如设计数据库一样<br><img src="/img/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%89%E8%8C%83%E5%BC%8F.png" alt="数据库三范式" title="数据库三范式"><br><img src="/img/State%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99.png" alt="State设计原则" title="State设计原则"></p>
+<p>注：state设计尽量扁平化,避免嵌套过深<br>UI State：具有松散兴特点</p>
+<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>高阶函数定义：将函数作为参数或者返回值是函数的函数。<br>高阶函数分两种：<br>    常见的 sort,reduce 等函数<br>    返回值是函数的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function add(a) &#123;</span><br><span class="line">    return function(b) &#123;</span><br><span class="line">        return a + b</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var add3 &#x3D; add(3) &#x2F;&#x2F;add3表示一个指向函数的变量 可以当成函数调用名来用</span><br><span class="line">add3(4) &#x3D;&#x3D;&#x3D; 3 + 4 &#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+<p>柯里化函数等价为add函数在es6写法<br>    let add = a =&gt; b =&gt; a + b<br>柯里化函数的功能<br>    可以惰性求值<br>    可以提前传递部分参数</p>
+<h2 id="Selector函数"><a href="#Selector函数" class="headerlink" title="Selector函数"></a>Selector函数</h2><p>Selector函数定义：<br>     读取Redux中的state的封装函数(以函数形式读取redux中state),在ontainer,Componets组件使用Selector函数读取state使用,达到解耦作用,这样如果某天修改了state的变量名,直接在函数中修改即可(多个地方使用一个函数)<br><img src="/img/Selector%E5%87%BD%E6%95%B0.png" alt="Selector函数" title="Selector函数"></p>
+<h2 id="Middleware-中间件"><a href="#Middleware-中间件" class="headerlink" title="Middleware(中间件)"></a>Middleware(中间件)</h2><h3 id="MiddleWare原理"><a href="#MiddleWare原理" class="headerlink" title="MiddleWare原理"></a>MiddleWare原理</h3><p><img src="/img/MiddleWare%E5%8E%9F%E7%90%86.png" alt="MiddleWare原理" title="MiddleWare原理"></p>
+<h3 id="Middleware源码"><a href="#Middleware源码" class="headerlink" title="Middleware源码"></a>Middleware源码</h3><p><img src="/img/Middleware%E6%BA%90%E7%A0%81.png" alt="Middleware源码.png" title="Middleware源码"></p>
+<h2 id="Store-Enhancer-少用"><a href="#Store-Enhancer-少用" class="headerlink" title="Store_Enhancer(少用)"></a>Store_Enhancer(少用)</h2><h3 id="Store-Enhancer作用"><a href="#Store-Enhancer作用" class="headerlink" title="Store_Enhancer作用"></a>Store_Enhancer作用</h3><pre><code>可以增加store的dispatch,getState等功能,类似在一个函数处理前先添加函数进行处理</code></pre><p><img src="/img/Store_Enhancer%E4%BD%9C%E7%94%A8.png" alt="Store_Enhancer作用" title="Store_Enhancer作用"></p>
+<h3 id="Store-Enhancer结构"><a href="#Store-Enhancer结构" class="headerlink" title="Store_Enhancer结构"></a>Store_Enhancer结构</h3><p><img src="/img/Store_Enhancer%E7%BB%93%E6%9E%84.png" alt="Store_Enhancer结构" title="Store_Enhancer结构"></p>
+<h2 id="Store-Enhancer-少用-与-Middleware区别"><a href="#Store-Enhancer-少用-与-Middleware区别" class="headerlink" title="Store_Enhancer(少用) 与 Middleware区别"></a>Store_Enhancer(少用) 与 Middleware区别</h2><p><img src="/img/Store_Enhancer%E4%B8%8EMiddleware%E5%8C%BA%E5%88%AB.png" alt="Store_Enhancer与Middleware区别" title="Store_Enhancer与Middleware区别"><br>Store_Enhancer作用:<br>        底层的抽象(更接近底层操作,存在更改底层逻辑风险),可以增加store的dispatch,getState等功能,类似在一个函数处理前先添加函数进行处理<br>Middleware:<br>        高层的抽象,进行约束行为,不容易改变底层逻辑</p>
+<h2 id="React常用库"><a href="#React常用库" class="headerlink" title="React常用库"></a>React常用库</h2><h3 id="Immutable"><a href="#Immutable" class="headerlink" title="Immutable"></a>Immutable</h3><p><a href="https://github.com/immutable-js/immutable-js" target="_blank" rel="noopener">Immutable collections for JavaScript</a><br>定义：Immutable Data 就是一旦创建,就不能再被更改的数据。对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象<br>Immutable 实现的原理是 Persistent Data Structure(持久化数据结构),也就是使用旧数据创建新数据时,要保证旧数据同时可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗,Immutable 使用了 Structural Sharing···· (结构共享),即如果对象树中一个节点发生变化,只修改这个节点和受它影响的父节点,其它节点则进行共享。<br><img src="/img/Immutable%E5%8E%9F%E7%90%86.gif" alt="Immutable原理" title="Immutable原理"></p>
+<h4 id="为什么要在React-js中使用Immutable"><a href="#为什么要在React-js中使用Immutable" class="headerlink" title="为什么要在React.js中使用Immutable"></a>为什么要在React.js中使用Immutable</h4><p>它是一个完全独立的库,无论基于什么框架都可以用它。意义在于它弥补了 Javascript 没有不可变数据结构的问题，由于是不可变的,可以放心的对对象进行任意操作。在 React 开发中,频繁操作state对象或是 store ,配合 immutableJS 快、安全、方便，熟悉 React.js 的都应该知道, React.js 是一个 UI = f(states) 的框架,为了解决更新的问题, React.js 使用了 virtual dom , virtual dom 通过 diff 修改 dom ,来实现高效的 dom 更新。但是有一个问题。当 state 更新时,如果数据没变,你也会去做 virtual dom 的 diff ,这就产生了浪费。这种情况其实很常见。当然你可能会说,你可以使用 PureRenderMixin 来解决呀, PureRenderMixin 是个好东西,我们可以用它来解决一部分的上述问题。但 PureRenderMixin 只是简单的浅比较,不使用于多层比较。那怎么办？自己去做复杂比较的话,性能又会非常差。方案就是使用 immutable.js 可以解决这个问题。因为每一次 state 更新只要有数据改变,那么 PureRenderMixin 可以立刻判断出数据改变,可以大大提升性能</p>
+<h4 id="与React搭配使用，关键点是shouldComponentUpdate"><a href="#与React搭配使用，关键点是shouldComponentUpdate" class="headerlink" title="与React搭配使用，关键点是shouldComponentUpdate"></a>与React搭配使用，关键点是shouldComponentUpdate</h4><p>熟悉 React 的都知道，React 做性能优化时有一个避免重复渲染的大招，就是使用 shouldComponentUpdate()，但它默认返回 true，即始终会执行 render() 方法，然后做 Virtual DOM 比较，并得出是否需要做真实 DOM 更新，尽管React的虚拟算法复杂度已经有了很多优化，但是在大规模组件更新时，依然会是个不必要的损耗。会带来很多无必要的渲染并成为性能瓶颈。我们常用的Purecomponent的秘密其实是在shouldComponentUpdate中做了前后state和props的浅比较，如果不小心组件props的引用问题，这里会导致出现很多Bug。虽然第一层数据没变，但引用变了，就会造成虚拟 DOM 计算的浪费。第一层数据改变，但引用没变，会造成不渲染，所以需要很小心的操作数据。Object.assign可以实现不可变数据,唯一的就是性能问题</p>
+<h4 id="Immutable-优点"><a href="#Immutable-优点" class="headerlink" title="Immutable 优点"></a>Immutable 优点</h4><pre><code>Immutable 降低了 Mutable 带来的复杂度:可变（ Mutable ）数据耦合了 Time 和 Value 的概念，造成了数据很难被回溯
+节省内存:Immutable.js 使用了 Structure Sharing 会尽量复用内存，甚至以前使用的对象也可以再次被复用。没有被引用的对象会被垃圾回收
+Undo/Redo，Copy/Paste，甚至时间旅行这些功能做起来小菜一碟,因为每次数据都是不一样的，只要把这些数据放到一个数组里储存起来，想回退到哪里就拿出对应数据即可，很容易开发出撤销重做这种功能。
+并发安全:传统的并发非常难做，因为要处理各种数据不一致问题，因此『聪明人』发明了各种锁来解决。但使用了 Immutable 之后，数据天生是不可变的，并发锁就不需要了。
+拥抱函数式编程:Immutable 本身就是函数式编程中的概念，纯函数式编程比面向对象更适用于前端开发。因为只要输入一致，输出必然一致，这样开发的组件更易于调试和组装。</code></pre><h4 id="Immutable-缺点"><a href="#Immutable-缺点" class="headerlink" title="Immutable 缺点"></a>Immutable 缺点</h4><pre><code>需要学习新的 API
+增加了资源文件大小
+容易与原生对象混淆</code></pre><h2 id="Reselect库"><a href="#Reselect库" class="headerlink" title="Reselect库"></a>Reselect库</h2><pre><code>npm install reselect;
+作用：减少State计算,可以在state值没有改变情况下,不渲染页面(有的页面只要改变就需要渲染,其实state值并不变);
+如果计算state并不是非常复杂,或不是redux性能有问题,或为了优化，尽量不用</code></pre><h3 id="未引入reselect"><a href="#未引入reselect" class="headerlink" title="未引入reselect"></a>未引入reselect</h3><pre><code>State未更新值,但需要渲染</code></pre><p><img src="/img/reselect%E4%BD%9C%E7%94%A81.png" alt="reselect作用1" title="reselect作用1"></p>
+<h3 id="引入reselect"><a href="#引入reselect" class="headerlink" title="引入reselect"></a>引入reselect</h3><pre><code>State未更新值,但不需要渲染</code></pre><p><img src="/img/reselect%E4%BD%9C%E7%94%A82.png" alt="reselect作用2" title="reselect作用2"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+            <a href="/tags/Immutable/" rel="tag"># Immutable</a>
+          
+            <a href="/tags/Redux/" rel="tag"># Redux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/08/FroEnd-React%E5%9F%BA%E7%A1%80/" rel="next" title="React简单入门">
+                <i class="fa fa-chevron-left"></i> React简单入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/13/FroEnd-Redux%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B8%8E%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C/" rel="prev" title="Redux中间件与异步操作">
+                Redux中间件与异步操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="cdongtao" />
+            
+              <p class="site-author-name" itemprop="name">cdongtao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">149</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yourname" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:441623928@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件类型分类"><span class="nav-number">1.</span> <span class="nav-text">组件类型分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#store-机制"><span class="nav-number">2.</span> <span class="nav-text">store 机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reducer-基本机制"><span class="nav-number">3.</span> <span class="nav-text">reducer 基本机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redux-基本思想"><span class="nav-number">4.</span> <span class="nav-text">redux 基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-redux使用"><span class="nav-number">5.</span> <span class="nav-text">react-redux使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目文件目录结构3种模式"><span class="nav-number">6.</span> <span class="nav-text">项目文件目录结构3种模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按文件功能类型划分"><span class="nav-number">6.1.</span> <span class="nav-text">按文件功能类型划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按页面功能划分"><span class="nav-number">6.2.</span> <span class="nav-text">按页面功能划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按照store状态管理-Duck模式"><span class="nav-number">6.3.</span> <span class="nav-text">按照store状态管理(Duck模式)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#action的工厂模式"><span class="nav-number">6.3.1.</span> <span class="nav-text">action的工厂模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state设计"><span class="nav-number">7.</span> <span class="nav-text">state设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两种错误设计方式"><span class="nav-number">7.1.</span> <span class="nav-text">两种错误设计方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state设计原则"><span class="nav-number">7.2.</span> <span class="nav-text">state设计原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高阶函数"><span class="nav-number">8.</span> <span class="nav-text">高阶函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selector函数"><span class="nav-number">9.</span> <span class="nav-text">Selector函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Middleware-中间件"><span class="nav-number">10.</span> <span class="nav-text">Middleware(中间件)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MiddleWare原理"><span class="nav-number">10.1.</span> <span class="nav-text">MiddleWare原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Middleware源码"><span class="nav-number">10.2.</span> <span class="nav-text">Middleware源码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Store-Enhancer-少用"><span class="nav-number">11.</span> <span class="nav-text">Store_Enhancer(少用)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Store-Enhancer作用"><span class="nav-number">11.1.</span> <span class="nav-text">Store_Enhancer作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Store-Enhancer结构"><span class="nav-number">11.2.</span> <span class="nav-text">Store_Enhancer结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Store-Enhancer-少用-与-Middleware区别"><span class="nav-number">12.</span> <span class="nav-text">Store_Enhancer(少用) 与 Middleware区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React常用库"><span class="nav-number">13.</span> <span class="nav-text">React常用库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Immutable"><span class="nav-number">13.1.</span> <span class="nav-text">Immutable</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要在React-js中使用Immutable"><span class="nav-number">13.1.1.</span> <span class="nav-text">为什么要在React.js中使用Immutable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与React搭配使用，关键点是shouldComponentUpdate"><span class="nav-number">13.1.2.</span> <span class="nav-text">与React搭配使用，关键点是shouldComponentUpdate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Immutable-优点"><span class="nav-number">13.1.3.</span> <span class="nav-text">Immutable 优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Immutable-缺点"><span class="nav-number">13.1.4.</span> <span class="nav-text">Immutable 缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reselect库"><span class="nav-number">14.</span> <span class="nav-text">Reselect库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#未引入reselect"><span class="nav-number">14.1.</span> <span class="nav-text">未引入reselect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入reselect"><span class="nav-number">14.2.</span> <span class="nav-text">引入reselect</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cdongtao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">324k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:54</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uASAKzQTPhuJIplOaklnAaqK-gzGzoHsz',
+        appKey: 'LRW155uTAdoeaAjf9q9D53Ps',
+        placeholder: 'Welcome to comment!',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

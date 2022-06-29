@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="IDEA Plugin soft 使用 IDEA 解决 Java8 的数据流问题，极大提升生产力！！排名前 16 的 Java 工具类，哪个你没用过？   Java 开发工具教程，Git&#x2F;Maven！太赞了！终于有人把怎么在 IDEA 中使用 Java 热部署插件 JRebel 讲清楚了。。。Spring Boot 五种热部署方式，再也不用老重启了！如何在Github上精准地找到想要的开源项目？I">
+<meta property="og:type" content="article">
+<meta property="og:title" content="目录分类">
+<meta property="og:url" content="https://cdongtao.github.io/2021/03/29/%E5%88%86%E7%B1%BB/index.html">
+<meta property="og:site_name" content="cdongtao">
+<meta property="og:description" content="IDEA Plugin soft 使用 IDEA 解决 Java8 的数据流问题，极大提升生产力！！排名前 16 的 Java 工具类，哪个你没用过？   Java 开发工具教程，Git&#x2F;Maven！太赞了！终于有人把怎么在 IDEA 中使用 Java 热部署插件 JRebel 讲清楚了。。。Spring Boot 五种热部署方式，再也不用老重启了！如何在Github上精准地找到想要的开源项目？I">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-29T15:08:41.455Z">
+<meta property="article:modified_time" content="2021-09-12T09:26:49.847Z">
+<meta property="article:author" content="cdongtao">
+<meta property="article:tag" content="(分类)">
+<meta name="twitter:card" content="summary">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="cdongtao" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cdongtao.github.io/2021/03/29/分类/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>目录分类 | cdongtao</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cdongtao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cdongtao.github.io/2021/03/29/%E5%88%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cdongtao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cdongtao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">目录分类
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-03-29 23:08:41" itemprop="dateCreated datePublished" datetime="2021-03-29T23:08:41+08:00">2021-03-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-12 17:26:49" itemprop="dateModified" datetime="2021-09-12T17:26:49+08:00">2021-09-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E5%88%86%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">(分类)</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/03/29/%E5%88%86%E7%B1%BB/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2021/03/29/%E5%88%86%E7%B1%BB/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">62k 字</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">57 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="IDEA-Plugin-soft"><a href="#IDEA-Plugin-soft" class="headerlink" title="IDEA Plugin soft"></a>IDEA Plugin soft</h2><ul>
+<li><p><a href="https://mp.weixin.qq.com/s/Vs3ZDB60bI_WZ5GloGX-4Q" target="_blank" rel="noopener">使用 IDEA 解决 Java8 的数据流问题，极大提升生产力！！</a><br><a href="https://mp.weixin.qq.com/s/NbBAJW3jc8FBXpabGtHNXw" target="_blank" rel="noopener">排名前 16 的 Java 工具类，哪个你没用过？</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/K2nbzDQmharfYhkBDvwQdw" target="_blank" rel="noopener"> Java 开发工具教程，Git/Maven！</a><br><a href="https://mp.weixin.qq.com/s/QRMNa_VEP3we3AAeYLV3vw" target="_blank" rel="noopener">太赞了！终于有人把怎么在 IDEA 中使用 Java 热部署插件 JRebel 讲清楚了。。。</a><br><a href="https://mp.weixin.qq.com/s/QjQ3OQRaZKpywwN-rOJIjA" target="_blank" rel="noopener">Spring Boot 五种热部署方式，再也不用老重启了！</a><br><a href="https://mp.weixin.qq.com/s/BKN29snpcWZs24y1Nt6IIw" target="_blank" rel="noopener">如何在Github上精准地找到想要的开源项目？</a><br><a href="https://mp.weixin.qq.com/s/7i9MBWG2SK9-BPyLxaqXog" target="_blank" rel="noopener">IntelliJ IDEA 2020.2.4款 神级超级牛逼插件推荐</a><br><a href="https://blog.csdn.net/linsongbin1/article/details/80211919" target="_blank" rel="noopener">Intellij IDEA神器居然还有这些小技巧</a><br><a href="https://mp.weixin.qq.com/s/IPgAZqubWeoKen6ImmCC_A" target="_blank" rel="noopener">别光埋头写代码，这100个网站比涨工资都重要！</a></p>
+</li>
+<li><p>chrome 插件<br> @@ ${}区别 maven build  —– &gt; deploy package<br>   dev ，pro  //@Profile({“dev”,”sit”,”uat”,”pre”,”pro”}) //一般生产环境不允许日志打印参数<br>  2.写日志演进blog—》 mybatis plus—&gt;测试异步log<br>  responebody—&gt;valid rusltmap<br>  test——&gt; jococo—&gt;sonalint —-&gt;<br>  多模块互用项目搭建<br>  1.衣服，鞋子 </p>
+<p>  Kafka—-&gt;rabbit—&gt;</p>
+<p>  <a href="https://www.cnblogs.com/orzlin/p/9717399.html" target="_blank" rel="noopener">https://www.cnblogs.com/orzlin/p/9717399.html</a>   SpringBoot+Mybatis多模块（module）项目搭建教程</p>
+<h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h2><h3 id="搭建考虑"><a href="#搭建考虑" class="headerlink" title="搭建考虑"></a>搭建考虑</h3></li>
+</ul>
+<ol>
+<li>目录管理<ol>
+<li>对象目录<ol>
+<li>规范：请求参数使用注解校验或(自定义注解),常量使用枚举类定义,Bean目录</li>
+<li>创建实体对象，映射这张表 dto -&gt; pojo</li>
+<li>创建API入参BO-&gt;entity/POJO</li>
+<li>创建API出参 entity -&gt;VO </li>
+</ol>
+</li>
+<li>创建Controller目录</li>
+<li>创建Service目录</li>
+<li>创建Dao目录</li>
+<li>增加一张表</li>
+<li>创建Mapper目录, xml或者JPA</li>
+</ol>
+</li>
+<li>在mysql客户端，或者mongo客户端中写执行脚本语句，复制到代码中</li>
+<li>反复重启，进行接口自测</li>
+<li>编写API文档</li>
+</ol>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构:"></a>项目结构:</h3><ol>
+<li>规划项目目录管理，检查开发环境:JDK1.8—–&gt;lamda<br> <a href="https://mp.weixin.qq.com/s/iPCmVuUX6yRbaw2gD_zXxw" target="_blank" rel="noopener">是时候装逼了，试试 IDEA 解决 Maven 依赖冲突的高能神器！</a><br> <a href="https://mp.weixin.qq.com/s/_6A85AuOmF6TMJe6MaPVOA" target="_blank" rel="noopener">使用 Stream API 高逼格 优化 Java 代码！</a><br> <a href="https://blog.csdn.net/qq_32415063/article/details/105568986" target="_blank" rel="noopener">spring-boot打包成Jar 如何在linux系统上运行及重启，设置启动参数</a><br> <a href="https://mp.weixin.qq.com/s/-W6nR_pTTI4DfAwxiw6vCQ" target="_blank" rel="noopener">Java8 Stream：2 万字 20 个实例，玩转集合的筛选、归约、分组、聚合</a></li>
+<li>代码规范<br> <a href="https://mp.weixin.qq.com/s/jnWvHN_-l3d8bS7gsDv-Mg" target="_blank" rel="noopener">腾讯 Code Review 规范出炉！你还敢乱写代码？？</a><br> <a href="https://mp.weixin.qq.com/s/XXENRFm7zMCydm6KRerIvA" target="_blank" rel="noopener">值得收藏：一份非常完整的 MySQL 规范</a></li>
+<li>搭建mockserver<ol>
+<li><a href="https://yapi.baidu.com/" target="_blank" rel="noopener">百度官网mock服务器</a></li>
+<li><a href="https://hellosean1025.github.io/yapi/" target="_blank" rel="noopener">搭建YApi Mock接口</a></li>
+<li><a href="https://blog.csdn.net/Feng_Leng/article/details/100990427" target="_blank" rel="noopener">YApi管理工具教程</a></li>
+</ol>
+</li>
+<li>JUnit—-&gt;测试类命名规则<ol>
+<li><a href="https://blog.csdn.net/qq_35448976/article/details/105748753" target="_blank" rel="noopener">Mockito工具的使用</a></li>
+<li><a href="https://mp.weixin.qq.com/s/ZRa6JrmEgo18Zjv_gapv0Q" target="_blank" rel="noopener">单元测试-如何去mock对象</a></li>
+<li><a href="https://mp.weixin.qq.com/s/RT-KKT1BskUYEvYAXhms5A" target="_blank" rel="noopener">Java如何优雅地实现单元测试与集成测试</a></li>
+<li><a href="https://mp.weixin.qq.com/s/uHYF3Klaq9f2N2C_OxOPIA" target="_blank" rel="noopener">小谈 Java 单元测试</a></li>
+<li><a href="https://mp.weixin.qq.com/s/xY7sgp9gJQ1Fcl-ArmRHRg" target="_blank" rel="noopener">Spring Boot 集成 JUnit5，更优雅单元测试！</a></li>
+<li><a href="https://mp.weixin.qq.com/s/EoKS-_-mRekuhYJV_iPYTw" target="_blank" rel="noopener">史上最轻量​！阿里新型单元测试 Mock 工具开源</a></li>
+<li><a href="https://mp.weixin.qq.com/s/ezEEWGldspl0OqjSgQFI6Q" target="_blank" rel="noopener">Java 并发测试神器：基准测试神器-JMH</a></li>
+<li><a href="https://blog.csdn.net/watson1360884839/article/details/86580350" target="_blank" rel="noopener">jacoco-单元测试覆盖率测试</a></li>
+<li><a href="https://www.cnblogs.com/yjmyzz/p/mockito-and-jacoco-tutorial.html" target="_blank" rel="noopener">mock测试及jacoco覆盖率</a></li>
+</ol>
+</li>
+<li>SonarLint<ol>
+<li><a href="https://blog.csdn.net/qq_35981283/article/details/81080402" target="_blank" rel="noopener">编译时检查规范SonarLint</a></li>
+</ol>
+</li>
+<li>Jacoco<ol>
+<li><a href="https://blog.csdn.net/weixin_40514600/article/details/102583631" target="_blank" rel="noopener">覆盖率Jacoco</a></li>
+<li><a href="https://www.jianshu.com/p/464a140b2c67" target="_blank" rel="noopener">基于 jacoco 的功能测试代码覆盖率实践/基于 jacoco + SonarQube + sonar-scanner 的集成实践</a></li>
+<li><a href="https://blog.csdn.net/hello_jee/article/details/91891355" target="_blank" rel="noopener">代码测试覆盖率检查——jacoco</a></li>
+</ol>
+</li>
+<li>请求校验<ol>
+<li><a href="https://www.jianshu.com/p/2762f775fbf0" target="_blank" rel="noopener">Spring Boot使用JSR-380进行校验</a></li>
+<li><a href="https://blog.csdn.net/qq_28867949/article/details/78922520" target="_blank" rel="noopener">@ControllerAdvice JSR-303 数据校验学习（一）</a></li>
+<li><a href="https://blog.csdn.net/lklihaikunkun/article/details/80605425" target="_blank" rel="noopener">spring @Validated 注解开发中使用group分组校验</a></li>
+<li><a href="https://blog.csdn.net/wwd0501/article/details/104422345" target="_blank" rel="noopener">validation自定义注解校验枚举类型：</a></li>
+<li><a href="https://blog.csdn.net/weixin_41945228/article/details/97276847" target="_blank" rel="noopener">Validation分组校验</a></li>
+<li><a href="https://www.cnblogs.com/myinspire/articles/7649027.html" target="_blank" rel="noopener">SpringMvc中的校验框架@valid和@validation的概念及相关使用</a></li>
+</ol>
+</li>
+<li>定时任务<br><a href="https://mp.weixin.qq.com/s/3D0YPQ7TSa6UJXlm_5_4Eg" target="_blank" rel="noopener">Spring Boot 实现定时任务的动态增删启停</a><br><a href="https://mp.weixin.qq.com/s/BiXyIwpSBOGqXI3fTT7IcA" target="_blank" rel="noopener">国产最强分布式调度恢复更新！可调度 10000 级定时任务！</a><br><a href="https://mp.weixin.qq.com/s/3ueVSoQjOM1LSfP87zBG3w" target="_blank" rel="noopener">SpringBoot 整合 Quartz 实现 JAVA 定时任务的动态配置</a><br><a href="https://mp.weixin.qq.com/s/dreGHo_7fJwUQDdgBAnvag" target="_blank" rel="noopener">JAVA定时任务实现的几种方式</a><br><a href="https://mp.weixin.qq.com/s/1IKAbnaQJaN6AA91SYhQ1Q" target="_blank" rel="noopener">Java 实现定时任务的 4 种方式</a><br><a href="https://mp.weixin.qq.com/s/3_8yfRMzpJ5ZrRTiOOeP5w" target="_blank" rel="noopener">SpringBoot 整合 Quartz 实现 JAVA 定时任务的动态配置</a></li>
+<li>Utils<br><a href="https://mp.weixin.qq.com/s/zRhndoENxYP1IMrHCDjgCQ" target="_blank" rel="noopener">不要再封装各种 Util 工具类了，这个神级框架值得拥有！</a><br><a href="https://mp.weixin.qq.com/s/DfJh74y_gLhXHNwy1eFGQg" target="_blank" rel="noopener">感受 Java Lambda 之美，推荐收藏，需要时查阅</a><br><a href="https://mp.weixin.qq.com/s/IGbGQwteJafn7JoKIOgkkw" target="_blank" rel="noopener">天天在用 Stream，那你知道如此强大的 Stream 的实现原理吗？</a><br><a href="https://www.v2ex.com/t/454137" target="_blank" rel="noopener">toString 模板</a></li>
+<li>缓存<br><a href="https://blog.csdn.net/mafei6827/article/details/80868931" target="_blank" rel="noopener">缓存Guava/Caffeine加载</a><br><a href="https://blog.csdn.net/sinat_36553913/article/details/85837164" target="_blank" rel="noopener">缓存Guava/Caffeine加载</a><br><a href="https://albenw.github.io/posts/df42dc84/" target="_blank" rel="noopener">Guava cache原理</a><br><a href="https://www.cnblogs.com/rickiyang/p/11074159.html" target="_blank" rel="noopener">Guava cache使用总结</a><br><a href="https://mp.weixin.qq.com/s/cv3l8cK3POKGxT_ChxjRHg" target="_blank" rel="noopener">还在用 Guava Cache？它才是 Java 本地缓存之王！</a><br><a href="https://mp.weixin.qq.com/s/cAZdTyfM6D2GFFQmeoG-jg" target="_blank" rel="noopener">万字详解本地缓存之王 Caffeine，SpringBoot2.X 官方推荐</a><br><a href="https://mp.weixin.qq.com/s/O0FYwy547aexUhmve5zsmA" target="_blank" rel="noopener">贼厉害，手撸的 SpringBoot 缓存系统，性能杠杠的！</a></li>
+<li>分页MybatisHepler  &amp;&amp; ORM<ol>
+<li><a href="https://mp.weixin.qq.com/s/qlGjZ9Qni5930e8ZGkSVjA" target="_blank" rel="noopener">MyBatis动态SQL，写SQL更爽</a></li>
+<li><a href="https://zhile.io/2019/04/23/mybatis-code-helper-pro-crack.html" target="_blank" rel="noopener">MyBatisCodeHelper-Pro插件破解版2.8.2</a></li>
+<li><a href="https://mp.weixin.qq.com/s/ipfpM6rymhVEyRc832m5PQ" target="_blank" rel="noopener">如何让 Mybatis 自动生成代码</a></li>
+<li><a href="https://mp.weixin.qq.com/s/sU4NBwmbpcohtjnKVtnH2A" target="_blank" rel="noopener">新技能 MyBatis 千万数据表，快速分页！</a></li>
+</ol>
+</li>
+<li>MyBatis  sql日志打印<ol>
+<li><a href="https://mp.weixin.qq.com/s/MIW7Z3P9EJTVZopK1vMwsw" target="_blank" rel="noopener">MyBatis Plus 常用 API 全套教程，看完没有不懂的</a></li>
+<li><a href="https://www.cnblogs.com/it-deepinmind/p/11761616.html" target="_blank" rel="noopener">Mybatis-Plus和Mybatis的区别</a></li>
+</ol>
+</li>
+<li>mysql 主键id用雪花算法<br><a href="https://mp.weixin.qq.com/s/JtxOvPoIIpGHhaXbz_Ii9A" target="_blank" rel="noopener">一文搞定分布式系统 ID 生成方案</a></li>
+<li>算法<br><a href="https://www.cnblogs.com/rickiyang/p/13210830.html" target="_blank" rel="noopener">加密算法</a></li>
+<li>devops搭建:jekins/编译时检查规范SonarLint<br><a href="http://www.lucienchen.xyz/2020/06/25/%E8%81%8A%E4%B8%80%E8%81%8ADevOps/" target="_blank" rel="noopener">聊一聊DevOps分享一些DevOps的理解和实践</a><br><a href="https://blog.csdn.net/yhmliunan/article/details/107927560" target="_blank" rel="noopener">jenkins+sonarQube+gitlab持续集成指南</a><br><a href="https://www.cnblogs.com/wangxu01/articles/11113875.html" target="_blank" rel="noopener">Jenkins和sonarqube集成</a><br><a href="https://blog.csdn.net/qq_37965741/article/details/107018297" target="_blank" rel="noopener">jenkins流水线整合jacoco与sonar（一）</a><br><a href="https://blog.csdn.net/fbb1995/article/details/80082119" target="_blank" rel="noopener">jenkins集成sonar、jacoco</a><br><a href="https://blog.51cto.com/damaicha/2118766" target="_blank" rel="noopener">持续集成与自动化部署 - jenkins与sonar、gitlab集成 （六）</a><br><a href="https://mp.weixin.qq.com/s/WhHsxyDSwA9px_60YllzGw" target="_blank" rel="noopener">Jenkins 日常维护之数据备份</a><br><a href="https://mp.weixin.qq.com/s/Sxplq3Jg3Ra6M5xcv_Tr5w" target="_blank" rel="noopener">某小型公司持续集成工具 Jenkins 实践</a></li>
+<li>Echart/Hichart</li>
+<li>pdf/excel<br><a href="https://mp.weixin.qq.com/s/yzoXPSIFqt0k5R4KLH5G-A" target="_blank" rel="noopener">Java实现pdf和Excel的生成及数据动态插入、导出 </a><br><a href="https://blog.csdn.net/weixin_30347009/article/details/96495054" target="_blank" rel="noopener">Java单元测试之代码覆盖率-JaCoCo</a><br><a href="https://mp.weixin.qq.com/s/2UdV_-ZfpYAOdW6ZTLB1Fw" target="_blank" rel="noopener">POI读写超大数据量Excel，解决超过几万行而导致内存溢出的问题（附源码）</a><br><a href="https://mp.weixin.qq.com/s/imIhHiPft0o_t8iUfzTMAQ" target="_blank" rel="noopener">EasyExcel，让 excel 导入导出更加简单</a><br><a href="https://mp.weixin.qq.com/s/Y1feFfn8VeZsxXw65NYoWQ" target="_blank" rel="noopener">100000 行级别数据的 Excel 导入优化之路</a><br><a href="https://mp.weixin.qq.com/s/zsJAZP25D_I25VmSfHiF7Q" target="_blank" rel="noopener">压缩 20M 文件从 30 秒到 1 秒的优化过程</a><br><a href="https://mp.weixin.qq.com/s/0eNwbA4Zzo8sgqgKWE7t_A" target="_blank" rel="noopener">Spring Boot 如何上传大文件？骚操作～</a></li>
+</ol>
+<h3 id="代码设计思想"><a href="#代码设计思想" class="headerlink" title="代码设计思想"></a>代码设计思想</h3><p><a href="https://mp.weixin.qq.com/s/yg4U-GM6JfzIwD-IX6Q5pA" target="_blank" rel="noopener">4 种主流的 API 架构风格对比</a><br><a href="https://mp.weixin.qq.com/s/H8OSeUaGIlU8OtojgT4W9Q" target="_blank" rel="noopener">《Spring设计思想》AOP设计思想与原理（图文并茂）</a><br><a href="https://mp.weixin.qq.com/s/nan90kHUUqq9GPBjelpLow" target="_blank" rel="noopener">SpringBoot 接口幂等性实现的 4 种方案！这个我真的服气了！</a><br><a href="https://mp.weixin.qq.com/s/OzxyHdyh6xm-Pi8AGak9rw" target="_blank" rel="noopener">阿里面试官：接口的幂等性怎么设计？</a><br><a href="https://mp.weixin.qq.com/s/YWIx-Ev8P0uSOqOc7yMNPw" target="_blank" rel="noopener">如何设计一个百万级用户的抽奖系统？</a><br><a href="https://mp.weixin.qq.com/s/y-84pTSt03SQzfY3tJOozQ" target="_blank" rel="noopener">打死都要记住！微服务架构的常用设计模式！</a><br><a href="https://mp.weixin.qq.com/s/7LiYhrBcnL9gro5BPE6jiA" target="_blank" rel="noopener">架构设计的本质：系统与子系统、模块与组件、框架与架构</a><br><a href="https://mp.weixin.qq.com/s/TwADpVS5aKyBFjLVzijZKA" target="_blank" rel="noopener">公司架构师常常提起的DNS负载均衡是个什么鬼？</a></p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/Ik6LvOrTX4fwg2VCIId7_Q" target="_blank" rel="noopener">Spring 中经典的 9 种设计模式，打死也要记住啊！</a><br><a href="https://mp.weixin.qq.com/s/y6Ybk4TTlaTxL2rrjBdZlA" target="_blank" rel="noopener">写一个通用的幂等组件，艿艿觉得很有必要</a></li>
+</ul>
+<h3 id="项目应用"><a href="#项目应用" class="headerlink" title="项目应用"></a>项目应用</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s/EcugQjYey8j6h99H4e-XOw" target="_blank" rel="noopener">Java 后端开发实践 - 项目模板</a><br><a href="https://mp.weixin.qq.com/s/lVumBSMAhldh1U974-CpVA" target="_blank" rel="noopener">支付宝支付加密规则梳理，写的太好了！</a><br><a href="https://mp.weixin.qq.com/s/85gINUycrhrovLLcK7tW1w" target="_blank" rel="noopener">SpringBoot 项目模板：摆脱步步搭建</a><br><a href="https://mp.weixin.qq.com/s/wYSwe56pop3RkK0BSRRy-g" target="_blank" rel="noopener">Spring Boot 实战：整合Redis、MyBatis，封装 RedisUtils 工具类</a><br><a href="https://mp.weixin.qq.com/s/_twQqmclPEmUJmhPjiqRcQ" target="_blank" rel="noopener">一份 Spring Boot 项目搭建模板:</a><br><a href="https://mp.weixin.qq.com/s/lHD8l6mz27JAsuFg3JUJOQ" target="_blank" rel="noopener">SpringBoot + Mybatis + Druid + PageHelper 实现多数据源并分页</a><br><a href="https://mp.weixin.qq.com/s/z3RaI9ZqhPYWk7RbeagMJw" target="_blank" rel="noopener">Jenkins + 钉钉 + SpringBoot 极简入门，一键打包部署项目</a><br><a href="https://mp.weixin.qq.com/s/1gSYL95pOtq4jgo4dfwXbw" target="_blank" rel="noopener">Spring MVC + Spring + Mybatis 实现支付宝支付功能（图文详解+完整代码）</a><br><a href="https://mp.weixin.qq.com/s/TsPyaAK74CV3A--_s3B4sA" target="_blank" rel="noopener">一份 Spring Boot 项目搭建模板</a><br><a href="https://mp.weixin.qq.com/s/yf3I8sjpOdKRbde7DLZ2lw" target="_blank" rel="noopener">开源一个SpringBoot + Mybatis + Vue的代码生成器</a><br><a href="https://mp.weixin.qq.com/s/JdTHgptv47rt2kORqyZWOg" target="_blank" rel="noopener">基于 Spring Boot 的车牌识别系统（附项目地址）ba</a><br><a href="https://mp.weixin.qq.com/s/xiNp2dvWJFLvjGSPa746eA" target="_blank" rel="noopener">Spring Boot 多模块项目实践（附打包方法）</a><br><a href="https://mp.weixin.qq.com/s/1B-bs61nG16k-lXR0qOfog" target="_blank" rel="noopener">Spring Boot + Mybatis 多模块（module）项目的完整搭建教程</a><br><a href="https://mp.weixin.qq.com/s/iWRa6Yk-ai4X3Nk1frjjlA" target="_blank" rel="noopener">Spring Boot 微信点餐开源系统</a><br><a href="https://mp.weixin.qq.com/s/uQJXkT_GTwL3yz5ClPAs9Q" target="_blank" rel="noopener">Spring Boot 整合微信小程序实现登录与增删改查</a><br><a href="https://mp.weixin.qq.com/s/pC0lWQii189f2BBlXTeFZQ" target="_blank" rel="noopener">SpringBoot + MyBatis + MySQL 读写分离实战</a><br><a href="https://mp.weixin.qq.com/s/39rL_i-Fa3k0lvVUZ3GHUg" target="_blank" rel="noopener">Spring Boot + Mybatis + Druid + PageHelper 实现多数据源并分页</a><br><a href="https://mp.weixin.qq.com/s/zv5T1UKAp7UstqXeZ48Mxg" target="_blank" rel="noopener">Spring Boot 骚操作 —— 多数据源 Service 层封装（MySQL + MongoDB + ES）</a></li>
+<li><a href="https://mp.weixin.qq.com/s/ARtSvUHK4Io-cb7C8XxU0Q" target="_blank" rel="noopener">Spring Boot 接入支付宝，实战来了！</a></li>
+</ul>
+<h3 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h3><p><a href="https://mp.weixin.qq.com/s/-5HMaAEXV96DBzCVfxQIrg" target="_blank" rel="noopener">SpringBoot操作ES进行各种高级查询（值得收藏）：</a><br><a href="https://mp.weixin.qq.com/s/jMPtQ3vK3zzi9o5YTidKow" target="_blank" rel="noopener">SpringBoot 配置 ELK 环境</a><br><a href="https://mp.weixin.qq.com/s/NnFGwADp2TBkGzPeBerXWA" target="_blank" rel="noopener">ElasticSearch 面试 4 连炮，你顶得住么？</a><br><a href="https://mp.weixin.qq.com/s/nqFZrtHJvgima8EHFQuKoQ" target="_blank" rel="noopener">芋道 Spring Boot Elasticsearch 入门</a><br><a href="https://mp.weixin.qq.com/s/Ne-z24PDVsPIyJQcVb2QsA" target="_blank" rel="noopener">用图讲解 ElasticSearch 搜索原理，你就明白了！</a></p>
+<h3 id="ES-Kibana"><a href="#ES-Kibana" class="headerlink" title="ES Kibana"></a>ES Kibana</h3><p><a href="https://mp.weixin.qq.com/s/Ky51TVhvDP0Mv1FlhNGycg" target="_blank" rel="noopener">你还在用命令看日志？快用 Kibana 吧，一张图片胜过千万行日志！:</a></p>
+<h3 id="搭建deops平台"><a href="#搭建deops平台" class="headerlink" title="搭建deops平台"></a>搭建deops平台</h3><p><a href="https://mp.weixin.qq.com/s/TMEYuJOKXSSMfqpcjwZLbw" target="_blank" rel="noopener">Linux 最常用命令：简单易学，但能解决 95% 以上的问题</a></p>
+<h4 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h4><p><a href="https://mp.weixin.qq.com/s/_Cd-fHIp0LjPuhFk1RkZ8w" target="_blank" rel="noopener">采用jenkins pipeline实现自动构建并部署至k8s</a><br><a href="https://mp.weixin.qq.com/s/_nVmzcWF5Owj4zZtMB93AQ" target="_blank" rel="noopener">实现一个全链路监控平台很难吗？Pinpoint、SkyWalking、Zipkin，哪个实现比较好？</a></p>
+<h4 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h4><p><a href="https://mp.weixin.qq.com/s/NUUcNL99X9R7RLELghuDsA" target="_blank" rel="noopener">后端实践：Nginx日志配置（超详细）</a><br><a href="https://mp.weixin.qq.com/s/SOZcL8BTyXEa2Rf23FgPow" target="_blank" rel="noopener">Nginx + Spring Boot 实现负载均衡</a><br><a href="https://mp.weixin.qq.com/s/AH38y5TI3JHvq0e7n_ZsOg" target="_blank" rel="noopener">就是要让你搞懂 Nginx，这篇就够了！</a></p>
+<h4 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h4><p><a href="https://mp.weixin.qq.com/s/NVx4tLg2m3CjTnbN37YB8w" target="_blank" rel="noopener">牛逼！Docker从入门到上瘾</a><br><a href="https://mp.weixin.qq.com/s/UcTyEwYmWPQfv-Qdpjn-kg" target="_blank" rel="noopener">Docker 部署 SpringBoot 的两种方法，后一种一键部署超好用！</a><br><a href="https://mp.weixin.qq.com/s/-NOTxuFOFdbDtDV8oXhiiw" target="_blank" rel="noopener">真香，GitLab 和 Docker 自动化部署 Spring Boot 应用</a><br><a href="https://mp.weixin.qq.com/s/LvwsQXQjsZY5fcRKb6cJUw" target="_blank" rel="noopener">面试官：你知道 Docker 有哪些优缺点嘛？</a><br><a href="https://mp.weixin.qq.com/s/8pIx7z3lGsr30vhmSov5bw" target="_blank" rel="noopener">Docker+Jenkins+Nginx+Spring Boot 自动化部署项目</a><br><a href="https://mp.weixin.qq.com/s/3rKfsOyoAafJRcP63WvmIQ" target="_blank" rel="noopener">开发提升十倍生产力: IDEA 远程一键部署 Spring Boot 到 Docker</a><br><a href="https://mp.weixin.qq.com/s/OC_G4jL5j8ru78Ctdg66YA" target="_blank" rel="noopener">Docker 搭建「个人网盘」，放弃 Pandownload！</a><br><a href="https://mp.weixin.qq.com/s/0L0ZXI9L-nGkHzESjuO8LA" target="_blank" rel="noopener">Docker 为什么这么牛？</a></p>
+<h4 id="Kubernetes"><a href="#Kubernetes" class="headerlink" title="Kubernetes"></a>Kubernetes</h4><p><a href="https://mp.weixin.qq.com/s/W8N8BqUsdOgi_oibwhftbQ" target="_blank" rel="noopener">如何从 0 到 1，搭建一个完整的 Kubernetes 集群？</a><br><a href="https://mp.weixin.qq.com/s/cyqxNKPrdp-x8q05PkeWlQ" target="_blank" rel="noopener">一个完整的、全面 k8s 化的集群稳定架构（值得借鉴）</a><br><a href="https://mp.weixin.qq.com/s/jtZ-3qZ2bqnqCxs3QqMOzw" target="_blank" rel="noopener">Kubernetes面试题超详细总结</a><br><a href="https://mp.weixin.qq.com/s/oE7is9KfPcSnGTWu0imFVg" target="_blank" rel="noopener">Kubernetes 集群部署 tomcat容器/Java web应用流程</a><br><a href="https://mp.weixin.qq.com/s/hxTw3c-bnUIQuicUpmjibA" target="_blank" rel="noopener">带着问题学 Kubernetes 架构</a><br><a href="https://mp.weixin.qq.com/s/eCZyeXJ3dLzydwDiKAqZZQ" target="_blank" rel="noopener">如何基于K8s构建下一代DevOps平台？</a></p>
+<h3 id="搭建中央仓库"><a href="#搭建中央仓库" class="headerlink" title="搭建中央仓库"></a>搭建中央仓库</h3><p><a href="https://www.cnblogs.com/heyanan/p/10328653.html" target="_blank" rel="noopener">私服仓库的配置比较复杂</a></p>
+<h3 id="灰度平台"><a href="#灰度平台" class="headerlink" title="灰度平台"></a>灰度平台</h3><p><a href="https://mp.weixin.qq.com/s/v-Le0OKq1J8RUkPYahLHsw" target="_blank" rel="noopener">手把手教你搭建一个灰度发布环境</a><br><a href="https://mp.weixin.qq.com/s/ZczpkbCt-_ACCg2F3QpBAQ" target="_blank" rel="noopener">灰度发布系统架构设计</a><br><a href="https://mp.weixin.qq.com/s/E-2x6Cfo5OBt4-wJj_qNwg" target="_blank" rel="noopener">CTO 点名要搞个灰度发布系统，不慌！</a><br><a href="https://mp.weixin.qq.com/s/7rVuPaZxANkzm2JD9sreJw" target="_blank" rel="noopener">灰度发布的系统架构设计</a></p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p><a href="https://mp.weixin.qq.com/s/F11nMvdDw929kNS0U05lZA" target="_blank" rel="noopener">给你总结了这些对付幂等性的套路</a><br><a href="https://mp.weixin.qq.com/s/0kzisisJmEDDyEZiWebkVQ" target="_blank" rel="noopener">雪花算法的原理和 Java 实现</a><br><a href="https://mp.weixin.qq.com/s/RgfKawE_Ptyxt_g_KQqCdQ" target="_blank" rel="noopener">手把手带你实战 java.security框架之签名、加密、摘要及证书</a><br><a href="https://mp.weixin.qq.com/s/_NwW38cbpTsVkIqTdnwRtg" target="_blank" rel="noopener">使用雪花id或uuid作为Mysql主键，被老板怼了一顿！</a><br><a href="https://mp.weixin.qq.com/s/nkWPwvHZxfhr-4B3K34akQ" target="_blank" rel="noopener">理解Raft算法，轻松应对分布式容错和一致性：</a><br><a href="https://mp.weixin.qq.com/s/jy-AE7hLjBr53VMX4d9pjA" target="_blank" rel="noopener">分布式关键技术之一致性哈希和虚拟节点原理介绍</a><br><a href="https://mp.weixin.qq.com/s/8uBd7k9mTOCldAlDUg03zg" target="_blank" rel="noopener">韩信大招：一致性哈希</a><br><a href="https://mp.weixin.qq.com/s/v07D1jsVtcztzUb4P8Xd4w" target="_blank" rel="noopener">最短路径问题——迪杰斯特拉算法(Dijkstra)</a><br><a href="https://mp.weixin.qq.com/s/sgrHmuQlQlxIh-0Ska_yIA" target="_blank" rel="noopener">动态规划太难？刷题无数，不如掌握这些套路</a><br><a href="https://mp.weixin.qq.com/s/XR8IMFUOHYic9w_smGSDTw" target="_blank" rel="noopener">因为 BitMap，白白搭进去 8 台服务器。。。</a><br><a href="https://mp.weixin.qq.com/s/7LiYhrBcnL9gro5BPE6jiA" target="_blank" rel="noopener">牛逼哄哄的 BitMap，到底牛逼在哪？</a><br><a href="https://mp.weixin.qq.com/s/9zHxE1kEPMpPqGoCF9AUTA" target="_blank" rel="noopener">面试时写不出排序算法？看这篇就够了</a><br><a href="https://mp.weixin.qq.com/s/sgrHmuQlQlxIh-0Ska_yIA" target="_blank" rel="noopener">动态规划太难？刷题无数，不如掌握这些套路</a></p>
+<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><h3 id="分页处理"><a href="#分页处理" class="headerlink" title="分页处理"></a>分页处理</h3><p><a href="https://mp.weixin.qq.com/s/3miuZuhcXNiNQiYH0vh6Wg" target="_blank" rel="noopener">你还在用分页？试试 MyBatis 流式查询，真心强大！</a><br><a href="https://mp.weixin.qq.com/s/X9w4z0txFwuu_gmCWXB4Mg" target="_blank" rel="noopener">大数据量下 MyBatis PageHelper 分页查询性能问题的解决办法</a></p>
+<h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><p><a href="https://mp.weixin.qq.com/s/QMeogOcmG5TcOnTwvKRtkA" target="_blank" rel="noopener">别乱打日志了，这才是正确的打日志姿势！:</a><br><a href="https://mp.weixin.qq.com/s/uREvWMJ994zR9cIjubF2-w" target="_blank" rel="noopener">从零实现一个日志框架（带源码）：</a><br><a href="https://mp.weixin.qq.com/s/a4tp-YPQmoFfiMHiarkpiQ" target="_blank" rel="noopener">SQL 查找是否”存在”，别再 count 了，很耗费时间的！</a><br><a href="https://mp.weixin.qq.com/s/qGqamCIDJeoze-1GezPDRA" target="_blank" rel="noopener">爽！一个注解，搞定 SpringBoot 操作日志</a><br><a href="https://mp.weixin.qq.com/s/l3UtGejwd2qkZ48LXOVEgw" target="_blank" rel="noopener">可能是全网最全，JAVA日志框架适配、冲突解决方案，可以早点下班了！</a><br><a href="https://mp.weixin.qq.com/s/apXzGqHnWnHqha64oUxRRA" target="_blank" rel="noopener">最牛逼的 Java 日志框架，性能无敌，横扫所有对手！【文末送书】</a><br><a href="https://mp.weixin.qq.com/s/f52Af50h9xVBOztJD8IHdQ" target="_blank" rel="noopener">Slf4j 包老冲突，每次排查半天，是什么原因？怎么解决？</a><br><a href="https://mp.weixin.qq.com/s/cwIVRGzQtk_kD-nKbZrenQ" target="_blank" rel="noopener">日志框架选型，Logback 还是 Log4j2？</a></p>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li><a href="https://mp.weixin.qq.com/s/z_iPIXRqDA9wFpCmNfRl9Q" target="_blank" rel="noopener">数据库连接池到底应该设多大？</a><br><a href="https://mp.weixin.qq.com/s/Jeqrw3mLpV2XU9K8t5aL4Q" target="_blank" rel="noopener">面试题：Java 8 中 HashMap 到底有啥不同？</a><br><a href="https://mp.weixin.qq.com/s/MSeHKctbw97XO2ZwozzbHA" target="_blank" rel="noopener">Synchronized 的一个点，面试官可能都记错了</a><br><a href="https://mp.weixin.qq.com/s/QlEM9WdxXfe-CRq6Akw0Pw" target="_blank" rel="noopener">面试：你知道 Java 中的回调机制吗？</a><br><a href="https://mp.weixin.qq.com/s/3JScRAiKF3hzE8u-vNNhXQ" target="_blank" rel="noopener">面试官：你能告诉我一个请求过来，Spring MVC 是如何找到正确的 Controller 的？</a><br><a href="https://mp.weixin.qq.com/s/NO19A_6Zg3v_Jz1wt-TSFg" target="_blank" rel="noopener">面试被问“红黑树”，我一脸懵逼。。。</a><br><a href="https://mp.weixin.qq.com/s/3oMxvO3mvSfIoj6kOX-ZyA" target="_blank" rel="noopener">Java面试必问：ThreadLocal终极篇 淦！</a></li>
+</ul>
+<h3 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h3><p><a href="https://mp.weixin.qq.com/s/qfpG4z3DRNjuzaWkMSrSvg" target="_blank" rel="noopener">说实话，Hibernate 和 MyBatis 哪个更好用？</a><br><a href="https://mp.weixin.qq.com/s/jg0Os6ZhiP7KwFd6LLkZ1A" target="_blank" rel="noopener">8张图，5大组件！了解MySQL查询语句执行过程。</a><br><a href="https://mp.weixin.qq.com/s/ci2CkKeh7H94ia8w9wYpNg" target="_blank" rel="noopener">MyBatis 动态 SQL（认真看看， 以后写 SQL 就爽多了）</a><br><a href="https://mp.weixin.qq.com/s/RjRzacdmx3DMHlhjj1GM3g" target="_blank" rel="noopener">超全MyBatis动态代理详解！（绝对干货）</a><br><a href="https://mp.weixin.qq.com/s/dU8a_hjQ9QsEaHEugBBsvg" target="_blank" rel="noopener">Spring Boot 中引入 MyBatis Plus 的常规流程</a><br><a href="https://mp.weixin.qq.com/s/a_FgCe-FJhRzW0sioANZzQ" target="_blank" rel="noopener">干掉mapper.xml！MyBatis新特性动态SQL真香！</a><br><a href="https://mp.weixin.qq.com/s/UqgXw0qOW1H1-Dqh5NtueA" target="_blank" rel="noopener">MyBatis 的执行流程，写得太好了！</a><br><a href="https://mp.weixin.qq.com/s/3JM0OftyZGVUBZyQoFRk4A" target="_blank" rel="noopener">如何让 Mybatis 自动生成代码，提升开发效率</a><br><a href="https://mp.weixin.qq.com/s/TfGINunRi_PLNDctw3VRjQ" target="_blank" rel="noopener">MyBatis Plus 为啥这么牛？</a><br><a href="https://mp.weixin.qq.com/s/et5KsFEOpC2Go_h33wsvdQ" target="_blank" rel="noopener">史上最全的SpringBoot 中引入 MyBatisPlus 的常规流程|干货</a><br><a href="https://mp.weixin.qq.com/s/fYrSQUjv30--kDxEG5SScA" target="_blank" rel="noopener">MyBatis PageHelper 最佳实践</a><br><a href="https://mp.weixin.qq.com/s/cplN0umHRonaXaJDI4LwCA" target="_blank" rel="noopener">浅谈 mybatis 如何半自动化解耦</a><br><a href="www.cnblogs.com/wangjiming/p/10384975.html">浅谈 mybatis 如何半自动化解耦</a><br><a href="https://mp.weixin.qq.com/s/sIMTK2JDqM4o06htPS981A" target="_blank" rel="noopener">一起来看看 Mybatis 中使用的 9 种设计模式！</a><br><a href="https://mp.weixin.qq.com/s/RWnmRhrmvK7_VJnygCSK7w" target="_blank" rel="noopener">Spring Boot Mybatis 搞反向工程，太方便咯。。</a><br><a href="https://mp.weixin.qq.com/s/YKoz4oTzoqVjo96l6vf5eA" target="_blank" rel="noopener">MyBatis 的工作原理，你了解过吗？</a><br><a href="https://mp.weixin.qq.com/s/hwbzbMz-Yavvq2CSDBr2Cg" target="_blank" rel="noopener">牛逼！在IDEA里搞Spring Boot Mybatis反向工程，太爽咯～</a><br><a href="https://mp.weixin.qq.com/s/D59V65phO_-KpxhF0px9qw" target="_blank" rel="noopener">Spring Boot Mybatis 搞反向工程，太方便咯。。</a><br><a href="https://mp.weixin.qq.com/s/TZ9-DY4q5E55Wi19VrSPoQ" target="_blank" rel="noopener">大佬的Mybatis-Plus使用技巧，带你避“坑”，实在太火了~</a><br><a href="https://mp.weixin.qq.com/s/PhMO7wufdyJP7b7_cWKrkg" target="_blank" rel="noopener">MyBatis Plus 常用 API 全套教程，看完没有不懂的</a></p>
+<h3 id="Java-NIO-BIO"><a href="#Java-NIO-BIO" class="headerlink" title="Java NIO/BIO"></a>Java NIO/BIO</h3><p><a href="https://mp.weixin.qq.com/s/YIcXaH7AWLJbPjnTUwnlyQ" target="_blank" rel="noopener"> NIO模型演变及分析</a><br><a href="https://blog.csdn.net/zhangdx001/article/details/106737419" target="_blank" rel="noopener">浅谈过滤器与拦截器与切面</a><br><a href="https://mp.weixin.qq.com/s/341JER0azceY0b_J6lIuww" target="_blank" rel="noopener">一步一图，带你走进 Netty 的世界！</a><br><a href="https://mp.weixin.qq.com/s/Csgk3I6IvBU5Qr91XOkOPg" target="_blank" rel="noopener">虎牙二面：聊聊你对 Java “零拷贝”的理解？</a><br><a href="https://mp.weixin.qq.com/s/0XVkeR96rdpnaDU-WACbHw" target="_blank" rel="noopener">什么是NIO？NIO的原理是什么机制？</a><br><a href="https://mp.weixin.qq.com/s/CRd3-vRD7xwoexqv7xyHRw" target="_blank" rel="noopener">四图，读懂 BIO、NIO、AIO、多路复用 IO 的区别</a><br><a href="https://mp.weixin.qq.com/s/F8gHzHm-BruJzof2-NlONg" target="_blank" rel="noopener">面试官：什么是 NIO？NIO 的原理是什么机制？</a><br><a href="https://mp.weixin.qq.com/s/LnWyqknOIesC7bavfpIPQg" target="_blank" rel="noopener">为什么说Netty是性能之王，因为它用了 Reactor 模型啊</a><br><a href="https://mp.weixin.qq.com/s/v029YALohmHEZ-i55u-qyw" target="_blank" rel="noopener">图解 | 深入理解高性能网络开发路上的绊脚石 - 同步阻塞网络 IO</a><br><a href="https://mp.weixin.qq.com/s/Ok7SIROXu1THUbWsFu-UYw" target="_blank" rel="noopener">你管这破玩意叫 IO 多路复用？</a></p>
+<h3 id="Kafka复习"><a href="#Kafka复习" class="headerlink" title="Kafka复习"></a>Kafka复习</h3><p><a href="https://mp.weixin.qq.com/s/Z2VWLTOOE9dy3XSG_p3k9w" target="_blank" rel="noopener">面试问：Kafka 为什么速度那么快？</a><br><a href="https://zhuanlan.zhihu.com/p/92590719" target="_blank" rel="noopener">从基础到深度，带你吃透Kafka</a><br><a href="https://www.cnblogs.com/rickiyang/category/1487719.html" target="_blank" rel="noopener">kafka消息系列</a><br><a href="https://mp.weixin.qq.com/s/oqfxAzZgccBqK0_4NQHmhQ" target="_blank" rel="noopener">Kafka都没整明白，还敢去面试？</a><br><a href="https://mp.weixin.qq.com/s/zCLlRcHGglfI_HagpyTEjg" target="_blank" rel="noopener">从面试角度一文学完 Kafka</a><br><a href="https://mp.weixin.qq.com/s/4sgw9GvmnDc4SGcTH_IIvA" target="_blank" rel="noopener">Kafka 事务实现原理</a><br><a href="https://mp.weixin.qq.com/s/kX0iuGAIr1sn5i2FN6O7TQ" target="_blank" rel="noopener">支持百万级TPS，Kafka是怎么做到的？答案藏在这10张图里</a><br><a href="https://mp.weixin.qq.com/s/lQS7ShqmB1pwmeJY5JyJLg" target="_blank" rel="noopener">面试官问：Kafka 会不会丢消息？怎么处理的?</a><br><a href="https://mp.weixin.qq.com/s/lVa9TVIhOKm7AfXPbvU6cA" target="_blank" rel="noopener">Netty、Kafka 中的零拷贝技术到底有多牛?</a><br><a href="https://mp.weixin.qq.com/s/cEDpK20RugVqfjJb-TNJYg" target="_blank" rel="noopener">原来这才是 Kafka！（多图+深入）</a><br><a href="https://www.cnblogs.com/rickiyang/p/13265043.html" target="_blank" rel="noopener">零拷贝(Zero-copy) 浅析及其应用</a><br><a href="https://mp.weixin.qq.com/s/cifu9h1GKYuColGmJ99q8w" target="_blank" rel="noopener">你能说出 Kafka 这些原理吗</a><br><a href="https://mp.weixin.qq.com/s/9vIy6R8IMRU2KoIMzhHHhw" target="_blank" rel="noopener">Kafka是靠什么机制保持高可靠，高可用的？</a><br><a href="https://mp.weixin.qq.com/s/KbQeseskB0YIfNLdSp0urg" target="_blank" rel="noopener">面试问：Kafka 为什么速度那么快？</a><br><a href="https://mp.weixin.qq.com/s/p_T7xCi67KEhtu5-4AwNIw" target="_blank" rel="noopener">仅需 3 分钟，你就能明白 Kafka 的工作原理，那是不可能的</a><br><a href="https://mp.weixin.qq.com/s/adoZJ5p0DkInmc2gSGR9Sg" target="_blank" rel="noopener">Kafka 基本原理（8000 字小结）</a><br><a href="https://mp.weixin.qq.com/s/2lQ9FVjeG2iwh_CgcW1syw" target="_blank" rel="noopener">大白话 + 13 张图解 Kafka</a><br><a href="https://mp.weixin.qq.com/s/5WBFKgBuY7hMX0yRkDIveg" target="_blank" rel="noopener">Kafka 为什么这么快？</a><br><a href="https://mp.weixin.qq.com/s/VfkngOymFgNhY77RQV_lbw" target="_blank" rel="noopener">如何基于 Canal 和 Kafka，实现 MySQL 的 Binlog 近实时同步？</a><br><a href="https://mp.weixin.qq.com/s/94lighg5iLmBl1CHJIsaKQ" target="_blank" rel="noopener">大白话认识 Kafka 背后优秀的架构设计</a><br><a href="https://mp.weixin.qq.com/s/t3XPzDRL8x7ljfMJHaaSBw" target="_blank" rel="noopener">Kafka如何做到1秒处理1500万条消息？</a><br><a href="https://mp.weixin.qq.com/s/YGQSEqzg54zZ9-nd823p3A" target="_blank" rel="noopener">面试官问：Kafka 会不会丢消息？怎么处理的?</a><br><a href="https://mp.weixin.qq.com/s/aElO_L2HpYvZRuxxbYlqJw" target="_blank" rel="noopener">我用kafka两年踩过的一些非比寻常的坑</a></p>
+<h3 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h3><p><a href="https://mp.weixin.qq.com/s/9Vs7HiBfJnuNkeHDjrUafQ" target="_blank" rel="noopener">RocketMQ 消息丢失场景分析及如何解决！</a><br><a href="https://mp.weixin.qq.com/s/BaZxnOb5yed4C-qj7ii-ZA" target="_blank" rel="noopener">从年末生产故障解锁RocketMQ集群部署的最佳实践</a></p>
+<h3 id="对比Mq"><a href="#对比Mq" class="headerlink" title="对比Mq"></a>对比Mq</h3><p><a href="https://mp.weixin.qq.com/s/CfqosfVTMqtCX3L4a1MDzQ" target="_blank" rel="noopener">Kafka 与 RocketMQ 的性能大对比！</a><br><a href="https://mp.weixin.qq.com/s/l_4XzAWFubTUcwpRjQ8Jig" target="_blank" rel="noopener">Redis、Kafka 和 Pulsar 消息队列对比</a></p>
+<h3 id="锁类型"><a href="#锁类型" class="headerlink" title="锁类型"></a>锁类型</h3><p><a href="https://mp.weixin.qq.com/s/yZLUu6I1KefIm3kLx3Zsxg" target="_blank" rel="noopener">共享锁、排他锁、互斥锁、悲观锁、乐观锁、行锁、表锁、页面锁、不可重复读、丢失修改、读脏数据</a><br><a href="https://mp.weixin.qq.com/s/E8qOcBz5GbsUoIvyCf2qcw" target="_blank" rel="noopener">死磕 Synchronized 底层实现</a><br><a href="https://mp.weixin.qq.com/s/kPMCWckMXTjNhVgRWn7DvQ" target="_blank" rel="noopener">Spring 中的重试机制，简单、实用！</a><br><a href="https://mp.weixin.qq.com/s/IEd8oP7j_4IWZ0DShXiN4A" target="_blank" rel="noopener">这六个 MySQL 死锁案例，能让你理解死锁的原因！</a><br><a href="https://mp.weixin.qq.com/s/AZj4j0YOuacAmcS1RexkXg" target="_blank" rel="noopener">8000字 | 32 张图 | 一文搞懂事务+隔离级别+阻塞+死锁</a><br><a href="https://mp.weixin.qq.com/s/v1XgT2X4IuF3_WNqeUVhVA" target="_blank" rel="noopener">全网最细：17张图带你秒杀synchronized关键字</a></p>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p><a href="https://mp.weixin.qq.com/s/hxTw3c-bnUIQuicUpmjibA" target="_blank" rel="noopener">如何画出优秀的软件架构图？</a><br><a href="https://mp.weixin.qq.com/s/NtIE0eznUAbXgKwZN83TvA" target="_blank" rel="noopener">手把手教你画架构图，看一次就会了！</a><br><a href="https://mp.weixin.qq.com/s/NtIE0eznUAbXgKwZN83TvA" target="_blank" rel="noopener">厉害了，淘宝千万并发，14 次架构演进…</a><br><a href="https://mp.weixin.qq.com/s/594UJgs4SKLqVXPCYmKTCQ" target="_blank" rel="noopener">今日头条技术架构分析</a><br><a href="https://mp.weixin.qq.com/s/lj7l687k50HE8vTfwZOT3w" target="_blank" rel="noopener">服务端如何防止订单重复支付！</a><br><a href="https://mp.weixin.qq.com/s/HnAfn3yM7uo5Vnego94AcA" target="_blank" rel="noopener">短信验证码的登录流程</a><br><a href="https://mp.weixin.qq.com/s/36z4UMVH_YUj7vIcA79jag" target="_blank" rel="noopener">手写一个迷你版的 Tomcat 猫</a><br><a href="https://mp.weixin.qq.com/s/93887BFjanrS6EB9fCRnFQ" target="_blank" rel="noopener">Tomcat 架构原理解析到架构设计借鉴</a><br><a href="https://mp.weixin.qq.com/s/YCElKLSQaM-UeB0drGiOYw" target="_blank" rel="noopener">如何保证缓存与数据库的双写一致性？</a><br><a href="https://mp.weixin.qq.com/s/-EErLaPPbO9gItIzefjTuw" target="_blank" rel="noopener">亿级流量高并发场景下，如何保证缓存与数据库的双写一致性？</a><br><a href="https://mp.weixin.qq.com/s/i5Zp6nd0beCOHPEZUpmMNg" target="_blank" rel="noopener">微信和淘宝扫码登录背后的实现原理</a></p>
+<h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><ul>
+<li><a href="http://c.biancheng.net/view/4497.html" target="_blank" rel="noopener">Spring体系</a></li>
+<li><a href="https://thinkingcao.blog.csdn.net/category_9281035_4.html" target="_blank" rel="noopener">收费博客:SpringBoot2.x架构教程</a><br><a href="https://mp.weixin.qq.com/s/9DuadYAsY_xJwOZEPR9aLQ" target="_blank" rel="noopener">Java 反射：框架设计的灵魂</a></li>
+</ul>
+<h4 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h4><p><a href="https://mp.weixin.qq.com/s/n3SMe7co5S2cVlfefx1m4A" target="_blank" rel="noopener">Spring 常犯的十大错误，打死都不要犯！</a><br><a href="https://mp.weixin.qq.com/s/cKgoSqIk97M1M9Q-gBOLBw" target="_blank" rel="noopener">手写一个 web 服务器！</a><br><a href="https://mp.weixin.qq.com/s/jjJcPRDpkbQ8XDOWpE4Tvg" target="_blank" rel="noopener">Spring 的核心思想，总结得非常好！</a></p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/gbNQHXENUV1_h5a9nvS1Hg" target="_blank" rel="noopener">面试官：给我说一下 Spring MVC 拦截器的原理？</a></li>
+<li><a href="https://mp.weixin.qq.com/s/cSTX_BnpuPowHpEqpKh98w" target="_blank" rel="noopener">面试官：你分析过 Spring MVC 源码吗？不会就算了~</a><br><a href="https://mp.weixin.qq.com/s/Njc91B8EOGOMg_d0x0Ybsw" target="_blank" rel="noopener">浅谈 SpringMVC 执行过程</a><h4 id="AOP-IOC"><a href="#AOP-IOC" class="headerlink" title="AOP/IOC"></a>AOP/IOC</h4><a href="https://mp.weixin.qq.com/s/nVhBrBO4cWUYo25DrXYlgA" target="_blank" rel="noopener">徒手撸一个简单的 Spring IOC</a><br><a href="https://mp.weixin.qq.com/s/zQGnvBZcKPxxbkaGAfbyPw" target="_blank" rel="noopener">面试系列 - Spring和Spring IOC总结（一）</a><br><a href="https://mp.weixin.qq.com/s/XJiyLFXoBK3OyNvQmJwPPg" target="_blank" rel="noopener">听说 Spring AOP 有坑？那就来踩一踩</a><br><a href="https://mp.weixin.qq.com/s/mbZ9RJKpGqfDTAVU-p7kaQ" target="_blank" rel="noopener">Spring 如何实现 AOP，请不要再说 cglib 了！</a><br><a href="https://mp.weixin.qq.com/s/Sqf5TYwQ859byq9eu0znCA" target="_blank" rel="noopener">9,000+ 字，彻底征服 Spring AOP！</a></li>
+</ul>
+<h4 id="bean"><a href="#bean" class="headerlink" title="bean"></a>bean</h4><p><a href="https://mp.weixin.qq.com/s/B2qYiI51HSwvw7mA6FZ7rg" target="_blank" rel="noopener">一文搞定 Spring Bean 的创建全过程！</a><br><a href="https://mp.weixin.qq.com/s/eYqsvEvwBsnmgDlKVGLLLg" target="_blank" rel="noopener">Spring的Bean生命周期，11 张高清流程图及代码，深度解析</a><br><a href="https://mp.weixin.qq.com/s/yk0SmHljpmuVKSRKJVzf6w" target="_blank" rel="noopener">Spring 事务用法示例与实现原理</a><br><a href="https://www.jb51.net/article/125846.htm" target="_blank" rel="noopener">详解Spring 中如何控制2个bean中的初始化顺序</a><br><a href="https://www.cnblogs.com/moxiaotao/p/9353776.html" target="_blank" rel="noopener">web.xml中监听器如何顺序加载</a><br><a href="https://blog.csdn.net/neweastsun/article/details/78775371" target="_blank" rel="noopener">使用Spring @DependsOn控制bean加载顺序</a><br><a href="http://c.biancheng.net/view/4271.html" target="_blank" rel="noopener">Spring CGLlB动态代理（附带实例）</a><br><a href="https://www.pianshen.com/article/15631453341/" target="_blank" rel="noopener">springboot改变bean的加载顺序【提供两种有效的方法】</a><br><a href="https://blog.csdn.net/yu_kang/article/details/88530016" target="_blank" rel="noopener">CGLIB动态代理源码分析</a></p>
+<h4 id="基础-1"><a href="#基础-1" class="headerlink" title="基础"></a>基础</h4><p><a href="https://mp.weixin.qq.com/s/W4mxZrztMk57j31C_tjaxA" target="_blank" rel="noopener">面试官问：知道DDoS攻击吗？大概讲讲它的原理</a><br><a href="https://mp.weixin.qq.com/s/bRo7ypLsuSI4_5ck1VSYaQ" target="_blank" rel="noopener">13 张图解 Java 中的内存模型，快上车！</a><br><a href="https://mp.weixin.qq.com/s/HavvuyCLi_QZy5V-jr_Syw" target="_blank" rel="noopener">Java内存模型与指令重排</a><br><a href="https://mp.weixin.qq.com/s/xfixkZRCuPKlcEwsAdlU6Q" target="_blank" rel="noopener">宝贝，来，讲讲 Spring 事务有哪些坑?</a><br><a href="https://mp.weixin.qq.com/s/fuqQTnCU80QsCnP_-g5dYQ" target="_blank" rel="noopener">面试官问：为什么 Java 线程没有Running状态？我懵了</a><br><a href="https://mp.weixin.qq.com/s/WWLtxxox5Oz2N6yykuC34w" target="_blank" rel="noopener">突然就懵了！面试官问我：线程池中多余的线程是如何回收的？</a><br><a href="https://mp.weixin.qq.com/s/JJ7lojbCGG0Da_QGAH1Cjg" target="_blank" rel="noopener">看完这篇还不懂高并发中的线程与线程池，你来打我（20张图深度剖析）)</a><br><a href="https://mp.weixin.qq.com/s/_iVBP84X1KRcUkumqyk38Q" target="_blank" rel="noopener">一款直击痛点的优秀 HTTP 框架，让我超高效率完成了和第三方接口的对接</a><br><a href="https://mp.weixin.qq.com/s/tN5xPnuZhKnL2j74fu2zfw" target="_blank" rel="noopener">恕我直言，HttpClient 你不一定会用</a><br><a href="https://mp.weixin.qq.com/s/aauYOG4zOh2xzUJjgAdC2g" target="_blank" rel="noopener">踩坑了，JDK8中HashMap依然会产生死循环问题！</a><br><a href="https://mp.weixin.qq.com/s/wjGbXhOGtG_kB8vZm-ZJkQ" target="_blank" rel="noopener">JAVA并发十二连招，你能接住吗？</a><br><a href="https://mp.weixin.qq.com/s/7lvU8gp1rE2Ijw9n9w2MJQ" target="_blank" rel="noopener">新一代垃圾回收器ZGC的探索与实践</a></p>
+<h3 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h3><p><a href="https://mp.weixin.qq.com/s/yTy2GOOctMh6-MvrARmacw" target="_blank" rel="noopener">保姆级教程，手把手教你实现一个SpringBoot的starter</a><br><a href="https://mp.weixin.qq.com/s/i_83OM4cVlgysKIvlCBhhA" target="_blank" rel="noopener">“RPC 好，还是 RESTful 好？” 不要选错了！</a><br><a href="https://www.cnblogs.com/rickiyang/p/12153070.html" target="_blank" rel="noopener">微服务全流程分析</a><br><a href="https://mp.weixin.qq.com/s/2OgPEolWy2QePUudRsgJYA" target="_blank" rel="noopener">从 0 开始手写一个 RPC 框架，轻松搞定</a><br><a href="https://mp.weixin.qq.com/s/gbSW3X3J1trs-5pKSBk2YQ" target="_blank" rel="noopener">SpringBoot注解大全，收藏一波！！！</a><br><a href="https://mp.weixin.qq.com/s/XN49x4PUHz-1ZekrzE_POA" target="_blank" rel="noopener">Spring Validation最佳实践及实现原理</a><br><a href="https://mp.weixin.qq.com/s/tXm4GqUPyhkFHJeAMKmiqw" target="_blank" rel="noopener">SpringBoot 启动时让方法自动执行的几种实现方式</a><br><a href="https://mp.weixin.qq.com/s/375N5X89t6DasUflvvLOxQ" target="_blank" rel="noopener">五分钟说清楚 Spring Boot的自动配置原理~超级干的货！</a><br><a href="https://mp.weixin.qq.com/s/UcTyEwYmWPQfv-Qdpjn-kg" target="_blank" rel="noopener">Spring Boot 启动扩展点超详细总结，再也不怕面试官问了！</a><br><a href="https://mp.weixin.qq.com/s/Oitl9Hed10y_FCS2nbW6TA" target="_blank" rel="noopener">Spring Boot 异步请求和异步调用，一文搞定！</a><br><a href="https://mp.weixin.qq.com/s/9YDLIcF7J6pQ91o-lipL6w" target="_blank" rel="noopener">深入理解 SpringBoot 启动机制（starter 机制）</a><br><a href="https://mp.weixin.qq.com/s/44n9wqRnRP7ot85K3Taaeg" target="_blank" rel="noopener">Spring 自定义注解从入门到精通</a><br><a href="https://mp.weixin.qq.com/s/PTaKbJdTBVoJ3jHf2fdd-Q" target="_blank" rel="noopener">为什么阿里规定需要在事务注解 @Transactional 中指定 rollbackFor？</a><br><a href="https://mp.weixin.qq.com/s/044UVaCinUdGbof-SI-3XA" target="_blank" rel="noopener">TCP 协议面试灵魂10问，建议收藏~</a><br><a href="https://mp.weixin.qq.com/s/RIIICQczcrWUdqR1iV40vA" target="_blank" rel="noopener">Spring Boot 优雅停止服务的几种方法</a></p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/PaBz1ggS7aPdvlzaOYc5_A" target="_blank" rel="noopener">springboot面试杀手锏-自动配置原理</a><br><a href="https://mp.weixin.qq.com/s/BAx6NnACNV68hBzekY2aCA" target="_blank" rel="noopener">Spring Boot 无侵入式 实现 API 接口统一 JSON 格式返回</a><br><a href="https://mp.weixin.qq.com/s/0jjB-ZC3p3cV3uIW0ymRBw" target="_blank" rel="noopener">Spring Boot 配置文件放在 jar 外部</a></li>
+</ul>
+<h4 id="注解原理"><a href="#注解原理" class="headerlink" title="注解原理"></a>注解原理</h4><p><a href="https://mp.weixin.qq.com/s/vfe51ZOW2h8HRXtfL6sEYQ" target="_blank" rel="noopener">Spring Boot 中 @EnableXXX 注解的驱动逻辑</a></p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/_qkYwMEj0hMvAUBqD7pcDQ" target="_blank" rel="noopener">@Component，@Service 等注解是如何被解析的</a><br><a href="https://mp.weixin.qq.com/s/eRzW-yzu45bcKJKejCw8HQ" target="_blank" rel="noopener">SpringBoot @Value 读取配置，太强大了！</a><br><a href="https://www.cnblogs.com/wl20200316/p/12579982.html" target="_blank" rel="noopener">spring中@Configuration注解的作用</a><br><a href="https://mp.weixin.qq.com/s/6wAD7fN1hUjQR-0twvvaTw" target="_blank" rel="noopener">Spring Boot 最最最常用的注解梳理</a></li>
+</ul>
+<h3 id="Spring-Cloud"><a href="#Spring-Cloud" class="headerlink" title="Spring Cloud"></a>Spring Cloud</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s/_uEYIJUnaj59g2xJRrbbrg" target="_blank" rel="noopener">徒手撸了一个RPC框架，理解更透彻了，代码已上传github，自取~</a><br><a href="https://mp.weixin.qq.com/s/4Vv3JinskK3nXS_wxpon4Q" target="_blank" rel="noopener">从零搭建 Spring Cloud 服务（超级详细）</a><br><a href="https://mp.weixin.qq.com/s/vbM3knP15LPrMD6eIOKm3A" target="_blank" rel="noopener">微服务架构最强讲解，那叫一个通俗易懂！</a><br><a href="https://mp.weixin.qq.com/s/dU8a_hjQ9QsEaHEugBBsvg" target="_blank" rel="noopener">这 12 张手绘图，让我彻底搞懂了微服务架构！</a><br><a href="https://mp.weixin.qq.com/s/UHUQwiqYqyNjlHjN2jbqAg" target="_blank" rel="noopener">19张图带你梳理SpringCloud体系中的重要技术点！</a><br><a href="https://mp.weixin.qq.com/s/NVKtxuud2ARFw5S89ty35w" target="_blank" rel="noopener">10分钟说透Saga分布式事务</a><br><a href="https://mp.weixin.qq.com/s/MTk6WF161Ob8sBdpnboFgg" target="_blank" rel="noopener">40张图看懂分布式追踪系统原理及实践</a><br><a href="https://mp.weixin.qq.com/s/T_XaGbDzKmwFSXSyeFo__g" target="_blank" rel="noopener">谈谈几个 Spring Cloud 常见面试题及答案</a><br><a href="https://mp.weixin.qq.com/s/3LK8vcvIdkBw7eXDBReygw" target="_blank" rel="noopener">分布式 Session 解决方案</a><br><a href="https://mp.weixin.qq.com/s/6YlBB7RRwftT3b4ypTuvoQ" target="_blank" rel="noopener">花一个周末，掌握 SpringCloud Ribbon 负载均衡原理</a><br><a href="https://mp.weixin.qq.com/s/JypXG4arZVRvgf6tzAl3nw" target="_blank" rel="noopener">芋道 Spring Cloud Alibaba 介绍</a><br><a href="https://www.cnblogs.com/rickiyang/category/1583046.html" target="_blank" rel="noopener">Spring Cloud 大全学习</a><br><a href="https://mp.weixin.qq.com/s/T_XaGbDzKmwFSXSyeFo__g" target="_blank" rel="noopener">谈谈几个 Spring Cloud 常见面试题及答案</a><br><a href="https://mp.weixin.qq.com/s/sV8ytiuYQq1HYUCSuogkow" target="_blank" rel="noopener">喜马拉雅自研 API 网关架构实践</a><br><a href="https://mp.weixin.qq.com/s/eOWCgNGHsRIJplVLK3MOMA" target="_blank" rel="noopener">RPC 实现以及相关学习</a><br><a href="https://mp.weixin.qq.com/s/wMTFQmQste0DwHR8FDgR1g" target="_blank" rel="noopener">【性能优化之道】每秒上万并发下的Spring Cloud参数优化实战</a><br><a href="https://mp.weixin.qq.com/s/krC3CWbmidxVtTnT3Kb9Jw" target="_blank" rel="noopener">我们公司使用了 6 年的分布式锁，很是牛逼啊！</a><br><a href="https://mp.weixin.qq.com/s/7QcqATv5neKmwrCvgTYVLg" target="_blank" rel="noopener">Java 分布式 RPC 框架性能大比拼，Dubbo 排第几？</a><br><a href="https://mp.weixin.qq.com/s/JPBavLP6ZPcfOktVM8RnsA" target="_blank" rel="noopener">微服务面试必问的Dubbo，这么详细还怕自己找不到工作？</a><br><a href="https://mp.weixin.qq.com/s/-avqw6F1MjWM0NirRdeeTQ" target="_blank" rel="noopener">史上最便捷搭建 Zookeeper 的方法！</a><br><a href="https://mp.weixin.qq.com/s/_gFtOqKbT7xQuoMB6m9apg" target="_blank" rel="noopener">ZooKeeper 不行了？居然被 Kafka 抛弃了！</a><br><a href="https://mp.weixin.qq.com/s/c9jipQbUhFbGbwFK3L-QSA" target="_blank" rel="noopener">6 种常见分布式唯一ID生成策略及它们的优缺点对比</a><br><a href="https://mp.weixin.qq.com/s/bqx_zc24DyoxupjnsiSsPw" target="_blank" rel="noopener">七种分布式事务的解决方案，一次讲给你听！</a></li>
+</ul>
+<h4 id="网关"><a href="#网关" class="headerlink" title="网关"></a>网关</h4><p><a href="https://mp.weixin.qq.com/s/E5DtyIkTVZ6rdNTexKoH5A" target="_blank" rel="noopener">一文带你 API 网关从入门到放弃</a><br><a href="https://mp.weixin.qq.com/s/V0RqE-yzoVFI2ij_bZXUIQ" target="_blank" rel="noopener">全网最详细的一篇 SpringCloud 总结</a><br><a href="https://mp.weixin.qq.com/s/FG4Vik6cHhIFatxkiL8sjQ" target="_blank" rel="noopener">关于Spring Cloud Zuul 那些“不能说的秘密”！</a><br><a href="https://mp.weixin.qq.com/s/Ai0nwDmDzv7qMkDE7HuLBg" target="_blank" rel="noopener">后端接口如何提高性能？从 MySQL、ES、HBASE 等技术一起探讨下！</a><br><a href="https://mp.weixin.qq.com/s/VvUHcFsiV0kqsSZQeVBjZg" target="_blank" rel="noopener">为什么微服务一定要有 API 网关？</a><br><a href="https://mp.weixin.qq.com/s/uE6kRWpY3s6fqPaCv_toPw" target="_blank" rel="noopener">阿里终面：如何设计一个高性能网关？</a></p>
+<h4 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h4><p><a href="https://mp.weixin.qq.com/s/232V3xHuUZlkHt-nIFVKhg" target="_blank" rel="noopener">对于注册中心，ZooKeeper、Eureka 哪个更合适？</a><br><a href="https://mp.weixin.qq.com/s/jTvE_u3_YDuN4Vxs4C2AVA" target="_blank" rel="noopener">为啥这么多公司用 ZooKeeper？它到底解决了什么问题？</a><br><a href="https://mp.weixin.qq.com/s/VmbQNoG7WH--9_akn1DZXQ" target="_blank" rel="noopener">用大白话给你解释Zookeeper的选举机制</a><br>[推荐<a href="https://mp.weixin.qq.com/s/I7KJeudEk1KX2LORybnNzg" target="_blank" rel="noopener">史上最便捷搭建Zookeeper服务器的方法</a><br><a href="https://mp.weixin.qq.com/s/BAZiyIAnUOty2-BdV7GE7g" target="_blank" rel="noopener">面试官问：ZooKeeper是强一致的吗？怎么实现的？</a><br><a href="https://mp.weixin.qq.com/s/u-V_ymZoCUlmfzYYJdGsVg" target="_blank" rel="noopener">阿里巴巴为什么不用 ZooKeeper 做服务发现？</a><br><a href="https://mp.weixin.qq.com/s/g32pNdRyaG0fnwoByEAiXA" target="_blank" rel="noopener">双11狂欢的背后：微服务注册中心如何承载大型系统的千万级访问？？</a></p>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="MySQL原理"><a href="#MySQL原理" class="headerlink" title="MySQL原理"></a>MySQL原理</h3><p><a href="https://www.cnblogs.com/rickiyang/p/13473854.html" target="_blank" rel="noopener">MYSQL 整体架构浅析</a><br><a href="https://mp.weixin.qq.com/s/lE7FRvjVYS21EEeavoH8Tg" target="_blank" rel="noopener">3天，把MySQL索引、事务、分库分表撸干净了！</a><br><a href="https://blog.csdn.net/qq_41999455/article/details/106161484" target="_blank" rel="noopener">MySQL事务实现原理之Redo Log</a><br><a href="https://www.cnblogs.com/rickiyang/p/13704868.html" target="_blank" rel="noopener">分布式事务</a><br><a href="https://mp.weixin.qq.com/s/eYpqXpxjO7-svdlpxC8JYQ" target="_blank" rel="noopener">MySQL 用得好好的，为什么要转 Elasticsearch?</a><br><a href="https://mp.weixin.qq.com/s/AbiYMbDUJsMWK-_g0mFNwg" target="_blank" rel="noopener">面试官：能说一说Mysql缓存池吗？</a><br><a href="https://mp.weixin.qq.com/s/JuHelQ1kXsXcQfJviPuwlA" target="_blank" rel="noopener">头条二面：你们公司怎么处理 MySQL 的 Binlog 日志？</a><br><a href="https://mp.weixin.qq.com/s/AgQeeqYdevlgy_bdbByAhg" target="_blank" rel="noopener">MySQL分页场景（limit,offset）为什么会慢？</a><br><a href="https://mp.weixin.qq.com/s/HH_8Go3hWTnHqdtXS0g92Q" target="_blank" rel="noopener">事务注解 @Transactional 失效的3种场景及解决办法</a><br><a href="https://mp.weixin.qq.com/s/PRkye2jozxn1bfojJ-IhMw" target="_blank" rel="noopener">Mybatis 框架下 SQL 注入攻击的 3 种方式，真是防不胜防！</a></p>
+<h3 id="读写分离主从同步"><a href="#读写分离主从同步" class="headerlink" title="读写分离主从同步"></a>读写分离主从同步</h3><p><a href="https://mp.weixin.qq.com/s/0ORvPNFErpY3YBw_8PdysQ" target="_blank" rel="noopener">MySQL 与 Redis 缓存的同步方案</a><br><a href="https://mp.weixin.qq.com/s/C_6uAARwe8zG7pStEqxpfA" target="_blank" rel="noopener">面试官: 为什么在系统中不推荐双写?</a><br><a href="https://www.cnblogs.com/rickiyang/p/13856388.html" target="_blank" rel="noopener">MySQL 主从复制原理不再难</a><br><a href="https://mp.weixin.qq.com/s/rHp0-IjHmHTkNtmxhIupXg" target="_blank" rel="noopener">MySQL读写分离：如何解决写完读不到问题</a><br><a href="https://mp.weixin.qq.com/s/NwcX2Mamaoh7menT8L2j-A" target="_blank" rel="noopener">MySQL 的 Binlog 日志处理工具（Canal，Maxwell，Databus，DTS）对比</a></p>
+<h3 id="数据库分库分表"><a href="#数据库分库分表" class="headerlink" title="数据库分库分表"></a>数据库分库分表</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s/79opEOVqODjOIIFnMBylog" target="_blank" rel="noopener">一文读懂分库分表的技术演进（最佳实践）</a><br><a href="https://mp.weixin.qq.com/s/RAS5Jv59DWGioV5zdZnamA" target="_blank" rel="noopener">MySQL 常用分库分表方案，都在这里了！</a><br><a href="https://mp.weixin.qq.com/s/56DQk-cHBYdrne5pwbU3hg" target="_blank" rel="noopener">MySQL 大表优化方案</a><br><a href="https://mp.weixin.qq.com/s/GbhOywDZl1SJtwmP3NDXzQ" target="_blank" rel="noopener">数据量大了一定要分表，分库分表 Sharding-JDBC 入门与项目实战</a><br><a href="https://mp.weixin.qq.com/s/LsiYnaKZTnyXIpM55iGVTg" target="_blank" rel="noopener">数据库常用架构方案</a><br><a href="https://mp.weixin.qq.com/s/dYUGA0wLfn-GbWrMKRKAAQ" target="_blank" rel="noopener">数据库链接池终于搞对了，这次直接从100ms优化到3ms！</a><br><a href="https://mp.weixin.qq.com/s/TnUIv69XShpQsHrsCpRz6g" target="_blank" rel="noopener">数据持久化框架为什么放弃 Hibernate、JPA、Mybatis，最终选择 JDBCTemplate！</a><br><a href="https://mp.weixin.qq.com/s/DKe2vPjO0B4YKGoX-Ixv7g" target="_blank" rel="noopener">老大又批评我不要为了“分库分表”而“分库分表”</a><br><a href="https://mp.weixin.qq.com/s/wpzfIxixiAmDXEYuxLoZGQ" target="_blank" rel="noopener">ShardingJdbc分库分表实战案例解析（下）</a><br><a href="https://mp.weixin.qq.com/s/oZEkECeBl1zw8eOApH1Vqg" target="_blank" rel="noopener">这四种情况下，才是考虑分库分表的时候！</a></li>
+</ul>
+<h3 id="数据源切换问题"><a href="#数据源切换问题" class="headerlink" title="数据源切换问题"></a>数据源切换问题</h3><p><a href="https://mp.weixin.qq.com/s/oYJxWb6LJd-Nf_Gj9Lx_dA" target="_blank" rel="noopener">Spring Boot + Mybatis 配合 AOP 和注解实现动态数据源切换配置</a></p>
+<h3 id="sql优化"><a href="#sql优化" class="headerlink" title="sql优化"></a>sql优化</h3><p><a href="https://mp.weixin.qq.com/s/32psjtpLXFSaq6JsQEsL3w" target="_blank" rel="noopener">本以为用的 MyBatis 框架就万无一失了，没想到还是被黑客注入了，我真的无语了！</a><br><a href="https://blog.csdn.net/li_jian_hui_/article/details/105801454" target="_blank" rel="noopener">一分钟让你搞明白 left join、right join和join的区别</a><br><a href="https://mp.weixin.qq.com/s/yaJnDXbz4uqKlc1iK95gXQ" target="_blank" rel="noopener">一次非常有意思的 SQL 优化经历：从 30248.271s 到 0.001s</a><br><a href="https://mp.weixin.qq.com/s/tabXz_-vsoeVzqZz-gOVyA" target="_blank" rel="noopener">MySQL 唯一索引为什么会导致死锁？</a><br><a href="https://blog.csdn.net/asdfsadfasdfsa/article/details/83030011" target="_blank" rel="noopener">insert into … select 由于SELECT表引起的死锁情况分析</a><br><a href="https://mp.weixin.qq.com/s/7vtyhs0qf3rltiU9bEy5tw" target="_blank" rel="noopener">求求你别再用offset和limit分页了</a><br><a href="https://mp.weixin.qq.com/s/L6dLOLmEoYzmd34-Qpp4xA" target="_blank" rel="noopener">面试官：数据量很大，分页查询很慢，有什么优化方案？</a><br><a href="https://mp.weixin.qq.com/s/JtHf0AEr7BmapGFFd1tegQ" target="_blank" rel="noopener">10张图告诉你，MySQL 是如何查找数据的？</a><br><a href="https://mp.weixin.qq.com/s/Oc70q4hMp7JaN309SiF7BA" target="_blank" rel="noopener">一次 SQL 查询优化原理分析（900W+ 数据，从 17s 到 300ms）</a><br><a href="https://mp.weixin.qq.com/s/zQaOVYCNcZKUlZ2UILPb5g" target="_blank" rel="noopener">SQL 中的 in 与 not in、exists 与 not exists 的区别以及性能分析</a><br><a href="https://mp.weixin.qq.com/s/A_-n_05Q4HrF9mtekuTgvg" target="_blank" rel="noopener">索引失效的场景有哪些？索引何时会失效？</a><br><a href="https://mp.weixin.qq.com/s/14yjEL5LrHKbD-YrnHW7Mw" target="_blank" rel="noopener">一入职！就遇到上亿(MySQL)大表的优化。。。</a><br><a href="https://mp.weixin.qq.com/s/r45Zozse4whon4cp2OaFbQ" target="_blank" rel="noopener">为什么 MySQL 不推荐使用 join？</a><br><a href="https://mp.weixin.qq.com/s/Pm5Yf1y7xtd9iNiLXkrm0A" target="_blank" rel="noopener">干 MySQL 两千万数据的大表优化解决过程，三种厉害的解决方案</a><br><a href="https://mp.weixin.qq.com/s/CW4fW4DedbBcfhCXXUqzrQ" target="_blank" rel="noopener">MySQL 百万级数据量分页查询方法及其优化</a><br><a href="https://mp.weixin.qq.com/s/czrpzXigkoF0b9aZeAid4A" target="_blank" rel="noopener">MyBatis 动态 SQL（认真看看， 以后写 SQL 就爽多了）</a><br><a href="https://mp.weixin.qq.com/s/vOM62dVGAko71yx2SY48-w" target="_blank" rel="noopener">面试官：你知道select语句和update语句分别是怎么执行的吗？</a><br><a href="https://mp.weixin.qq.com/s/w1rMnAaY3PnIqSzgTH1kzQ" target="_blank" rel="noopener">CTO 说了，如果发现谁用 SELECT * 查询直接开除</a><br><a href="https://mp.weixin.qq.com/s/YGiTMS9wzQD74p11tpvsaQ" target="_blank" rel="noopener">SQL 语句中 left join 后用 on 还是 where，区别大了！</a><br><a href="https://mp.weixin.qq.com/s/YPsV9Qj0jJvsGJOo-pHLdw" target="_blank" rel="noopener">场景+案例分析，SQL优化这么做就对了！</a><br><a href="https://mp.weixin.qq.com/s/V8jnLPMVBvXmCgs3DPa6Eg" target="_blank" rel="noopener">15000 字的 SQL 语句大全</a><br><a href="https://mp.weixin.qq.com/s/4YxKK6JWUYutJ_VEQBq_eA" target="_blank" rel="noopener">52 条 SQL 语句性能优化策略，建议收藏！</a></p>
+<h2 id="No-sql-非关系型"><a href="#No-sql-非关系型" class="headerlink" title="No sql(非关系型)"></a>No sql(非关系型)</h2><h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p><a href="https://mp.weixin.qq.com/s/ij67XYJgYK2kYrAlSDz3sw" target="_blank" rel="noopener">彻底理解 Redis 的持久化机制：RDB和AOF</a><br><a href="https://mp.weixin.qq.com/s/SO3S2UZaomYwVA43sYzJpw" target="_blank" rel="noopener">面试官：缓存一致性问题怎么解决</a><br><a href="https://mp.weixin.qq.com/s/c-gPA_UIAqAKkGDGaDqZBQ" target="_blank" rel="noopener">缓存届霸主，Redis 不得不说的秘密</a><br><a href="https://mp.weixin.qq.com/s/trXretFRbFdf5UKYqvGLrw" target="_blank" rel="noopener">瞬间几千次的重复提交，我用 Spring Boot + Redis 扛住了！</a><br><a href="https://mp.weixin.qq.com/s/Q2KyFZu1J9E1U-mfSUSx8g" target="_blank" rel="noopener">如何设计缓存系统：缓存穿透，缓存击穿，缓存雪崩解决方案分析</a><br><a href="https://mp.weixin.qq.com/s/e1NH3-CPUlFqkIbLwcoslA" target="_blank" rel="noopener">总结一波 Redis 面试题，收藏起来。</a><br><a href="https://mp.weixin.qq.com/s/msljR2ocm9xu1Lnh0OfMDg" target="_blank" rel="noopener">每次面试都要被问：为什么采用单线程的 Redis 也会如此之快？</a><br><a href="https://mp.weixin.qq.com/s/6II3GLBXauwg_anvLx8Y3w" target="_blank" rel="noopener">最强 Java Redis 客户端</a><br><a href="https://mp.weixin.qq.com/s/5ZomglVZQHzUxPYhuGvYkQ" target="_blank" rel="noopener">Redis 从入门到放弃</a><br><a href="https://mp.weixin.qq.com/s/l3sidMQ1VIY9Axzk_PogXw" target="_blank" rel="noopener">Redis 如何存储上亿级别的用户状态？</a><br><a href="https://mp.weixin.qq.com/s/eKqHJxqP7jsWbrPE0LwCKQ" target="_blank" rel="noopener">首长，Redis 性能优化十三条军规立好了，请过目~</a><br><a href="https://mp.weixin.qq.com/s/GWZsALj_HoN7G9AT6_epxQ" target="_blank" rel="noopener">推荐一款神仙颜值的 Redis 客户端工具</a><br><a href="https://mp.weixin.qq.com/s/5wAp844dUrV5djCcJzZipg" target="_blank" rel="noopener">Redis 由浅入深深深深深剖析</a><br><a href="https://mp.weixin.qq.com/s/y8opuVeQzhQ3Oh8ZcnKcCw" target="_blank" rel="noopener">Spring Boot 监听 Redis Key 失效事件实现定时任务</a><br><a href="https://mp.weixin.qq.com/s/NbX47nCOGIPQ0NnTuwX9cg" target="_blank" rel="noopener">Redis 分布式锁使用不当，酿成一个重大事故，超卖了 100 瓶飞天茅台！！！</a></p>
+<h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><p><a href="https://mp.weixin.qq.com/s/7CdwkSOIMZNw0vnwtXgXIA" target="_blank" rel="noopener">恕我直言，牛逼哄哄的MongoDB你可能只会30%</a></p>
+<h3 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h3><h2 id="线上优化与排查问题"><a href="#线上优化与排查问题" class="headerlink" title="线上优化与排查问题"></a>线上优化与排查问题</h2><p><a href="https://mp.weixin.qq.com/s/VRlxeclAbMdCkYJ_iJLCXg" target="_blank" rel="noopener">一次 Java 内存泄漏排查过程，学习学习</a><br><a href="https://mp.weixin.qq.com/s/MmEn18aunDASfCyOep25Qg" target="_blank" rel="noopener">线上服务 CPU 100%？一键定位 so easy！</a><br><a href="https://mp.weixin.qq.com/s/BN7kFFE0AWIec7j-yTGhZA" target="_blank" rel="noopener">推荐一款神器，助你秒级定位线上问题！</a><br><a href="https://mp.weixin.qq.com/s/mbiVH-GYjvouu-fPH4Vnog" target="_blank" rel="noopener">JVM GC 耗时频频升高，这次排查完想说：还有谁？</a><br><a href="https://mp.weixin.qq.com/s/3uaIsDWrMmK0zXX946mJBg" target="_blank" rel="noopener">一次简单的 JVM 调优，性能提升了15%</a><br><a href="https://mp.weixin.qq.com/s/4f7k-SC5bsQ3lhaRMWAJPw" target="_blank" rel="noopener">惊呆了，Spring Boot居然这么耗内存！</a><br><a href="https://mp.weixin.qq.com/s/xB5jXai6d-ggTu9U3Lyq1g" target="_blank" rel="noopener">JAVA 线上故障排查完整套路，从 CPU、磁盘、内存、网络、GC 一条龙！</a><br><a href="https://mp.weixin.qq.com/s/HGnylGNsmnc6FslDGrc2Mw" target="_blank" rel="noopener">一整套线上故障排查技巧，爱了！</a><br><a href="https://mp.weixin.qq.com/s/23feuvCFJHfs6x_aJ2c3dg" target="_blank" rel="noopener">记一次订单号重复的事故，快看看你的 uuid 在并发下还正确吗？</a></p>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><p><a href="https://mp.weixin.qq.com/s/P0u-q-d_nrTQbgXm4o0y8g" target="_blank" rel="noopener">Http 持久连接与 HttpClient 连接池，有哪些不为人知的关系？</a><br><a href="https://mp.weixin.qq.com/s/b7ODGzAQdHY-JhBo8-V-vg" target="_blank" rel="noopener">最精美详尽的 HTTPS 原理图</a><br><a href="https://mp.weixin.qq.com/s/1Y4eEckZedjiH1cq0Z66XQ" target="_blank" rel="noopener">跨域问题</a><br><a href="https://blog.csdn.net/weixin_34237596/article/details/88685505" target="_blank" rel="noopener">前后端分离中的无痛刷新token机制</a><br><a href="https://mp.weixin.qq.com/s/uuSM0OERqeeADsodPlrLWA" target="_blank" rel="noopener">单点登录原理与简单实现</a><br><a href="https://mp.weixin.qq.com/s/i1CpctXmb2Nh2j9qBIYRdw" target="_blank" rel="noopener">Spring Boot 解决跨域问题的 3 种方案！</a><br><a href="https://www.cnblogs.com/zhuochong/p/10412755.html" target="_blank" rel="noopener">抓包工具Wireshark/Charles</a><br><a href="https://mp.weixin.qq.com/s/2V-DQoFWpA4N5mP4ZIOmYg" target="_blank" rel="noopener">Spring Boot + Vue 如此强大？竟然可以开发基于 C/S 架构的应用</a><br><a href="https://mp.weixin.qq.com/s/HzUwYQyvOJpIZue2OaBuzw" target="_blank" rel="noopener">基于 token 的多平台身份认证架构设计</a><br><a href="https://mp.weixin.qq.com/s/UVmVBGggsaiuFH-WEtSRkg" target="_blank" rel="noopener">JSON Web 令牌（JWT）是如何保护 API 的？？</a><br><a href="https://mp.weixin.qq.com/s/5dQKXOT9lTbDxNrQGNzW9A" target="_blank" rel="noopener">JWT、JWE、JWS 、JWK 到底是什么？该用 JWT 还是 JWS？</a><br><a href="https://mp.weixin.qq.com/s/zwm_OcoyIlaIVEcYvg-VDg" target="_blank" rel="noopener">为什么要放弃 JSP ？</a><br><a href="https://mp.weixin.qq.com/s/zAyYIs5d3f4p0-jsU6QmVQ" target="_blank" rel="noopener">还分不清 Cookie、Session、Token、JWT？</a><br><a href="https://mp.weixin.qq.com/s/vrnUdffl95Gv0pLRcvrjlA" target="_blank" rel="noopener">SpringSecurity + JWT，从入门到精通！</a><br><a href="https://mp.weixin.qq.com/s/BqwHFbyb-ShlYelUw2x6sA" target="_blank" rel="noopener">从前端到后端，Web 安全不仅仅是安全团队的事</a><br><a href="https://mp.weixin.qq.com/s/XZMXhh72m2i-HwtngIbJKQ" target="_blank" rel="noopener">在用安全框架前，我想先让你手撸一个登陆认证</a><br><a href="https://blog.csdn.net/majiabao123/article/details/4152448" target="_blank" rel="noopener">细说HTML元素的ID和Name属性的区别</a><br><a href="https://mp.weixin.qq.com/s/6d_16hfd5Fz8pZvdpO3BEw" target="_blank" rel="noopener">单点登录系统原理与实现，图文并茂，附源码</a><br><a href="https://mp.weixin.qq.com/s/MXIlI_MzLJ4raIzExpEziA" target="_blank" rel="noopener">在 SpringBoot 项目中，Spring Security 和 Shiro 该如何选择？</a><br><a href="https://mp.weixin.qq.com/s/XYSQ_VuH8cY-PQCSDG1dnQ" target="_blank" rel="noopener">面试官：你连 HTTPS 原理没搞懂，还给我讲“中间人攻击”？</a></p>
+<h2 id="工作查询"><a href="#工作查询" class="headerlink" title="工作查询"></a>工作查询</h2><p><a href="https://mp.weixin.qq.com/s/Y5GPjsezLNWzvz7Ke1x4Ew" target="_blank" rel="noopener">Java8日期处理，工作必用！</a><br><a href="https://mp.weixin.qq.com/s/aroL0LoxZfP8EPOuyoSKUw" target="_blank" rel="noopener">搞懂高可用：异地多活，看这篇文章就够了！</a><br><a href="https://mp.weixin.qq.com/s/QGI5iEg991pB83zWGX_iLA" target="_blank" rel="noopener">PowerDesigner 逆向工程，太实用了！</a><br><a href="https://www.processon.com/diagraming/6065a7387d9c0829db67ba74" target="_blank" rel="noopener">Process交互图</a><br><a href="https://blog.csdn.net/wuxing26jiayou/article/details/79730987" target="_blank" rel="noopener">TCP粘包问题分析和解决（全）</a><br><a href="https://mp.weixin.qq.com/s/4PHTxsyiQzrYclDZlz4X1Q" target="_blank" rel="noopener">IDEA中一个被低估的功能，一键把项目代码绘制成UML类图</a></p>
+<h2 id="实用"><a href="#实用" class="headerlink" title="实用"></a>实用</h2><p><a href="https://mp.weixin.qq.com/s/Mw0xo-V9tDvDhATsb13cKQ" target="_blank" rel="noopener">改良的中国投资时钟：周期轮动和大类资产表现</a><br><a href="https://mp.weixin.qq.com/s/mqm2rmVq81pNm7PgQyGhnw" target="_blank" rel="noopener">技术转项目管理常掉的3个大坑，我们找到了填坑的方法！</a><br><a href="https://mp.weixin.qq.com/s/tgGNbiHKcBfmyiKyV3Aj7g" target="_blank" rel="noopener">技术人员想成功转型为项目经理，这两点很关键</a><br><a href="https://www.cnblogs.com/brady-wang/p/8416116.html" target="_blank" rel="noopener">博客打赏</a><br><a href="https://www.cnblogs.com/rickiyang/" target="_blank" rel="noopener">别人博客</a><br><a href="https://www.zhihu.com/people/xue-chuan-da-chong" target="_blank" rel="noopener">别人博客</a><br><a href="https://mp.weixin.qq.com/s/0cL4bfrcr0sAyPn0_q38-A" target="_blank" rel="noopener">从一个工程师到管理员的经验分享</a><br><a href="https://mp.weixin.qq.com/s/fTXavDfs9RNBpqKmKauz2A" target="_blank" rel="noopener">牛市来了？上班盯盘太累？这五个开源项目了解下！</a><br><a href="https://mp.weixin.qq.com/s/V6JDNE8Ds0G6XJDz9GESlQ" target="_blank" rel="noopener">【短视频】Python金融实战者风采展示（吕伽颀）</a><br><a href="https://mp.weixin.qq.com/s/iEmWhyEKVH7oDCzRe_HTiw" target="_blank" rel="noopener">开发经理是否应该写代码？</a><br><a href="https://blog.csdn.net/fuyipingwml1976124/article/details/107031838" target="_blank" rel="noopener">一分钟读懂优秀PM与普通PM的区别</a><br><a href="https://mp.weixin.qq.com/s/wijA1FNK9mqvtQ6W_PO7_w" target="_blank" rel="noopener">Nacos 2.0 正式发布，性能大幅提升 10 倍！</a><br><a href="https://mp.weixin.qq.com/s/-yvx8dklsplCZzBFCK7QDg" target="_blank" rel="noopener">如何使用 Arthas 定位 Spring Boot 接口超时</a></p>
+<h2 id="前端架构"><a href="#前端架构" class="headerlink" title="前端架构"></a>前端架构</h2><p><a href="https://blog.csdn.net/c_kite/article/details/86493178" target="_blank" rel="noopener">Service Worker概念和应用介绍</a><br><a href="https://blog.csdn.net/c_kite/article/details/78389218" target="_blank" rel="noopener">react+webpack+es6详细配置教程</a></p>
+<h2 id="数据库生产表dataGrip"><a href="#数据库生产表dataGrip" class="headerlink" title="数据库生产表dataGrip"></a>数据库生产表dataGrip</h2><ul>
+<li><a href="https://mp.weixin.qq.com/s/UPh0--gqPLQsYJAmARjbyQ" target="_blank" rel="noopener">数据库界的 Swagger，一键自动生成 Java 实体类和数据库文档！不讲武德！</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%88%86%E7%B1%BB/" rel="tag"># (分类)</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/03/13/PluginTool-Git%E6%A0%B8%E5%BF%83%E5%86%85%E5%AE%B9/" rel="next" title="Git核心内容">
+                <i class="fa fa-chevron-left"></i> Git核心内容
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/23/PluginTool-Postman%E4%BD%BF%E7%94%A8/" rel="prev" title="Postman使用">
+                Postman使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="cdongtao" />
+            
+              <p class="site-author-name" itemprop="name">cdongtao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">149</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yourname" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:441623928@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA-Plugin-soft"><span class="nav-number">1.</span> <span class="nav-text">IDEA Plugin soft</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建"><span class="nav-number">2.</span> <span class="nav-text">搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建考虑"><span class="nav-number">2.1.</span> <span class="nav-text">搭建考虑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目结构"><span class="nav-number">2.2.</span> <span class="nav-text">项目结构:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码设计思想"><span class="nav-number">2.3.</span> <span class="nav-text">代码设计思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目应用"><span class="nav-number">2.4.</span> <span class="nav-text">项目应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES"><span class="nav-number">2.5.</span> <span class="nav-text">ES</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES-Kibana"><span class="nav-number">2.6.</span> <span class="nav-text">ES Kibana</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建deops平台"><span class="nav-number">2.7.</span> <span class="nav-text">搭建deops平台</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Jenkins"><span class="nav-number">2.7.1.</span> <span class="nav-text">Jenkins</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx"><span class="nav-number">2.7.2.</span> <span class="nav-text">Nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker"><span class="nav-number">2.7.3.</span> <span class="nav-text">Docker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kubernetes"><span class="nav-number">2.7.4.</span> <span class="nav-text">Kubernetes</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建中央仓库"><span class="nav-number">2.8.</span> <span class="nav-text">搭建中央仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#灰度平台"><span class="nav-number">2.9.</span> <span class="nav-text">灰度平台</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">3.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目准备"><span class="nav-number">4.</span> <span class="nav-text">项目准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分页处理"><span class="nav-number">4.1.</span> <span class="nav-text">分页处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志"><span class="nav-number">4.2.</span> <span class="nav-text">日志</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">5.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mybatis"><span class="nav-number">5.1.</span> <span class="nav-text">Mybatis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-NIO-BIO"><span class="nav-number">5.2.</span> <span class="nav-text">Java NIO&#x2F;BIO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka复习"><span class="nav-number">5.3.</span> <span class="nav-text">Kafka复习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RocketMQ"><span class="nav-number">5.4.</span> <span class="nav-text">RocketMQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对比Mq"><span class="nav-number">5.5.</span> <span class="nav-text">对比Mq</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁类型"><span class="nav-number">5.6.</span> <span class="nav-text">锁类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构"><span class="nav-number">6.</span> <span class="nav-text">架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring"><span class="nav-number">6.1.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MVC"><span class="nav-number">6.1.1.</span> <span class="nav-text">MVC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AOP-IOC"><span class="nav-number">6.1.2.</span> <span class="nav-text">AOP&#x2F;IOC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bean"><span class="nav-number">6.1.3.</span> <span class="nav-text">bean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基础-1"><span class="nav-number">6.1.4.</span> <span class="nav-text">基础</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot"><span class="nav-number">6.2.</span> <span class="nav-text">SpringBoot</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注解原理"><span class="nav-number">6.2.1.</span> <span class="nav-text">注解原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud"><span class="nav-number">6.3.</span> <span class="nav-text">Spring Cloud</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网关"><span class="nav-number">6.3.1.</span> <span class="nav-text">网关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注册中心"><span class="nav-number">6.3.2.</span> <span class="nav-text">注册中心</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">7.</span> <span class="nav-text">MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL原理"><span class="nav-number">7.1.</span> <span class="nav-text">MySQL原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读写分离主从同步"><span class="nav-number">7.2.</span> <span class="nav-text">读写分离主从同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库分库分表"><span class="nav-number">7.3.</span> <span class="nav-text">数据库分库分表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据源切换问题"><span class="nav-number">7.4.</span> <span class="nav-text">数据源切换问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sql优化"><span class="nav-number">7.5.</span> <span class="nav-text">sql优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#No-sql-非关系型"><span class="nav-number">8.</span> <span class="nav-text">No sql(非关系型)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis"><span class="nav-number">8.1.</span> <span class="nav-text">Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB"><span class="nav-number">8.2.</span> <span class="nav-text">MongoDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MemoryCache"><span class="nav-number">8.3.</span> <span class="nav-text">MemoryCache</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线上优化与排查问题"><span class="nav-number">9.</span> <span class="nav-text">线上优化与排查问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web"><span class="nav-number">10.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作查询"><span class="nav-number">11.</span> <span class="nav-text">工作查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实用"><span class="nav-number">12.</span> <span class="nav-text">实用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端架构"><span class="nav-number">13.</span> <span class="nav-text">前端架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库生产表dataGrip"><span class="nav-number">14.</span> <span class="nav-text">数据库生产表dataGrip</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cdongtao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">324k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:54</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uASAKzQTPhuJIplOaklnAaqK-gzGzoHsz',
+        appKey: 'LRW155uTAdoeaAjf9q9D53Ps',
+        placeholder: 'Welcome to comment!',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Linux命令类tail最常用的tail -f 1tail -300f shopbase.log #倒数300行并进入实时监听文件写入模式  grep12345678910grep forest f.txt     #文件查找grep forest f.txt cpf.txt #多文件查找grep &#39;log&#39; &#x2F;home&#x2F;admin -r -n #目录下查找所有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生产问题工具箱">
+<meta property="og:url" content="https://cdongtao.github.io/2021/01/07/Issue-%E6%8E%92%E7%94%9F%E4%BA%A7%E9%97%AE%E9%A2%98%E6%9F%A5%E5%B7%A5%E5%85%B7%E7%AE%B1/index.html">
+<meta property="og:site_name" content="cdongtao">
+<meta property="og:description" content="Linux命令类tail最常用的tail -f 1tail -300f shopbase.log #倒数300行并进入实时监听文件写入模式  grep12345678910grep forest f.txt     #文件查找grep forest f.txt cpf.txt #多文件查找grep &#39;log&#39; &#x2F;home&#x2F;admin -r -n #目录下查找所有">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdongtao.github.io/prod/tsar%E5%91%BD%E4%BB%A4.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/tsar--live.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/tsar-d.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/tsar--mem.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/tsar--load.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/tsar--cpu.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/netstart.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/netstart-pic.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/btrace1.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/btrace2.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/jps.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/jstack%E6%99%AE%E9%80%9A%E7%94%A8%E6%B3%95.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/native+java%E6%A0%88.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/jinfo.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/jmap.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/jmap1.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/jstat.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/jbd.png">
+<meta property="og:image" content="https://cdongtao.github.io/prod/key-promoter.png">
+<meta property="article:published_time" content="2021-01-07T04:15:29.214Z">
+<meta property="article:modified_time" content="2021-01-07T05:32:37.493Z">
+<meta property="article:author" content="cdongtao">
+<meta property="article:tag" content="排查问题">
+<meta property="article:tag" content="生产问题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdongtao.github.io/prod/tsar%E5%91%BD%E4%BB%A4.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="cdongtao" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cdongtao.github.io/2021/01/07/Issue-排生产问题查工具箱/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>生产问题工具箱 | cdongtao</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cdongtao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cdongtao.github.io/2021/01/07/Issue-%E6%8E%92%E7%94%9F%E4%BA%A7%E9%97%AE%E9%A2%98%E6%9F%A5%E5%B7%A5%E5%85%B7%E7%AE%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cdongtao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cdongtao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">生产问题工具箱
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-01-07 12:15:29 / 修改时间：13:32:37" itemprop="dateCreated datePublished" datetime="2021-01-07T12:15:29+08:00">2021-01-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Issue/" itemprop="url" rel="index"><span itemprop="name">Issue</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/01/07/Issue-%E6%8E%92%E7%94%9F%E4%BA%A7%E9%97%AE%E9%A2%98%E6%9F%A5%E5%B7%A5%E5%85%B7%E7%AE%B1/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2021/01/07/Issue-%E6%8E%92%E7%94%9F%E4%BA%A7%E9%97%AE%E9%A2%98%E6%9F%A5%E5%B7%A5%E5%85%B7%E7%AE%B1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">19k 字</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">17 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Linux命令类"><a href="#Linux命令类" class="headerlink" title="Linux命令类"></a>Linux命令类</h2><h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>最常用的tail -f</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -300f shopbase.log #倒数300行并进入实时监听文件写入模式</span><br></pre></td></tr></table></figure>
+
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">grep forest f.txt     #文件查找</span><br><span class="line">grep forest f.txt cpf.txt #多文件查找</span><br><span class="line">grep &#39;log&#39; &#x2F;home&#x2F;admin -r -n #目录下查找所有符合关键字的文件</span><br><span class="line">cat f.txt | grep -i shopbase    </span><br><span class="line">grep &#39;shopbase&#39; &#x2F;home&#x2F;admin -r -n --include *.&#123;vm,java&#125; #指定文件后缀</span><br><span class="line">grep &#39;shopbase&#39; &#x2F;home&#x2F;admin -r -n --exclude *.&#123;vm,java&#125; #反匹配</span><br><span class="line">seq 10 | grep 5 -A 3    #上匹配</span><br><span class="line">seq 10 | grep 5 -B 3    #下匹配</span><br><span class="line">seq 10 | grep 5 -C 3    #上下匹配，平时用这个就妥了</span><br><span class="line">cat f.txt | grep -c &#39;SHOPBASE&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><h4 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">awk &#39;&#123;print $4,$6&#125;&#39; f.txt</span><br><span class="line">awk &#39;&#123;print NR,$0&#125;&#39; f.txt cpf.txt    </span><br><span class="line">awk &#39;&#123;print FNR,$0&#125;&#39; f.txt cpf.txt</span><br><span class="line">awk &#39;&#123;print FNR,FILENAME,$0&#125;&#39; f.txt cpf.txt</span><br><span class="line">awk &#39;&#123;print FILENAME,&quot;NR&#x3D;&quot;NR,&quot;FNR&#x3D;&quot;FNR,&quot;$&quot;NF&quot;&#x3D;&quot;$NF&#125;&#39; f.txt cpf.txt</span><br><span class="line">echo 1:2:3:4 | awk -F: &#39;&#123;print $1,$2,$3,$4&#125;&#39;</span><br></pre></td></tr></table></figure>
+
+<h4 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">awk &#39;&#x2F;ldb&#x2F; &#123;print&#125;&#39; f.txt   #匹配ldb</span><br><span class="line">awk &#39;!&#x2F;ldb&#x2F; &#123;print&#125;&#39; f.txt  #不匹配ldb</span><br><span class="line">awk &#39;&#x2F;ldb&#x2F; &amp;&amp; &#x2F;LISTEN&#x2F; &#123;print&#125;&#39; f.txt   #匹配ldb和LISTEN</span><br><span class="line">awk &#39;$5 ~ &#x2F;ldb&#x2F; &#123;print&#125;&#39; f.txt #第五列匹配ldb</span><br></pre></td></tr></table></figure>
+
+<h4 id="内建变量"><a href="#内建变量" class="headerlink" title="内建变量"></a>内建变量</h4><ul>
+<li>NR:NR表示从awk开始执行后，按照记录分隔符读取的数据次数，默认的记录分隔符为换行符，因此默认的就是读取的数据行数，NR可以理解为Number of Record的缩写。</li>
+<li>FNR:在awk处理多个输入文件的时候，在处理完第一个文件后，NR并不会从1开始，而是继续累加，因此就出现了FNR，每当处理一个新文件的时候，FNR就从1开始计数，FNR可以理解为File Number of Record。</li>
+<li>NF: NF表示目前的记录被分割的字段的数目，NF可以理解为Number of Field</li>
+</ul>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo -u admin find &#x2F;home&#x2F;admin &#x2F;tmp &#x2F;usr -name *.log(多个目录去找)</span><br><span class="line">find . -iname *.txt(大小写都匹配)</span><br><span class="line">find . -type d(当前目录下的所有子目录)</span><br><span class="line">find &#x2F;usr -type l(当前目录下所有的符号链接)</span><br><span class="line">find &#x2F;usr -type l -name &quot;z*&quot; -ls(符号链接的详细信息 eg:inode,目录)</span><br><span class="line">find &#x2F;home&#x2F;admin -size +250000k(超过250000k的文件，当然+改成-就是小于了)</span><br><span class="line">find &#x2F;home&#x2F;admin f -perm 777 -exec ls -l &#123;&#125; ; (按照权限查询文件)</span><br><span class="line">find &#x2F;home&#x2F;admin -atime -1  1天内访问过的文件</span><br><span class="line">find &#x2F;home&#x2F;admin -ctime -1  1天内状态改变过的文件    </span><br><span class="line">find &#x2F;home&#x2F;admin -mtime -1  1天内修改过的文件</span><br><span class="line">find &#x2F;home&#x2F;admin -amin -1  1分钟内访问过的文件</span><br><span class="line">find &#x2F;home&#x2F;admin -cmin -1  1分钟内状态改变过的文件    </span><br><span class="line">find &#x2F;home&#x2F;admin -mmin -1  1分钟内修改过的文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="pgm"><a href="#pgm" class="headerlink" title="pgm"></a>pgm</h3><p>批量查询vm-shopbase满足条件的日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pgm -A -f vm-shopbase &#39;cat &#x2F;home&#x2F;admin&#x2F;shopbase&#x2F;logs&#x2F;shopbase.log.2017-01-17|grep 2069861630&#39;</span><br></pre></td></tr></table></figure>
+
+<h3 id="tsar"><a href="#tsar" class="headerlink" title="tsar"></a>tsar</h3><p>tsar是咱公司自己的采集工具。很好用, 将历史收集到的数据持久化在磁盘上，所以我们快速来查询历史的系统数据。当然实时的应用情况也是可以查询的啦。大部分机器上都有安装。</p>
+<h4 id="tsar-1"><a href="#tsar-1" class="headerlink" title="tsar"></a>tsar</h4><p>可以查看最近一天的各项指标<br><img src="/prod/tsar%E5%91%BD%E4%BB%A4.png" alt="tsar" title="tsar"></p>
+<h4 id="tsar-–live"><a href="#tsar-–live" class="headerlink" title="tsar –live"></a>tsar –live</h4><p>可以查看实时指标，默认五秒一刷<br><img src="/prod/tsar--live.png" alt="tsar--live" title="tsar--live"></p>
+<h4 id="tsar-d-20161218"><a href="#tsar-d-20161218" class="headerlink" title="tsar -d 20161218"></a>tsar -d 20161218</h4><p>指定查看某天的数据，貌似最多只能看四个月的数据<br><img src="/prod/tsar-d.png" alt="tsar-d" title="tsar-d"></p>
+<h4 id="tsar-–mem"><a href="#tsar-–mem" class="headerlink" title="tsar –mem"></a>tsar –mem</h4><p><img src="/prod/tsar--mem.png" alt="tsar--mem" title="tsar--mem"></p>
+<h4 id="tsar-–load"><a href="#tsar-–load" class="headerlink" title="tsar –load"></a>tsar –load</h4><p><img src="/prod/tsar--load.png" alt="tsar--load" title="tsar--load"></p>
+<h4 id="tsar-–cpu"><a href="#tsar-–cpu" class="headerlink" title="tsar –cpu"></a>tsar –cpu</h4><p><img src="/prod/tsar--cpu.png" alt="tsar--cpu" title="tsar--cpu"></p>
+<p><font color = "red">当然这个也可以和-d参数配合来查询某天的单个指标的情况 </font></p>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>top除了看一些基本信息之外，剩下的就是配合来查询vm的各种问题了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep java</span><br><span class="line">top -H -p pid</span><br></pre></td></tr></table></figure>
+<p>获得线程10进制转16进制后jstack去抓看这个线程到底在干啥</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nat|awk  &#39;&#123;print $6&#125;&#39;|sort|uniq -c|sort -rn</span><br></pre></td></tr></table></figure>
+<p>查看当前连接，注意close_wait偏高的情况，比如如下<br><img src="/prod/netstart.png" alt="netstart" title="netstart"><br><img src="/prod/netstart-pic.png" alt="netstart-pic" title="netstart-pic"></p>
+<h2 id="排查利器"><a href="#排查利器" class="headerlink" title="排查利器"></a>排查利器</h2><h3 id="btrace"><a href="#btrace" class="headerlink" title="btrace"></a>btrace</h3><p>首当其冲的要说的是btrace。真是生产环境&amp;预发的排查问题大杀器。简介什么的就不说了。直接上代码干</p>
+<ol>
+<li><p>查看当前谁调用了ArrayList的add方法，同时只打印当前ArrayList的size大于500的线程调用栈<br><img src="/prod/btrace1.png" alt="btrace1" title="btrace1"></p>
+</li>
+<li><p>监控当前服务方法被调用时返回的值以及请求的参数<br><img src="/prod/btrace2.png" alt="btrace2" title="btrace2"></p>
+</li>
+</ol>
+<p>其他功能集团的一些工具或多或少都有，就不说了。<a href="https://github.com/btraceio/btrace" target="_blank" rel="noopener">感兴趣的请点击</a><br>注意:<br>经过观察，1.3.9的release输出不稳定，要多触发几次才能看到正确的结果。<br>正则表达式匹配trace类时范围一定要控制，否则极有可能出现跑满CPU导致应用卡死的情况。<br>由于是字节码注入的原理，想要应用恢复到正常情况，需要重启应用。</p>
+<h3 id="Greys"><a href="#Greys" class="headerlink" title="Greys"></a>Greys</h3><p>Greys是@杜琨的大作吧。说几个挺棒的功能(部分功能和btrace重合):</p>
+<p>sc -df xxx: 输出当前类的详情,包括源码位置和classloader结构</p>
+<p>trace class method: 相当喜欢这个功能! 很早前可以早JProfiler看到这个功能。打印出当前方法调用的耗时情况，细分到每个方法。对排查方法性能时很有帮助，<a href="http://www.atatech.org/articles/52947" target="_blank" rel="noopener">比如我之前这篇就是使用了trace命令</a></p>
+<p>其他功能部分和btrace重合，可以选用，<a href="http://www.atatech.org/articles/26247" target="_blank" rel="noopener">感兴趣的请点击</a></p>
+<p>另外相关联的是arthas，他是基于Greys的，<a href="http://mw.alibaba-inc.com/products/arthas/docs/middleware-container/arthas.wiki/home.html?spm=a1z9z.8109794.header.32.1lsoMc" target="_blank" rel="noopener">感兴趣的再点击</a></p>
+<h3 id="javOSize"><a href="#javOSize" class="headerlink" title="javOSize"></a>javOSize</h3><p>就说一个功能<br>classes：通过修改了字节码，改变了类的内容，即时生效。所以可以做到快速的在某个地方打个日志看看输出，缺点是对代码的侵入性太大。但是如果自己知道自己在干嘛，的确是不错的玩意儿。</p>
+<p>其他功能Greys和btrace都能很轻易做的到，不说了。<br>可以看看我之前写的<a href="http://www.atatech.org/articles/38546" target="_blank" rel="noopener">一篇javOSize的简介</a><br><a href="http://www.javosize.com/" target="_blank" rel="noopener">官网请点击</a></p>
+<h3 id="JProfiler"><a href="#JProfiler" class="headerlink" title="JProfiler"></a>JProfiler</h3><p>之前判断许多问题要通过JProfiler，但是现在Greys和btrace基本都能搞定了。再加上出问题的基本上都是生产环境(网络隔离)，所以基本不怎么使用了，但是还是要标记一下。<a href="https://www.ej-technologies.com/products/jprofiler/overview.html" target="_blank" rel="noopener">官网请点击</a></p>
+<h2 id="大杀器"><a href="#大杀器" class="headerlink" title="大杀器"></a>大杀器</h2><h3 id="eclipseMAT"><a href="#eclipseMAT" class="headerlink" title="eclipseMAT"></a>eclipseMAT</h3><p>可作为eclipse的插件，也可作为单独的程序打开。<a href="http://www.eclipse.org/mat/" target="_blank" rel="noopener">详情请点击</a></p>
+<h3 id="zprofiler"><a href="#zprofiler" class="headerlink" title="zprofiler"></a>zprofiler</h3><p>集团内的开发应该是无人不知无人不晓了。简而言之一句话:有了zprofiler还要mat干嘛,<a href="zprofiler.alibaba-inc.com">详情请点击</a></p>
+<h2 id="Java三板斧"><a href="#Java三板斧" class="headerlink" title="Java三板斧"></a>Java三板斧</h2><h3 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h3><p>sudo -u admin /opt/taobao/java/bin/jps -mlvV<br><img src="/prod/jps.png" alt="jps" title="jps"></p>
+<h3 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h3><h4 id="普通用法"><a href="#普通用法" class="headerlink" title="普通用法:"></a>普通用法:</h4><p>sudo -u admin /opt/taobao/install/ajdk-8_1_1_fp1-b52/bin/jstack 2815<br><img src="/prod/jstack%E6%99%AE%E9%80%9A%E7%94%A8%E6%B3%95.png" alt="jstack普通用法" title="jstack普通用法"></p>
+<p>native+java栈:<br>sudo -u admin /opt/taobao/install/ajdk-8_1_1_fp1-b52/bin/jstack -m 2815<br><img src="/prod/native+java%E6%A0%88.png" alt="native+java栈" title="native+java栈"></p>
+<h3 id="jinfo"><a href="#jinfo" class="headerlink" title="jinfo"></a>jinfo</h3><p>可看系统启动的参数，如下<br>sudo -u admin /opt/taobao/install/ajdk-8_1_1_fp1-b52/bin/jinfo -flags 2815<br><img src="/prod/jinfo.png" alt="jinfo" title="jinfo"></p>
+<h3 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h3><p>两个用途</p>
+<ol>
+<li><p>查看堆的情况<br>sudo -u admin /opt/taobao/install/ajdk-8_1_1_fp1-b52/bin/jmap -heap 2815<br><img src="/prod/jmap.png" alt="jmap" title="jmap"></p>
+</li>
+<li><p>dump</p>
+</li>
+</ol>
+<ul>
+<li><p>sudo -u admin /opt/taobao/install/ajdk-8_1_1_fp1-b52/bin/jmap -dump:live,format=b,file=/tmp/heap2.bin 2815</p>
+</li>
+<li><p>sudo -u admin /opt/taobao/install/ajdk-8_1_1_fp1-b52/bin/jmap -dump:format=b,file=/tmp/heap3.bin 2815</p>
+</li>
+</ul>
+<ol start="3">
+<li>看看堆都被谁占了? 再配合zprofiler和btrace，排查问题简直是如虎添翼<br>sudo -u admin /opt/taobao/install/ajdk-8_1_1_fp1-b52/bin/jmap -histo 2815 | head -10<br><img src="/prod/jmap1.png" alt="jmap1" title="jmap1"></li>
+</ol>
+<h3 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h3><p>jstat参数众多，但是使用一个就够了<br>sudo -u admin /opt/taobao/install/ajdk-8_1_1_fp1-b52/bin/jstat -gcutil 2815 1000<br><img src="/prod/jstat.png" alt="jstat" title="jstat"></p>
+<h3 id="jdb"><a href="#jdb" class="headerlink" title="jdb"></a>jdb</h3><p>时至今日，jdb也是经常使用的。<br>jdb可以用来预发debug,假设你预发的java_home是/opt/taobao/java/，远程调试端口是8000.那么</p>
+<ul>
+<li>sudo -u admin /opt/taobao/java/bin/jdb -attach 8000.<br><img src="/prod/jbd.png" alt="jbd" title="jbd"><br>出现以上代表jdb启动成功。后续可以进行设置断点进行调试。<a href="http://docs.oracle.com/javase/7/docs/technotes/tools/windows/jdb.html" target="_blank" rel="noopener">具体参数可见oracle官方说明</a></li>
+</ul>
+<h3 id="CHLSDB"><a href="#CHLSDB" class="headerlink" title="CHLSDB"></a>CHLSDB</h3><p>CHLSDB感觉很多情况下可以看到更好玩的东西，不详细叙述了。查询资料听说jstack和jmap等工具就是基于它的。</p>
+<ul>
+<li>sudo -u admin /opt/taobao/java/bin/java -classpath /opt/taobao/java/lib/sa-jdi.jar sun.jvm.hotspot.CLHSDB</li>
+</ul>
+<p>[更详细的可见R大此贴]<a href="http://rednaxelafx.iteye.com/blog/1847971" target="_blank" rel="noopener">http://rednaxelafx.iteye.com/blog/1847971</a></p>
+<h2 id="plugin-of-intellij-idea"><a href="#plugin-of-intellij-idea" class="headerlink" title="plugin of intellij idea"></a>plugin of intellij idea</h2><h3 id="key-promoter"><a href="#key-promoter" class="headerlink" title="key promoter"></a>key promoter</h3><p>快捷键一次你记不住，多来几次你总能记住了吧？<br><img src="/prod/key-promoter.png" alt="key-promoter" title="key-promoter"></p>
+<h3 id="maven-helper"><a href="#maven-helper" class="headerlink" title="maven helper"></a>maven helper</h3><p>分析maven依赖的好帮手。</p>
+<h4 id="VM-options"><a href="#VM-options" class="headerlink" title="VM options"></a>VM options</h4><ol>
+<li>你的类到底是从哪个文件加载进来的？<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-XX:+TraceClassLoading</span><br><span class="line">结果形如[Loaded java.lang.invoke.MethodHandleImpl$Lazy from D:programmejdkjdk8U74jrelibt.jar]</span><br></pre></td></tr></table></figure></li>
+<li>应用挂了输出dump文件</li>
+</ol>
+<p>-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/home/admin/logs/java.hprof<br>集团的vm参数里边基本都有这个选项</p>
+<h4 id="jar包冲突"><a href="#jar包冲突" class="headerlink" title="jar包冲突"></a>jar包冲突</h4><p>把这个单独写个大标题不过分吧？每个人或多或少都处理过这种烦人的case。我特么下边这么多方案不信就搞不定你?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mvn dependency:tree &gt; ~&#x2F;dependency.txt</span><br><span class="line">打出所有依赖</span><br><span class="line"></span><br><span class="line">mvn dependency:tree -Dverbose -Dincludes&#x3D;groupId:artifactId</span><br><span class="line">只打出指定groupId和artifactId的依赖关系</span><br><span class="line"></span><br><span class="line">-XX:+TraceClassLoading</span><br><span class="line">vm启动脚本加入。在tomcat启动脚本中可见加载类的详细信息</span><br><span class="line"></span><br><span class="line">-verbose</span><br><span class="line">vm启动脚本加入。在tomcat启动脚本中可见加载类的详细信息</span><br><span class="line"></span><br><span class="line">greys:sc</span><br><span class="line">greys的sc命令也能清晰的看到当前类是从哪里加载过来的</span><br></pre></td></tr></table></figure>
+<p>tomcat-classloader-locate<br><a href="http://localhost:8006/classloader/locate?class=org.apache.xerces.xs.XSObject" target="_blank" rel="noopener">点击可以获知当前类是从哪里加载的curl</a></p>
+<h4 id="ALI-TOMCAT"><a href="#ALI-TOMCAT" class="headerlink" title="ALI-TOMCAT"></a>ALI-TOMCAT</h4><ol>
+<li><p><a href="http://localhost:8006/classloader/jars" target="_blank" rel="noopener">点击列出容器加载的jar列表curl</a></p>
+</li>
+<li><p><a href="http://localhost:8006/classloader/locate?class=org.apache.xerces.xs.XSObject" target="_blank" rel="noopener">点击列出当前当当前类加载的实际jar包位置，解决类冲突时有用curl</a></p>
+</li>
+</ol>
+<h4 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h4><h5 id="gpref"><a href="#gpref" class="headerlink" title="gpref"></a>gpref</h5><p><a href="http://www.atatech.org/articles/33317" target="_blank" rel="noopener">点击</a></p>
+<h5 id="dmesg"><a href="#dmesg" class="headerlink" title="dmesg"></a>dmesg</h5><p>如果发现自己的java进程悄无声息的消失了，几乎没有留下任何线索，那么dmesg一发，很有可能有你想要的</p>
+<ul>
+<li>sudo dmesg|grep -i kill|less</li>
+</ul>
+<p>去找关键字oom_killer。找到的结果类似如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[6710782.021013] java invoked oom-killer: gfp_mask&#x3D;0xd0, order&#x3D;0, oom_adj&#x3D;0, oom_scoe_adj&#x3D;0</span><br><span class="line">[6710782.070639] [&lt;ffffffff81118898&gt;] ? oom_kill_process+0x68&#x2F;0x140 </span><br><span class="line">[6710782.257588] Task in &#x2F;LXC011175068174 killed as a result of limit of &#x2F;LXC011175068174 </span><br><span class="line">[6710784.698347] Memory cgroup out of memory: Kill process 215701 (java) score 854 or sacrifice child </span><br><span class="line">[6710784.707978] Killed process 215701, UID 679, (java) total-vm:11017300kB, anon-rss:7152432kB, file-rss:1232kB</span><br></pre></td></tr></table></figure>
+<p>以上表明，对应的java进程被系统的OOM Killer给干掉了，得分为854.<br>解释一下OOM killer（Out-Of-Memory killer），该机制会监控机器的内存资源消耗。当机器内存耗尽前，该机制会扫描所有的进程（按照一定规则计算，内存占用，时间等），挑选出得分最高的进程，然后杀死，从而保护机器。</p>
+<p>dmesg日志时间转换公式:<br>log实际时间=格林威治1970-01-01+(当前时间秒数-系统启动至今的秒数+dmesg打印的log时间)秒数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date -d &quot;1970-01-01 UTC &#96;echo &quot;$(date +%s)-$(cat &#x2F;proc&#x2F;uptime|cut -f 1 -d&#39; &#39;)+12288812.926194&quot;|bc &#96; seconds&quot;</span><br></pre></td></tr></table></figure>
+<p>剩下的，就是看看为什么内存这么大，触发了OOM-Killer了</p>
+<h4 id="新技能get"><a href="#新技能get" class="headerlink" title="新技能get"></a>新技能get</h4><p>想要精细的控制QPS? 比如这样一个场景，你调用某个接口，对方明确需要你限制你的QPS在400之内你怎么控制？这个时候RateLimiter就有了用武之地。<a href="http://ifeve.com/guava-ratelimiter/" target="_blank" rel="noopener">详情可点击</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%8E%92%E6%9F%A5%E9%97%AE%E9%A2%98/" rel="tag"># 排查问题</a>
+          
+            <a href="/tags/%E7%94%9F%E4%BA%A7%E9%97%AE%E9%A2%98/" rel="tag"># 生产问题</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/05/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-%E7%AE%80%E6%98%93Scrum%E6%95%99%E7%A8%8B/" rel="next" title="Scrum流程">
+                <i class="fa fa-chevron-left"></i> Scrum流程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/07/PluginTool-IDEA%E5%B7%A5%E5%85%B7%E7%AE%B1/" rel="prev" title="IDEA工具箱">
+                IDEA工具箱 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="cdongtao" />
+            
+              <p class="site-author-name" itemprop="name">cdongtao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">149</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yourname" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:441623928@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux命令类"><span class="nav-number">1.</span> <span class="nav-text">Linux命令类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tail"><span class="nav-number">1.1.</span> <span class="nav-text">tail</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">1.2.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#awk"><span class="nav-number">1.3.</span> <span class="nav-text">awk</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础命令"><span class="nav-number">1.3.1.</span> <span class="nav-text">基础命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#匹配"><span class="nav-number">1.3.2.</span> <span class="nav-text">匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内建变量"><span class="nav-number">1.3.3.</span> <span class="nav-text">内建变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">1.4.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pgm"><span class="nav-number">1.5.</span> <span class="nav-text">pgm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tsar"><span class="nav-number">1.6.</span> <span class="nav-text">tsar</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tsar-1"><span class="nav-number">1.6.1.</span> <span class="nav-text">tsar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tsar-–live"><span class="nav-number">1.6.2.</span> <span class="nav-text">tsar –live</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tsar-d-20161218"><span class="nav-number">1.6.3.</span> <span class="nav-text">tsar -d 20161218</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tsar-–mem"><span class="nav-number">1.6.4.</span> <span class="nav-text">tsar –mem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tsar-–load"><span class="nav-number">1.6.5.</span> <span class="nav-text">tsar –load</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tsar-–cpu"><span class="nav-number">1.6.6.</span> <span class="nav-text">tsar –cpu</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#top"><span class="nav-number">1.7.</span> <span class="nav-text">top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">1.8.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排查利器"><span class="nav-number">2.</span> <span class="nav-text">排查利器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#btrace"><span class="nav-number">2.1.</span> <span class="nav-text">btrace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Greys"><span class="nav-number">2.2.</span> <span class="nav-text">Greys</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javOSize"><span class="nav-number">2.3.</span> <span class="nav-text">javOSize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JProfiler"><span class="nav-number">2.4.</span> <span class="nav-text">JProfiler</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大杀器"><span class="nav-number">3.</span> <span class="nav-text">大杀器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipseMAT"><span class="nav-number">3.1.</span> <span class="nav-text">eclipseMAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zprofiler"><span class="nav-number">3.2.</span> <span class="nav-text">zprofiler</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java三板斧"><span class="nav-number">4.</span> <span class="nav-text">Java三板斧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jps"><span class="nav-number">4.1.</span> <span class="nav-text">jps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jstack"><span class="nav-number">4.2.</span> <span class="nav-text">jstack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#普通用法"><span class="nav-number">4.2.1.</span> <span class="nav-text">普通用法:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jinfo"><span class="nav-number">4.3.</span> <span class="nav-text">jinfo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jmap"><span class="nav-number">4.4.</span> <span class="nav-text">jmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jstat"><span class="nav-number">4.5.</span> <span class="nav-text">jstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jdb"><span class="nav-number">4.6.</span> <span class="nav-text">jdb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CHLSDB"><span class="nav-number">4.7.</span> <span class="nav-text">CHLSDB</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plugin-of-intellij-idea"><span class="nav-number">5.</span> <span class="nav-text">plugin of intellij idea</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#key-promoter"><span class="nav-number">5.1.</span> <span class="nav-text">key promoter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#maven-helper"><span class="nav-number">5.2.</span> <span class="nav-text">maven helper</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VM-options"><span class="nav-number">5.2.1.</span> <span class="nav-text">VM options</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jar包冲突"><span class="nav-number">5.2.2.</span> <span class="nav-text">jar包冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ALI-TOMCAT"><span class="nav-number">5.2.3.</span> <span class="nav-text">ALI-TOMCAT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他-1"><span class="nav-number">5.2.4.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#gpref"><span class="nav-number">5.2.4.1.</span> <span class="nav-text">gpref</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dmesg"><span class="nav-number">5.2.4.2.</span> <span class="nav-text">dmesg</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新技能get"><span class="nav-number">5.2.5.</span> <span class="nav-text">新技能get</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cdongtao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">324k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:54</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uASAKzQTPhuJIplOaklnAaqK-gzGzoHsz',
+        appKey: 'LRW155uTAdoeaAjf9q9D53Ps',
+        placeholder: 'Welcome to comment!',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="200道题,4个小时,10分钟要10道题速度答题,以10分钟为周期调整速度 1.理解问题关键词  (特别是2选1)理解题目中提干意思是注重处理问题的过程还是注重处理问题结果 注意题目限定词  2.答案要扣题: 对照题意：  (特别是2选1)定义类问题：选了答案要连着校验或从词汇中解析对比已选答案  3.问题解决流程  发现问题 分析问题 解决问题  甘特图:进度图德尔菲技术:匿名反馈亲和图:分组帕">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PMP知识储备">
+<meta property="og:url" content="https://cdongtao.github.io/2020/12/06/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-PMP%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/index.html">
+<meta property="og:site_name" content="cdongtao">
+<meta property="og:description" content="200道题,4个小时,10分钟要10道题速度答题,以10分钟为周期调整速度 1.理解问题关键词  (特别是2选1)理解题目中提干意思是注重处理问题的过程还是注重处理问题结果 注意题目限定词  2.答案要扣题: 对照题意：  (特别是2选1)定义类问题：选了答案要连着校验或从词汇中解析对比已选答案  3.问题解决流程  发现问题 分析问题 解决问题  甘特图:进度图德尔菲技术:匿名反馈亲和图:分组帕">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E9%A1%B9%E7%9B%AE%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E9%A1%B9%E7%9B%AE%E6%8A%95%E5%85%A5%E6%9B%B2%E7%BA%BF.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E5%8D%81%E4%BA%94%E8%87%B3%E5%B0%8A.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/PMP%E5%8D%81%E4%BA%94%E8%87%B3%E5%B0%8A%E7%9F%A5%E8%AF%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%BF%87%E7%A8%8B%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E5%88%86%E8%A7%A31.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E5%88%86%E8%A7%A32.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E5%88%86%E8%A7%A33.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E5%88%86%E8%A7%A34.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/4.1%E5%88%B6%E5%AE%9A%E7%AB%A0%E7%A8%8B.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E5%95%86%E4%B8%9A%E8%AE%BA%E8%AF%81%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/4.2%E5%88%B6%E5%AE%9A%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AE%A1%E5%88%92.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/4.3%E6%8C%87%E5%AF%BC%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E4%BD%9C.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/4.5%E7%9B%91%E6%8E%A7%E9%A1%B9%E7%9B%AE%E5%B7%A5%E4%BD%9C.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/4.6%E5%8F%98%E6%9B%B4%E6%8E%A7%E5%88%B6.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E5%8F%98%E6%9B%B4%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/4.7%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9D%9F%E6%88%96%E9%98%B6%E6%AE%B5.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/5.1%E8%A7%84%E5%88%92%E8%8C%83%E5%9B%B4%E7%AE%A1%E7%90%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/5.2%E6%94%B6%E9%9B%86%E9%9C%80%E6%B1%82.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/5.2.1%E9%9C%80%E6%B1%82%E6%9B%B4%E9%87%8D%E7%9F%A9%E9%98%B5.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/5.3%E5%AE%9A%E4%B9%89%E8%8C%83%E5%9B%B4.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E9%A1%B9%E7%9B%AE%E7%AB%A0%E7%A8%8B%E4%B8%8E%E9%A1%B9%E7%9B%AE%E8%8C%83%E5%9B%B4%E5%86%85%E5%AE%B9%E5%8C%BA%E5%88%AB.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/5.4%E5%88%9B%E5%BB%BAWBS.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/5.5%E7%A1%AE%E8%AE%A4%E8%8C%83%E5%9B%B4.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/5.6%E6%8E%A7%E5%88%B6%E8%8C%83%E5%9B%B4.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/6.1%E8%A7%84%E5%88%92%E7%9B%91%E7%9D%A3%E7%AE%A1%E7%90%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/6.2%E5%AE%9A%E4%B9%89%E6%B4%BB%E5%8A%A8.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/6.3%E6%8E%92%E5%88%97%E6%B4%BB%E5%8A%A8%E9%A1%BA%E5%BA%8F.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/6.4%E4%BC%B0%E7%AE%97%E6%B4%BB%E5%8A%A8%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/6.5%E5%88%B6%E5%AE%9A%E8%BF%9B%E5%BA%A6%E8%AE%A1%E5%88%92.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/6.6%E6%8E%A7%E5%88%B6%E8%BF%9B%E5%BA%A6.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/7.1%E8%A7%84%E5%88%92%E6%88%90%E6%9C%AC%E7%AE%A1%E7%90%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/7.2%E4%BC%B0%E7%AE%97%E6%88%90%E6%9C%AC.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/7.2.1%E6%88%90%E6%9C%AC%E4%BC%B0%E7%AE%97%E5%85%AC%E5%BC%8F.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/7.3%E5%88%B6%E5%AE%9A%E9%A2%84%E7%AE%97.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E6%88%90%E6%9C%AC%E9%A2%84%E7%AE%97.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/7.4%E6%8E%A7%E5%88%B6%E6%88%90%E6%9C%AC.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/8.1%E8%A7%84%E5%88%92%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/8.1.1%E8%B4%A8%E9%87%8F%E6%88%90%E6%9C%AC.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/8.2%E7%AE%A1%E7%90%86%E8%B4%A8%E9%87%8F.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/8.3%E6%8E%A7%E5%88%B6%E8%B4%A8%E9%87%8F.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/9.1%E8%A7%84%E5%88%92%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/9.2%E4%BC%B0%E7%AE%97%E6%B4%BB%E5%8A%A8%E8%B5%84%E6%BA%90.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/9.3%E8%8E%B7%E5%8F%96%E8%B5%84%E6%BA%90.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/9.4%E5%BB%BA%E8%AE%BE%E5%9B%A2%E9%98%9F.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/9.5%E7%AE%A1%E7%90%86%E5%9B%A2%E9%98%9F.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/9.6%E6%8E%A7%E5%88%B6%E8%B5%84%E6%BA%90.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/%E4%BA%BA%E9%99%85%E5%85%B3%E7%B3%BB%E6%8A%80%E8%83%BD.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/10.1%E8%A7%84%E5%88%92%E6%B2%9F%E9%80%9A%E7%AE%A1%E7%90%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/10.2%E7%AE%A1%E7%90%86%E6%B2%9F%E9%80%9A.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/10.3%E7%9B%91%E7%9D%A3%E6%B2%9F%E9%80%9A.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/11.%E9%A3%8E%E9%99%A9%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/11.0%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86%E4%BB%8B%E7%BB%8D.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/11.1%E8%A7%84%E5%88%92%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/11.2%E8%AF%86%E5%88%AB%E9%A3%8E%E9%99%A9.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/11.3%E5%AE%9E%E6%96%BD%E5%AE%9A%E6%80%A7%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/11.4%E5%AE%9E%E6%96%BD%E5%AE%9A%E9%87%8F%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/11.5%E8%A7%84%E5%88%92%E9%A3%8E%E9%99%A9%E5%BA%94%E5%AF%B9.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/11.6%E5%AE%9E%E6%96%BD%E9%A3%8E%E9%99%A9%E5%BA%94%E5%AF%B9.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/11.7%E7%9B%91%E7%9D%A3%E9%A3%8E%E9%99%A9.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/12.1%E8%A7%84%E5%88%92%E9%87%87%E8%B4%AD%E7%AE%A1%E7%90%86.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/12.2%E5%AE%9E%E6%96%BD%E9%87%87%E8%B4%AD.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/12.3%E6%8E%A7%E5%88%B6%E9%87%87%E8%B4%AD.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/13.1%E8%AF%86%E5%88%AB%E7%9B%B8%E5%85%B3%E6%96%B9.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/13.2%E8%A7%84%E5%88%92%E7%9B%B8%E5%85%B3%E6%96%B9%E5%8F%82%E4%B8%8E.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/13.3%E7%AE%A1%E7%90%86%E7%9B%B8%E5%85%B3%E6%96%B9%E5%8F%82%E4%B8%8E.png">
+<meta property="og:image" content="https://cdongtao.github.io/pmp/13.4%E7%9B%91%E7%9D%A3%E7%9B%B8%E5%85%B3%E6%96%B9%E5%8F%82%E4%B8%8E.png">
+<meta property="article:published_time" content="2020-12-06T02:40:13.545Z">
+<meta property="article:modified_time" content="2021-01-11T05:08:53.544Z">
+<meta property="article:author" content="cdongtao">
+<meta property="article:tag" content="PMP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdongtao.github.io/pmp/%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="cdongtao" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://cdongtao.github.io/2020/12/06/项目管理-PMP知识体系/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>PMP知识储备 | cdongtao</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">cdongtao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cdongtao.github.io/2020/12/06/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-PMP%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cdongtao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="cdongtao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PMP知识储备
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-06 10:40:13" itemprop="dateCreated datePublished" datetime="2020-12-06T10:40:13+08:00">2020-12-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-11 13:08:53" itemprop="dateModified" datetime="2021-01-11T13:08:53+08:00">2021-01-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Project-Management/" itemprop="url" rel="index"><span itemprop="name">Project Management</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/12/06/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-PMP%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/12/06/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-PMP%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">22k 字</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">20 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>200道题,4个小时,10分钟要10道题速度答题,以10分钟为周期调整速度</p>
+<p>1.理解问题关键词</p>
+<ul>
+<li>(特别是2选1)理解题目中提干意思是注重处理问题的过程还是注重处理问题结果</li>
+<li>注意题目限定词</li>
+</ul>
+<p>2.答案要扣题: 对照题意：</p>
+<ul>
+<li>(特别是2选1)定义类问题：选了答案要连着校验或从词汇中解析对比已选答案</li>
+</ul>
+<p>3.问题解决流程</p>
+<ul>
+<li>发现问题</li>
+<li>分析问题</li>
+<li>解决问题</li>
+</ul>
+<p>甘特图:进度图<br>德尔菲技术:匿名反馈<br>亲和图:分组<br>帕累托图:主次图<br>蒙特卡洛技术:统计模拟方法</p>
+<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><h3 id="项目组织结构"><a href="#项目组织结构" class="headerlink" title="项目组织结构"></a>项目组织结构</h3><p><img src="/pmp/%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png" alt="项目组织结构" title="项目组织结构"></p>
+<h3 id="项目一般周期-时间维度"><a href="#项目一般周期-时间维度" class="headerlink" title="项目一般周期(时间维度)"></a>项目一般周期(时间维度)</h3><p><img src="/pmp/%E9%A1%B9%E7%9B%AE%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="项目生命周期" title="项目生命周期"></p>
+<h3 id="项目投入曲线"><a href="#项目投入曲线" class="headerlink" title="项目投入曲线"></a>项目投入曲线</h3><p><img src="/pmp/%E9%A1%B9%E7%9B%AE%E6%8A%95%E5%85%A5%E6%9B%B2%E7%BA%BF.png" alt="项目投入曲线" title="项目投入曲线"></p>
+<h2 id="五大过程组-项目管理维度-与十大知识领域-知识领域维度"><a href="#五大过程组-项目管理维度-与十大知识领域-知识领域维度" class="headerlink" title="五大过程组(项目管理维度)与十大知识领域(知识领域维度)"></a>五大过程组(项目管理维度)与十大知识领域(知识领域维度)</h2><p><img src="/pmp/%E5%8D%81%E4%BA%94%E8%87%B3%E5%B0%8A.png" alt="十五至尊" title="十五至尊"></p>
+<h2 id="十五至尊图-1351"><a href="#十五至尊图-1351" class="headerlink" title="十五至尊图(1351)"></a>十五至尊图(1351)</h2><p><img src="/pmp/PMP%E5%8D%81%E4%BA%94%E8%87%B3%E5%B0%8A%E7%9F%A5%E8%AF%86.png" alt="PMP十五至尊知识" title="PMP十五至尊知识"></p>
+<h3 id="47个过程组学习方法"><a href="#47个过程组学习方法" class="headerlink" title="47个过程组学习方法"></a>47个过程组学习方法</h3><p><img src="/pmp/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%BF%87%E7%A8%8B%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95.png" alt="项目管理过程学习方法" title="项目管理过程学习方法"></p>
+<h3 id="记忆逻辑图"><a href="#记忆逻辑图" class="headerlink" title="记忆逻辑图"></a>记忆逻辑图</h3><p><img src="/pmp/%E5%88%86%E8%A7%A31.png" alt="分解1" title="分解1"></p>
+<p><img src="/pmp/%E5%88%86%E8%A7%A32.png" alt="分解2" title="分解2"></p>
+<p><img src="/pmp/%E5%88%86%E8%A7%A33.png" alt="分解3" title="分解3"></p>
+<p><img src="/pmp/%E5%88%86%E8%A7%A34.png" alt="分解4" title="分解4"></p>
+<h2 id="项目整合管理"><a href="#项目整合管理" class="headerlink" title="项目整合管理"></a>项目整合管理</h2><p>1.知识点</p>
+<ul>
+<li>事业环境因素:是宏观的（如外部的法律、法规、国家政策与市场环境；内部的企业管理制度，文化等）</li>
+<li>组织过程资产:是具体的（如流程与程序、模板、档案、经验教训、知识库等）</li>
+<li>开工会议:在规划阶段结束之前召开</li>
+</ul>
+<p>2.变更请求</p>
+<ul>
+<li>更新(会改变项目管理计划或基准):对正式受控的项目文件或计划等进行的变更，以反映修改或增加的意见或内容</li>
+<li>缺陷补救(维护基准)为了修正不一致的产品而进行的有目的活动</li>
+<li>纠正措施(维护基准):为了使项目工作绩重新与项目管理计划一致而进行有目的活动</li>
+<li>预防措施(维护基准:为了确保项目工作的未来业绩符合项目管理计划而进行有目的的活动</li>
+</ul>
+<p>3.项目收尾顺序:移交成果,更新资产</p>
+<h3 id="4-1制定章程-启动"><a href="#4-1制定章程-启动" class="headerlink" title="4.1制定章程(启动)"></a>4.1制定章程(启动)</h3><p><img src="/pmp/4.1%E5%88%B6%E5%AE%9A%E7%AB%A0%E7%A8%8B.png" alt="制定章程" title="制定章程"></p>
+<table>
+<thead>
+<tr>
+<th>商业论证模型</th>
+<th>数学模型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/pmp/%E5%95%86%E4%B8%9A%E8%AE%BA%E8%AF%81%E6%A8%A1%E5%9E%8B.png" alt="商业论证模型" title="商业论证模型"></td>
+<td><img src="/pmp/%E6%95%B0%E5%AD%A6%E6%A8%A1%E5%9E%8B.png" alt="数学模型" title="数学模型"></td>
+</tr>
+</tbody></table>
+<h3 id="4-2制定项目管理计划-规划"><a href="#4-2制定项目管理计划-规划" class="headerlink" title="4.2制定项目管理计划(规划)"></a>4.2制定项目管理计划(规划)</h3><p><img src="/pmp/4.2%E5%88%B6%E5%AE%9A%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E8%AE%A1%E5%88%92.png" alt="制定项目管理计划" title="制定项目管理计划"></p>
+<h3 id="4-3指导与项目管理工作-执行"><a href="#4-3指导与项目管理工作-执行" class="headerlink" title="4.3指导与项目管理工作(执行)"></a>4.3指导与项目管理工作(执行)</h3><p><img src="/pmp/4.3%E6%8C%87%E5%AF%BC%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B7%A5%E4%BD%9C.png" alt="指导与项目管理工作" title="指导与项目管理工作"></p>
+<h3 id="4-4监控项目工作-监控"><a href="#4-4监控项目工作-监控" class="headerlink" title="4.4监控项目工作(监控)"></a>4.4监控项目工作(监控)</h3><p><img src="/pmp/4.5%E7%9B%91%E6%8E%A7%E9%A1%B9%E7%9B%AE%E5%B7%A5%E4%BD%9C.png" alt="监控项目工作" title="监控项目工作"></p>
+<h3 id="4-5变更控制-监控"><a href="#4-5变更控制-监控" class="headerlink" title="4.5变更控制(监控)"></a>4.5变更控制(监控)</h3><p><img src="/pmp/4.6%E5%8F%98%E6%9B%B4%E6%8E%A7%E5%88%B6.png" alt="变更控制" title="变更控制"></p>
+<h4 id="变更控制流程"><a href="#变更控制流程" class="headerlink" title="变更控制流程"></a>变更控制流程</h4><ul>
+<li>变更请求–&gt;[记录–&gt;分析—&gt;评估]–&gt;审批–&gt;更新–&gt;记录<br><img src="/pmp/%E5%8F%98%E6%9B%B4%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B.png" alt="变更控制流程" title="变更控制流程"></li>
+</ul>
+<h3 id="4-5项目结束或阶段-收尾"><a href="#4-5项目结束或阶段-收尾" class="headerlink" title="4.5项目结束或阶段(收尾)"></a>4.5项目结束或阶段(收尾)</h3><p><img src="/pmp/4.7%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9D%9F%E6%88%96%E9%98%B6%E6%AE%B5.png" alt="项目结束或阶段" title="项目结束或阶段"></p>
+<h2 id="项目范围管理"><a href="#项目范围管理" class="headerlink" title="项目范围管理"></a>项目范围管理</h2><p>1.收集需求工具</p>
+<ul>
+<li>引导:</li>
+<li>观察/交流:不愿意说</li>
+<li>头脑风暴:聚集多人会议，敞开讨论</li>
+<li>访谈:一对一访问交流</li>
+<li>焦点小组:将问题缩小以主题形式讨论</li>
+<li>问卷调查:收集分布比较广泛</li>
+<li>标杆对照:有参照物对比</li>
+<li>德尔菲技术：多伦匿名反馈收集,可以消除主观</li>
+<li>原型图:支持渐渐明晰的理念，从创建模型，用户体验，反馈收集到原型修改的反复循环过程</li>
+<li>名义小组：投票,排序</li>
+</ul>
+<p>2.数据表现</p>
+<ul>
+<li>亲合图:分类归集图</li>
+<li>思维导图:</li>
+</ul>
+<p>3.知识点理解</p>
+<ul>
+<li>项目范围与产品范围:产品范围决定项目范围、项目范围服务于产品范围</li>
+<li>范围蔓延:未经控制的产品或项目范围扩大</li>
+<li>项目范围完成情况是根据项目管理计划来衡量，产品范围完成情况根据产品需求来衡量</li>
+<li>工作绩效数据：原始观察结果和测量值</li>
+<li>工作绩效信息:从各控制过程收集，并结合相关背景和跨领域关系进行整合分析而得到的绩效数据<ul>
+<li>(十个知识点都有)监控过程:确认范围/控制范围，控制进度，控制成本，控制质量，控制资源，监督沟通，监督风险，控制采购和监督相关方</li>
+</ul>
+</li>
+<li>工作绩效报告：对工作绩效信息进一步加工，整理，汇编而得到的，关于项目绩效的专题和综合报告<ul>
+<li>不存在的知识领域有:范围管理,质量管理，采购管理，相关方管理</li>
+</ul>
+</li>
+<li>WBS:全部工作范围层级分解,没有验收标准信息</li>
+<li>WBS词典:针对每一个WBS每个组件，详细描述可交付成果以及验收标准</li>
+</ul>
+<h3 id="5-1规划范围管理-规划"><a href="#5-1规划范围管理-规划" class="headerlink" title="5.1规划范围管理(规划)"></a>5.1规划范围管理(规划)</h3><p><img src="/pmp/5.1%E8%A7%84%E5%88%92%E8%8C%83%E5%9B%B4%E7%AE%A1%E7%90%86.png" alt="规划范围管理" title="规划范围管理"></p>
+<h3 id="5-2收集需求-规划"><a href="#5-2收集需求-规划" class="headerlink" title="5.2收集需求(规划)"></a>5.2收集需求(规划)</h3><table>
+<thead>
+<tr>
+<th>收集需求</th>
+<th>需求更新矩阵</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/pmp/5.2%E6%94%B6%E9%9B%86%E9%9C%80%E6%B1%82.png" alt="收集需求" title="收集需求"></td>
+<td><img src="/pmp/5.2.1%E9%9C%80%E6%B1%82%E6%9B%B4%E9%87%8D%E7%9F%A9%E9%98%B5.png" alt="需求更重矩阵" title="需求更重矩阵"></td>
+</tr>
+</tbody></table>
+<h3 id="5-3定义范围-规划"><a href="#5-3定义范围-规划" class="headerlink" title="5.3定义范围(规划)"></a>5.3定义范围(规划)</h3><table>
+<thead>
+<tr>
+<th>定义范围</th>
+<th>项目章程与项目范围内容区别</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/pmp/5.3%E5%AE%9A%E4%B9%89%E8%8C%83%E5%9B%B4.png" alt="定义范围" title="定义范围"></td>
+<td><img src="/pmp/%E9%A1%B9%E7%9B%AE%E7%AB%A0%E7%A8%8B%E4%B8%8E%E9%A1%B9%E7%9B%AE%E8%8C%83%E5%9B%B4%E5%86%85%E5%AE%B9%E5%8C%BA%E5%88%AB.png" alt="项目章程与项目范围内容区别" title="项目章程与项目范围内容区别"></td>
+</tr>
+</tbody></table>
+<h3 id="5-4创建WBS-规划"><a href="#5-4创建WBS-规划" class="headerlink" title="5.4创建WBS(规划)"></a>5.4创建WBS(规划)</h3><p><img src="/pmp/5.4%E5%88%9B%E5%BB%BAWBS.png" alt="创建WBS" title="创建WBS"></p>
+<h3 id="5-5确认范围-监控"><a href="#5-5确认范围-监控" class="headerlink" title="5.5确认范围(监控)"></a>5.5确认范围(监控)</h3><p><img src="/pmp/5.5%E7%A1%AE%E8%AE%A4%E8%8C%83%E5%9B%B4.png" alt="确认范围" title="确认范围"></p>
+<h3 id="5-6控制范围-监控"><a href="#5-6控制范围-监控" class="headerlink" title="5.6控制范围(监控)"></a>5.6控制范围(监控)</h3><p><img src="/pmp/5.6%E6%8E%A7%E5%88%B6%E8%8C%83%E5%9B%B4.png" alt="控制范围" title="控制范围"></p>
+<h2 id="项目进度管理"><a href="#项目进度管理" class="headerlink" title="项目进度管理"></a>项目进度管理</h2><p>1.专业词汇与技术</p>
+<ul>
+<li>里程碑：是项目重要时点或事件,是强制或可选,持续时间为0，即是一个事件点</li>
+<li>收益递减法则：增加一个用于确定单位产出需投入的因素(资源)会最终达到一个临界点</li>
+<li>帕金森定律:只要还有时间,工作就会不断扩展,直到用完所有的时间。也就是工作会不断扩展,直到用完所有时间,以至于造成最终延期</li>
+<li>进度压缩技术2种<ul>
+<li>赶工:投入成本换取进度</li>
+<li>快速跟进:将正常情况下顺序进行活动改为并行活动</li>
+</ul>
+</li>
+<li>资源优化技术2种<ul>
+<li>资源平衡:过度分配,解决关键路径上的资源不足,将非关键路径上的资源借调到关键路径上,保证关键路径上的时间进度,但是可能因为借调太多导致导致关键路径发生改变。</li>
+<li>资源平滑:在不影响关键路径的情况下使用自由浮动时间和总浮动时间</li>
+</ul>
+</li>
+<li>活动之间的依赖关系有4种<ul>
+<li>外部依赖关系:是项目活动与非项目活动之间的依赖关系</li>
+<li>内部依赖关系:是项目活动之间的紧前关系，通常在项目团队的控制之中</li>
+<li>强制性依赖关系:是法律或合同要求的或工作的内在性质决定的依赖关系</li>
+<li>选择性依赖关系:是基于具体应用领域的最佳实践或者基于项目的某种特殊性质而设定，即便还有其他顺序可以选用，但项目团队仍缺省按照此种特殊的顺序安排活动</li>
+</ul>
+</li>
+</ul>
+<p>2.进度工具</p>
+<ul>
+<li>关键路径法分析:决定项目最早完成时间的活动(能完成项目最短工期),是项目网络图中最长的路径，并且有最少的浮动时间或时差</li>
+<li>进度网络分析:前关系图、提前量、滞后量、强制内部、强制外部、选择外部</li>
+</ul>
+<p>3.项目浮动的3种时间</p>
+<ul>
+<li>1.自由浮动时间:不影响后续工作最早可以开始时间的前提下，这项工作可以拖延的时间叫做自由浮动时间<br>  自由活动时间=紧后活动的最早开始时间-紧前活动的最早结束时间</li>
+<li>2.总浮动时间/总时差:不影响项目总工期的情况下活动可以拖延的总时间,为正差值<br>  总浮动时间=LS-ES 或 LF-EF LS:最晚开始，ES：最早开始<br>  总时差=同一个活动的最晚开始-最早开始 或者 最晚结束-最早结束 </li>
+<li>3.项目浮动时间:在已经排好的总工期的基础上，领导或者甲方又主动让出时间称为项目总浮动时间。例如：4月28日系统上线，但是4月29日至5月1日属于放假期间，系统上线没用，并且会出现报错没人解决问题，风险太大等问题，甲方则会要求节后再上线</li>
+</ul>
+<p>4.成本估算</p>
+<ul>
+<li>三点分布:(最乐观+4*最可能+最悲观)/6</li>
+<li>三角分布:(最乐观+最可能+最悲观)/3</li>
+<li>类比估算(情况不明)：也是专家判断一种,通常成本低，耗时少，准确性也低，项目信息不足或者项目启动早期时使用</li>
+<li>参数估算：需要有数据</li>
+<li>自下而上：需要明确需求</li>
+</ul>
+<p>5.前导图法在的4种类型的依赖关系</p>
+<ul>
+<li>结束——开始的关系(f-s型)</li>
+<li>结束一结束的关系(f-f型)</li>
+<li>开始-开始的关系(s-s型)</li>
+<li>开始一结束的关系(s-f型)</li>
+</ul>
+<h3 id="6-1规划进度管理"><a href="#6-1规划进度管理" class="headerlink" title="6.1规划进度管理"></a>6.1规划进度管理</h3><p><img src="/pmp/6.1%E8%A7%84%E5%88%92%E7%9B%91%E7%9D%A3%E7%AE%A1%E7%90%86.png" alt="规划监督管理" title="规划监督管理"></p>
+<h3 id="6-2定义活动"><a href="#6-2定义活动" class="headerlink" title="6.2定义活动"></a>6.2定义活动</h3><p><img src="/pmp/6.2%E5%AE%9A%E4%B9%89%E6%B4%BB%E5%8A%A8.png" alt="定义活动" title="定义活动"></p>
+<h3 id="6-3排列活动顺序"><a href="#6-3排列活动顺序" class="headerlink" title="6.3排列活动顺序"></a>6.3排列活动顺序</h3><p><img src="/pmp/6.3%E6%8E%92%E5%88%97%E6%B4%BB%E5%8A%A8%E9%A1%BA%E5%BA%8F.png" alt="排列活动顺序" title="排列活动顺序"></p>
+<h3 id="6-4估算活动持续时间"><a href="#6-4估算活动持续时间" class="headerlink" title="6.4估算活动持续时间"></a>6.4估算活动持续时间</h3><p><img src="/pmp/6.4%E4%BC%B0%E7%AE%97%E6%B4%BB%E5%8A%A8%E6%8C%81%E7%BB%AD%E6%97%B6%E9%97%B4.png" alt="估算活动持续时间" title="估算活动持续时间"></p>
+<h3 id="6-5制定进度计划"><a href="#6-5制定进度计划" class="headerlink" title="6.5制定进度计划"></a>6.5制定进度计划</h3><p><img src="/pmp/6.5%E5%88%B6%E5%AE%9A%E8%BF%9B%E5%BA%A6%E8%AE%A1%E5%88%92.png" alt="制定进度计划" title="制定进度计划"></p>
+<h3 id="6-6控制进度"><a href="#6-6控制进度" class="headerlink" title="6.6控制进度"></a>6.6控制进度</h3><p><img src="/pmp/6.6%E6%8E%A7%E5%88%B6%E8%BF%9B%E5%BA%A6.png" alt="控制进度" title="控制进度"></p>
+<h2 id="项目成本管理"><a href="#项目成本管理" class="headerlink" title="项目成本管理"></a>项目成本管理</h2><h3 id="7-1规划成本管理"><a href="#7-1规划成本管理" class="headerlink" title="7.1规划成本管理"></a>7.1规划成本管理</h3><p><img src="/pmp/7.1%E8%A7%84%E5%88%92%E6%88%90%E6%9C%AC%E7%AE%A1%E7%90%86.png" alt="规划成本管理" title="规划成本管理"></p>
+<h3 id="7-2估算成本"><a href="#7-2估算成本" class="headerlink" title="7.2估算成本"></a>7.2估算成本</h3><p>1.术语：</p>
+<ul>
+<li>直接成本:直接归属于项目的成本</li>
+<li>固定成本：不会随着产品数量增加</li>
+<li>可变成本：随产量或工作量而变</li>
+<li>可控成本：项目经理可以直接控制成本</li>
+<li>不可控成本：项目经理不能直接控制</li>
+<li>机会成本：获取一个机会会失去另外一个机会成本</li>
+<li>沉没成本：已经花掉费用，如果继续做项目就不考虑该成本</li>
+</ul>
+<p>储备分析：应急储备(已知不确定风险)和管理储备(未知不确定风险)<br><img src="/pmp/7.2%E4%BC%B0%E7%AE%97%E6%88%90%E6%9C%AC.png" alt="估算成本" title="估算成本"><br><img src="/pmp/7.2.1%E6%88%90%E6%9C%AC%E4%BC%B0%E7%AE%97%E5%85%AC%E5%BC%8F.png" alt="成本估算" title="成本估算"></p>
+<ul>
+<li><p>典型偏差。认为项目日后要完成的工作和以前的工作效率相同,未完成的工作的实际成本和未来完成工作预算的比例与已完成工作的实际成本和预算的比率是相同的。在考试中,常出现“仍按”、“指数器”这样的关键词。公式如：  EAC=AC+【(BAC-EV)/CPI】=BAC/CPI；其中BAC为完成工作预算,即整个项目的预算总和。  </p>
+</li>
+<li><p>非典型偏差。假定未完成工作的效率和已完成工作的效率没有什么关系,对未完成的工作依然使用原来的预算值,这时,对于最终估算成本就是已完成工作的实际成本与未完成工作的预算成本之和。在考试中,常出现“已解决了之前的问题”、“只是偶然现象”这样的关键词。公式：  EAC=AC+BAC-EV。 </p>
+</li>
+<li><p>EAC:完工总费用预算</p>
+</li>
+</ul>
+<p>1.使用CPI计算 EAC = AC+(BAC-EV)/CPI = BAC/CPI(PMP认证最常用)<br>2.使用SPI&lt;1计算   EAC = BAC/(CPI*SPI)<br>3.使用新估算费用来计算EAC = AC+ETC<br>4.使用剩余预算费用计算EAC = AC+(BAC-EV)</p>
+<p>VAC: 完工总费用偏差VAC = BAC-EAC<br>EDAC:估计完工工期    EDAC = BDAC/SPI</p>
+<ul>
+<li>ETC:完工尚需费用预算<br>基于非典型的偏差计算(以后不会再发生类似偏差时): ETC = BAC-EV<br>基于典型的偏差计算(当头偏差可代表未来的趋势时):ETC = (BAC-EV)/CPI</li>
+</ul>
+<h3 id="7-3制定预算"><a href="#7-3制定预算" class="headerlink" title="7.3制定预算"></a>7.3制定预算</h3><p><img src="/pmp/7.3%E5%88%B6%E5%AE%9A%E9%A2%84%E7%AE%97.png" alt="制定预算" title="制定预算"></p>
+<p>项目资金需求=成本基准+管理储备(管理层控制)<br>成本基准=控制账户=工作包成本估算+应急储备(项目经理控制)<br>工作包成本估算=活动成本估算+活动应急储备(估算时控制)<br><img src="/pmp/%E6%88%90%E6%9C%AC%E9%A2%84%E7%AE%97.png" alt="成本预算" title="成本预算"></p>
+<h3 id="7-4控制成本"><a href="#7-4控制成本" class="headerlink" title="7.4控制成本"></a>7.4控制成本</h3><p><img src="/pmp/7.4%E6%8E%A7%E5%88%B6%E6%88%90%E6%9C%AC.png" alt="控制成本" title="控制成本"></p>
+<h2 id="项目质量管理"><a href="#项目质量管理" class="headerlink" title="项目质量管理"></a>项目质量管理</h2><p>1.控制质量的方法</p>
+<ul>
+<li>控制图:用3倍西格玛*均值(误差)设置上限跟下限，还有上下控制界限。连续7个点在均值外或直接某点在界限外就代表失控</li>
+<li>帕累托图/主次图，是一种简单的图表工具，用于统计和显示一定时间内各种类型缺陷或问题的数目</li>
+<li>鱼骨图/因果图/石川图：分析因果关系</li>
+<li>趋势图:显示一定时间间隔(例如一天、一周或一个月)内所得到的测量结果</li>
+<li>直方图:</li>
+<li>散点图:表示一个变量与另一个变量如何相互关联的的标准方法</li>
+<li>流程图:输入-输出图。该图直观地描述一个工作过程的具体步骤</li>
+</ul>
+<p>2.统计抽样:</p>
+<ul>
+<li>属性抽样:每个样本的结果都是非此即彼(比如，要么是检测合格，要么是不合格)：检测结果值能用离散值表达</li>
+<li>变量抽样:实际检测结果在某个连续刻度上所处位置，而不是产品合格或不合格:检测结果值能用函数(线性)表达</li>
+</ul>
+<p>3.质量成本=一致性成本+非一致性成本</p>
+<ul>
+<li>一致性成本=预防成本(生产过程预防产生成本)+评估成本(评估质量产生成本)</li>
+<li>非一致性成本=内部失败成本(项目发现失败成本)+外部失败成本(客户发现失败成本)</li>
+</ul>
+<p>4.质量控制水平有效性排列顺序</p>
+<ul>
+<li>(最优解)5.在组织内创建关注并致力于实现过程和产品质量文化</li>
+<li>4.将质量融入规划和设计中</li>
+<li>3.同归质量保证检查并纠正过程本身</li>
+<li>2.通过质量控制先检测和纠正</li>
+<li>(最次解)1.让客户发现缺陷</li>
+</ul>
+<p>5.结构化的解决问题流程:</p>
+<ul>
+<li>定义问题；</li>
+<li>识别根本原因；</li>
+<li>生成可能的解决方案；</li>
+<li>选择最佳解决方案；</li>
+<li>执行解决方案；</li>
+<li>验证解决方案的有效性</li>
+</ul>
+<h3 id="8-1规划质量管理"><a href="#8-1规划质量管理" class="headerlink" title="8.1规划质量管理"></a>8.1规划质量管理</h3><p><img src="/pmp/8.1%E8%A7%84%E5%88%92%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86.png" alt="规划质量管理" title="规划质量管理"><br><img src="/pmp/8.1.1%E8%B4%A8%E9%87%8F%E6%88%90%E6%9C%AC.png" alt="质量成本" title="质量成本"></p>
+<h3 id="8-2管理质量"><a href="#8-2管理质量" class="headerlink" title="8.2管理质量"></a>8.2管理质量</h3><p><img src="/pmp/8.2%E7%AE%A1%E7%90%86%E8%B4%A8%E9%87%8F.png" alt="管理质量" title="管理质量"></p>
+<h3 id="8-3控制质量"><a href="#8-3控制质量" class="headerlink" title="8.3控制质量"></a>8.3控制质量</h3><p><img src="/pmp/8.3%E6%8E%A7%E5%88%B6%E8%B4%A8%E9%87%8F.png" alt="控制质量" title="控制质量"></p>
+<h2 id="项目资源管理"><a href="#项目资源管理" class="headerlink" title="项目资源管理"></a>项目资源管理</h2><p>1.虚拟团队要加强沟通规划<br>2.资源管理模型:</p>
+<ul>
+<li>Y理论:积极</li>
+<li>X理论:懒惰</li>
+</ul>
+<p>3.权力五种类型:</p>
+<ul>
+<li>强制权力:强迫他们做不愿意的事，非常无奈</li>
+<li>合法/法定/正式权力:职权的权力，一般无奈</li>
+<li>专家权力：次之</li>
+<li>奖励权力：最好</li>
+<li>潜示权力：狐假虎威，很无奈<br>4.预分派人员：A.投标制定人员 B.特定技能人员 C.项目章程制定人员<br>5.责任分配矩阵:人与活动的关系<br>6.团队资源管理:<br>形成:开始加入团队<br>震荡:冲突<br>规范:有规范团队<br>成熟:<br>解散:<br>7.冲突解决方法:<br>撤退/回避:不解决冲突<br>缓解/包容:各让一步，冲突没解决<br>妥协/调解:相互迁就<br>强迫/命令:牺牲一方，成就一方，解决冲突<br>合作/解决问题:双方达成协议，解决冲突<br>8.马斯洛需求层次:生理需求,生存需求，社交需求，自我实现<br>9.领导方式：指挥，教练，支持，授权<h3 id="9-1规划资源管理"><a href="#9-1规划资源管理" class="headerlink" title="9.1规划资源管理"></a>9.1规划资源管理</h3><img src="/pmp/9.1%E8%A7%84%E5%88%92%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86.png" alt="规划资源管理" title="规划资源管理"><h3 id="9-2估算活动资源"><a href="#9-2估算活动资源" class="headerlink" title="9.2估算活动资源"></a>9.2估算活动资源</h3><img src="/pmp/9.2%E4%BC%B0%E7%AE%97%E6%B4%BB%E5%8A%A8%E8%B5%84%E6%BA%90.png" alt="估算活动资源" title="估算活动资源"><h3 id="9-3获取资源"><a href="#9-3获取资源" class="headerlink" title="9.3获取资源"></a>9.3获取资源</h3><img src="/pmp/9.3%E8%8E%B7%E5%8F%96%E8%B5%84%E6%BA%90.png" alt="获取资源" title="获取资源"><h3 id="9-4建设团队"><a href="#9-4建设团队" class="headerlink" title="9.4建设团队"></a>9.4建设团队</h3>促进提高团队能力<br><img src="/pmp/9.4%E5%BB%BA%E8%AE%BE%E5%9B%A2%E9%98%9F.png" alt="建设团队" title="建设团队"><h3 id="9-5管理团队"><a href="#9-5管理团队" class="headerlink" title="9.5管理团队"></a>9.5管理团队</h3>解决团队问题:冲突矛盾<br><img src="/pmp/9.5%E7%AE%A1%E7%90%86%E5%9B%A2%E9%98%9F.png" alt="管理团队" title="管理团队"><h3 id="9-6控制资源"><a href="#9-6控制资源" class="headerlink" title="9.6控制资源"></a>9.6控制资源</h3><img src="/pmp/9.6%E6%8E%A7%E5%88%B6%E8%B5%84%E6%BA%90.png" alt="控制资源" title="控制资源"><br><img src="/pmp/%E4%BA%BA%E9%99%85%E5%85%B3%E7%B3%BB%E6%8A%80%E8%83%BD.png" alt="人际关系技能" title="人际关系技能"></li>
+</ul>
+<h2 id="项目沟通管理"><a href="#项目沟通管理" class="headerlink" title="项目沟通管理"></a>项目沟通管理</h2><p>考点:<br>1.沟通渠道计算:N*(N-1)/2,N为成员数<br>2.沟通模型:</p>
+<p>3.沟通技术:正式书面沟通,正是口头沟通,非正式书面沟通,非正是口头沟通<br>4.沟通方法:</p>
+<ul>
+<li>A.交互式沟通:会议</li>
+<li>B.推式沟通方式: email</li>
+<li>C.拉式沟通方式:公告</li>
+</ul>
+<p>5.沟通管理通常可分成五个层面：<br>第一个层面是自我沟通；主要是人的内在行为，如观察、倾听、阅读等；<br>第二个层面是人际沟通；在这个层面，两个或两个以上的人交换想法，他们可能为了分享信息、提供反馈，或者是为了为维持一定的社会关系；<br>第三个层面是小组沟通或团队沟通；<br>第四个层面是组织沟通；<br>第五个层面是跨文化沟通。</p>
+<h3 id="10-1规划沟通管理"><a href="#10-1规划沟通管理" class="headerlink" title="10.1规划沟通管理"></a>10.1规划沟通管理</h3><p><img src="/pmp/10.1%E8%A7%84%E5%88%92%E6%B2%9F%E9%80%9A%E7%AE%A1%E7%90%86.png" alt="规划沟通管理" title="规划沟通管理"></p>
+<h3 id="10-2管理沟通"><a href="#10-2管理沟通" class="headerlink" title="10.2管理沟通"></a>10.2管理沟通</h3><p><img src="/pmp/10.2%E7%AE%A1%E7%90%86%E6%B2%9F%E9%80%9A.png" alt="管理沟通" title="管理沟通"></p>
+<h3 id="10-3监督沟通"><a href="#10-3监督沟通" class="headerlink" title="10.3监督沟通"></a>10.3监督沟通</h3><p><img src="/pmp/10.3%E7%9B%91%E7%9D%A3%E6%B2%9F%E9%80%9A.png" alt="监督沟通" title="监督沟通"></p>
+<h2 id="项目风险管理"><a href="#项目风险管理" class="headerlink" title="项目风险管理"></a>项目风险管理</h2><p>考点:<br>1.识别风险分析工具(4种)</p>
+<ul>
+<li>根本原因分析</li>
+<li>假设条件和制约因素分析</li>
+<li>SWOT分析</li>
+<li>文件分析</li>
+</ul>
+<p>2.定量风险分析工具(4种):</p>
+<ul>
+<li>龙卷风图(敏感性分析)</li>
+<li>决策树分析(预期货币价值分析,利用概率计算成本)</li>
+<li>蒙特卡洛(模拟):统计模拟方法</li>
+<li>影响图</li>
+</ul>
+<p>3.定性分析风险概率矩阵:</p>
+<p>4.规划风险威胁策略:</p>
+<ul>
+<li>上报,规避(提前预防),减轻(减低风险发生概率)–&gt;减轻后注意评估残余风险,转移(付出代价完全转移给第三方),接受</li>
+</ul>
+<p>5.机会风险策略:</p>
+<ul>
+<li>上报,开拓(采取措施保证机会出现),分享(与其他方共同促进,共享机会发生利益),提高(采取措施提高机会出现可能性),接受</li>
+</ul>
+<p>6.风险登记手册记录</p>
+<ul>
+<li>弹回计划:应急计划得配套计划,在应急计划不生效就弹回</li>
+<li>次生风险:一个风险带来另外风险</li>
+<li>残余风险:遗留下来得风险</li>
+</ul>
+<p><img src="/pmp/11.%E9%A3%8E%E9%99%A9%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="风险整体流程图" title="风险整体流程图"><br><img src="/pmp/11.0%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86%E4%BB%8B%E7%BB%8D.png" alt="风险管理介绍" title="风险管理介绍"></p>
+<h3 id="11-1规划风险管理"><a href="#11-1规划风险管理" class="headerlink" title="11.1规划风险管理"></a>11.1规划风险管理</h3><p><img src="/pmp/11.1%E8%A7%84%E5%88%92%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86.png" alt="规划风险管理" title="规划风险管理"></p>
+<h3 id="11-2识别风险-识别已知风险"><a href="#11-2识别风险-识别已知风险" class="headerlink" title="11.2识别风险(识别已知风险)"></a>11.2识别风险(识别已知风险)</h3><p><img src="/pmp/11.2%E8%AF%86%E5%88%AB%E9%A3%8E%E9%99%A9.png" alt="识别风险" title="识别风险"></p>
+<h3 id="11-3实施定性风险分析-对已知风险评估"><a href="#11-3实施定性风险分析-对已知风险评估" class="headerlink" title="11.3实施定性风险分析(对已知风险评估)"></a>11.3实施定性风险分析(对已知风险评估)</h3><p><img src="/pmp/11.3%E5%AE%9E%E6%96%BD%E5%AE%9A%E6%80%A7%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90.png" alt="实施定性风险分析" title="实施定性风险分析"></p>
+<h3 id="11-4实施定量风险分析-针对已知最大分析进一步分析"><a href="#11-4实施定量风险分析-针对已知最大分析进一步分析" class="headerlink" title="11.4实施定量风险分析(针对已知最大分析进一步分析)"></a>11.4实施定量风险分析(针对已知最大分析进一步分析)</h3><p><img src="/pmp/11.4%E5%AE%9E%E6%96%BD%E5%AE%9A%E9%87%8F%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90.png" alt="实施定量风险分析" title="实施定量风险分析"></p>
+<h3 id="11-5规划风险应对"><a href="#11-5规划风险应对" class="headerlink" title="11.5规划风险应对"></a>11.5规划风险应对</h3><p><img src="/pmp/11.5%E8%A7%84%E5%88%92%E9%A3%8E%E9%99%A9%E5%BA%94%E5%AF%B9.png" alt="规划风险应对" title="规划风险应对"></p>
+<h3 id="11-6实施风险应对"><a href="#11-6实施风险应对" class="headerlink" title="11.6实施风险应对"></a>11.6实施风险应对</h3><p><img src="/pmp/11.6%E5%AE%9E%E6%96%BD%E9%A3%8E%E9%99%A9%E5%BA%94%E5%AF%B9.png" alt="实施风险应对" title="实施风险应对"></p>
+<h3 id="11-7监督风险"><a href="#11-7监督风险" class="headerlink" title="11.7监督风险"></a>11.7监督风险</h3><p><img src="/pmp/11.7%E7%9B%91%E7%9D%A3%E9%A3%8E%E9%99%A9.png" alt="监督风险" title="监督风险"></p>
+<h2 id="项目采购管理"><a href="#项目采购管理" class="headerlink" title="项目采购管理"></a>项目采购管理</h2><p>考点1：合同类型(2种)<br>A.总价类合同</p>
+<ul>
+<li>固定总价类合同(FFP)：货物的采购价格在一开始就已确定工作范围,并且范围不变合同价格不允许改变(除非工作范围发生变更)</li>
+<li>总价加激励费合同(FPIF)：同会设置价格上限,高于此价格的上限的全部成本由卖方承担</li>
+<li>总价加经济价格调整(FP-EPA)：卖方履约期限跨越几年时间,或将以不同货币支付价款。它是总价合同的一种类型,但合同中包含了特殊条款,允许根据条件变化,如通货膨胀、某些特殊商品的成本增加(或降低),以事先确定的方式对合同价格进行最终调整。</li>
+</ul>
+<p>B.成本类合同</p>
+<ul>
+<li>成本加固定费用(CPFF)为卖方报销履行合同工作所发生的一切可列支成本,并向卖方支付一笔以合同成本固定比例费用。</li>
+<li>成本加激励费用(CPIF)：为卖方报销履行合同工作所发生的一切可列支成本,并在卖方达到合同规定的绩效目标时,向卖方支付预先确定的激励费用</li>
+<li>成本加奖励费用(CPFA)：为卖方报销一切合法成本。当只有在卖方满足合同规定的,某些笼统主观的绩效标准的情况下,才向卖方支付大部分费用。奖励费用完全由买方根据自己对卖方绩效的主观判断来决定,并且通常不允许申诉。<br>C.工料合同(T&amp;M):<br>  在无法快速编制出准确的工作说明书的情况下扩充人员、聘用专家或寻求外部支持。</li>
+</ul>
+<p>考点2：索赔和争议三步骤:</p>
+<ul>
+<li>1.谈判</li>
+<li>2.ADR(用替代争议解决方法)</li>
+<li>3.起诉:根据合同起诉</li>
+</ul>
+<p>考点3：计算合同价格公式:费用是利润,限价是总价<br>1.总价加激励费用FPIF合同 估算的合同总价<br>    估算的合同总价PTA(Point of Total Assumption)也称为总体假设点,是指买方支付最高限价时,卖方花费的成本：<br>    合同总价(PTA) = 目标成本 + (最高限价 – 目标价格)/ 买方分担比例<br>    目标价格 = 目标成本 + 目标利润</p>
+<p>2.总价加激励费用FPIF合同<br>    合同价格 = 实际成本 + 实际利润<br>    实际利润 = 目标利润 + (目标成本 – 实际成本)* 卖方分担比例<br>    注意最高价上限 , 利润看(最高限价 – 实际成本)上限</p>
+<p>3.成本加固定费用合同CPPC<br>    合同规定了估计成本,并同意以目标成本的10%作为利润<br>    总价 = 实际成本 + 目标成本*以成本的利润百分比</p>
+<p>4.成本加激励费用CPIF合同<br>    合同价格 = 实际成本 + 实际利润<br>    实际利润 = 目标利润 + (目标成本 – 实际成本)*卖方分担比例<br>    然后注意下 费用上限,下限基本无忧</p>
+<h3 id="12-1规划采购管理"><a href="#12-1规划采购管理" class="headerlink" title="12.1规划采购管理"></a>12.1规划采购管理</h3><p><img src="/pmp/12.1%E8%A7%84%E5%88%92%E9%87%87%E8%B4%AD%E7%AE%A1%E7%90%86.png" alt="规划采购管理" title="规划采购管理"></p>
+<h3 id="12-2实施采购"><a href="#12-2实施采购" class="headerlink" title="12.2实施采购"></a>12.2实施采购</h3><p><img src="/pmp/12.2%E5%AE%9E%E6%96%BD%E9%87%87%E8%B4%AD.png" alt="实施采购" title="实施采购"></p>
+<h3 id="12-3控制采购"><a href="#12-3控制采购" class="headerlink" title="12.3控制采购"></a>12.3控制采购</h3><p><img src="/pmp/12.3%E6%8E%A7%E5%88%B6%E9%87%87%E8%B4%AD.png" alt="控制采购" title="控制采购"></p>
+<h2 id="项目相关方管理"><a href="#项目相关方管理" class="headerlink" title="项目相关方管理"></a>项目相关方管理</h2><p>1.识别相关方数据表现：</p>
+<ul>
+<li>权力利益方格:权高力高重管理,权低利低仅监督,权高利低满足他,权低利高常告知</li>
+</ul>
+<p>2.规划相关方数据表现</p>
+<ul>
+<li>思维导图:彰显相互关系</li>
+<li>相关方参与度评估矩阵：不知道,抵制,中立,支持型,领导(有参与行为)<br>  支持型:了解项目及其潜在影响,并且会支持项目工作及其成果。(此类相关方知道化工厂项目有什么影响,但是同意建化工厂项目)<br>  领导型:了解项目及其潜在影响,而且积极参与以确保项目取得成功。(此类相关方知道化工厂项目有什么影响,但是为了项目成功,提供资源、钱等支持)<br>  (了解项目及潜在影响,积极参与以确保项目取得成功,比支持型更积极促进项目成功)</li>
+</ul>
+<h3 id="13-1识别相关方"><a href="#13-1识别相关方" class="headerlink" title="13.1识别相关方"></a>13.1识别相关方</h3><p><img src="/pmp/13.1%E8%AF%86%E5%88%AB%E7%9B%B8%E5%85%B3%E6%96%B9.png" alt="识别相关方" title="识别相关方"></p>
+<h3 id="13-2规划相关方参与"><a href="#13-2规划相关方参与" class="headerlink" title="13.2规划相关方参与"></a>13.2规划相关方参与</h3><p><img src="/pmp/13.2%E8%A7%84%E5%88%92%E7%9B%B8%E5%85%B3%E6%96%B9%E5%8F%82%E4%B8%8E.png" alt="规划相关方参与" title="规划相关方参与"></p>
+<h3 id="13-3管理相关方参与"><a href="#13-3管理相关方参与" class="headerlink" title="13.3管理相关方参与"></a>13.3管理相关方参与</h3><p><img src="/pmp/13.3%E7%AE%A1%E7%90%86%E7%9B%B8%E5%85%B3%E6%96%B9%E5%8F%82%E4%B8%8E.png" alt="管理相关方参与" title="管理相关方参与"></p>
+<h3 id="13-4监督相关方参与"><a href="#13-4监督相关方参与" class="headerlink" title="13.4监督相关方参与"></a>13.4监督相关方参与</h3><p><img src="/pmp/13.4%E7%9B%91%E7%9D%A3%E7%9B%B8%E5%85%B3%E6%96%B9%E5%8F%82%E4%B8%8E.png" alt="监督相关方参与" title="监督相关方参与"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PMP/" rel="tag"># PMP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/02/Mysql-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%862/" rel="next" title="MySql基础知识2">
+                <i class="fa fa-chevron-left"></i> MySql基础知识2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/09/Java-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F/" rel="prev" title="搭建单元测试">
+                搭建单元测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="cdongtao" />
+            
+              <p class="site-author-name" itemprop="name">cdongtao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">149</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yourname" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:441623928@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目准备"><span class="nav-number">1.</span> <span class="nav-text">项目准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目组织结构"><span class="nav-number">1.1.</span> <span class="nav-text">项目组织结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目一般周期-时间维度"><span class="nav-number">1.2.</span> <span class="nav-text">项目一般周期(时间维度)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目投入曲线"><span class="nav-number">1.3.</span> <span class="nav-text">项目投入曲线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五大过程组-项目管理维度-与十大知识领域-知识领域维度"><span class="nav-number">2.</span> <span class="nav-text">五大过程组(项目管理维度)与十大知识领域(知识领域维度)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十五至尊图-1351"><span class="nav-number">3.</span> <span class="nav-text">十五至尊图(1351)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#47个过程组学习方法"><span class="nav-number">3.1.</span> <span class="nav-text">47个过程组学习方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记忆逻辑图"><span class="nav-number">3.2.</span> <span class="nav-text">记忆逻辑图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目整合管理"><span class="nav-number">4.</span> <span class="nav-text">项目整合管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1制定章程-启动"><span class="nav-number">4.1.</span> <span class="nav-text">4.1制定章程(启动)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2制定项目管理计划-规划"><span class="nav-number">4.2.</span> <span class="nav-text">4.2制定项目管理计划(规划)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3指导与项目管理工作-执行"><span class="nav-number">4.3.</span> <span class="nav-text">4.3指导与项目管理工作(执行)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4监控项目工作-监控"><span class="nav-number">4.4.</span> <span class="nav-text">4.4监控项目工作(监控)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5变更控制-监控"><span class="nav-number">4.5.</span> <span class="nav-text">4.5变更控制(监控)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变更控制流程"><span class="nav-number">4.5.1.</span> <span class="nav-text">变更控制流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5项目结束或阶段-收尾"><span class="nav-number">4.6.</span> <span class="nav-text">4.5项目结束或阶段(收尾)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目范围管理"><span class="nav-number">5.</span> <span class="nav-text">项目范围管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1规划范围管理-规划"><span class="nav-number">5.1.</span> <span class="nav-text">5.1规划范围管理(规划)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2收集需求-规划"><span class="nav-number">5.2.</span> <span class="nav-text">5.2收集需求(规划)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3定义范围-规划"><span class="nav-number">5.3.</span> <span class="nav-text">5.3定义范围(规划)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4创建WBS-规划"><span class="nav-number">5.4.</span> <span class="nav-text">5.4创建WBS(规划)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5确认范围-监控"><span class="nav-number">5.5.</span> <span class="nav-text">5.5确认范围(监控)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6控制范围-监控"><span class="nav-number">5.6.</span> <span class="nav-text">5.6控制范围(监控)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目进度管理"><span class="nav-number">6.</span> <span class="nav-text">项目进度管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1规划进度管理"><span class="nav-number">6.1.</span> <span class="nav-text">6.1规划进度管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2定义活动"><span class="nav-number">6.2.</span> <span class="nav-text">6.2定义活动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3排列活动顺序"><span class="nav-number">6.3.</span> <span class="nav-text">6.3排列活动顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4估算活动持续时间"><span class="nav-number">6.4.</span> <span class="nav-text">6.4估算活动持续时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5制定进度计划"><span class="nav-number">6.5.</span> <span class="nav-text">6.5制定进度计划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6控制进度"><span class="nav-number">6.6.</span> <span class="nav-text">6.6控制进度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目成本管理"><span class="nav-number">7.</span> <span class="nav-text">项目成本管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1规划成本管理"><span class="nav-number">7.1.</span> <span class="nav-text">7.1规划成本管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2估算成本"><span class="nav-number">7.2.</span> <span class="nav-text">7.2估算成本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3制定预算"><span class="nav-number">7.3.</span> <span class="nav-text">7.3制定预算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4控制成本"><span class="nav-number">7.4.</span> <span class="nav-text">7.4控制成本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目质量管理"><span class="nav-number">8.</span> <span class="nav-text">项目质量管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1规划质量管理"><span class="nav-number">8.1.</span> <span class="nav-text">8.1规划质量管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2管理质量"><span class="nav-number">8.2.</span> <span class="nav-text">8.2管理质量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3控制质量"><span class="nav-number">8.3.</span> <span class="nav-text">8.3控制质量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目资源管理"><span class="nav-number">9.</span> <span class="nav-text">项目资源管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1规划资源管理"><span class="nav-number">9.1.</span> <span class="nav-text">9.1规划资源管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2估算活动资源"><span class="nav-number">9.2.</span> <span class="nav-text">9.2估算活动资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3获取资源"><span class="nav-number">9.3.</span> <span class="nav-text">9.3获取资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4建设团队"><span class="nav-number">9.4.</span> <span class="nav-text">9.4建设团队</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-5管理团队"><span class="nav-number">9.5.</span> <span class="nav-text">9.5管理团队</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6控制资源"><span class="nav-number">9.6.</span> <span class="nav-text">9.6控制资源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目沟通管理"><span class="nav-number">10.</span> <span class="nav-text">项目沟通管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1规划沟通管理"><span class="nav-number">10.1.</span> <span class="nav-text">10.1规划沟通管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2管理沟通"><span class="nav-number">10.2.</span> <span class="nav-text">10.2管理沟通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3监督沟通"><span class="nav-number">10.3.</span> <span class="nav-text">10.3监督沟通</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目风险管理"><span class="nav-number">11.</span> <span class="nav-text">项目风险管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1规划风险管理"><span class="nav-number">11.1.</span> <span class="nav-text">11.1规划风险管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2识别风险-识别已知风险"><span class="nav-number">11.2.</span> <span class="nav-text">11.2识别风险(识别已知风险)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3实施定性风险分析-对已知风险评估"><span class="nav-number">11.3.</span> <span class="nav-text">11.3实施定性风险分析(对已知风险评估)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4实施定量风险分析-针对已知最大分析进一步分析"><span class="nav-number">11.4.</span> <span class="nav-text">11.4实施定量风险分析(针对已知最大分析进一步分析)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-5规划风险应对"><span class="nav-number">11.5.</span> <span class="nav-text">11.5规划风险应对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-6实施风险应对"><span class="nav-number">11.6.</span> <span class="nav-text">11.6实施风险应对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-7监督风险"><span class="nav-number">11.7.</span> <span class="nav-text">11.7监督风险</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目采购管理"><span class="nav-number">12.</span> <span class="nav-text">项目采购管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-1规划采购管理"><span class="nav-number">12.1.</span> <span class="nav-text">12.1规划采购管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-2实施采购"><span class="nav-number">12.2.</span> <span class="nav-text">12.2实施采购</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3控制采购"><span class="nav-number">12.3.</span> <span class="nav-text">12.3控制采购</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目相关方管理"><span class="nav-number">13.</span> <span class="nav-text">项目相关方管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-1识别相关方"><span class="nav-number">13.1.</span> <span class="nav-text">13.1识别相关方</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2规划相关方参与"><span class="nav-number">13.2.</span> <span class="nav-text">13.2规划相关方参与</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3管理相关方参与"><span class="nav-number">13.3.</span> <span class="nav-text">13.3管理相关方参与</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-4监督相关方参与"><span class="nav-number">13.4.</span> <span class="nav-text">13.4监督相关方参与</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cdongtao</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">324k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">4:54</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'uASAKzQTPhuJIplOaklnAaqK-gzGzoHsz',
+        appKey: 'LRW155uTAdoeaAjf9q9D53Ps',
+        placeholder: 'Welcome to comment!',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
