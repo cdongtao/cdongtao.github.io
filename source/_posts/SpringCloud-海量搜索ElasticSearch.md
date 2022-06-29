@@ -8,7 +8,6 @@ categories: [SpringCloud]
 2. 
 3. 集群 及配置
 
-
 # ES ik中文分词器的安装
 
 # es head x-pack 安装
