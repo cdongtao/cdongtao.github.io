@@ -293,6 +293,7 @@ Creating a new branch is quick AND simple
 如果保留自己的代码，将别人的代码删掉即可。
 
 ## Git-LFS 使用
+### 创建
 常规的Git存储仓库，如果在里面增加大文件图片和视频，git 文件会越来越大，怎么解决这种问题呢，git lfs  
 - 初始化仓库
 git init
@@ -306,3 +307,8 @@ git lfs migrate import --include="*.gif,*.png,*.jpg,*.psd,*.mp4" --everything -y
 git add .
 git commit -m "chore: 迁移大文件资源到git lfs storage"
 git push --force --set-upstream origin master
+
+### 删除
+git lfs uninstall
+touch **/*
+git commit -a
