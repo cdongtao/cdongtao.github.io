@@ -292,3 +292,17 @@ Creating a new branch is quick AND simple
 2.在=======  >>>>>>>之间为别人的代码。
 如果保留自己的代码，将别人的代码删掉即可。
 
+## Git-LFS 使用
+常规的Git存储仓库，如果在里面增加大文件图片和视频，git 文件会越来越大，怎么解决这种问题呢，git lfs  
+- 初始化仓库
+git init
+- 配置git lfs到当前仓库 .git/config 文件中
+git lfs install
+- 创建 .gitattributes 文件，用lfs跟踪 *.gif,*.png,*.jpg,*.psd,*.mp4
+git lfs track "*.gif" "*.png" "*.jpg" "*.psd" "*.mp4"
+- 迁移已有git仓库里（含所有分支历史记录）的 *.gif,*.png,*.jpg,*.psd,*.mp4 文件到 lfs 仓库中
+git lfs migrate import --include="*.gif,*.png,*.jpg,*.psd,*.mp4" --everything -y
+- 改写远程git仓库
+git add .
+git commit -m "chore: 迁移大文件资源到git lfs storage"
+git push --force --set-upstream origin master
